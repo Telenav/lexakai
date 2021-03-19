@@ -1,0 +1,327 @@
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--  © 2020 Telenav - All rights reserved.                                                                          -->
+<!--  This software is the confidential and proprietary information of Telenav ("Confidential Information").         -->
+<!--  You shall not disclose such Confidential Information and shall use it only in accordance with the              -->
+<!--  terms of the license agreement you entered into with Telenav.                                                  -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.telenav.lexakai</groupId>
+    <artifactId>com.telenav.lexakai</artifactId>
+    <version>0.9.0</version>
+    <packaging>pom</packaging>
+
+    <name>TDK</name>
+
+    <modules>
+        <module>annotations</module>
+    </modules>
+
+    <description>Lexakai is an annotation and markdown-driven documentation generation tool</description>
+
+    <organization>
+        <name>Telenav</name>
+        <url>https://www.telenav.com</url>
+    </organization>
+
+    <inceptionYear>2021</inceptionYear>
+
+    <issueManagement>
+        <system>jira</system>
+        <url>https://jira.telenav.com:8443/secure/Dashboard.jsp</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+
+        <!-- TDK Version -->
+
+        <tdk.version>8.1.1-SNAPSHOT</tdk.version>
+        <tdk.metadata.jar.name>tdk-metadata-${project.version}</tdk.metadata.jar.name>
+
+        <!-- Java -->
+
+        <java.version>12</java.version>
+
+        <!-- Maven -->
+
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin-java.version>12</maven-compiler-plugin-java.version>
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <maven.build.timestamp.format>yyyy.MM.dd-HH.mma</maven.build.timestamp.format>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
+
+    </properties>
+
+    <distributionManagement>
+
+        <!-- Release Distribution Repository -->
+
+        <repository>
+            <id>telenav.maven.releases</id>
+            <name>Telenav Maven Published Releases</name>
+            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-releases</url>
+        </repository>
+
+        <!-- Snapshot Distribution Repository -->
+
+        <snapshotRepository>
+            <id>telenav.maven.snapshots</id>
+            <name>Telenav Maven Published Snapshots</name>
+            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-snapshots</url>
+        </snapshotRepository>
+
+        <downloadUrl>http://artifactory.telenav.com:8081/artifactory/telenav-maven-releases</downloadUrl>
+
+    </distributionManagement>
+
+    <repositories>
+
+        <!-- Maven Cache Repository -->
+
+        <repository>
+            <id>telenav.maven.public</id>
+            <name>Telenav Maven Public</name>
+            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-public</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+    </repositories>
+
+    <!-- Maven Plugin Repository -->
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>telenav.maven.plugins</id>
+            <name>Telenav Maven Plugins</name>
+            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    <build>
+
+        <plugins>
+
+            <!-- Download tdk-build-metadata.jar -->
+
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>1.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>http://telenav-tdk.mypna.com/applications/tdk-build/tdk-build-metadata-0.9.0.jar</url>
+                            <outputFileName>tdk-build-metadata.jar</outputFileName>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Create project.properties and build.properties files -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>project-metadata</id>
+                        <phase>verify</phase>
+                        <configuration>
+                            <target name = "build-metadata">
+                                <property name = "project.groupId" value = "${project.groupId}"/>
+                                <property name = "project.artifactId" value = "${project.artifactId}"/>
+                                <property name = "project.version" value = "${project.version}"/>
+                                <property name = "project.name" value = "${project.name}"/>
+                                <property name = "project.basedir" value = "${project.basedir}"/>
+                                <condition property = "source.exists">
+                                    <available file = "src" type = "dir"/>
+                                </condition>
+                                <taskdef resource = "net/sf/antcontrib/antcontrib.properties" classpathref = "maven.plugin.classpath"/>
+                                <if>
+                                    <equals arg1 = "${source.exists}" arg2 = "true"/>
+                                    <then>
+                                        <echo file = "src/main/java/project.properties">
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                        </echo>
+                                        <java jar = "target/tdk-build-metadata.jar"
+                                              failonerror = "true"
+                                              fork = "true">
+                                            <arg value = "src/main/java"/>
+                                        </java>
+                                    </then>
+                                </if>
+                                <if>
+                                    <equals arg1 = "${project.name}" arg2 = "TDK"/>
+                                    <then>
+                                        <echo file = "${env.TDK_HOME}/project.properties">
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                        </echo>
+                                    </then>
+                                </if>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>20020829</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+
+        <!-- Resource Copying -->
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <!-- Compiler -->
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${maven-compiler-plugin-java.version}</source>
+                        <target>${maven-compiler-plugin-java.version}</target>
+                        <release>${java.version}</release>
+                        <compilerArgs>
+                            <compilerArgument>-Xlint:unchecked</compilerArgument>
+                            <compilerArgument>-Xlint:deprecation</compilerArgument>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+
+                <!-- Maven Build -->
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+
+                <!-- Testing -->
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                    <configuration>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <excludedGroups>${exclude.test.groups}</excludedGroups>
+                        <systemPropertyVariables>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <testQuick>${testQuick}</testQuick>
+                        </systemPropertyVariables>
+                        <argLine>-Xmx2g</argLine>
+                    </configuration>
+                </plugin>
+
+                <!-- Javadoc -->
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <show>public</show>
+                        <source>12</source>
+                        <detectJavaApiLink>false</detectJavaApiLink>
+                        <doclint>none</doclint>
+                        <nohelp>true</nohelp>
+                        <additionalOptions>--show-module-contents all --show-packages all --show-types private</additionalOptions>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>aggregate</id>
+                            <phase>site</phase>
+                            <goals>
+                                <goal>aggregate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
+
+</project>
+

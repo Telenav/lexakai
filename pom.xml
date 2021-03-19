@@ -20,7 +20,7 @@
         <module>annotations</module>
     </modules>
 
-    <description>Lexakai is an annotation and markdown-driven documentation generation tool</description>
+    <description>Lexakai is an annotation and markdown-driven documentation generation tool.</description>
 
     <organization>
         <name>Telenav</name>

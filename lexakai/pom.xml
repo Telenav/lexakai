@@ -17,7 +17,7 @@
     <name>Lexakai - Annotations</name>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>com.telenav.lexakai-annotations</artifactId>
+    <artifactId>com.telenav.lexakai-lexakai</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

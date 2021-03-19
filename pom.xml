@@ -18,6 +18,7 @@
 
     <modules>
         <module>annotations</module>
+        <module>lexakai</module>
     </modules>
 
     <description>Lexakai is an annotation and markdown-driven documentation generation tool.</description>
@@ -133,7 +134,7 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.3.0</version>
+                <version>1.6.1</version>
                 <executions>
                     <execution>
                         <phase>process-resources</phase>

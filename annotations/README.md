@@ -10,8 +10,7 @@ Lexakai annotations. For usage details, see [Lexakai](../lexakai/README.md).
         <version>8.1.1-SNAPSHOT</version>
     </dependency>
 
-### Annotations
-
+### Annotations &nbsp; ![](../documentation/images/annotation-32.png)
 
     Diagrams:
 

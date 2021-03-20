@@ -35,7 +35,7 @@ Switches:
 -update-readme=Boolean (optional, default: false) : True to create and update a README.md file
 ```
 
-### Basic Package Diagrams &nbsp; ![](../documentation/images/box-40.png)  
+### Basic Package Diagrams &nbsp; ![](../documentation/images/box-40.png)
 
 Lexakai automatically creates basic package diagrams with all public types without further configuration.
 
@@ -50,8 +50,7 @@ To create a set of one or more custom diagrams for a project, annotations can be
     </dependency>
 
 A class, annotation, enum or interface annotated with @UmlClassDiagram(diagram = *marker-interface*.class),  
-where *marker-interface* extends the interface *UmlDiagramIdentifier*, will be included in the
-specified diagram.
+where *marker-interface* extends the interface *UmlDiagramIdentifier*, will be included in the specified diagram.
 
 For example, a type annotated with:
 
@@ -98,15 +97,15 @@ to a type, it can specify a relation with a particular referent and cardinality.
 can be made specific to a particular diagram with the 'diagram' parameter. Multiple *@UmlRelation* tags  
 can be applied to a type.
 
-### Excluding Types And Members
+### Excluding Types And Members ![](../documentation/images/no-32.png)
 
 Methods and fields can be excluded entirely by labeling them with @UmlExcludeMember.
 
-### Non-Public Apis &nbsp; ![](../documentation/images/no-32.png)
+### Non-Public Apis &nbsp;
 
 *@UmlNotPublicApi* marks a type or member as private even if it is not actually private.
 
-### Annotation Summary
+### Annotation Summary &nbsp; ![](../documentation/images/annotation-32.png)
 
     Diagrams:
 
@@ -129,8 +128,7 @@ Methods and fields can be excluded entirely by labeling them with @UmlExcludeMem
 
 ### Configuration &nbsp; ![](../documentation/images/gears-40.png)
 
-The 'documentation' folder for each project should contain a lexakai.properties file that looks
-similar to this:
+The 'documentation' folder for each project should contain a lexakai.properties file that looks similar to this:
 
     #
     # Project

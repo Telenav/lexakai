@@ -49,6 +49,10 @@
 
     <properties>
 
+        <!-- Lexakai -->
+
+        <lexakai.home>${env.TDK_HOME}/../lexakai</lexakai.home>
+
         <!-- TDK Version -->
 
         <tdk.version>8.1.1-SNAPSHOT</tdk.version>
@@ -129,27 +133,6 @@
 
         <plugins>
 
-            <!-- Download tdk-build-metadata.jar -->
-
-            <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.6.1</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>http://telenav-tdk.mypna.com/applications/tdk-build/tdk-build-metadata-0.9.0.jar</url>
-                            <outputFileName>tdk-build-metadata.jar</outputFileName>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Create project.properties and build.properties files -->
 
             <plugin>
@@ -177,19 +160,11 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
                                         </echo>
-                                        <java jar = "target/tdk-build-metadata.jar"
+                                        <java jar = "${lexakai.home}/tools/building/tdk-build-metadata-0.9.0.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
                                         </java>
-                                    </then>
-                                </if>
-                                <if>
-                                    <equals arg1 = "${project.name}" arg2 = "TDK"/>
-                                    <then>
-                                        <echo file = "${env.TDK_HOME}/project.properties">
-                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
-                                        </echo>
                                     </then>
                                 </if>
                             </target>

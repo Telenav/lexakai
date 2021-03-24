@@ -38,6 +38,11 @@ public @interface UmlClassDiagram
     /**
      * @return Super types to exclude from inheritance in this diagram only
      */
+    boolean excludeAllSuperTypes() default false;
+
+    /**
+     * @return Super types to exclude from inheritance in this diagram only
+     */
     Class<?>[] excludeSuperTypes() default {};
 
     /**

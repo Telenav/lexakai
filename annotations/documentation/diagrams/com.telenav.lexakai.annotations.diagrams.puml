@@ -1,0 +1,18 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.lexakai.annotations.diagrams"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- AllDiagrams
+    interface AllDiagrams
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    {
+    }
+    
+@enduml
+

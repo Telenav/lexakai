@@ -1,32 +1,79 @@
-## Lexakai - Annotations &nbsp; ![](../documentation/images/tag-40.png)
+# Lexakai - Annotations &nbsp;&nbsp;![](documentation/images/gears-48.png)
 
-Lexakai annotations. For usage details, see [Lexakai](../lexakai/README.md).
+This project documentation index was created by Lexakai. To configure, see  
+[project-home-folder]/documentation/lexakai.properties.
 
-### Dependencies &nbsp; ![](../documentation/images/dependencies-40.png)
+![](documentation/images/horizontal-line.png)
+
+### Index
+
+
+[**Dependencies**](#dependencies)  
+[**Class Diagrams**](#class-diagrams)  
+[**Package Diagrams**](#package-diagrams)  
+[**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
+
+[//]: # (start-user-text)
+
+
+
+[//]: # (end-user-text)
+
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
     <dependency>
-        <groupId>com.telenav.tdk.core</groupId>
-        <artifactId>com.telenav.tdk.core-application</artifactId>
-        <version>8.1.1-SNAPSHOT</version>
+        <groupId>com.telenav.lexakai</groupId>
+        <artifactId>com.telenav.lexakai-annotations</artifactId>
+        <version>0.9.0</version>
     </dependency>
 
-### Annotations &nbsp; ![](../documentation/images/annotation-32.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
-    Diagrams:
+None
 
-           @UmlClassDiagram - declares the diagram(s) that the annotated type should be included in
-            @UmlMethodGroup - includes the annotated method in a labeled method group in the diagram
-                   @UmlNote - adds a callout note to a type or method
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
 
-    Visibility:
+[*com.telenav.lexakai.annotations*](documentation/diagrams/com.telenav.lexakai.annotations.svg)  
+[*com.telenav.lexakai.annotations.associations*](documentation/diagrams/com.telenav.lexakai.annotations.associations.svg)  
+[*com.telenav.lexakai.annotations.diagrams*](documentation/diagrams/com.telenav.lexakai.annotations.diagrams.svg)  
+[*com.telenav.lexakai.annotations.repeaters*](documentation/diagrams/com.telenav.lexakai.annotations.repeaters.svg)  
+[*com.telenav.lexakai.annotations.visibility*](documentation/diagrams/com.telenav.lexakai.annotations.visibility.svg)  
 
-      @UmlExcludeSuperTypes - excludes the listed supertypes from all diagrams
-          @UmlExcludeMember - excludes the annotated member
-          @UmlIncludeMember - includes the annotated member, even if it wouldn't normally be included
-           @UmlNotPublicApi - marks the annotated type or member as private even if it is not
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
 
-    Associations:
+| Class | Documentation Sections |
+|---|---|
+| [*AllDiagrams*]([javadoc base url here]/com/telenav/lexakai/annotations/diagrams/AllDiagrams.html) |  |  
+| [*UmlAggregation*]([javadoc base url here]/com/telenav/lexakai/annotations/associations/UmlAggregation.html) |  |  
+| [*UmlClassDiagram*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlClassDiagram.html) |  |  
+| [*UmlComposition*]([javadoc base url here]/com/telenav/lexakai/annotations/associations/UmlComposition.html) |  |  
+| [*UmlDiagramIdentifier*]([javadoc base url here]/com/telenav/lexakai/annotations/diagrams/UmlDiagramIdentifier.html) |  |  
+| [*UmlDiagramRepeater*]([javadoc base url here]/com/telenav/lexakai/annotations/repeaters/UmlDiagramRepeater.html) |  |  
+| [*UmlExcludeMember*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlExcludeMember.html) |  |  
+| [*UmlExcludeSuperTypes*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlExcludeSuperTypes.html) |  |  
+| [*UmlIncludeMember*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlIncludeMember.html) |  |  
+| [*UmlMethodGroup*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlMethodGroup.html) |  |  
+| [*UmlMethodGroupRepeater*]([javadoc base url here]/com/telenav/lexakai/annotations/repeaters/UmlMethodGroupRepeater.html) |  |  
+| [*UmlNotPublicApi*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlNotPublicApi.html) |  |  
+| [*UmlNote*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlNote.html) |  |  
+| [*UmlNote.Align*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlNote.Align.html) |  |  
+| [*UmlRelation*]([javadoc base url here]/com/telenav/lexakai/annotations/associations/UmlRelation.html) |  |  
+| [*UmlRelationRepeater*]([javadoc base url here]/com/telenav/lexakai/annotations/repeaters/UmlRelationRepeater.html) |  |  
 
-               @UmlRelation - adds a labeled UML relation from the enclosing type to the annotated member type
-            @UmlAggregation - adds a UML aggregation association from the enclosing type to the annotated field type
-            @UmlComposition - adds a UML composition association from the enclosing type to the annotated field type
+[//]: # (start-user-text)
+
+
+
+[//]: # (end-user-text)
+
+<br/>
+
+![](documentation/images/horizontal-line.png)
+
+<sub>This documentation was generated by Lexakai on 2021.03.25</sub>    
+<sub>UML diagrams courtesy of PlantUML (http://plantuml.com), distributed unmodified under LGPL.</sub>
+

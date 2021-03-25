@@ -1,0 +1,16 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.lexakai.annotations.visibility"
+    
+    annotation UmlExcludeMember
+    
+    annotation UmlExcludeSuperTypes
+    
+    annotation UmlIncludeMember
+    
+    annotation UmlNotPublicApi
+    
+@enduml
+

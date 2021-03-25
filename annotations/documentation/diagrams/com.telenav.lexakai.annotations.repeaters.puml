@@ -1,0 +1,14 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.lexakai.annotations.repeaters"
+    
+    annotation UmlDiagramRepeater
+    
+    annotation UmlMethodGroupRepeater
+    
+    annotation UmlRelationRepeater
+    
+@enduml
+

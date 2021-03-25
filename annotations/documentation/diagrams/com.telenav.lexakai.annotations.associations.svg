@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="218.75px" preserveAspectRatio="none" style="width:484px;height:218px;background:#333333;" version="1.1" viewBox="0 0 484 218" width="484.375px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="471.875" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="448.9583" x="13.5417" y="30.5583">com.telenav.lexakai.annotations.associations</text><!--MD5=[9184ceaa89664590ff4c6c803e97458b]
+class UmlAggregation--><rect codeLine="6" fill="#282828" height="48.055" id="UmlAggregation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="143.75" x="81.25" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="143.75" x="81.25" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="143.75" x="81.25" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="UmlAggregation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="143.75" x="81.25" y="53.7028"/><ellipse cx="95.8333" cy="69.397" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M97.0846,69.7164 Q97.0846,69.0267 96.7733,68.6361 Q96.462,68.2454 95.9188,68.2454 Q95.3756,68.2454 95.0673,68.6361 Q94.7591,69.0267 94.7591,69.7164 Q94.7591,70.4122 95.0673,70.8028 Q95.3756,71.1934 95.9188,71.1934 Q96.462,71.1934 96.7733,70.8028 Q97.0846,70.4122 97.0846,69.7164 Z M98.2198,72.2188 L97.0235,72.2188 L97.0235,71.7183 Q96.7916,72.0418 96.4773,72.1914 Q96.1629,72.3409 95.7235,72.3409 Q94.7225,72.3409 94.1091,71.6207 Q93.4957,70.9005 93.4957,69.7164 Q93.4957,68.5384 94.106,67.8212 Q94.7164,67.1041 95.7235,67.1041 Q96.1568,67.1041 96.4864,67.2536 Q96.816,67.4032 97.0235,67.69 L97.0235,67.4398 Q97.0235,66.6097 96.5688,66.158 Q96.1141,65.7064 95.2718,65.7064 Q94.0023,65.7064 93.1997,66.8233 Q92.3971,67.9403 92.3971,69.7286 Q92.3971,71.6024 93.3248,72.7102 Q94.2525,73.818 95.7967,73.818 Q96.285,73.818 96.7428,73.6745 Q97.2005,73.5311 97.6217,73.2442 L98.1832,74.3184 Q97.6888,74.6541 97.1059,74.822 Q96.523,74.9898 95.8577,74.9898 Q93.7215,74.9898 92.452,73.5677 Q91.1825,72.1456 91.1825,69.7286 Q91.1825,67.3665 92.3238,65.9475 Q93.4652,64.5284 95.3451,64.5284 Q96.6756,64.5284 97.4477,65.331 Q98.2198,66.1336 98.2198,67.5191 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="106.25" x="112.5" y="74.1211">UmlAggregation</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="82.2917" x2="223.9583" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="82.2917" x2="223.9583" y1="93.4245" y2="93.4245"/><!--MD5=[1c62e11eec3009ce626edf47f8288e9b]
+class UmlComposition--><rect codeLine="8" fill="#282828" height="48.055" id="UmlComposition" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="147.9167" x="261.4583" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="147.9167" x="261.4583" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="147.9167" x="261.4583" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="UmlComposition" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="147.9167" x="261.4583" y="53.7028"/><ellipse cx="276.0417" cy="69.397" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M277.2929,69.7164 Q277.2929,69.0267 276.9816,68.6361 Q276.6703,68.2454 276.1271,68.2454 Q275.5839,68.2454 275.2757,68.6361 Q274.9674,69.0267 274.9674,69.7164 Q274.9674,70.4122 275.2757,70.8028 Q275.5839,71.1934 276.1271,71.1934 Q276.6703,71.1934 276.9816,70.8028 Q277.2929,70.4122 277.2929,69.7164 Z M278.4281,72.2188 L277.2319,72.2188 L277.2319,71.7183 Q276.9999,72.0418 276.6856,72.1914 Q276.3713,72.3409 275.9318,72.3409 Q274.9308,72.3409 274.3174,71.6207 Q273.704,70.9005 273.704,69.7164 Q273.704,68.5384 274.3144,67.8212 Q274.9247,67.1041 275.9318,67.1041 Q276.3652,67.1041 276.6947,67.2536 Q277.0243,67.4032 277.2319,67.69 L277.2319,67.4398 Q277.2319,66.6097 276.7771,66.158 Q276.3224,65.7064 275.4801,65.7064 Q274.2106,65.7064 273.408,66.8233 Q272.6054,67.9403 272.6054,69.7286 Q272.6054,71.6024 273.5331,72.7102 Q274.4609,73.818 276.005,73.818 Q276.4933,73.818 276.9511,73.6745 Q277.4089,73.5311 277.83,73.2442 L278.3915,74.3184 Q277.8971,74.6541 277.3142,74.822 Q276.7314,74.9898 276.0661,74.9898 Q273.9299,74.9898 272.6603,73.5677 Q271.3908,72.1456 271.3908,69.7286 Q271.3908,67.3665 272.5321,65.9475 Q273.6735,64.5284 275.5534,64.5284 Q276.884,64.5284 277.656,65.331 Q278.4281,66.1336 278.4281,67.5191 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="110.4167" x="292.7083" y="74.1211">UmlComposition</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="262.5" x2="408.3333" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="262.5" x2="408.3333" y1="93.4245" y2="93.4245"/><!--MD5=[c50d655b23ed2026a186b6bec43ac1e1]
+class UmlRelation--><rect codeLine="10" fill="#282828" height="48.055" id="UmlRelation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="116.6667" x="94.7917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="116.6667" x="94.7917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="116.6667" x="94.7917" y="187.1745"/><rect codeLine="10" fill="none" height="48.055" id="UmlRelation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="116.6667" x="94.7917" y="164.1195"/><ellipse cx="109.375" cy="179.8136" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M110.6262,180.1331 Q110.6262,179.4434 110.3149,179.0527 Q110.0037,178.6621 109.4604,178.6621 Q108.9172,178.6621 108.609,179.0527 Q108.3008,179.4434 108.3008,180.1331 Q108.3008,180.8289 108.609,181.2195 Q108.9172,181.6101 109.4604,181.6101 Q110.0037,181.6101 110.3149,181.2195 Q110.6262,180.8289 110.6262,180.1331 Z M111.7615,182.6355 L110.5652,182.6355 L110.5652,182.135 Q110.3333,182.4585 110.0189,182.608 Q109.7046,182.7576 109.2651,182.7576 Q108.2642,182.7576 107.6508,182.0374 Q107.0374,181.3171 107.0374,180.1331 Q107.0374,178.9551 107.6477,178.2379 Q108.2581,177.5208 109.2651,177.5208 Q109.6985,177.5208 110.0281,177.6703 Q110.3577,177.8198 110.5652,178.1067 L110.5652,177.8564 Q110.5652,177.0264 110.1105,176.5747 Q109.6558,176.123 108.8135,176.123 Q107.5439,176.123 106.7413,177.24 Q105.9387,178.3569 105.9387,180.1453 Q105.9387,182.019 106.8665,183.1268 Q107.7942,184.2346 109.3384,184.2346 Q109.8267,184.2346 110.2844,184.0912 Q110.7422,183.9478 111.1633,183.6609 L111.7249,184.7351 Q111.2305,185.0708 110.6476,185.2386 Q110.0647,185.4065 109.3994,185.4065 Q107.2632,185.4065 105.9937,183.9844 Q104.7241,182.5623 104.7241,180.1453 Q104.7241,177.7832 105.8655,176.3641 Q107.0068,174.9451 108.8867,174.9451 Q110.2173,174.9451 110.9894,175.7477 Q111.7615,176.5503 111.7615,177.9358 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="126.0417" y="184.5378">UmlRelation</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="95.8333" x2="210.4167" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="95.8333" x2="210.4167" y1="203.8411" y2="203.8411"/><!--MD5=[e1b611db4d1c4b2cc4b2bd741503c5c7]
+link UmlAggregation to UmlComposition--><!--MD5=[46bdeb6da501a60531a4a172045bad8a]
+link UmlAggregation to UmlRelation--><!--MD5=[6cb52eb67ac5793b6992073044221132]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.lexakai.annotations.associations"
+    
+    annotation UmlAggregation
+    
+    annotation UmlComposition
+    
+    annotation UmlRelation
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.lexakai.annotations.associations"
+    
+    annotation UmlAggregation
+    
+    annotation UmlComposition
+    
+    annotation UmlRelation
+    
+@enduml
+
+PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

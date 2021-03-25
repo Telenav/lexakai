@@ -1,0 +1,22 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.lexakai.annotations"
+    
+    enum UmlNote.Align
+    {
+        BOTTOM
+        LEFT
+        RIGHT
+        TOP
+    }
+    
+    annotation UmlClassDiagram
+    
+    annotation UmlMethodGroup
+    
+    annotation UmlNote
+    
+@enduml
+

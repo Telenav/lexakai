@@ -1,8 +1,8 @@
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--  © 2020 Telenav - All rights reserved.                                                                          -->
-<!--  This software is the confidential and proprietary information of Telenav ("Confidential Information").         -->
-<!--  You shall not disclose such Confidential Information and shall use it only in accordance with the              -->
-<!--  terms of the license agreement you entered into with Telenav.                                                  -->
+<!--                                                                                                                 -->
+<!--  © 2011-2021 Telenav, Inc.                                                                                      -->
+<!--  Licensed under Apache License, Version 2.0                                                                     -->
+<!--                                                                                                                 -->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
@@ -55,8 +55,8 @@
 
         <!-- TDK Version -->
 
-        <tdk.version>0.9.0-SNAPSHOT</tdk.version>
-        <tdk.metadata.jar.name>tdk-metadata-${project.version}</tdk.metadata.jar.name>
+        <kivakit.version>0.9.0-SNAPSHOT</kivakit.version>
+        <kivakit.metadata.jar.name>kivakit-metadata-${project.version}</kivakit.metadata.jar.name>
 
         <!-- Java -->
 
@@ -160,7 +160,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
                                         </echo>
-                                        <java jar = "${lexakai.home}/tools/building/tdk-build-metadata-0.9.0.jar"
+                                        <java jar = "${lexakai.home}/tools/building/kivakit-build-metadata-0.9.0.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>

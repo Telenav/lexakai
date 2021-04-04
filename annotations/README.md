@@ -20,7 +20,7 @@ This project contains annotations for use in code to be processed by Lexakai.
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -30,11 +30,11 @@ This project contains annotations for use in code to be processed by Lexakai.
         <version>0.9.2</version>
     </dependency>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 None
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.lexakai.annotations*](documentation/diagrams/com.telenav.lexakai.annotations.svg)  
 [*com.telenav.lexakai.annotations.associations*](documentation/diagrams/com.telenav.lexakai.annotations.associations.svg)  
@@ -42,7 +42,7 @@ None
 [*com.telenav.lexakai.annotations.repeaters*](documentation/diagrams/com.telenav.lexakai.annotations.repeaters.svg)  
 [*com.telenav.lexakai.annotations.visibility*](documentation/diagrams/com.telenav.lexakai.annotations.visibility.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|

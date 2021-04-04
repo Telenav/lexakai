@@ -20,7 +20,7 @@ ${user-text-top}
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -30,15 +30,15 @@ ${user-text-top}
         <version>${project-version}</version>
     </dependency>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 ${class-diagram-index}
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 ${package-diagram-index}
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|

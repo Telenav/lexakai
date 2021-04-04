@@ -70,6 +70,9 @@ public class LexakaiProject extends BaseRepeater
     /** True to include protected methods */
     private boolean includeProtectedMethods;
 
+    /** True to add HTML anchors to indexes */
+    private boolean addHtmlAnchors;
+
     /** True to build a diagram of all public types in each package */
     private boolean buildPackageDiagrams;
 
@@ -83,6 +86,12 @@ public class LexakaiProject extends BaseRepeater
         this.parser = parser;
 
         initialize();
+    }
+
+    public LexakaiProject addHtmlAnchors(final boolean addHtmlAnchors)
+    {
+        this.addHtmlAnchors = addHtmlAnchors;
+        return this;
     }
 
     public boolean automaticMethodGroups()
@@ -319,7 +328,7 @@ public class LexakaiProject extends BaseRepeater
 
     public void updateReadMe()
     {
-        new ReadMeIndexUpdater(this).update(javadocSectionPattern, childProjects());
+        new ReadMeIndexUpdater(this).update(javadocSectionPattern, childProjects(), addHtmlAnchors);
     }
 
     public Version version()

@@ -52,6 +52,12 @@ public class Lexakai extends Application
                     .oneOrMore()
                     .build();
 
+    private final SwitchParser<Boolean> ADD_HTML_ANCHORS =
+            SwitchParser.booleanSwitch("add-html-anchors", "Add HTML anchor tags to indexed markdown titles")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
     private final SwitchParser<Boolean> BUILD_PACKAGE_DIAGRAMS =
             SwitchParser.booleanSwitch("build-package-diagrams", "Build whole-package diagrams for all public types")
                     .optional()
@@ -189,6 +195,7 @@ public class Lexakai extends Application
     protected Set<SwitchParser<?>> switchParsers()
     {
         return Set.of(
+                ADD_HTML_ANCHORS,
                 AUTOMATIC_METHOD_GROUPS,
                 BUILD_PACKAGE_DIAGRAMS,
                 BUILD_SVG_FILES,
@@ -344,6 +351,7 @@ public class Lexakai extends Application
                                    final Folder projectFolder)
     {
         return listenTo(new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, parser))
+                .addHtmlAnchors(get(ADD_HTML_ANCHORS))
                 .includeObjectMethods(get(INCLUDE_OBJECT_METHODS))
                 .includeProtectedMethods(get(INCLUDE_PROTECTED_METHODS))
                 .buildPackageDiagrams(get(BUILD_PACKAGE_DIAGRAMS))

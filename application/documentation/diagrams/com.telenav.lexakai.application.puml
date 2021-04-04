@@ -80,6 +80,7 @@
         +boolean hasChildProjects()
         +boolean hasSourceCode()
         --(collection)--
+        +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
         +VariableMap<String> properties()
         +List<TypeDeclaration<?>> types()
         --(filesystem)--

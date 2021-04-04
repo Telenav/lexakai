@@ -42,13 +42,13 @@ public class ReadMeIndexUpdater
         this.project = project;
     }
 
-    public void update(final Pattern javadocSectionPattern, final List<Folder> childProjects)
+    public void update(final Pattern javadocSectionPattern, final List<Folder> childProjects, boolean addHtmlAnchors)
     {
         // Get any user text blocks from any existing read me file,
         final var index = new StringList();
         final var blocks = userTextBlocks(project.readmeFile());
-        final var topBlock = index(blocks.getOrDefault(0, ""), index);
-        final var bottomBlock = index(blocks.getOrDefault(1, ""), index);
+        final var topBlock = index(blocks.getOrDefault(0, ""), index, addHtmlAnchors);
+        final var bottomBlock = index(blocks.getOrDefault(1, ""), index, addHtmlAnchors);
 
         // create a variable map for the readme template,
         final var variables = project.properties();
@@ -122,7 +122,7 @@ public class ReadMeIndexUpdater
                 image.copyTo(imagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
     }
 
-    private String index(final String block, final StringList index)
+    private String index(final String block, final StringList index, boolean addHtmlAnchors)
     {
         final var matcher = SECTION_HEADING.matcher(block);
         if (matcher.find())
@@ -135,7 +135,8 @@ public class ReadMeIndexUpdater
                 index.add("[**" + heading + "**](#" + anchor + ")");
                 if (Strings.isEmpty(matcher.group(2)))
                 {
-                    matcher.appendReplacement(anchored, "### " + heading + " <a name = \"" + anchor + "\"></a>");
+                    final var htmlAnchor = addHtmlAnchors ? " <a name = \"" + anchor + "\"></a>" : "";
+                    matcher.appendReplacement(anchored, "### " + heading + htmlAnchor) ;
                 }
             }
             while (matcher.find());

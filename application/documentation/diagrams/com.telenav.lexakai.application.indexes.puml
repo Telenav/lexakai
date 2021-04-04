@@ -9,7 +9,7 @@
         --(constructors)--
         +ReadMeIndexUpdater(LexakaiProject)
         --
-        +void update(Pattern javadocSectionPattern, List<Folder> childProjects)
+        +void update(Pattern javadocSectionPattern, List<Folder> childProjects, boolean addHtmlAnchors)
     }
     
 @enduml

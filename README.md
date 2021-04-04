@@ -1,3 +1,5 @@
+![](documentation/images/lexakai-background-1024.png)
+
 # Lexakai &nbsp;&nbsp;![](documentation/images/lexakai-64.png)
 
 A tool for generating UML diagrams and documentation indexes.
@@ -96,7 +98,7 @@ annotations can be added to specify that a method should be shown in more than o
 ### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](documentation/images/gears-40.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*  
-(which is the default).  In this case, the best guess will be made based on method name and parameter  
+(which is the default). In this case, the best guess will be made based on method name and parameter  
 patterns as to which group a method most likely belongs. When the guess is inaccurate, or no guess is made,  
 an *@UmlMethodGroup* annotation can be applied to correct the result. The set of patterns that are used to  
 determine automatic groups is in a file called *lexakai.groups* in the documentation folder. This file can be  
@@ -162,8 +164,8 @@ The *documentation* folder for each project should contain a *lexakai.properties
     #
     diagram-my-project   = My Project
 
-The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate
-the title of the diagram. For example:
+The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate the title of the diagram. For
+example:
 
     @UmlClassDiagram(diagram = DiagramMyProject.class)
 
@@ -202,7 +204,7 @@ None
 [*com.telenav.lexakai.indexes*](documentation/diagrams/com.telenav.lexakai.indexes.svg)  
 [*com.telenav.lexakai.library*](documentation/diagrams/com.telenav.lexakai.library.svg)  
 [*com.telenav.lexakai.members*](documentation/diagrams/com.telenav.lexakai.members.svg)  
-[*com.telenav.lexakai.types*](documentation/diagrams/com.telenav.lexakai.types.svg)  
+[*com.telenav.lexakai.types*](documentation/diagrams/com.telenav.lexakai.types.svg)
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
@@ -210,41 +212,55 @@ None
 |---|---|
 | [*Annotations*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Annotations.html) |  |  
 | [*Artifact*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/Artifact.html) |  |  
-| [*AssociationBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/AssociationBuilder.html) |  |  
+| [*
+AssociationBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/AssociationBuilder.html) |  |  
 | [*Associations*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Associations.html) |  |  
 | [*BaseLexakaiDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/BaseLexakaiDiagram.html) |  |  
 | [*Dependency*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/Dependency.html) |  |  
-| [*DependencyDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/DependencyDiagram.html) |  |  
-| [*DependencyTree*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/DependencyTree.html) |  |  
+| [*
+DependencyDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/DependencyDiagram.html) |  |  
+| [*
+DependencyTree*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/DependencyTree.html) |  |  
 | [*Diagrams*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Diagrams.html) |  |  
 | [*Fields*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Fields.html) |  |  
 | [*Lexakai*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/Lexakai.html) |  |  
 | [*LexakaiClassDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.html) |  |  
-| [*LexakaiClassDiagram.Referent*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
+| [*
+LexakaiClassDiagram.Referent*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
 | [*LexakaiProject*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.html) |  |  
-| [*MavenDependencyTreeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
+| [*
+MavenDependencyTreeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
 | [*Members*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Members.html) |  |  
 | [*MethodBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/MethodBuilder.html) |  |  
-| [*MethodGroup*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroup.html) |  |  
-| [*MethodGroupNameGuesser*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroupNameGuesser.html) |  |  
-| [*MethodGrouper*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |  
-| [*MethodGroups*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
+| [*
+MethodGroup*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroup.html) |  |  
+| [*
+MethodGroupNameGuesser*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroupNameGuesser.html) |  |  
+| [*
+MethodGrouper*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |  
+| [*
+MethodGroups*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
 | [*Methods*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Methods.html) |  |  
 | [*Name*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.html) |  |  
-| [*Name.Qualification*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.Qualification.html) |  |  
-| [*Name.TypeParameters*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.TypeParameters.html) |  |  
-| [*ReadMeIndexUpdater*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/indexes/ReadMeIndexUpdater.html) |  |  
+| [*
+Name.Qualification*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.Qualification.html) |  |  
+| [*
+Name.TypeParameters*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.TypeParameters.html) |  |  
+| [*
+ReadMeIndexUpdater*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/indexes/ReadMeIndexUpdater.html) |  |  
 | [*TypeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/TypeBuilder.html) |  |  
 | [*Types*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Types.html) |  |  
-| [*UmlAssociation*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
-| [*UmlAssociation.AssociationType*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |  
+| [*
+UmlAssociation*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
+| [*
+UmlAssociation.AssociationType*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |  
 | [*UmlConstructor*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/members/UmlConstructor.html) |  |  
-| [*UmlInheritance*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlInheritance.html) |  |  
+| [*
+UmlInheritance*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlInheritance.html) |  |  
 | [*UmlMethod*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/members/UmlMethod.html) |  |  
 | [*UmlType*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/types/UmlType.html) |  |  
 
 [//]: # (start-user-text)
-
 
 
 [//]: # (end-user-text)

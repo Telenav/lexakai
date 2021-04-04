@@ -333,7 +333,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
                                         </echo>
-                                        <java jar = "${maven.multiModuleProjectDirectory}/tools/building/kivakit-build-metadata-0.9.2.jar"
+                                        <java jar = "${maven.multiModuleProjectDirectory}/tools/building/kivakit-build-metadata-0.9.3.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>

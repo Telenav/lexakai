@@ -32,7 +32,7 @@ A tool for generating UML diagrams and documentation indexes.
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai</artifactId>
-        <version>0.9.2</version>
+        <version>0.9.3</version>
     </dependency>
 
 ![](documentation/images/horizontal-line.png)

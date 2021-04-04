@@ -48,7 +48,7 @@ project discovered recursively from the root folder(s) given as argument(s).
 
 ### Download Executable JAR <a name = "download"></a>&nbsp; ![](documentation/images/down-arrow-32.png)
 
-[Lexakai 0.9.2](tools/building/lexakai-0.9.2.jar)
+[Lexakai 0.9.3](tools/building/lexakai-0.9.3.jar)
 
 ### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](documentation/images/box-40.png)
 

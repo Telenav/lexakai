@@ -1,0 +1,8 @@
+module:lexakai.annotations
+com.telenav.lexakai.annotations
+com.telenav.lexakai.annotations.associations
+com.telenav.lexakai.annotations.diagrams
+com.telenav.lexakai.annotations.repeaters
+com.telenav.lexakai.annotations.visibility
+module:lexakai.application
+com.telenav.lexakai.application

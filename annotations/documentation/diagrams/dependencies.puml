@@ -4,8 +4,8 @@
     
     title "com.telenav.lexakai-annotations"
     
+    artifact kivakit_build_metadata
     artifact com_telenav_lexakai_annotations
-    artifact com_telenav_tdk_build_metadata
-    com_telenav_lexakai_annotations --> com_telenav_tdk_build_metadata
+    com_telenav_lexakai_annotations --> kivakit_build_metadata
     
 @enduml

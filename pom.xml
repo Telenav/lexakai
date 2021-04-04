@@ -10,15 +10,17 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
-    <artifactId>com.telenav.lexakai</artifactId>
-    <version>0.9.0</version>
+    <artifactId>lexakai</artifactId>
+    <version>0.9.2</version>
     <packaging>pom</packaging>
 
-    <name>TDK</name>
+    <name>Lexakai</name>
 
     <modules>
+
         <module>annotations</module>
-        <module>lexakai</module>
+        <module>application</module>
+
     </modules>
 
     <description>Lexakai is an annotation and markdown-driven documentation generation tool.</description>
@@ -51,12 +53,11 @@
 
         <!-- Lexakai -->
 
-        <lexakai.home>${env.TDK_HOME}/../lexakai</lexakai.home>
+        <lexakai.home>${env.KIVAKIT_WORKSPACE}/lexakai</lexakai.home>
 
-        <!-- TDK Version -->
+        <!-- KivaKit Version -->
 
         <kivakit.version>0.9.0-SNAPSHOT</kivakit.version>
-        <kivakit.metadata.jar.name>kivakit-metadata-${project.version}</kivakit.metadata.jar.name>
 
         <!-- Java -->
 
@@ -79,56 +80,26 @@
 
     <distributionManagement>
 
-        <!-- Release Distribution Repository -->
-
         <repository>
-            <id>telenav.maven.releases</id>
-            <name>Telenav Maven Published Releases</name>
-            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-releases</url>
+            <id>github-distribution</id>
+            <name>KivaKit</name>
+            <url>https://maven.pkg.github.com/Telenav/lexakai</url>
         </repository>
-
-        <!-- Snapshot Distribution Repository -->
-
-        <snapshotRepository>
-            <id>telenav.maven.snapshots</id>
-            <name>Telenav Maven Published Snapshots</name>
-            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-snapshots</url>
-        </snapshotRepository>
-
-        <downloadUrl>http://artifactory.telenav.com:8081/artifactory/telenav-maven-releases</downloadUrl>
 
     </distributionManagement>
 
     <repositories>
 
-        <!-- Maven Cache Repository -->
-
         <repository>
-            <id>telenav.maven.public</id>
-            <name>Telenav Maven Public</name>
-            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-public</url>
+            <id>github-telenav</id>
+            <url>https://maven.pkg.github.com/Telenav/kivakit-build</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
         </repository>
 
     </repositories>
 
-    <!-- Maven Plugin Repository -->
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>telenav.maven.plugins</id>
-            <name>Telenav Maven Plugins</name>
-            <url>http://artifactory.telenav.com:8081/artifactory/telenav-maven-public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
     <build>
 
         <plugins>
@@ -160,7 +131,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
                                         </echo>
-                                        <java jar = "${lexakai.home}/tools/building/kivakit-build-metadata-0.9.0.jar"
+                                        <java jar = "${lexakai.home}/tools/building/kivakit-build-metadata-0.9.2.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
@@ -280,6 +251,8 @@
                         <detectJavaApiLink>false</detectJavaApiLink>
                         <doclint>none</doclint>
                         <nohelp>true</nohelp>
+                        <reportOutputDirectory>docs</reportOutputDirectory>
+                        <destDir>javadoc</destDir>
                         <additionalOptions>--show-module-contents all --show-packages all --show-types private</additionalOptions>
                     </configuration>
                     <executions>

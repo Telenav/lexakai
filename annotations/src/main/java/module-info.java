@@ -1,4 +1,4 @@
-open module com.telenav.lexakai.annotations
+open module lexakai.annotations
 {
     exports com.telenav.lexakai.annotations;
     exports com.telenav.lexakai.annotations.associations;

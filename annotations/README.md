@@ -1,11 +1,11 @@
 # Lexakai - Annotations &nbsp;&nbsp;![](documentation/images/annotation-40.png)
 
-This project documentation index was created by Lexakai. To configure, see  
-[project-home-folder]/documentation/lexakai.properties.
+This project contains annotations for use in code to be processed by Lexakai.
 
 ![](documentation/images/horizontal-line.png)
 
 ### Index
+
 
 [**Dependencies**](#dependencies)  
 [**Class Diagrams**](#class-diagrams)  
@@ -17,6 +17,7 @@ This project documentation index was created by Lexakai. To configure, see
 [//]: # (start-user-text)
 
 
+
 [//]: # (end-user-text)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
@@ -26,7 +27,7 @@ This project documentation index was created by Lexakai. To configure, see
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>com.telenav.lexakai-annotations</artifactId>
-        <version>0.9.0</version>
+        <version>0.9.2</version>
     </dependency>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
@@ -39,30 +40,31 @@ None
 [*com.telenav.lexakai.annotations.associations*](documentation/diagrams/com.telenav.lexakai.annotations.associations.svg)  
 [*com.telenav.lexakai.annotations.diagrams*](documentation/diagrams/com.telenav.lexakai.annotations.diagrams.svg)  
 [*com.telenav.lexakai.annotations.repeaters*](documentation/diagrams/com.telenav.lexakai.annotations.repeaters.svg)  
-[*com.telenav.lexakai.annotations.visibility*](documentation/diagrams/com.telenav.lexakai.annotations.visibility.svg)
+[*com.telenav.lexakai.annotations.visibility*](documentation/diagrams/com.telenav.lexakai.annotations.visibility.svg)  
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*AllDiagrams*]([javadoc base url here]/com/telenav/lexakai/annotations/diagrams/AllDiagrams.html) |  |  
-| [*UmlAggregation*]([javadoc base url here]/com/telenav/lexakai/annotations/associations/UmlAggregation.html) |  |  
-| [*UmlClassDiagram*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlClassDiagram.html) |  |  
-| [*UmlComposition*]([javadoc base url here]/com/telenav/lexakai/annotations/associations/UmlComposition.html) |  |  
-| [*UmlDiagramIdentifier*]([javadoc base url here]/com/telenav/lexakai/annotations/diagrams/UmlDiagramIdentifier.html) |  |  
-| [*UmlDiagramRepeater*]([javadoc base url here]/com/telenav/lexakai/annotations/repeaters/UmlDiagramRepeater.html) |  |  
-| [*UmlExcludeMember*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlExcludeMember.html) |  |  
-| [*UmlExcludeSuperTypes*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlExcludeSuperTypes.html) |  |  
-| [*UmlIncludeMember*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlIncludeMember.html) |  |  
-| [*UmlMethodGroup*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlMethodGroup.html) |  |  
-| [*UmlMethodGroupRepeater*]([javadoc base url here]/com/telenav/lexakai/annotations/repeaters/UmlMethodGroupRepeater.html) |  |  
-| [*UmlNotPublicApi*]([javadoc base url here]/com/telenav/lexakai/annotations/visibility/UmlNotPublicApi.html) |  |  
-| [*UmlNote*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlNote.html) |  |  
-| [*UmlNote.Align*]([javadoc base url here]/com/telenav/lexakai/annotations/UmlNote.Align.html) |  |  
-| [*UmlRelation*]([javadoc base url here]/com/telenav/lexakai/annotations/associations/UmlRelation.html) |  |  
-| [*UmlRelationRepeater*]([javadoc base url here]/com/telenav/lexakai/annotations/repeaters/UmlRelationRepeater.html) |  |  
+| [*AllDiagrams*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/diagrams/AllDiagrams.html) |  |  
+| [*UmlAggregation*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/associations/UmlAggregation.html) |  |  
+| [*UmlClassDiagram*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/UmlClassDiagram.html) |  |  
+| [*UmlComposition*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/associations/UmlComposition.html) |  |  
+| [*UmlDiagramIdentifier*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/diagrams/UmlDiagramIdentifier.html) |  |  
+| [*UmlDiagramRepeater*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/repeaters/UmlDiagramRepeater.html) |  |  
+| [*UmlExcludeMember*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/visibility/UmlExcludeMember.html) |  |  
+| [*UmlExcludeSuperTypes*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/visibility/UmlExcludeSuperTypes.html) |  |  
+| [*UmlIncludeMember*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/visibility/UmlIncludeMember.html) |  |  
+| [*UmlMethodGroup*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/UmlMethodGroup.html) |  |  
+| [*UmlMethodGroupRepeater*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/repeaters/UmlMethodGroupRepeater.html) |  |  
+| [*UmlNotPublicApi*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/visibility/UmlNotPublicApi.html) |  |  
+| [*UmlNote*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/UmlNote.html) |  |  
+| [*UmlNote.Align*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/UmlNote.Align.html) |  |  
+| [*UmlRelation*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/associations/UmlRelation.html) |  |  
+| [*UmlRelationRepeater*](https://telenav.github.io/lexakai-annotations/javadoc/lexakai.annotations/com/telenav/lexakai/annotations/repeaters/UmlRelationRepeater.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -71,7 +73,7 @@ None
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>© 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.03</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

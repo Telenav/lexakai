@@ -162,12 +162,12 @@ The *documentation* folder for each project should contain a *lexakai.properties
     #
     diagram-my-project   = My Project
 
-The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate  
+The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate
 the title of the diagram. For example:
 
-    @UmlClassDiagram(diagram = DiagramMapService.class)
+    @UmlClassDiagram(diagram = DiagramMyProject.class)
 
-refers to the diagram title specified by the key *diagram-map-service* in the *lexakai.properties* file.
+refers to the diagram title specified by the key *diagram-my-project* in the *lexakai.properties* file.
 
 ### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](documentation/images/pencil-32.png)
 

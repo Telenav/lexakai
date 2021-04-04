@@ -1,4 +1,4 @@
-# lexakai application &nbsp;&nbsp;![](documentation/images/gears-40.png)
+# lexakai application &nbsp;&nbsp;![](../documentation/images/lexakai-64.png)
 
 A tool for generating UML diagrams and documentation indexes.
 
@@ -7,9 +7,9 @@ A tool for generating UML diagrams and documentation indexes.
 ### Index
 
 [**Summary**](#summary)  
-[**Basic Package Diagrams**](#basic-package-diagrams)  
-[**Custom Diagrams**](#custom-diagrams)  
-[**Grouping Methods**](#grouping-methods)  
+[**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
+[**Custom UML Diagrams**](#custom-uml-diagrams)  
+[**Grouping Methods in Class Diagrams**](#grouping-methods-in-class-diagrams)  
 [**Automatic Method Groups**](#automatic-method-groups)  
 [**UML Associations**](#uml-associations)  
 [**Excluding Types And Members**](#excluding-types-and-members)  
@@ -104,11 +104,11 @@ None
 Creates documentation indexes and UML diagrams from the source code of each maven or gradle  
 project discovered recursively from the root folder(s) given as argument(s).
 
-### Creating Basic UML Package Diagrams
+### Creating Basic UML Package Diagrams&nbsp; ![](documentation/images/box-40.png)
 
 Lexakai automatically creates basic package diagrams for all public types without further configuration.
 
-### Custom UML Diagrams
+### Custom UML Diagrams&nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 To create a set of one or more custom diagrams for a project, annotations can be used from this project:
 
@@ -135,7 +135,7 @@ the marker interface name). A type can be used in more than one diagram, by spec
 The preferred location for diagram marker interfaces is in the sub-package *project.lexakai.diagrams*,  
 and they should be prefixed with *Diagram* to make their use clear.
 
-### Grouping Methods in Class Diagrams
+### Grouping Methods in Class Diagrams&nbsp; ![](documentation/images/set-40.png)
 
 Groups of methods can be specified using the *@UmlMethodGroup* annotation. Method groups will  
 be given labeled separators in class diagrams, making the list of methods easier to understand.
@@ -147,7 +147,7 @@ For example:
 could be used to label all the configuration-related methods in a type. Multiple *@UmlMethodGroup*  
 annotations can be added to specify that a method should be shown in more than one group.
 
-### Automatic Method Groups
+### Automatic Method Groups&nbsp;![](documentation/images/gears-40.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*  
 (which is the default).  In this case, the best guess will be made based on method name and parameter  
@@ -156,7 +156,7 @@ an *@UmlMethodGroup* annotation can be applied to correct the result. The set of
 determine automatic groups is in a file called *lexakai.groups* in the documentation folder. This file can be  
 customized for a particular project.
 
-### UML Associations
+### UML Associations&nbsp; ![](documentation/images/right-arrow-32.png)
 
 Patterns in the names of types, fields and methods are used to try to deduce UML associations.  
 The annotation *@UmlRelation* can be used to override this guess with an explicit relation if the association  
@@ -169,7 +169,7 @@ type, it can specify a relation with a particular referent and cardinality. An e
 can be made specific to a particular diagram with the *diagram* parameter. Multiple *@UmlRelation* tags can  
 be applied to a type.
 
-### Excluding Types And Members
+### Excluding Types And Members&nbsp;![](documentation/images/no-32.png)
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
@@ -177,7 +177,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 *@UmlNotPublicApi* marks a type or member as private even if it is not actually private.
 
-### Annotation Summary
+### Annotation Summary&nbsp; ![](documentation/images/annotation-32.png)
 
     Diagrams:
 
@@ -198,7 +198,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
             @UmlAggregation - adds a UML aggregation association from the enclosing type to the annotated field type
             @UmlComposition - adds a UML composition association from the enclosing type to the annotated field type
 
-### Configuration
+### Configuration&nbsp; ![](documentation/images/tools-40.png)
 
 The *documentation* folder for each project should contain a *lexakai.properties* file that looks similar to this:
 
@@ -216,14 +216,14 @@ The *documentation* folder for each project should contain a *lexakai.properties
     #
     diagram-my-project   = My Project
 
-The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate
+The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate  
 the title of the diagram. For example:
 
     @UmlClassDiagram(diagram = DiagramMapService.class)
 
 refers to the diagram title specified by the key *diagram-map-service* in the *lexakai.properties* file.
 
-### Readme Generation and Updating
+### Readme Generation and Updating&nbsp; ![](documentation/images/pencil-32.png)
 
 If the *-update-readme* switch is set to *true* (it is *false* by default to ensure it doesn't overwrite an  
 existing file) then a *README.md* file will be generated or updated each time the UML diagrams are generated.  

@@ -1,6 +1,6 @@
 # lexakai &nbsp;&nbsp;![](documentation/images/lexakai-64.png)
 
-A tool for generating UML diagrams and documentation indexes.
+A tool for generating UML diagrams and markdown documentation indexes.
 
 ![](documentation/images/horizontal-line.png)
 

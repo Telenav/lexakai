@@ -81,8 +81,8 @@
     <distributionManagement>
 
         <repository>
-            <id>github-distribution</id>
-            <name>KivaKit</name>
+            <id>github</id>
+            <name>GitHub Lexakai Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/Telenav/lexakai</url>
         </repository>
 
@@ -91,7 +91,7 @@
     <repositories>
 
         <repository>
-            <id>github-telenav</id>
+            <id>github</id>
             <url>https://maven.pkg.github.com/Telenav/kivakit-build</url>
             <snapshots>
                 <enabled>true</enabled>

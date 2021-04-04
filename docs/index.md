@@ -90,24 +90,24 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 ### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](images/annotation-32.png)
 
-    Diagrams:
+#### Diagrams
 
-           @UmlClassDiagram - declares the diagram(s) that the annotated type should be included in
-            @UmlMethodGroup - includes the annotated method in a labeled method group in the diagram
-                   @UmlNote - adds a callout note to a type or method
+* *@UmlClassDiagram* - declares the diagram(s) that the annotated type should be included in  
+* *@UmlMethodGroup* - includes the annotated method in a labeled method group in the diagram
+* *@UmlNote* - adds a callout note to a type or method
 
-    Visibility:
+#### Visibility
 
-      @UmlExcludeSuperTypes - excludes the listed supertypes from all diagrams
-          @UmlExcludeMember - excludes the annotated member
-          @UmlIncludeMember - includes the annotated member, even if it wouldn't normally be included
-           @UmlNotPublicApi - marks the annotated type or member as private even if it is not
+* *@UmlExcludeSuperTypes* - excludes the listed supertypes from all diagrams
+* *@UmlExcludeMember* - excludes the annotated member
+* *@UmlIncludeMember* - includes the annotated member, even if it wouldn't normally be included
+* *@UmlNotPublicApi* - marks the annotated type or member as private even if it is not
 
-    Associations:
+#### Associations
 
-               @UmlRelation - adds a labeled UML relation from the enclosing type to the annotated member type
-            @UmlAggregation - adds a UML aggregation association from the enclosing type to the annotated field type
-            @UmlComposition - adds a UML composition association from the enclosing type to the annotated field type
+* *@UmlRelation* - adds a labeled UML relation from the enclosing type to the annotated member type
+* *@UmlAggregation* - adds a UML aggregation association from the enclosing type to the annotated field type
+* *@UmlComposition* - adds a UML composition association from the enclosing type to the annotated field type
 
 ### Configuration <a name = "configuration"></a>&nbsp; ![](images/tools-40.png)
 

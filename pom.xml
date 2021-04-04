@@ -87,8 +87,16 @@
     <repositories>
 
         <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/Telenav/kivakit-build</url>
+            <id>github-kivakit-build-public</id>
+            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/kivakit-build</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>github-kivakit-public</id>
+            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/kivakit</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>

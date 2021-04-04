@@ -6,6 +6,7 @@
         <server>
             <id>kivakit-build</id>
             <username>jonathanl-telenav</username>
+            <!-- Read-Only Public Access Token (PAT) -->
             <password>&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw</password>
         </server>
     </servers>

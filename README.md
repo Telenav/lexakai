@@ -153,7 +153,7 @@ The *documentation* folder for each project should contain a *lexakai.properties
     #
     project-name         = my-project
     project-description  = This is my project.
-    project-javadoc-url  = http://myproject.mypna.com/com.telenav.my.project
+    project-javadoc-url  = https://me.github.io/myproject/javadoc/myproject
     project-icon         = documentation/images/myproject.png
     project-footer       = Copyright by Me
 

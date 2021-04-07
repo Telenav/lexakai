@@ -28,20 +28,24 @@ import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 
-import static com.telenav.lexakai.library.Name.Qualification.UNQUALIFIED;
-import static com.telenav.lexakai.library.Name.TypeParameters.WITHOUT_TYPE_PARAMETERS;
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**
+ * This class contains utility methods for working with JavaParser names. Names can be produced with or without package
+ * qualification and with or without type parameters. The package name for a type can be deduced with {@link
+ * #packageName(String)}.
+ *
  * @author jonathanl (shibo)
  */
-public class Name
+public class Names
 {
     /**
      * @return The name of the given type with or without qualification or type parameters
      */
-    public static String of(final Type type,
-                            final Qualification qualification,
-                            final TypeParameters parameters)
+    public static String name(final Type type,
+                              final Qualification qualification,
+                              final TypeParameters parameters)
     {
         // If the type is a class or interface,
         if (type.isClassOrInterfaceType())
@@ -69,9 +73,9 @@ public class Name
     /**
      * @return The name of the given type declaration with or without qualification or type parameters
      */
-    public static String of(final TypeDeclaration<?> type,
-                            final Qualification qualification,
-                            final TypeParameters parameters)
+    public static String name(final TypeDeclaration<?> type,
+                              final Qualification qualification,
+                              final TypeParameters parameters)
     {
         // Get the fully qualified type name,
         final var qualifiedName = type.getFullyQualifiedName();
@@ -85,9 +89,9 @@ public class Name
     /**
      * @return The name of the given class expression with or without qualification or type parameters
      */
-    public static String of(final ClassExpr expression,
-                            final Qualification qualification,
-                            final TypeParameters parameters)
+    public static String name(final ClassExpr expression,
+                              final Qualification qualification,
+                              final TypeParameters parameters)
     {
         if (qualification == UNQUALIFIED)
         {
@@ -156,12 +160,22 @@ public class Name
         return typeName.replaceAll("<.*>", "");
     }
 
+    /**
+     * Specifies whether types should be package-qualified or not.
+     *
+     * @author jonathanl (shibo)
+     */
     public enum Qualification
     {
         QUALIFIED,
         UNQUALIFIED
     }
 
+    /**
+     * Specifies whether names should have type parameters or not.
+     *
+     * @author jonathanl (shibo)
+     */
     public enum TypeParameters
     {
         WITH_TYPE_PARAMETERS,

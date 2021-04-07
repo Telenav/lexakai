@@ -81,20 +81,23 @@
         +boolean hasSourceCode()
         --(collection)--
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
+        +StringList javadocCoverage(int minimumLength)
         +VariableMap<String> properties()
-        +List<TypeDeclaration<?>> types()
+        +List<TypeDeclaration<?>> typeDeclarations()
         --(filesystem)--
         +List<Folder> childProjects()
         +Folder diagramFolder()
         +Folder documentationFolder()
         +Folder folder()
         +Folder imagesFolder()
+        +File parentProjectReadmeTemplateFile()
+        +File projectReadmeTemplateFile()
         +File readmeFile()
         +Folder sourceFolder()
         --(filtering)--
         +LexakaiProject includeObjectMethods(boolean include)
         +boolean includeObjectMethods()
-        +LexakaiProject includeProtectedMethods(Boolean include)
+        +LexakaiProject includeProtectedMethods(boolean include)
         +boolean includeProtectedMethods()
         --(identity)--
         +Version version()

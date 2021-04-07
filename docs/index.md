@@ -19,6 +19,7 @@ Lexakai is a command line tool used to create UML diagrams and markdown document
 [**Annotation Summary**](#annotation-summary)  
 [**Configuration**](#configuration)  
 [**Readme Generation and Updating**](#readme-generation-and-updating)  
+[**Custom README Templates**](#custom-readme-templates)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -171,6 +172,12 @@ which is the style used in the KivaKit.
 
 Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved, allowing additional documentation to be
 maintained.
+
+### Custom README Templates
+
+The first run of Lexakai on a project will create two default templates in the *documentation* folder one for projects with source code and
+one for parent projects (projects with sub-projects). These template files can be modified to produce custom output. To revert to the
+default templates, simply remove them and run Lexakai again.
 
 ![](images/horizontal-line.png)
 

@@ -37,7 +37,7 @@ import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.lexakai.indexes.ReadMeIndexUpdater;
 import com.telenav.lexakai.library.Diagrams;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
 import java.util.ArrayList;
@@ -54,6 +54,42 @@ import java.util.stream.Collectors;
 import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
 
 /**
+ * Represents a project for which Lexakai is producing diagrams.
+ *
+ * <p><b>Java Parsing</b></p>
+ * <p>
+ * The project has types that are discovered using the JavaParser API. Those types are available through {@link
+ * #typeDeclarations()} and {@link #typeDeclarations(Consumer)}.
+ * </p>
+ *
+ * <p><b>Settings</b></p>
+ *
+ * <p>
+ * Projects have various settings that are used to define how the UML for a project is generated. These settings are
+ * configured by the {@link Lexakai} application from the command line.
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #addHtmlAnchors(boolean)}</li>
+ *     <li>{@link #automaticMethodGroups(boolean)}</li>
+ *     <li>{@link #buildPackageDiagrams(boolean)}</li>
+ *     <li>{@link #includeObjectMethods(boolean)}</li>
+ *     <li>{@link #includeProtectedMethods(boolean)}</li>
+ *     <li>{@link #javadocSectionPattern(Pattern)}</li>
+ * </ul>
+ *
+ * <p><b>Functions</b></p>
+ *
+ * <p>
+ * These methods produce user-facing results for the {@link Lexakai} application:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #diagrams(Consumer)} - Produces UML diagram(s) for the project</li>
+ *     <li>{@link #javadocCoverage(int)} - Determines Javadoc coverage for types in the project</li>
+ *     <li>{@link #updateReadMe()} ()} - Updates the indexing in README.md for the project</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 public class LexakaiProject extends BaseRepeater
@@ -63,6 +99,7 @@ public class LexakaiProject extends BaseRepeater
     /** Parser to use on project source files */
     private final JavaParser parser;
 
+    /** Reference to the application that created this project model */
     private final Lexakai lexakai;
 
     /** The project version */
@@ -98,7 +135,10 @@ public class LexakaiProject extends BaseRepeater
     /** True to build a diagram of all public types in each package */
     private boolean buildPackageDiagrams;
 
-    public LexakaiProject(final Lexakai lexakai, final Version version, final Folder root, final Folder projectFolder,
+    public LexakaiProject(final Lexakai lexakai,
+                          final Version version,
+                          final Folder root,
+                          final Folder projectFolder,
                           final JavaParser parser)
     {
         this.lexakai = lexakai;
@@ -188,7 +228,7 @@ public class LexakaiProject extends BaseRepeater
                     final var qualifiedName = type.getFullyQualifiedName().orElse(null);
                     if (qualifiedName != null)
                     {
-                        final var diagramName = Name.packageName(qualifiedName);
+                        final var diagramName = Names.packageName(qualifiedName);
                         final var diagram = diagrams.computeIfAbsent(diagramName,
                                 ignored -> listenTo(new LexakaiClassDiagram(this, diagramName)));
 
@@ -260,7 +300,7 @@ public class LexakaiProject extends BaseRepeater
         return includeProtectedMethods;
     }
 
-    public LexakaiProject includeProtectedMethods(final Boolean include)
+    public LexakaiProject includeProtectedMethods(final boolean include)
     {
         includeProtectedMethods = include;
         return this;
@@ -285,7 +325,7 @@ public class LexakaiProject extends BaseRepeater
         // then install the lexakai properties file if it doesn't already exist.
         resourceFolder.resource("lexakai.properties")
                 .asStringResource()
-                .transform(text -> properties().expanded(text))
+                .transform(text -> properties().expand(text))
                 .safeCopyTo(propertiesFile(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
     }
 
@@ -297,15 +337,23 @@ public class LexakaiProject extends BaseRepeater
         typeDeclarations(type ->
         {
             types.increment();
+            var requiredLength = minimumLength;
             final var javadoc = type.getJavadoc();
+            final var significant = type.toString().length() > 4096 ? "=>  " : "    ";
             if (javadoc.isPresent())
             {
+                if (type.isEnumDeclaration())
+                {
+                    requiredLength = 64;
+                }
                 final var text = javadoc.get().toText();
-                if (text.length() < minimumLength)
+                if (text.length() < requiredLength)
                 {
                     if (type.getFullyQualifiedName().isPresent())
                     {
-                        warnings.add("    $: Javadoc is only $ characters (minimum is $)", Strip.packagePrefix(type.getFullyQualifiedName().get()), text.length(), minimumLength);
+                        warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
+                                significant, Strip.packagePrefix(type.getFullyQualifiedName().get()),
+                                text.length(), requiredLength);
                     }
                 }
                 else
@@ -317,13 +365,15 @@ public class LexakaiProject extends BaseRepeater
             {
                 if (type.getFullyQualifiedName().isPresent())
                 {
-                    warnings.add("    $: Javadoc is missing", Strip.packagePrefix(type.getFullyQualifiedName().get()));
+                    warnings.add("${string}$: Javadoc is missing",
+                            significant, Strip.packagePrefix(type.getFullyQualifiedName().get()));
                 }
             }
         });
 
         final var coverage = new StringList();
-        coverage.add("Coverage for $ is $", name(), Percent.percent(100.0 * covered.get() / types.get()));
+        final var percent = Percent.percent(100.0 * covered.get() / types.get());
+        coverage.add("Javadoc coverage for $ is $", name(), percent);
         coverage.addAll(warnings);
         return coverage;
     }
@@ -342,6 +392,16 @@ public class LexakaiProject extends BaseRepeater
                 : parentProject.join("-"));
     }
 
+    public File parentProjectReadmeTemplateFile()
+    {
+        return documentationFolder().file("parent-project-readme-template.md");
+    }
+
+    public File projectReadmeTemplateFile()
+    {
+        return documentationFolder().file("project-readme-template.md");
+    }
+
     public VariableMap<String> properties()
     {
         final var properties = lexakai.properties().copy();
@@ -355,7 +415,7 @@ public class LexakaiProject extends BaseRepeater
     {
         final var properties = properties();
         final var value = properties.get(key);
-        return value == null ? null : properties.expanded(value);
+        return value == null ? null : properties.expand(value);
     }
 
     public File readmeFile()
@@ -379,10 +439,10 @@ public class LexakaiProject extends BaseRepeater
      */
     public void typeDeclarations(final Consumer<TypeDeclaration<?>> consumer)
     {
-        typeDeclarations().forEach(consumer);
+        parseTypeDeclarations().forEach(consumer);
     }
 
-    public List<TypeDeclaration<?>> types()
+    public List<TypeDeclaration<?>> typeDeclarations()
     {
         return typeDeclarations;
     }
@@ -402,16 +462,11 @@ public class LexakaiProject extends BaseRepeater
         return folder.file("pom.xml").exists() || folder.file("gradle.properties").exists();
     }
 
-    private File propertiesFile()
-    {
-        return documentationFolder().file("lexakai.properties");
-    }
-
     /**
      * Parse the class, interface and enum declarations under this project's source folder
      */
     @SuppressWarnings("unchecked")
-    private List<TypeDeclaration<?>> typeDeclarations()
+    private List<TypeDeclaration<?>> parseTypeDeclarations()
     {
         // If we have not yet parsed the source code,
         if (typeDeclarations.isEmpty())
@@ -453,8 +508,13 @@ public class LexakaiProject extends BaseRepeater
                 }
             });
 
-            typeDeclarations.sort(Comparator.comparing(Name::simpleName));
+            typeDeclarations.sort(Comparator.comparing(Names::simpleName));
         }
         return typeDeclarations;
+    }
+
+    private File propertiesFile()
+    {
+        return documentationFolder().file("lexakai.properties");
     }
 }

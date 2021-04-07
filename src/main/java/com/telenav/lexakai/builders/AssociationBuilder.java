@@ -24,23 +24,23 @@ import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.lexakai.LexakaiClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.associations.UmlAssociation;
 import com.telenav.lexakai.associations.UmlInheritance;
 import com.telenav.lexakai.library.Associations;
 import com.telenav.lexakai.library.Fields;
 import com.telenav.lexakai.library.Members;
 import com.telenav.lexakai.library.Methods;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.library.Types;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.ArrayList;
 
 import static com.telenav.lexakai.associations.UmlAssociation.AssociationType.RELATION;
-import static com.telenav.lexakai.library.Name.Qualification.QUALIFIED;
-import static com.telenav.lexakai.library.Name.Qualification.UNQUALIFIED;
-import static com.telenav.lexakai.library.Name.TypeParameters.WITHOUT_TYPE_PARAMETERS;
-import static com.telenav.lexakai.library.Name.TypeParameters.WITH_TYPE_PARAMETERS;
+import static com.telenav.lexakai.library.Names.Qualification.QUALIFIED;
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITH_TYPE_PARAMETERS;
 
 /**
  * @author jonathanl (shibo)
@@ -113,12 +113,12 @@ public class AssociationBuilder
         {
             // add type inheritance associations,
             final var type = this.type.asClassOrInterfaceDeclaration();
-            final var qualifiedTypeName = Name.of(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS);
+            final var qualifiedTypeName = Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS);
             final var associations = new ArrayList<UmlInheritance>();
             final var interfaceDeclarations = new StringList();
             type.getExtendedTypes().forEach(at ->
             {
-                final var superType = Name.of(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                final var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
                 if (superType != null)
                 {
                     final var inheritance = new UmlInheritance(superType, qualifiedTypeName);
@@ -128,7 +128,7 @@ public class AssociationBuilder
                         associations.add(inheritance);
                         if (type.isInterface())
                         {
-                            interfaceDeclarations.add("interface " + Name.of(at, UNQUALIFIED, WITH_TYPE_PARAMETERS));
+                            interfaceDeclarations.add("interface " + Names.name(at, UNQUALIFIED, WITH_TYPE_PARAMETERS));
                         }
                     }
                 }
@@ -137,7 +137,7 @@ public class AssociationBuilder
             // implemented interfaces,
             type.getImplementedTypes().forEach(at ->
             {
-                final var superType = Name.of(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                final var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
                 if (superType != null)
                 {
                     final var inheritance = new UmlInheritance(superType, qualifiedTypeName);
@@ -189,7 +189,7 @@ public class AssociationBuilder
                 }
 
                 // If we did not find an association, try to deduce one
-                if (!associated && Name.simpleName(method).toLowerCase()
+                if (!associated && Names.simpleName(method).toLowerCase()
                         .matches("(build[A-Z]?\\w+|create[A-Z]\\w+|new[A-Z]\\w+)"))
                 {
                     final var association = createAssociation(

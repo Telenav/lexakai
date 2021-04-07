@@ -27,7 +27,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Utility methods for extracting information from {@link AnnotationExpr} elements.
+ * Utility methods for extracting information from {@link AnnotationExpr} elements, including class names, expressions,
+ * and string and boolean values.
  *
  * @author jonathanl (shibo)
  */
@@ -68,7 +69,7 @@ public class Annotations
         final var expression = expression(annotation, member);
         if (expression != null && expression.isClassExpr())
         {
-            return Name.of(expression.asClassExpr(), Name.Qualification.QUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
         }
         return null;
     }
@@ -85,13 +86,13 @@ public class Annotations
             final var classes = new HashSet<String>();
             for (final var value : array.getValues())
             {
-                classes.add(Name.of(value.asClassExpr(), Name.Qualification.QUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS));
+                classes.add(Names.name(value.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS));
             }
             return classes;
         }
         if (expression instanceof SingleMemberAnnotationExpr)
         {
-            final var qualifiedName = Name.of(expression.asClassExpr(), Name.Qualification.QUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            final var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             return qualifiedName == null ? Set.of() : Set.of(qualifiedName);
         }
         return Set.of();
@@ -114,7 +115,7 @@ public class Annotations
             final var classes = new HashSet<String>();
             for (final var value : array.getValues())
             {
-                final var name = Name.of(value.asClassExpr(), Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+                final var name = Names.name(value.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
                 if (name != null)
                 {
                     classes.add(name);
@@ -125,7 +126,7 @@ public class Annotations
 
         if (expression instanceof ClassExpr)
         {
-            final var qualifiedName = Name.of(expression.asClassExpr(), Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            final var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             return qualifiedName == null ? Set.of() : Set.of(qualifiedName);
         }
 
@@ -168,11 +169,11 @@ public class Annotations
         if (expression instanceof NameExpr)
         {
             final var type = expression.asNameExpr();
-            return Name.simpleName(type);
+            return Names.simpleName(type);
         }
         if (expression instanceof ClassExpr)
         {
-            return Name.of(expression.asClassExpr(), Name.Qualification.QUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
         }
         return null;
     }
@@ -222,7 +223,7 @@ public class Annotations
     {
         for (final var pair : annotation.asNormalAnnotationExpr().getPairs())
         {
-            if (Name.simpleName(pair).equals(memberName))
+            if (Names.simpleName(pair).equals(memberName))
             {
                 return pair.getValue();
             }

@@ -1,5 +1,3 @@
-![](documentation/images/lexakai-background-1024.png)
-
 # Lexakai &nbsp;&nbsp;![](documentation/images/lexakai-64.png)
 
 A tool for generating UML diagrams and documentation indexes.
@@ -21,6 +19,7 @@ A tool for generating UML diagrams and documentation indexes.
 [**Annotation Summary**](#annotation-summary)  
 [**Configuration**](#configuration)  
 [**Readme Generation and Updating**](#readme-generation-and-updating)  
+[**Custom README Templates**](#custom-readme-templates)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -98,7 +97,7 @@ annotations can be added to specify that a method should be shown in more than o
 ### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](documentation/images/gears-40.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*  
-(which is the default).  In this case, the best guess will be made based on method name and parameter  
+(which is the default). In this case, the best guess will be made based on method name and parameter  
 patterns as to which group a method most likely belongs. When the guess is inaccurate, or no guess is made,  
 an *@UmlMethodGroup* annotation can be applied to correct the result. The set of patterns that are used to  
 determine automatic groups is in a file called *lexakai.groups* in the documentation folder. This file can be  
@@ -164,8 +163,8 @@ The *documentation* folder for each project should contain a *lexakai.properties
     #
     diagram-my-project   = My Project
 
-The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate
-the title of the diagram. For example:
+The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate the title of the diagram. For
+example:
 
     @UmlClassDiagram(diagram = DiagramMyProject.class)
 
@@ -187,6 +186,13 @@ which is the style used in the KivaKit.
 
 Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved,  
 allowing additional documentation to be maintained.
+
+### Custom README Templates <a name = "custom-readme-templates"></a>
+
+The first run of Lexakai on a project will create two default templates in the *documentation* folder  
+one for projects with source code and one for parent projects (projects with sub-projects). These  
+template files can be modified to produce custom output. To revert to the default templates, simply  
+remove them and run Lexakai again.
 
 [//]: # (end-user-text)
 
@@ -223,7 +229,9 @@ None
 | [*Lexakai*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/Lexakai.html) |  |  
 | [*LexakaiClassDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.html) |  |  
 | [*LexakaiClassDiagram.Referent*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
-| [*LexakaiProject*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.html) |  |  
+| [*LexakaiProject*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |  
+| | Functions |  
+| | Settings |  
 | [*MavenDependencyTreeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
 | [*Members*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Members.html) |  |  
 | [*MethodBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/MethodBuilder.html) |  |  
@@ -232,10 +240,11 @@ None
 | [*MethodGrouper*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |  
 | [*MethodGroups*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
 | [*Methods*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Methods.html) |  |  
-| [*Name*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.html) |  |  
-| [*Name.Qualification*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.Qualification.html) |  |  
-| [*Name.TypeParameters*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Name.TypeParameters.html) |  |  
-| [*ReadMeIndexUpdater*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/indexes/ReadMeIndexUpdater.html) |  |  
+| [*Names*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Names.html) |  |  
+| [*Names.Qualification*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Names.Qualification.html) |  |  
+| [*Names.TypeParameters*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Names.TypeParameters.html) |  |  
+| [*ReadMeIndexUpdater*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/indexes/ReadMeIndexUpdater.html) | Usage |  
+| | Templates |  
 | [*TypeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/TypeBuilder.html) |  |  
 | [*Types*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Types.html) |  |  
 | [*UmlAssociation*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
@@ -256,6 +265,6 @@ None
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.07. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

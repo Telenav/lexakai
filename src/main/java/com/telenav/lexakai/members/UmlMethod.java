@@ -23,7 +23,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.lexakai.library.Methods;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -137,7 +137,7 @@ public class UmlMethod implements Comparable<UmlMethod>
 
     public String simpleName()
     {
-        return Name.simpleName(method);
+        return Names.simpleName(method);
     }
 
     @Override

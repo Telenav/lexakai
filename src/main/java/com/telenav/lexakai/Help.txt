@@ -131,3 +131,11 @@ By default this pattern is <p><b>[section]</b></p>, which is the style used in t
 
 [wrap]Any text between the markdown comments "start-user-text" and "end-user-text" will be preserved,
 allowing additional documentation to be maintained.[end]
+
+CUSTOM README TEMPLATES
+
+[wrap]The first run of Lexakai on a project will create two default templates in the *documentation* folder
+one for projects with source code and one for parent projects (projects with sub-projects). These
+template files can be modified to produce custom output. To revert to the default templates, simply
+remove them and run Lexakai again.[end]
+

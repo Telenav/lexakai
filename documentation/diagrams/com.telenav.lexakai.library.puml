@@ -61,28 +61,28 @@
         +boolean isExcluded(MethodDeclaration)
     }
     
-    class Name
+    class Names
     {
         --
-        +String of(Type, Qualification, TypeParameters)
-        +String of(TypeDeclaration<?>, Qualification, TypeParameters)
-        +String of(ClassExpr expression, Qualification, TypeParameters)
         +String typeParameters(TypeDeclaration<?>)
         +String withoutQualification(String qualifiedClassName)
         +String withoutTypeParameters(String typeName)
         --(naming)--
+        +String name(ClassExpr expression, Qualification, TypeParameters)
+        +String name(TypeDeclaration<?>, Qualification, TypeParameters)
+        +String name(Type, Qualification, TypeParameters)
         +String packageName(String qualifiedName)
         +String simpleName(NodeWithSimpleName<?>)
         +String simpleName(Type node)
     }
     
-    enum Name.Qualification
+    enum Names.Qualification
     {
         QUALIFIED
         UNQUALIFIED
     }
     
-    enum Name.TypeParameters
+    enum Names.TypeParameters
     {
         WITHOUT_TYPE_PARAMETERS
         WITH_TYPE_PARAMETERS

@@ -21,14 +21,14 @@ package com.telenav.lexakai.associations;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.type.Type;
 import com.telenav.lexakai.LexakaiClassDiagram;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.library.Types;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static com.telenav.lexakai.library.Name.Qualification.UNQUALIFIED;
-import static com.telenav.lexakai.library.Name.TypeParameters.WITHOUT_TYPE_PARAMETERS;
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**
  * Represents a UML association (relation, aggregation or composition) arrow.
@@ -59,7 +59,7 @@ public class UmlAssociation implements Comparable<UmlAssociation>
     {
         if (Types.isObject(referent))
         {
-            return new UmlAssociation(referrer, type, Name.of(referent.asClassOrInterfaceType(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS), from, to, label);
+            return new UmlAssociation(referrer, type, Names.name(referent.asClassOrInterfaceType(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS), from, to, label);
         }
         return null;
     }
@@ -172,7 +172,7 @@ public class UmlAssociation implements Comparable<UmlAssociation>
     public String uml()
     {
         final var builder = new StringBuilder();
-        builder.append(Name.of(referrer, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
+        builder.append(Names.name(referrer, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
         builder.append(" ");
         final String DOUBLE_QUOTES = "\"";
         if (from != null)
@@ -191,7 +191,7 @@ public class UmlAssociation implements Comparable<UmlAssociation>
                     .append(DOUBLE_QUOTES)
                     .append(' ');
         }
-        builder.append(Name.withoutTypeParameters(Name.withoutQualification(referent)));
+        builder.append(Names.withoutTypeParameters(Names.withoutQualification(referent)));
         if (label != null)
         {
             builder.append(" : ")

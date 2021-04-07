@@ -22,10 +22,10 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.lexakai.LexakaiClassDiagram;
-import com.telenav.lexakai.library.Annotations;
-import com.telenav.lexakai.library.Name;
-import com.telenav.lexakai.library.Types;
 import com.telenav.lexakai.annotations.UmlNote;
+import com.telenav.lexakai.library.Annotations;
+import com.telenav.lexakai.library.Names;
+import com.telenav.lexakai.library.Types;
 
 /**
  * @author jonathanl (shibo)
@@ -61,11 +61,11 @@ public class TypeBuilder
         }
 
         // then, add the full UML type declaration.
-        final var typeName = Name.of(type.asClassOrInterfaceDeclaration(), Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITH_TYPE_PARAMETERS);
+        final var typeName = Names.name(type.asClassOrInterfaceDeclaration(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITH_TYPE_PARAMETERS);
         addNote(builder, type, typeName);
         for (final var method : type.getMethods())
         {
-            addNote(builder, method, typeName + "::" + Name.simpleName(method));
+            addNote(builder, method, typeName + "::" + Names.simpleName(method));
         }
         builder.appendLine(Types.typeDeclarationModifiers(type) + " " + typeName);
     }

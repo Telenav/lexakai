@@ -25,11 +25,13 @@ import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.Wrap;
 import com.telenav.kivakit.core.kernel.language.time.LocalTime;
+import com.telenav.kivakit.core.resource.CopyMode;
+import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
 import com.telenav.lexakai.LexakaiProject;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
 import java.util.ArrayList;
@@ -43,13 +45,40 @@ import static java.util.regex.Pattern.DOTALL;
 import static java.util.regex.Pattern.MULTILINE;
 
 /**
+ * Updates the section indexes in the README.md file for a project.
+ *
+ * <p><b>Usage</b></p>
+ *
+ * <p>
+ * The project is passed to the constructor. The {@link #update(Pattern, List, boolean)} method updates the read me
+ * file. The javadocSectionPattern parameter determines how Javadoc sections are located. The childProjects parameter
+ * provides a list of projects to index for projects with *pom* packaging (parent projects). Finally, the addHtmlAnchors
+ * can be used to add anchor tags to the sections that the index references.
+ * </p>
+ *
+ * <p><b>Templates</b></p>
+ *
+ * <p>
+ * The *project-readme-template.md* and *parent-project-readme-template.md* files serve as default templates for
+ * producing *README.md* documentation indexes for projects. The former creates *README.md* indexes for ordinary
+ * projects with Java source code, while the latter produces *README.md* indexes for Maven parent projects with *pom*
+ * packaging. Both templates are copied on the first run into the documentation folder where they can be modified to
+ * produce specific effects.
+ * </p>
+ *
+ * <p>
+ * After the *README.md* file has been created on the first run, on subsequent runs, it is updated by extracting the
+ * portion of the file between *start-user-text* and *end-user-text* comments and inserting it back into the appropriate
+ * template.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 public class ReadMeIndexUpdater
 {
-    private static final String SOURCE_INDEX = PackageResource.packageResource(ReadMeIndexUpdater.class, "ReadMeSourceIndex.md").reader().string();
+    private static final Resource PROJECT_README_TEMPLATE = PackageResource.packageResource(ReadMeIndexUpdater.class, "project-readme-template.md");
 
-    private static final String PARENT_INDEX = PackageResource.packageResource(ReadMeIndexUpdater.class, "ReadMeProjectIndex.md").reader().string();
+    private static final Resource PARENT_PROJECT_README_TEMPLATE = PackageResource.packageResource(ReadMeIndexUpdater.class, "parent-project-readme-template.md");
 
     private final LexakaiProject project;
 
@@ -60,8 +89,24 @@ public class ReadMeIndexUpdater
         this.project = project;
     }
 
-    public void update(final Pattern javadocSectionPattern, final List<Folder> childProjects, final boolean addHtmlAnchors)
+    public void update(final Pattern javadocSectionPattern,
+                       final List<Folder> childProjects,
+                       final boolean addHtmlAnchors)
     {
+        // Get any existing project readme template or create a new one if not exists.
+        final var projectReadmeTemplate = project.projectReadmeTemplateFile();
+        if (!projectReadmeTemplate.exists())
+        {
+            PROJECT_README_TEMPLATE.safeCopyTo(projectReadmeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
+        }
+
+        // Get any existing parent project readme template or create a new one if not exists.
+        final var parentProjectReadmeTemplate = project.parentProjectReadmeTemplateFile();
+        if (!parentProjectReadmeTemplate.exists())
+        {
+            PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadmeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
+        }
+
         // Get any user text blocks from any existing read me file,
         final var index = new StringList();
         final var blocks = userTextBlocks(project.readmeFile());
@@ -105,7 +150,7 @@ public class ReadMeIndexUpdater
 
             // and javadoc sections,
             final var sorted = new ArrayList<>(types);
-            sorted.sort(Comparator.comparing(type -> type.name(Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS)));
+            sorted.sort(Comparator.comparing(type -> type.name(Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS)));
             sorted.forEach(type -> sections.addAll(sections(type, javadocSectionPattern)));
 
             // populate the variable map with this information,
@@ -135,7 +180,9 @@ public class ReadMeIndexUpdater
         }
 
         // then write the interpolated template,
-        new StringResource(variables.expanded(project.hasSourceCode() ? SOURCE_INDEX : PARENT_INDEX)).safeCopyTo(project.readmeFile(), UPDATE, ProgressReporter.NULL);
+        final var template = (project.hasSourceCode() ? PROJECT_README_TEMPLATE : PARENT_PROJECT_README_TEMPLATE).reader().string();
+        final var expanded = variables.expand(template);
+        new StringResource(expanded).safeCopyTo(project.readmeFile(), UPDATE, ProgressReporter.NULL);
 
         // and finally, update the referenced images.
         final var images = Package.of(getClass(), "documentation/images");
@@ -171,8 +218,8 @@ public class ReadMeIndexUpdater
     private StringList sections(final UmlType type, final Pattern javadocSectionPattern)
     {
         final var javadocUrl = project.property("project-javadoc-url");
-        final var qualifiedName = type.name(Name.Qualification.QUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
-        final var name = type.name(Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+        final var qualifiedName = type.name(Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+        final var name = type.name(Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
         final var sections = new StringList();
         final var javadocSections = new HashSet<>(type.documentationSections());
         if (javadocSections.isEmpty())
@@ -197,7 +244,7 @@ public class ReadMeIndexUpdater
         {
             if (sections.isEmpty())
             {
-                sections.add("| [*" + name + "*](" + javadocUrl + "/" + Name.packageName(qualifiedName).replaceAll("\\.", "/") + "/" + name + ".html) | " + section + " |  ");
+                sections.add("| [*" + name + "*](" + javadocUrl + "/" + Names.packageName(qualifiedName).replaceAll("\\.", "/") + "/" + name + ".html) | " + section + " |  ");
             }
             else
             {

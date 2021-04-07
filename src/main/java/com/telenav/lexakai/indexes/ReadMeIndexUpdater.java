@@ -60,7 +60,7 @@ public class ReadMeIndexUpdater
         this.project = project;
     }
 
-    public void update(final Pattern javadocSectionPattern, final List<Folder> childProjects, boolean addHtmlAnchors)
+    public void update(final Pattern javadocSectionPattern, final List<Folder> childProjects, final boolean addHtmlAnchors)
     {
         // Get any user text blocks from any existing read me file,
         final var index = new StringList();
@@ -75,6 +75,10 @@ public class ReadMeIndexUpdater
         variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         variables.put("date", LocalTime.now().asDateString());
         variables.put("time", LocalTime.now().asTimeString());
+        if (!variables.containsKey("project-footer"))
+        {
+            variables.put("project-footer", "");
+        }
 
         // and if the project has source code,
         if (project.hasSourceCode())
@@ -140,7 +144,7 @@ public class ReadMeIndexUpdater
                 image.copyTo(imagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
     }
 
-    private String index(final String block, final StringList index, boolean addHtmlAnchors)
+    private String index(final String block, final StringList index, final boolean addHtmlAnchors)
     {
         final var matcher = SECTION_HEADING.matcher(block);
         if (matcher.find())
@@ -154,7 +158,7 @@ public class ReadMeIndexUpdater
                 if (Strings.isEmpty(matcher.group(2)))
                 {
                     final var htmlAnchor = addHtmlAnchors ? " <a name = \"" + anchor + "\"></a>" : "";
-                    matcher.appendReplacement(anchored, "### " + heading + htmlAnchor) ;
+                    matcher.appendReplacement(anchored, "### " + heading + htmlAnchor);
                 }
             }
             while (matcher.find());

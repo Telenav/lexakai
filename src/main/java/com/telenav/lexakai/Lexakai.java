@@ -124,6 +124,24 @@ public class Lexakai extends Application
                     .defaultValue(false)
                     .build();
 
+    private final SwitchParser<Boolean> JAVADOC_COVERAGE =
+            SwitchParser.booleanSwitch("javadoc-coverage", "True to show Javadoc coverage for each project")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    private final SwitchParser<Integer> JAVADOC_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-minimum-length", "THe minimum text length for Javadoc coverage")
+                    .optional()
+                    .defaultValue(128)
+                    .build();
+
+    private final SwitchParser<String> JAVADOC_SECTION_PATTERN =
+            SwitchParser.stringSwitch("javadoc-section-pattern", "regular expression for extracting javadoc section titles")
+                    .optional()
+                    .defaultValue("<p><b>(.*)</b></p>")
+                    .build();
+
     private final SwitchParser<Boolean> BUILD_SVG_FILES =
             SwitchParser.booleanSwitch("build-svg", "True to build .svg files from PlantUML output")
                     .optional()
@@ -135,12 +153,6 @@ public class Lexakai extends Application
                     .optional()
                     .defaultValue(false)
                     .build();
-
-    private final SwitchParser<String> JAVADOC_SECTION_PATTERN = SwitchParser.stringSwitch("javadoc-section-pattern",
-            "regular expression for extracting javadoc section titles")
-            .optional()
-            .defaultValue("<p><b>(.*)</b></p>")
-            .build();
 
     /** The total number of diagrams created */
     private final MutableCount totalDiagrams = new MutableCount();
@@ -219,6 +231,9 @@ public class Lexakai extends Application
                 BUILD_SVG_FILES,
                 INCLUDE_OBJECT_METHODS,
                 INCLUDE_PROTECTED_METHODS,
+                JAVADOC_COVERAGE,
+                JAVADOC_MINIMUM_LENGTH,
+                JAVADOC_SECTION_PATTERN,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
                 RECURSE,
@@ -359,6 +374,11 @@ public class Lexakai extends Application
         if (get(UPDATE_README))
         {
             project.updateReadMe();
+        }
+
+        if (get(JAVADOC_COVERAGE))
+        {
+            information(project.javadocCoverage(get(JAVADOC_MINIMUM_LENGTH)).join("\n"));
         }
 
         return outputFiles;

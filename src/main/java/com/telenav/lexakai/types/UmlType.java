@@ -21,6 +21,7 @@ package com.telenav.lexakai.types;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.lexakai.LexakaiClassDiagram;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.builders.MethodBuilder;
 import com.telenav.lexakai.builders.TypeBuilder;
 import com.telenav.lexakai.library.Annotations;
@@ -28,7 +29,6 @@ import com.telenav.lexakai.library.Name;
 import com.telenav.lexakai.library.Name.Qualification;
 import com.telenav.lexakai.library.Name.TypeParameters;
 import com.telenav.lexakai.members.UmlMethod;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -74,11 +74,7 @@ public class UmlType
     public Set<String> documentationSections()
     {
         final var expression = type.getAnnotationByClass(UmlClassDiagram.class);
-        if (expression.isPresent())
-        {
-            return Annotations.stringValues(expression.get(), "documentationSections");
-        }
-        return Set.of();
+        return expression.map(annotation -> Annotations.stringValues(annotation, "documentationSections")).orElseGet(Set::of);
     }
 
     @Override

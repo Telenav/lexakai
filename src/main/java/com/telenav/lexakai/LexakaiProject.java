@@ -23,9 +23,13 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.kernel.language.strings.Strip;
+import com.telenav.kivakit.core.kernel.language.values.count.MutableCount;
+import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.path.Extension;
@@ -285,6 +289,45 @@ public class LexakaiProject extends BaseRepeater
                 .safeCopyTo(propertiesFile(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
     }
 
+    public StringList javadocCoverage(final int minimumLength)
+    {
+        final var warnings = new StringList();
+        final var types = new MutableCount();
+        final var covered = new MutableCount();
+        typeDeclarations(type ->
+        {
+            types.increment();
+            final var javadoc = type.getJavadoc();
+            if (javadoc.isPresent())
+            {
+                final var text = javadoc.get().toText();
+                if (text.length() < minimumLength)
+                {
+                    if (type.getFullyQualifiedName().isPresent())
+                    {
+                        warnings.add("    $: Javadoc is only $ characters (minimum is $)", Strip.packagePrefix(type.getFullyQualifiedName().get()), text.length(), minimumLength);
+                    }
+                }
+                else
+                {
+                    covered.increment();
+                }
+            }
+            else
+            {
+                if (type.getFullyQualifiedName().isPresent())
+                {
+                    warnings.add("    $: Javadoc is missing", Strip.packagePrefix(type.getFullyQualifiedName().get()));
+                }
+            }
+        });
+
+        final var coverage = new StringList();
+        coverage.add("Coverage for $ is $", name(), Percent.percent(100.0 * covered.get() / types.get()));
+        coverage.addAll(warnings);
+        return coverage;
+    }
+
     public LexakaiProject javadocSectionPattern(final Pattern pattern)
     {
         javadocSectionPattern = pattern;
@@ -394,11 +437,7 @@ public class LexakaiProject extends BaseRepeater
                                             .filter(type ->
                                             {
                                                 final var qualifiedName = (Optional<String>) type.getFullyQualifiedName();
-                                                if (qualifiedName.isPresent())
-                                                {
-                                                    return !qualifiedName.get().contains("lexakai.diagrams");
-                                                }
-                                                return false;
+                                                return qualifiedName.filter(name -> !name.contains("lexakai.diagrams")).isPresent();
                                             })
                                             .forEach(typeDeclarations::add));
                         }

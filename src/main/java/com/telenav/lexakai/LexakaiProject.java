@@ -97,6 +97,12 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
  */
 public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
+    @NotNull
+    public static String meterMarkdownForPercent(final Percent percent)
+    {
+        return " ![](documentation/images/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
+    }
+
     public class JavadocCoverage implements Comparable<JavadocCoverage>
     {
         private final StringList description = new StringList();
@@ -133,7 +139,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
         public String meterMarkdown()
         {
-            return " ![](documentation/images/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
+            return meterMarkdownForPercent(percent);
         }
 
         public Percent percent()
@@ -163,6 +169,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         }
     }
 
+    /** The folder for this project */
     private final Folder projectFolder;
 
     /** Parser to use on project source files */
@@ -244,6 +251,17 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     {
         this.automaticMethodGroups = automaticMethodGroups;
         return this;
+    }
+
+    public Percent averageCoverage()
+    {
+        double total = 0;
+        final var coverage = javadocCoverage().uniqued();
+        for (final var at : coverage)
+        {
+            total += at.percent.value();
+        }
+        return Percent.of(total / coverage.size());
     }
 
     public LexakaiProject buildPackageDiagrams(final boolean packageDiagrams)

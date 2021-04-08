@@ -104,8 +104,8 @@ public class ReadMeUpdater
 
         // create a variable map for the readme template,
         final var variables = project.properties();
-        variables.put("user-text-top", topBlock);
-        variables.put("user-text-bottom", bottomBlock);
+        variables.put("project-javadoc-average-coverage", project.averageCoverage().toString());
+        variables.put("project-javadoc-average-coverage-meter", LexakaiProject.meterMarkdownForPercent(project.averageCoverage()));
         variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         variables.put("date", LocalTime.now().asDateString());
         variables.put("time", LocalTime.now().asTimeString());
@@ -122,9 +122,12 @@ public class ReadMeUpdater
             addParentProjectVariables(variables);
         }
 
+        variables.put("user-text-top", expand(variables, topBlock));
+        variables.put("user-text-bottom", expand(variables, bottomBlock));
+
         // then write the interpolated template to the README.md file,
         final var template = (project.hasSourceCode() ? projectReadMeTemplate() : parentProjectReadMeTemplate()).reader().string();
-        final var expanded = variables.expand(template, "");
+        final var expanded = expand(variables, template);
         new StringResource(expanded).safeCopyTo(project.readmeFile(), UPDATE, ProgressReporter.NULL);
 
         // and finally, update the referenced images.
@@ -205,6 +208,25 @@ public class ReadMeUpdater
             final var wrapped = Wrap.wrap(description, 100).replaceAll("\n", "  \n");
             variables.put("project-description", wrapped);
         }
+    }
+
+    /**
+     * Expands the given text with the variable map, but retains ${x} markers in comments.
+     *
+     * @param variables The variables to substitute
+     * @param text The text to expand
+     * @return The expanded text
+     */
+    private String expand(final VariableMap<String> variables, final String text)
+    {
+        // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
+        final var transformed = text.replaceAll("<!-- \\$\\{(.*?)} -->.*?<!-- end -->", "<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
+
+        // expand the transformed string, producing "{{{x}}} <expanded> {{{end}}}"
+        final var expanded = variables.expand(transformed, "");
+
+        // and finally turn the expanded string into "<!-- ${x} --> <expanded> <!-- end -->"
+        return expanded.replaceAll("<<<(.*?)>>>", "\\$\\{$1}");
     }
 
     /**

@@ -1,6 +1,6 @@
 # Lexakai &nbsp;&nbsp;![](documentation/images/lexakai-64.png)
 
-A tool for generating UML diagrams and documentation indexes.
+A tool for generating UML diagrams and markdown documentation indexes.
 
 ![](documentation/images/horizontal-line.png)
 
@@ -147,7 +147,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 ### Configuration <a name = "configuration"></a>&nbsp; ![](documentation/images/tools-40.png)
 
-The *documentation* folder for each project should contain a *lexakai.properties* file that looks similar to this:
+The *documentation* folder for each project should contain a *lexakai* folder with a *lexakai.properties* file that looks similar to this:
 
     #
     # Project
@@ -214,6 +214,16 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 22.9%.
+
+The following significant classes are undocumented:  
+
+- AssociationBuilder  
+- LexakaiClassDiagram  
+- MethodGroupNameGuesser  
+- Types  
+- UmlAssociation
+
 | Class | Documentation Sections |
 |---|---|
 | [*Annotations*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Annotations.html) |  |  
@@ -232,6 +242,7 @@ None
 | [*LexakaiProject*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |  
 | | Functions |  
 | | Settings |  
+| [*LexakaiProject.JavadocCoverage*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.JavadocCoverage.html) |  |  
 | [*MavenDependencyTreeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
 | [*Members*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Members.html) |  |  
 | [*MethodBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/MethodBuilder.html) |  |  

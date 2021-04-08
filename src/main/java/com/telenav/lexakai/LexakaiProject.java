@@ -94,6 +94,30 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
  */
 public class LexakaiProject extends BaseRepeater
 {
+    public static class JavadocCoverage
+    {
+        private final StringList description = new StringList();
+
+        private Percent percent;
+
+        private final StringList significantUndocumentedClasses = new StringList();
+
+        public StringList description()
+        {
+            return description;
+        }
+
+        public Percent percent()
+        {
+            return percent;
+        }
+
+        public StringList significantUndocumentedClasses()
+        {
+            return significantUndocumentedClasses;
+        }
+    }
+
     private final Folder projectFolder;
 
     /** Parser to use on project source files */
@@ -135,6 +159,9 @@ public class LexakaiProject extends BaseRepeater
     /** True to build a diagram of all public types in each package */
     private boolean buildPackageDiagrams;
 
+    /** Javadoc coverage for types in this project */
+    private JavadocCoverage coverage;
+
     public LexakaiProject(final Lexakai lexakai,
                           final Version version,
                           final Folder root,
@@ -154,6 +181,11 @@ public class LexakaiProject extends BaseRepeater
     {
         this.addHtmlAnchors = addHtmlAnchors;
         return this;
+    }
+
+    public boolean addHtmlAnchors()
+    {
+        return addHtmlAnchors;
     }
 
     public boolean automaticMethodGroups()
@@ -261,6 +293,11 @@ public class LexakaiProject extends BaseRepeater
         return projectFolder.folder("documentation").mkdirs();
     }
 
+    public Folder documentationLexakaiFolder()
+    {
+        return documentationFolder().folder("lexakai").mkdirs();
+    }
+
     public Folder folder()
     {
         return projectFolder;
@@ -318,8 +355,8 @@ public class LexakaiProject extends BaseRepeater
             diagramFolder().mkdirs();
 
             // and install the lexakai theme and default groups patterns if they are not already installed,
-            resourceFolder.resource("lexakai.groups").safeCopyTo(documentationFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
-            resourceFolder.resource("lexakai.theme").safeCopyTo(documentationFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+            resourceFolder.resource("lexakai.groups").safeCopyTo(documentationLexakaiFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+            resourceFolder.resource("lexakai.theme").safeCopyTo(documentationLexakaiFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
         }
 
         // then install the lexakai properties file if it doesn't already exist.
@@ -329,53 +366,69 @@ public class LexakaiProject extends BaseRepeater
                 .safeCopyTo(propertiesFile(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
     }
 
-    public StringList javadocCoverage(final int minimumLength)
+    public JavadocCoverage javadocCoverage()
     {
-        final var warnings = new StringList();
-        final var types = new MutableCount();
-        final var covered = new MutableCount();
-        typeDeclarations(type ->
+        if (coverage == null)
         {
-            types.increment();
-            var requiredLength = minimumLength;
-            final var javadoc = type.getJavadoc();
-            final var significant = type.toString().length() > 4096 ? "=>  " : "    ";
-            if (javadoc.isPresent())
+            coverage = new JavadocCoverage();
+            final var warnings = new StringList();
+            final var types = new MutableCount();
+            final var covered = new MutableCount();
+            typeDeclarations(type ->
             {
-                if (type.isEnumDeclaration())
-                {
-                    requiredLength = 64;
-                }
-                final var text = javadoc.get().toText();
-                if (text.length() < requiredLength)
-                {
-                    if (type.getFullyQualifiedName().isPresent())
-                    {
-                        warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
-                                significant, Strip.packagePrefix(type.getFullyQualifiedName().get()),
-                                text.length(), requiredLength);
-                    }
-                }
-                else
-                {
-                    covered.increment();
-                }
-            }
-            else
-            {
+                types.increment();
+                var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
+
+                final var javadoc = type.getJavadoc();
+                final var isSignificant = type.toString().length() > 4096;
+                final var significance = isSignificant ? "=>  " : "    ";
                 if (type.getFullyQualifiedName().isPresent())
                 {
-                    warnings.add("${string}$: Javadoc is missing",
-                            significant, Strip.packagePrefix(type.getFullyQualifiedName().get()));
+                    final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
+                    if (javadoc.isPresent())
+                    {
+                        if (type.isEnumDeclaration())
+                        {
+                            requiredLength = 64;
+                        }
+                        final var text = javadoc.get().toText();
+                        if (text.length() < requiredLength)
+                        {
+                            if (isSignificant)
+                            {
+                                coverage.significantUndocumentedClasses.add(typeName);
+                            }
+                            warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
+                                    significance, typeName,
+                                    text.length(), requiredLength);
+                        }
+                        else
+                        {
+                            covered.increment();
+                        }
+                    }
+                    else
+                    {
+                        if (isSignificant)
+                        {
+                            coverage.significantUndocumentedClasses.add(typeName);
+                        }
+                        warnings.add("${string}$: Javadoc is missing", significance, typeName);
+                    }
                 }
-            }
-        });
+            });
 
-        final var coverage = new StringList();
-        final var percent = Percent.percent(100.0 * covered.get() / types.get());
-        coverage.add("Javadoc coverage for $ is $", name(), percent);
-        coverage.addAll(warnings);
+            final var percent = Percent.percent(100.0 * covered.get() / types.get());
+            coverage.description.add("Javadoc coverage for $ is $", name(), percent);
+            coverage.description.addAll(warnings);
+            coverage.percent = percent;
+        }
         return coverage;
+    }
+
+    public Pattern javadocSectionPattern()
+    {
+        return javadocSectionPattern;
     }
 
     public LexakaiProject javadocSectionPattern(final Pattern pattern)
@@ -392,14 +445,9 @@ public class LexakaiProject extends BaseRepeater
                 : parentProject.join("-"));
     }
 
-    public File parentProjectReadmeTemplateFile()
+    public File parentReadmeTemplateFile()
     {
-        return documentationFolder().file("parent-project-readme-template.md");
-    }
-
-    public File projectReadmeTemplateFile()
-    {
-        return documentationFolder().file("project-readme-template.md");
+        return documentationLexakaiFolder().file("lexakai-parent-readme-template.md");
     }
 
     public VariableMap<String> properties()
@@ -421,6 +469,11 @@ public class LexakaiProject extends BaseRepeater
     public File readmeFile()
     {
         return projectFolder.file("README.md");
+    }
+
+    public File readmeTemplateFile()
+    {
+        return documentationLexakaiFolder().file("lexakai-readme-template.md");
     }
 
     public Folder sourceFolder()
@@ -449,12 +502,17 @@ public class LexakaiProject extends BaseRepeater
 
     public void updateReadMe()
     {
-        new ReadMeIndexUpdater(this).update(javadocSectionPattern, childProjects(), addHtmlAnchors);
+        new ReadMeIndexUpdater(this).update(childProjects());
     }
 
     public Version version()
     {
         return version;
+    }
+
+    private JavadocCoverage coverage()
+    {
+        return coverage;
     }
 
     private boolean isProject(final Folder folder)
@@ -515,6 +573,6 @@ public class LexakaiProject extends BaseRepeater
 
     private File propertiesFile()
     {
-        return documentationFolder().file("lexakai.properties");
+        return documentationLexakaiFolder().file("lexakai.properties");
     }
 }

@@ -42,6 +42,10 @@ ${package-diagram-index}
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is ${project-javadoc-coverage}.
+
+${project-undocumented-classes}
+
 | Class | Documentation Sections |
 |---|---|
 ${key-documentation}

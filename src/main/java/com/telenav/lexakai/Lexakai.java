@@ -71,6 +71,12 @@ public class Lexakai extends Application
         new Lexakai().run(arguments);
     }
 
+    final SwitchParser<Integer> JAVADOC_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-minimum-length", "THe minimum text length for Javadoc coverage")
+                    .optional()
+                    .defaultValue(128)
+                    .build();
+
     private final ArgumentParser<Folder> ROOT_FOLDER =
             Folder.folderArgument("Root folder to start at when locating projects")
                     .oneOrMore()
@@ -134,12 +140,6 @@ public class Lexakai extends Application
             SwitchParser.booleanSwitch("javadoc-coverage", "True to show Javadoc coverage for the types in each project")
                     .optional()
                     .defaultValue(true)
-                    .build();
-
-    private final SwitchParser<Integer> JAVADOC_MINIMUM_LENGTH =
-            SwitchParser.integerSwitch("javadoc-minimum-length", "THe minimum text length for Javadoc coverage")
-                    .optional()
-                    .defaultValue(128)
                     .build();
 
     private final SwitchParser<String> JAVADOC_SECTION_PATTERN =
@@ -376,15 +376,16 @@ public class Lexakai extends Application
             });
         }
 
-        // and update the README.md index
+        // get Javadoc coverage
+        if (get(JAVADOC_COVERAGE))
+        {
+            information(project.javadocCoverage().description().join("\n"));
+        }
+
+        // and update the README.md index.
         if (get(UPDATE_README))
         {
             project.updateReadMe();
-        }
-
-        if (get(JAVADOC_COVERAGE))
-        {
-            information(project.javadocCoverage(get(JAVADOC_MINIMUM_LENGTH)).join("\n"));
         }
 
         return outputFiles;

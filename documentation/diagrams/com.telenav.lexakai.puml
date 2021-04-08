@@ -1,6 +1,6 @@
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.lexakai"
     
@@ -15,6 +15,15 @@
         --
         +String uml(String title)
         #void onUml(IndentingStringBuilder)
+    }
+    
+    class LexakaiProject.JavadocCoverage
+    {
+        --(collection)--
+        +StringList description()
+        +StringList significantUndocumentedClasses()
+        --(math)--
+        +Percent percent()
     }
     
     Application <|-- Lexakai
@@ -70,6 +79,8 @@
         +LexakaiProject automaticMethodGroups(boolean automaticMethodGroups)
         +void diagramNames(Consumer<String>)
         +void diagrams(Consumer<LexakaiClassDiagram>)
+        +JavadocCoverage javadocCoverage()
+        +Pattern javadocSectionPattern()
         +LexakaiProject javadocSectionPattern(Pattern)
         +String property(String key)
         +void typeDeclarations(Consumer<TypeDeclaration<?>>)
@@ -80,19 +91,20 @@
         +boolean hasChildProjects()
         +boolean hasSourceCode()
         --(collection)--
+        +boolean addHtmlAnchors()
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
-        +StringList javadocCoverage(int minimumLength)
         +VariableMap<String> properties()
         +List<TypeDeclaration<?>> typeDeclarations()
         --(filesystem)--
         +List<Folder> childProjects()
         +Folder diagramFolder()
         +Folder documentationFolder()
+        +Folder documentationLexakaiFolder()
         +Folder folder()
         +Folder imagesFolder()
-        +File parentProjectReadmeTemplateFile()
-        +File projectReadmeTemplateFile()
+        +File parentReadmeTemplateFile()
         +File readmeFile()
+        +File readmeTemplateFile()
         +Folder sourceFolder()
         --(filtering)--
         +LexakaiProject includeObjectMethods(boolean include)

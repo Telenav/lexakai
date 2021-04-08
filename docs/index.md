@@ -134,7 +134,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 ### Configuration <a name = "configuration"></a>&nbsp; ![](images/tools-40.png)
 
-The *documentation* folder for each project should contain a *lexakai.properties* file that looks similar to this:
+The *documentation* folder for each project should contain a *lexakai* folder with a *lexakai.properties* file that looks similar to this:
 
     #
     # Project

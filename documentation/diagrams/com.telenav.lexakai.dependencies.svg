@@ -10,10 +10,10 @@ class MavenDependencyTreeBuilder--><rect codeLine="61" fill="#282828" height="11
 reverse link Comparable to Artifact--><path codeLine="11" d="M788,268.609 C769.9688,316.6195 740.2708,395.6924 716.9375,457.8174 " fill="none" id="Comparable-backto-Artifact" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="781.25,265.8486,795.4063,248.9111,794.9063,270.984,781.25,265.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a8343765537c410118215e9143e6b44a]
 reverse link Comparable to Dependency--><path codeLine="23" d="M820.2917,268.5049 C842.2083,326.8486 881.4063,431.234 905.4375,495.1924 " fill="none" id="Comparable-backto-Dependency" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="813.4271,270.984,812.9271,248.9111,827.0833,265.8486,813.4271,270.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d0d162150da7ef5379619142c57f0461]
 reverse link BaseLexakaiDiagram to DependencyDiagram--><path codeLine="32" d="M412.5,269.9632 C412.5,326.2132 412.5,423.5153 412.5,487.3382 " fill="none" id="BaseLexakaiDiagram-backto-DependencyDiagram" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="405.2083,269.7445,412.5,248.9111,419.7917,269.7445,405.2083,269.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[de0ab70ee592e1b7a1bc3ef849329d8c]
-reverse link BaseRepeater to MavenDependencyTreeBuilder--><path codeLine="60" d="M129.1667,270.057 C129.1667,328.682 129.1667,431.7965 129.1667,495.1924 " fill="none" id="BaseRepeater-backto-MavenDependencyTreeBuilder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="121.875,269.7445,129.1667,248.9111,136.4583,269.7445,121.875,269.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[70700f421b68397fb09a55c0a7702608]
+reverse link BaseRepeater to MavenDependencyTreeBuilder--><path codeLine="60" d="M129.1667,270.057 C129.1667,328.682 129.1667,431.7965 129.1667,495.1924 " fill="none" id="BaseRepeater-backto-MavenDependencyTreeBuilder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="121.875,269.7445,129.1667,248.9111,136.4583,269.7445,121.875,269.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2cab062d52bb626fee7c0fcdb7ca5bbb]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.lexakai.dependencies"
     

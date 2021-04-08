@@ -17,10 +17,10 @@ link Members to Methods--><!--MD5=[02dcb30de5e4270e3e53a2777b5c252c]
 link Methods to Names--><!--MD5=[0d8ac85a892baeb61fbfa5f043ecb458]
 link Names to Names.Qualification--><!--MD5=[5105585c24669a8ddcf983ea8b3ae7c3]
 link Members to Names.TypeParameters--><!--MD5=[ca6b10f6ac6215e61e468fc38ea3180c]
-link Names.TypeParameters to Types--><!--MD5=[6eab729dee71b585b0a499ab6699d76f]
+link Names.TypeParameters to Types--><!--MD5=[7c233569575277a8c1cd5a13adaa85d0]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.lexakai.library"
     

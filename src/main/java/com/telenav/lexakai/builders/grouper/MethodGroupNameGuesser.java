@@ -206,14 +206,14 @@ public class MethodGroupNameGuesser
 
     private void load()
     {
-        final var groupsFile = project.documentationFolder().file("lexakai.groups");
+        final var groupsFile = project.documentationLexakaiFolder().file("lexakai.groups");
         if (groupsFile.exists())
         {
             load(groupsFile);
         }
         else
         {
-            load(PackageResource.packageResource(Lexakai.class, "lexakai.groups"));
+            load(PackageResource.packageResource(Lexakai.class, "lexakai/lexakai.groups"));
         }
     }
 }

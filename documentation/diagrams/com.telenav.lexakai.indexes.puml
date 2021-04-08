@@ -1,6 +1,6 @@
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.lexakai.indexes"
     
@@ -9,7 +9,7 @@
         --(constructors)--
         +ReadMeIndexUpdater(LexakaiProject)
         --
-        +void update(Pattern javadocSectionPattern, List<Folder> childProjects, boolean addHtmlAnchors)
+        +void update(List<Folder> childProjects)
     }
     
 @enduml

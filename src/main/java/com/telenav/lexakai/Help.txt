@@ -98,7 +98,7 @@ ANNOTATION SUMMARY
 
 CONFIGURATION
 
-The 'documentation' folder for each project should contain a lexakai.properties file that looks similar to this:
+[wrap]The 'documentation' folder for each project should contain a lexakai folder with a lexakai.properties file that looks similar to this:[end]
 
     #
     # Project

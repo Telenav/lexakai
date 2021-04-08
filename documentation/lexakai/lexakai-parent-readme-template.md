@@ -1,3 +1,5 @@
+![](documentation/images/lexakai-background-1024.png)
+
 # ${project-name} &nbsp;&nbsp;![](${project-icon})
 
 ${project-description}

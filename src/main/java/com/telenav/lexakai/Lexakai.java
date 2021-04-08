@@ -40,6 +40,7 @@ import com.telenav.kivakit.core.kernel.language.vm.Processes;
 import com.telenav.kivakit.core.resource.project.CoreResourceProject;
 import com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
+import com.telenav.lexakai.LexakaiProject.JavadocCoverage;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
 
@@ -208,7 +209,7 @@ public class Lexakai extends Application
 
         // and for each root folder,
         final var outputFiles = new ObjectList<File>();
-        final var coverage = new ObjectList<LexakaiProject.JavadocCoverage>();
+        final var coverage = new ObjectList<JavadocCoverage>();
         for (final var root : roots)
         {
             // convert it to an absolute path,
@@ -245,7 +246,12 @@ public class Lexakai extends Application
         list.add("Diagrams: $", totalDiagrams.get());
         list.add("Types: $", types.size());
         list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
-        list.add("Javadoc Coverage:\n\n$", coverage.uniqued().sorted().asStringList().prefixedWith("    ").join("\n"));
+        list.add("Javadoc Coverage:\n\n$", coverage
+                .uniqued()
+                .sorted()
+                .mapped(JavadocCoverage::detailed)
+                .asStringList()
+                .join("\n"));
 
         announce(list.titledBox("Summary"));
     }

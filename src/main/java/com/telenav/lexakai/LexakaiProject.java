@@ -36,6 +36,7 @@ import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.library.Diagrams;
 import com.telenav.lexakai.library.Names;
@@ -96,6 +97,12 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
  */
 public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
+    @NotNull
+    public static String meterMarkdownForPercent(final Percent percent)
+    {
+        return " ![](documentation/images/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
+    }
+
     public class JavadocCoverage implements Comparable<JavadocCoverage>
     {
         private final StringList description = new StringList();
@@ -103,6 +110,16 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         private Percent percent;
 
         private final StringList significantUndocumentedClasses = new StringList();
+
+        private final StringList undocumentedClasses = new StringList();
+
+        public StringList asStringList()
+        {
+            final var list = new StringList();
+            list.add(toString());
+            list.add(undocumentedClasses().prefixedWith("    Undocumented: ").join("\n"));
+            return list;
+        }
 
         @Override
         public int compareTo(@NotNull final JavadocCoverage that)
@@ -115,9 +132,14 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
             return description;
         }
 
+        public String detailed()
+        {
+            return asStringList().join("\n");
+        }
+
         public String meterMarkdown()
         {
-            return " ![](documentation/images/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
+            return meterMarkdownForPercent(percent);
         }
 
         public Percent percent()
@@ -140,8 +162,14 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         {
             return name() + " " + percent;
         }
+
+        public StringList undocumentedClasses()
+        {
+            return undocumentedClasses;
+        }
     }
 
+    /** The folder for this project */
     private final Folder projectFolder;
 
     /** Parser to use on project source files */
@@ -223,6 +251,17 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     {
         this.automaticMethodGroups = automaticMethodGroups;
         return this;
+    }
+
+    public Percent averageCoverage()
+    {
+        double total = 0;
+        final var coverage = javadocCoverage().uniqued();
+        for (final var at : coverage)
+        {
+            total += at.percent.value();
+        }
+        return Percent.of(total / coverage.size());
     }
 
     public LexakaiProject buildPackageDiagrams(final boolean packageDiagrams)
@@ -576,44 +615,56 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         final var covered = new MutableCount();
         typeDeclarations(type ->
         {
-            types.increment();
-            var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
-
-            final var javadoc = type.getJavadoc();
-            final var isSignificant = type.toString().length() > 4096;
-            final var significance = isSignificant ? "=>  " : "    ";
-            if (type.getFullyQualifiedName().isPresent())
+            if (!type.getFullyQualifiedName().get().endsWith("Test"))
             {
-                final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
-                if (javadoc.isPresent())
+                types.increment();
+                var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
+
+                final var javadoc = type.getJavadoc();
+                final var isSignificant = type.toString().length() > 4096;
+                final var significance = isSignificant ? "=>  " : "    ";
+                if (type.getFullyQualifiedName().isPresent())
                 {
-                    if (type.isEnumDeclaration())
+                    final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
+                    if (javadoc.isPresent())
                     {
-                        requiredLength = 64;
+                        if (type.getAnnotationByClass(LexakaiJavadoc.class).isPresent())
+                        {
+                            covered.increment();
+                        }
+                        else
+                        {
+                            if (type.isEnumDeclaration())
+                            {
+                                requiredLength = 64;
+                            }
+                            final var text = javadoc.get().toText();
+                            if (text.length() < requiredLength)
+                            {
+                                coverage.undocumentedClasses.add(typeName);
+                                if (isSignificant)
+                                {
+                                    coverage.significantUndocumentedClasses.add(typeName);
+                                }
+                                warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
+                                        significance, typeName,
+                                        text.length(), requiredLength);
+                            }
+                            else
+                            {
+                                covered.increment();
+                            }
+                        }
                     }
-                    final var text = javadoc.get().toText();
-                    if (text.length() < requiredLength)
+                    else
                     {
+                        coverage.undocumentedClasses.add(typeName);
                         if (isSignificant)
                         {
                             coverage.significantUndocumentedClasses.add(typeName);
                         }
-                        warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
-                                significance, typeName,
-                                text.length(), requiredLength);
+                        warnings.add("${string}$: Javadoc is missing", significance, typeName);
                     }
-                    else
-                    {
-                        covered.increment();
-                    }
-                }
-                else
-                {
-                    if (isSignificant)
-                    {
-                        coverage.significantUndocumentedClasses.add(typeName);
-                    }
-                    warnings.add("${string}$: Javadoc is missing", significance, typeName);
                 }
             }
         });

@@ -8,6 +8,7 @@
     abstract BaseLexakaiDiagram
     
     interface Named
+    interface Comparable
     
     BaseRepeater <|-- BaseLexakaiDiagram
     abstract class BaseLexakaiDiagram
@@ -17,11 +18,14 @@
         #void onUml(IndentingStringBuilder)
     }
     
+    Comparable <|-- LexakaiProject.JavadocCoverage
     class LexakaiProject.JavadocCoverage
     {
         --(collection)--
         +StringList description()
         +StringList significantUndocumentedClasses()
+        --(distance)--
+        +String meterMarkdown()
         --(math)--
         +Percent percent()
     }
@@ -69,6 +73,7 @@
     }
     
     BaseRepeater <|-- LexakaiProject
+    Comparable <|-- LexakaiProject
     LexakaiProject --> LexakaiProject : "creates"
     class LexakaiProject
     {
@@ -93,10 +98,11 @@
         --(collection)--
         +boolean addHtmlAnchors()
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
+        +ObjectList<LexakaiProject> childProjects(HashMap<Folder,LexakaiProject> projects)
+        +ObjectList<LexakaiProject> childProjects()
         +VariableMap<String> properties()
         +List<TypeDeclaration<?>> typeDeclarations()
         --(filesystem)--
-        +List<Folder> childProjects()
         +Folder diagramFolder()
         +Folder documentationFolder()
         +Folder documentationLexakaiFolder()
@@ -105,6 +111,7 @@
         +File parentReadmeTemplateFile()
         +File readmeFile()
         +File readmeTemplateFile()
+        +Folder relativeFolder()
         +Folder sourceFolder()
         --(filtering)--
         +LexakaiProject includeObjectMethods(boolean include)

@@ -7,6 +7,7 @@ Lexakai is a command line tool used to create UML diagrams and markdown document
 ### Index
 
 [**Summary**](#summary)  
+[**Example**](#example)  
 [**Download Executable JAR**](#download-executable-jar)  
 [**Source Code**](#source-code)  
 [**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
@@ -32,6 +33,10 @@ Lexakai is a command line tool used to create UML diagrams and markdown document
 
 Creates documentation indexes and UML diagrams from the source code of each maven or gradle project discovered recursively from the root
 folder(s) given as argument(s).
+
+### Example <a name = "example"></a>
+
+For an example of Lexakai created documentation see [KivaKit](https://github.com/Telenav/kivakit).
 
 ### Download Executable JAR <a name = "download"></a>&nbsp; ![](images/down-arrow-32.png)
 

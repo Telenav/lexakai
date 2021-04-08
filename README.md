@@ -8,6 +8,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
+[**Example**](#example)  
 [**Download Executable JAR**](#download-executable-jar)  
 [**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
 [**Custom UML Diagrams**](#custom-uml-diagrams)  
@@ -24,7 +25,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -35,7 +36,6 @@ A tool for generating UML diagrams and markdown documentation indexes.
         <artifactId>lexakai</artifactId>
         <version>0.9.3</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -46,6 +46,10 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 Creates documentation indexes and UML diagrams from the source code of each maven or gradle  
 project discovered recursively from the root folder(s) given as argument(s).
+
+### Example <a name = "example"></a>
+
+For an example of Lexakai created documentation see [KivaKit](https://github.com/Telenav/kivakit).
 
 ### Download Executable JAR <a name = "download"></a>&nbsp; ![](documentation/images/down-arrow-32.png)
 
@@ -196,11 +200,11 @@ remove them and run Lexakai again.
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 None
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.lexakai*](documentation/diagrams/com.telenav.lexakai.svg)  
 [*com.telenav.lexakai.associations*](documentation/diagrams/com.telenav.lexakai.associations.svg)  
@@ -212,9 +216,11 @@ None
 [*com.telenav.lexakai.members*](documentation/diagrams/com.telenav.lexakai.members.svg)  
 [*com.telenav.lexakai.types*](documentation/diagrams/com.telenav.lexakai.types.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 22.9%.
+Javadoc coverage for this project is 22.9%.  
+  
+&nbsp; &nbsp;  ![](documentation/images/meter-20-12.png)
 
 The following significant classes are undocumented:  
 

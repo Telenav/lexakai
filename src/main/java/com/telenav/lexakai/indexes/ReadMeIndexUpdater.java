@@ -120,7 +120,7 @@ public class ReadMeIndexUpdater
         variables.put("time", LocalTime.now().asTimeString());
         if (project.hasSourceCode())
         {
-            variables.put("project-javadoc-coverage", project.javadocCoverage().percent().toString());
+            variables.put("project-javadoc-coverage", project.javadocCoverage().percent() + ".  \n  \n&nbsp; &nbsp; " + project.javadocCoverage().meterMarkdown());
         }
         else
         {

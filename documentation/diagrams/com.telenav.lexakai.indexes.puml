@@ -9,7 +9,7 @@
         --(constructors)--
         +ReadMeIndexUpdater(LexakaiProject)
         --
-        +void update(List<Folder> childProjects)
+        +void update(List<LexakaiProject> childProjects)
     }
     
 @enduml

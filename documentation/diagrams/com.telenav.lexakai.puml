@@ -84,7 +84,6 @@
         +LexakaiProject automaticMethodGroups(boolean automaticMethodGroups)
         +void diagramNames(Consumer<String>)
         +void diagrams(Consumer<LexakaiClassDiagram>)
-        +JavadocCoverage javadocCoverage()
         +Pattern javadocSectionPattern()
         +LexakaiProject javadocSectionPattern(Pattern)
         +String property(String key)
@@ -100,6 +99,7 @@
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
         +ObjectList<LexakaiProject> childProjects(HashMap<Folder,LexakaiProject> projects)
         +ObjectList<LexakaiProject> childProjects()
+        +ObjectList<JavadocCoverage> javadocCoverage()
         +VariableMap<String> properties()
         +List<TypeDeclaration<?>> typeDeclarations()
         --(filesystem)--
@@ -108,9 +108,9 @@
         +Folder documentationLexakaiFolder()
         +Folder folder()
         +Folder imagesFolder()
-        +File parentReadmeTemplateFile()
+        +File parentReadMeTemplateFile()
+        +File readMeTemplateFile()
         +File readmeFile()
-        +File readmeTemplateFile()
         +Folder relativeFolder()
         +Folder sourceFolder()
         --(filtering)--

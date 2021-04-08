@@ -20,6 +20,7 @@ package com.telenav.lexakai.indexes;
 
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.Wrap;
@@ -36,10 +37,11 @@ import com.telenav.lexakai.types.UmlType;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.resource.CopyMode.UPDATE;
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 import static java.util.regex.Pattern.DOTALL;
 import static java.util.regex.Pattern.MULTILINE;
 
@@ -49,7 +51,7 @@ import static java.util.regex.Pattern.MULTILINE;
  * <p><b>Usage</b></p>
  *
  * <p>
- * The project is passed to the constructor. The {@link #update(List)} method updates the read me file. The {@link
+ * The project is passed to the constructor. The {@link #update()} method updates the read me file. The {@link
  * LexakaiProject#javadocSectionPattern()} setting determines how Javadoc sections are located. The {@link
  * LexakaiProject#childProjects()} setting provides a list of projects to index for projects with *pom* packaging
  * (parent projects). Finally, the {@link LexakaiProject#addHtmlAnchors()} determines if anchor tags should be added to
@@ -74,42 +76,31 @@ import static java.util.regex.Pattern.MULTILINE;
  *
  * @author jonathanl (shibo)
  */
-public class ReadMeIndexUpdater
+public class ReadMeUpdater
 {
-    private static final Resource README_TEMPLATE = PackageResource.packageResource(ReadMeIndexUpdater.class, "lexakai-readme-template.md");
+    private static final Resource README_TEMPLATE = PackageResource.packageResource(ReadMeUpdater.class, "lexakai-readme-template.md");
 
-    private static final Resource PARENT__README_TEMPLATE = PackageResource.packageResource(ReadMeIndexUpdater.class, "lexakai-parent-readme-template.md");
+    private static final Resource PARENT_PROJECT_README_TEMPLATE = PackageResource.packageResource(ReadMeUpdater.class, "lexakai-parent-readme-template.md");
 
     private final LexakaiProject project;
 
     private final Pattern SECTION_HEADING = Pattern.compile("^### ([ A-Za-z0-9_-]+)(\\s*<a name)?", MULTILINE);
 
-    public ReadMeIndexUpdater(final LexakaiProject project)
+    public ReadMeUpdater(final LexakaiProject project)
     {
         this.project = project;
     }
 
-    public void update(final List<LexakaiProject> childProjects)
+    /**
+     * Updates the README.md for this project
+     */
+    public void update()
     {
-        // Get any existing project readme template or create a new one if not exists.
-        final var projectReadmeTemplate = project.readmeTemplateFile();
-        if (!projectReadmeTemplate.exists())
-        {
-            README_TEMPLATE.safeCopyTo(projectReadmeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
-        }
-
-        // Get any existing parent project readme template or create a new one if not exists.
-        final var parentProjectReadmeTemplate = project.parentReadmeTemplateFile();
-        if (!parentProjectReadmeTemplate.exists())
-        {
-            README_TEMPLATE.safeCopyTo(parentProjectReadmeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
-        }
-
         // Get any user text blocks from any existing read me file,
         final var index = new StringList();
         final var blocks = userTextBlocks(project.readmeFile());
-        final var topBlock = index(blocks.getOrDefault(0, ""), index, project.addHtmlAnchors());
-        final var bottomBlock = index(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
+        final var topBlock = indexUserText(blocks.getOrDefault(0, ""), index, project.addHtmlAnchors());
+        final var bottomBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
 
         // create a variable map for the readme template,
         final var variables = project.properties();
@@ -118,93 +109,109 @@ public class ReadMeIndexUpdater
         variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         variables.put("date", LocalTime.now().asDateString());
         variables.put("time", LocalTime.now().asTimeString());
-        if (project.hasSourceCode())
-        {
-            variables.put("project-javadoc-coverage", project.javadocCoverage().percent() + ".  \n  \n&nbsp; &nbsp; " + project.javadocCoverage().meterMarkdown());
-        }
-        else
-        {
-            variables.put("project-javadoc-coverage", project
-                    .childProjects()
-                    .filtered(LexakaiProject::hasSourceCode)
-                    .join("  \n", project -> "&nbsp; " + project.javadocCoverage().meterMarkdown() + " &nbsp; &nbsp; *" + project.name() + "*"));
-        }
-        final var undocumented = project.javadocCoverage().significantUndocumentedClasses();
-        variables.put("project-undocumented-classes",
-                undocumented.isEmpty() ? "" : "The following significant classes are undocumented:  \n\n" +
-                        undocumented.prefixedWith("- ").join("  \n"));
-        if (!variables.containsKey("project-footer"))
-        {
-            variables.put("project-footer", "");
-        }
 
         // and if the project has source code,
         if (project.hasSourceCode())
         {
-            // compose diagram links,
-            final var sections = new StringList();
-            final var types = new HashSet<UmlType>();
-            final var classDiagramIndex = new StringList();
-            final var packageDiagramIndex = new StringList();
-            project.diagrams(diagram ->
-            {
-                final var line = "[*" + diagram.title() + "*](documentation/diagrams/" + diagram.identifier() + ".svg)  ";
-                (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
-                types.addAll(diagram.includedQualifiedTypes());
-            });
-            if (classDiagramIndex.isEmpty())
-            {
-                classDiagramIndex.add("None");
-            }
-            if (packageDiagramIndex.isEmpty())
-            {
-                packageDiagramIndex.add("None");
-            }
-
-            // and javadoc sections,
-            final var sorted = new ArrayList<>(types);
-            sorted.sort(Comparator.comparing(type -> type.name(Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS)));
-            sorted.forEach(type -> sections.addAll(sections(type, project.javadocSectionPattern())));
-
-            // populate the variable map with this information,
-            variables.put("class-diagram-index", classDiagramIndex.join("\n"));
-            variables.put("package-diagram-index", packageDiagramIndex.join("\n"));
-            variables.put("key-documentation", sections.join("\n"));
-
-            // wrap the project description
-            final var description = variables.get("project-description");
-            if (description.length() > 120)
-            {
-                final var wrapped = Wrap.wrap(description, 100).replaceAll("\n", "  \n");
-                variables.put("project-description", wrapped);
-            }
+            // add the appropriate variables,
+            addProjectVariables(variables);
         }
         else
         {
-            // otherwise, compose the list of child projects, if any,
-            final var childProjectMarkdown = new StringList();
-            if (!childProjects.isEmpty())
-            {
-                childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name() + "**](" + at.folder().name() + "/README.md)  "));
-            }
-
-            // and populate the variable map with this information,
-            variables.put("child-projects", childProjectMarkdown.join("\n"));
+            // or the variables for a parent project,
+            addParentProjectVariables(variables);
         }
 
-        // then write the interpolated template,
-        final var template = (project.hasSourceCode() ? README_TEMPLATE : PARENT__README_TEMPLATE).reader().string();
-        final var expanded = variables.expand(template);
+        // then write the interpolated template to the README.md file,
+        final var template = (project.hasSourceCode() ? projectReadMeTemplate() : parentProjectReadMeTemplate()).reader().string();
+        final var expanded = variables.expand(template, "");
         new StringResource(expanded).safeCopyTo(project.readmeFile(), UPDATE, ProgressReporter.NULL);
 
         // and finally, update the referenced images.
         final var images = Package.of(getClass(), "documentation/images");
         final var imagesFolder = project.imagesFolder().absolute().mkdirs();
-        images.resources().forEach(image ->
-                image.copyTo(imagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
+        images.resources().forEach(image -> image.copyTo(imagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
     }
 
-    private String index(final String block, final StringList index, final boolean addHtmlAnchors)
+    /**
+     * Adds variables relevant to a project with child projects
+     *
+     * @param variables The variable map to populate
+     */
+    private void addParentProjectVariables(final VariableMap<String> variables)
+    {
+        variables.put("project-javadoc-coverage", project
+                .javadocCoverage()
+                .join("  \n", coverage -> "&nbsp; " + coverage.meterMarkdown() + " &nbsp; &nbsp; *" + coverage.project().name() + "*"));
+        final var childProjectMarkdown = new StringList();
+        final var childProjects = project.childProjects();
+        if (!childProjects.isEmpty())
+        {
+            childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name() + "**](" + at.folder().name() + "/README.md)  "));
+        }
+
+        // and populate the variable map with this information,
+        variables.put("child-projects", childProjectMarkdown.join("\n"));
+    }
+
+    /**
+     * Adds variables relevant to a project with source code
+     *
+     * @param variables The variable map to populate
+     */
+    private void addProjectVariables(final VariableMap<String> variables)
+    {
+        // Add diagram links,
+        final var types = new HashSet<UmlType>();
+        final var classDiagramIndex = new StringList();
+        final var packageDiagramIndex = new StringList();
+        project.diagrams(diagram ->
+        {
+            final var line = "[*" + diagram.title() + "*](documentation/diagrams/" + diagram.identifier() + ".svg)  ";
+            (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
+            types.addAll(diagram.includedQualifiedTypes());
+        });
+        if (classDiagramIndex.isEmpty())
+        {
+            classDiagramIndex.add("None");
+        }
+        if (packageDiagramIndex.isEmpty())
+        {
+            packageDiagramIndex.add("None");
+        }
+        variables.put("class-diagram-index", classDiagramIndex.join("\n"));
+        variables.put("package-diagram-index", packageDiagramIndex.join("\n"));
+
+        // add Javadoc coverage information,
+        final var coverage = project.javadocCoverage().first();
+        variables.put("project-javadoc-coverage", coverage.percent()
+                + ".  \n  \n&nbsp; &nbsp; " + coverage.meterMarkdown());
+        final var undocumented = coverage.significantUndocumentedClasses();
+        variables.put("project-undocumented-classes",
+                undocumented.isEmpty() ? "" : "The following significant classes are undocumented:  \n\n" +
+                        undocumented.prefixedWith("- ").join("  \n"));
+
+        // and javadoc sections,
+        final var sections = new StringList();
+        final var sorted = new ArrayList<>(types);
+        sorted.sort(Comparator.comparing(type -> type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS)));
+        sorted.forEach(type -> sections.addAll(javadocSections(type, project.javadocSectionPattern())));
+        variables.put("key-documentation", sections.join("\n"));
+
+        // and the wrapped project description.
+        final var description = variables.get("project-description");
+        if (description.length() > 120)
+        {
+            final var wrapped = Wrap.wrap(description, 100).replaceAll("\n", "  \n");
+            variables.put("project-description", wrapped);
+        }
+    }
+
+    /**
+     * @param index The section index to populate with references
+     * @return The given block of user text with HTML anchors added
+     */
+    private String indexUserText(final String block, final StringList index, final boolean addHtmlAnchors)
     {
         final var matcher = SECTION_HEADING.matcher(block);
         if (matcher.find())
@@ -228,11 +235,14 @@ public class ReadMeIndexUpdater
         return block;
     }
 
-    private StringList sections(final UmlType type, final Pattern javadocSectionPattern)
+    /**
+     * @return The Javadoc sections matching the given pattern for the given type
+     */
+    private StringList javadocSections(final UmlType type, final Pattern javadocSectionPattern)
     {
         final var javadocUrl = project.property("project-javadoc-url");
-        final var qualifiedName = type.name(Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
-        final var name = type.name(Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+        final var qualifiedName = type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS);
+        final var name = type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
         final var sections = new StringList();
         final var javadocSections = new HashSet<>(type.documentationSections());
         if (javadocSections.isEmpty())
@@ -268,12 +278,41 @@ public class ReadMeIndexUpdater
         return sections;
     }
 
-    private StringList userTextBlocks(final File readmeFile)
+    /**
+     * @return The readme template for a project with source code
+     */
+    private File parentProjectReadMeTemplate()
+    {
+        final var parentProjectReadMeTemplate = project.parentReadMeTemplateFile();
+        if (!parentProjectReadMeTemplate.exists())
+        {
+            PARENT_PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadMeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
+        }
+        return parentProjectReadMeTemplate;
+    }
+
+    /**
+     * @return The readme template for a parent project
+     */
+    private File projectReadMeTemplate()
+    {
+        final var projectReadMeTemplate = project.readMeTemplateFile();
+        if (!projectReadMeTemplate.exists())
+        {
+            README_TEMPLATE.safeCopyTo(projectReadMeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
+        }
+        return projectReadMeTemplate;
+    }
+
+    /**
+     * @return All user text blocks in the given file
+     */
+    private StringList userTextBlocks(final File file)
     {
         final var blocks = new StringList();
-        if (readmeFile.exists())
+        if (file.exists())
         {
-            final var readme = readmeFile.reader().string();
+            final var readme = file.reader().string();
             final var matcher = Pattern.compile("(?x) \\[//]: \\s+ \\# \\s+ \\(start-user-text\\) (.+?) \\[//]: \\s+ \\# \\s+ \\(end-user-text\\)", DOTALL).matcher(readme);
             while (matcher.find())
             {

@@ -1,3 +1,5 @@
+![](documentation/images/lexakai-background-1024.png)
+
 # Lexakai &nbsp;&nbsp;![](documentation/images/lexakai-64.png)
 
 A tool for generating UML diagrams and markdown documentation indexes.
@@ -67,7 +69,7 @@ To create a set of one or more custom diagrams for a project, annotations can be
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai-annotations</artifactId>
-        <version>${project-version}</version>
+        <version>0.9.3</version>
     </dependency>
 
 A class, annotation, enum or interface annotated with *@UmlClassDiagram(diagram = [marker-interface].class)*,  

@@ -21,9 +21,14 @@
     Comparable <|-- LexakaiProject.JavadocCoverage
     class LexakaiProject.JavadocCoverage
     {
+        --
+        +String detailed()
+        +LexakaiProject project()
         --(collection)--
+        +StringList asStringList()
         +StringList description()
         +StringList significantUndocumentedClasses()
+        +StringList undocumentedClasses()
         --(distance)--
         +String meterMarkdown()
         --(math)--
@@ -37,6 +42,7 @@
         #Lexakai()
         --
         +void main(String[] arguments)
+        +LexakaiProject project(Folder)
     }
     
     BaseLexakaiDiagram <|-- LexakaiClassDiagram
@@ -97,7 +103,6 @@
         --(collection)--
         +boolean addHtmlAnchors()
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
-        +ObjectList<LexakaiProject> childProjects(HashMap<Folder,LexakaiProject> projects)
         +ObjectList<LexakaiProject> childProjects()
         +ObjectList<JavadocCoverage> javadocCoverage()
         +VariableMap<String> properties()
@@ -122,6 +127,9 @@
         +Version version()
         --(lifecycle)--
         +void initialize()
+        --(math)--
+        +Percent averageCoverage()
+        +String meterMarkdownForPercent(Percent)
         --(naming)--
         +String name()
         --(read)--

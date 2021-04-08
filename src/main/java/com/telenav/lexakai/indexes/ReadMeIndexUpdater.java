@@ -185,7 +185,7 @@ public class ReadMeIndexUpdater
             final var childProjectMarkdown = new StringList();
             if (!childProjects.isEmpty())
             {
-                childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name() + "**](" + at.name() + "/README.md)  "));
+                childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name() + "**](" + at.folder().name() + "/README.md)  "));
             }
 
             // and populate the variable map with this information,

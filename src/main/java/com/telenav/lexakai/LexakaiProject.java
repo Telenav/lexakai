@@ -507,6 +507,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return documentationLexakaiFolder().file("lexakai-readme-template.md");
     }
 
+    public Folder relativeFolder()
+    {
+        return folder().relativeTo(root);
+    }
+
     public Folder sourceFolder()
     {
         return projectFolder.folder("src/main/java");

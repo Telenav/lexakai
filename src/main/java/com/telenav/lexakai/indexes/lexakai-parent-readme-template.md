@@ -20,6 +20,10 @@ ${user-text-bottom}
 
 [//]: # (end-user-text)
 
+### Javadoc Coverage
+
+${project-javadoc-coverage}
+
 ![](documentation/images/horizontal-line.png)
 
 ${project-footer}  

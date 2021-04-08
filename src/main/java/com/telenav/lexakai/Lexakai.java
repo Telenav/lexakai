@@ -43,6 +43,7 @@ import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -166,6 +167,8 @@ public class Lexakai extends Application
     /** All unique types that have been included in a project diagram */
     private final Set<String> types = new HashSet<>();
 
+    private JavaParser parser;
+
     protected Lexakai()
     {
         super(CoreResourceProject.get());
@@ -192,10 +195,11 @@ public class Lexakai extends Application
 
         // Get the root folder to locate projects from,
         final var roots = commandLine().arguments(ROOT_FOLDER);
-        final var parser = newParser(roots);
+        parser = newParser(roots);
 
         // and for each root folder,
         final var outputFiles = new ObjectList<File>();
+        final var coverage = new ObjectList<LexakaiProject.JavadocCoverage>();
         for (final var root : roots)
         {
             // convert it to an absolute path,
@@ -204,12 +208,18 @@ public class Lexakai extends Application
             // build a set of dependency diagrams,
             outputFiles.addAll(buildDependencyDiagrams(absoluteRoot));
 
+            final var projects = new HashMap<Folder, LexakaiProject>();
+            projectFolders(absoluteRoot, projectFolder ->
+                    projects.put(projectFolder, project(absoluteRoot, projectFolder)));
+
             // the for each project under the root,
             projectFolders(absoluteRoot, projectFolder ->
             {
                 // build UML diagrams.
-                final LexakaiProject project = project(parser, absoluteRoot, projectFolder);
+                final var project = project(absoluteRoot, projectFolder);
+                project.childProjects(projects);
                 outputFiles.addAll(outputUmlDiagrams(project));
+                coverage.add(project.javadocCoverage());
             });
         }
 
@@ -224,6 +234,8 @@ public class Lexakai extends Application
         list.add("Diagrams: $", totalDiagrams.get());
         list.add("Types: $", types.size());
         list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
+        list.add("Javadoc Coverage:\n\n$", coverage.sorted().asStringList().prefixedWith("    ").join("\n"));
+
         announce(list.titledBox("Summary"));
     }
 
@@ -379,7 +391,7 @@ public class Lexakai extends Application
         // get Javadoc coverage
         if (get(JAVADOC_COVERAGE))
         {
-            information(project.javadocCoverage().description().join("\n"));
+            information(project.javadocCoverage().description().indented(4).join("\n"));
         }
 
         // and update the README.md index.
@@ -391,8 +403,7 @@ public class Lexakai extends Application
         return outputFiles;
     }
 
-    private LexakaiProject project(final JavaParser parser,
-                                   final Folder root,
+    private LexakaiProject project(final Folder root,
                                    final Folder projectFolder)
     {
         return listenTo(new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, parser))

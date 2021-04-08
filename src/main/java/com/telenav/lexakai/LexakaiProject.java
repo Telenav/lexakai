@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.values.count.MutableCount;
@@ -39,14 +40,9 @@ import com.telenav.lexakai.indexes.ReadMeIndexUpdater;
 import com.telenav.lexakai.library.Diagrams;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -86,15 +82,15 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
  *
  * <ul>
  *     <li>{@link #diagrams(Consumer)} - Produces UML diagram(s) for the project</li>
- *     <li>{@link #javadocCoverage(int)} - Determines Javadoc coverage for types in the project</li>
- *     <li>{@link #updateReadMe()} ()} - Updates the indexing in README.md for the project</li>
+ *     <li>{@link #javadocCoverage()} - Determines Javadoc coverage for types in the project</li>
+ *     <li>{@link #updateReadMe()} - Updates the indexing in README.md for the project</li>
  * </ul>
  *
  * @author jonathanl (shibo)
  */
-public class LexakaiProject extends BaseRepeater
+public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
-    public static class JavadocCoverage
+    public class JavadocCoverage implements Comparable<JavadocCoverage>
     {
         private final StringList description = new StringList();
 
@@ -102,9 +98,20 @@ public class LexakaiProject extends BaseRepeater
 
         private final StringList significantUndocumentedClasses = new StringList();
 
+        @Override
+        public int compareTo(@NotNull final JavadocCoverage that)
+        {
+            return percent.compareTo(that.percent);
+        }
+
         public StringList description()
         {
             return description;
+        }
+
+        public String meterMarkdown()
+        {
+            return " ![](documentation/images/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
         }
 
         public Percent percent()
@@ -115,6 +122,12 @@ public class LexakaiProject extends BaseRepeater
         public StringList significantUndocumentedClasses()
         {
             return significantUndocumentedClasses;
+        }
+
+        @Override
+        public String toString()
+        {
+            return name() + " " + percent;
         }
     }
 
@@ -161,6 +174,8 @@ public class LexakaiProject extends BaseRepeater
 
     /** Javadoc coverage for types in this project */
     private JavadocCoverage coverage;
+
+    private ObjectList<LexakaiProject> children;
 
     public LexakaiProject(final Lexakai lexakai,
                           final Version version,
@@ -210,14 +225,30 @@ public class LexakaiProject extends BaseRepeater
         return buildPackageDiagrams;
     }
 
-    public List<Folder> childProjects()
+    public ObjectList<LexakaiProject> childProjects()
     {
-        return ObjectList.objectList(projectFolder.absolute()
-                .folders()
-                .stream()
-                .filter(this::isProject)
-                .collect(Collectors.toSet()))
-                .sorted();
+        return children;
+    }
+
+    public ObjectList<LexakaiProject> childProjects(final HashMap<Folder, LexakaiProject> projects)
+    {
+        if (children == null)
+        {
+            children = ObjectList.objectList(projectFolder.absolute()
+                    .folders()
+                    .stream()
+                    .filter(this::isProject)
+                    .map(projects::get)
+                    .collect(Collectors.toSet()))
+                    .sorted();
+        }
+        return children;
+    }
+
+    @Override
+    public int compareTo(@NotNull final LexakaiProject that)
+    {
+        return name().compareTo(that.name());
     }
 
     public Folder diagramFolder()
@@ -418,7 +449,7 @@ public class LexakaiProject extends BaseRepeater
                 }
             });
 
-            final var percent = Percent.percent(100.0 * covered.get() / types.get());
+            final var percent = types.get() == 0 ? Percent._0 : Percent.of(100.0 * covered.get() / types.get());
             coverage.description.add("Javadoc coverage for $ is $", name(), percent);
             coverage.description.addAll(warnings);
             coverage.percent = percent;
@@ -476,6 +507,11 @@ public class LexakaiProject extends BaseRepeater
         return documentationLexakaiFolder().file("lexakai-readme-template.md");
     }
 
+    public Folder relativeFolder()
+    {
+        return folder().relativeTo(root);
+    }
+
     public Folder sourceFolder()
     {
         return projectFolder.folder("src/main/java");
@@ -508,11 +544,6 @@ public class LexakaiProject extends BaseRepeater
     public Version version()
     {
         return version;
-    }
-
-    private JavadocCoverage coverage()
-    {
-        return coverage;
     }
 
     private boolean isProject(final Folder folder)

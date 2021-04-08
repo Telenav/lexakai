@@ -19,7 +19,6 @@
 package com.telenav.lexakai.indexes;
 
 import com.telenav.kivakit.core.filesystem.File;
-import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
@@ -31,7 +30,6 @@ import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
 import com.telenav.lexakai.LexakaiProject;
-import com.telenav.lexakai.LexakaiProject.JavadocCoverage;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
@@ -51,10 +49,11 @@ import static java.util.regex.Pattern.MULTILINE;
  * <p><b>Usage</b></p>
  *
  * <p>
- * The project is passed to the constructor. The {@link #update(JavadocCoverage, Pattern, List, boolean)} method updates
- * the read me file. The javadocSectionPattern parameter determines how Javadoc sections are located. The childProjects
- * parameter provides a list of projects to index for projects with *pom* packaging (parent projects). Finally, the
- * addHtmlAnchors can be used to add anchor tags to the sections that the index references.
+ * The project is passed to the constructor. The {@link #update(List)} method updates the read me file. The {@link
+ * LexakaiProject#javadocSectionPattern()} setting determines how Javadoc sections are located. The {@link
+ * LexakaiProject#childProjects()} setting provides a list of projects to index for projects with *pom* packaging
+ * (parent projects). Finally, the {@link LexakaiProject#addHtmlAnchors()} determines if anchor tags should be added to
+ * the sections that the index references.
  * </p>
  *
  * <p><b>Templates</b></p>
@@ -90,7 +89,7 @@ public class ReadMeIndexUpdater
         this.project = project;
     }
 
-    public void update(final List<Folder> childProjects)
+    public void update(final List<LexakaiProject> childProjects)
     {
         // Get any existing project readme template or create a new one if not exists.
         final var projectReadmeTemplate = project.readmeTemplateFile();
@@ -119,7 +118,17 @@ public class ReadMeIndexUpdater
         variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         variables.put("date", LocalTime.now().asDateString());
         variables.put("time", LocalTime.now().asTimeString());
-        variables.put("project-javadoc-coverage", project.javadocCoverage().percent().toString());
+        if (project.hasSourceCode())
+        {
+            variables.put("project-javadoc-coverage", project.javadocCoverage().percent() + ".  \n  \n&nbsp; &nbsp; " + project.javadocCoverage().meterMarkdown());
+        }
+        else
+        {
+            variables.put("project-javadoc-coverage", project
+                    .childProjects()
+                    .filtered(LexakaiProject::hasSourceCode)
+                    .join("  \n", project -> "&nbsp; " + project.javadocCoverage().meterMarkdown() + " &nbsp; &nbsp; *" + project.name() + "*"));
+        }
         final var undocumented = project.javadocCoverage().significantUndocumentedClasses();
         variables.put("project-undocumented-classes",
                 undocumented.isEmpty() ? "" : "The following significant classes are undocumented:  \n\n" +
@@ -176,7 +185,7 @@ public class ReadMeIndexUpdater
             final var childProjectMarkdown = new StringList();
             if (!childProjects.isEmpty())
             {
-                childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name().name() + "**](" + at.name().name() + "/README.md)  "));
+                childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name() + "**](" + at.folder().name() + "/README.md)  "));
             }
 
             // and populate the variable map with this information,

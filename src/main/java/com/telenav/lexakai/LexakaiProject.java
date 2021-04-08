@@ -117,7 +117,10 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         {
             final var list = new StringList();
             list.add(toString());
-            list.add(undocumentedClasses().prefixedWith("    Undocumented: ").join("\n"));
+            if (!undocumentedClasses.isEmpty())
+            {
+                list.add(undocumentedClasses().prefixedWith("    Undocumented: ").join("\n"));
+            }
             return list;
         }
 

@@ -38,6 +38,7 @@ import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
+import com.telenav.lexakai.library.Annotations;
 import com.telenav.lexakai.library.Diagrams;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
@@ -618,7 +619,8 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         final var covered = new MutableCount();
         typeDeclarations(type ->
         {
-            if (!type.getFullyQualifiedName().get().endsWith("Test"))
+            final var fullName = type.getFullyQualifiedName();
+            if (fullName.isPresent() && !fullName.get().endsWith("Test"))
             {
                 types.increment();
                 var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
@@ -626,47 +628,47 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
                 final var javadoc = type.getJavadoc();
                 final var isSignificant = type.toString().length() > 4096;
                 final var significance = isSignificant ? "=>  " : "    ";
-                if (type.getFullyQualifiedName().isPresent())
+                final var typeName = Strip.packagePrefix(fullName.get());
+                var isCovered = true;
+                if (javadoc.isPresent())
                 {
-                    final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
-                    if (javadoc.isPresent())
+                    final var optionalAnnotation = type.getAnnotationByClass(LexakaiJavadoc.class);
+                    if (optionalAnnotation.isPresent())
                     {
-                        if (type.getAnnotationByClass(LexakaiJavadoc.class).isPresent())
-                        {
-                            covered.increment();
-                        }
-                        else
-                        {
-                            if (type.isEnumDeclaration())
-                            {
-                                requiredLength = 64;
-                            }
-                            final var text = javadoc.get().toText();
-                            if (text.length() < requiredLength)
-                            {
-                                coverage.undocumentedClasses.add(typeName);
-                                if (isSignificant)
-                                {
-                                    coverage.significantUndocumentedClasses.add(typeName);
-                                }
-                                warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
-                                        significance, typeName,
-                                        text.length(), requiredLength);
-                            }
-                            else
-                            {
-                                covered.increment();
-                            }
-                        }
+                        isCovered = Annotations.booleanValue(optionalAnnotation.get(), "complete", false);
                     }
                     else
                     {
-                        coverage.undocumentedClasses.add(typeName);
-                        if (isSignificant)
+                        if (type.isEnumDeclaration())
                         {
-                            coverage.significantUndocumentedClasses.add(typeName);
+                            requiredLength = 64;
                         }
-                        warnings.add("${string}$: Javadoc is missing", significance, typeName);
+                        final var text = javadoc.get().toText();
+                        if (text.length() < requiredLength)
+                        {
+                            isCovered = false;
+                            warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
+                                    significance, typeName,
+                                    text.length(), requiredLength);
+                        }
+                    }
+                }
+                else
+                {
+                    isCovered = false;
+                    warnings.add("${string}$: Javadoc is missing", significance, typeName);
+                }
+
+                if (isCovered)
+                {
+                    covered.increment();
+                }
+                else
+                {
+                    coverage.undocumentedClasses.add(typeName);
+                    if (isSignificant)
+                    {
+                        coverage.significantUndocumentedClasses.add(typeName);
                     }
                 }
             }

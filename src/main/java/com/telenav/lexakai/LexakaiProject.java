@@ -36,13 +36,19 @@ import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
-import com.telenav.lexakai.indexes.ReadMeIndexUpdater;
+import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.library.Diagrams;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -119,6 +125,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
             return percent;
         }
 
+        public LexakaiProject project()
+        {
+            return LexakaiProject.this;
+        }
+
         public StringList significantUndocumentedClasses()
         {
             return significantUndocumentedClasses;
@@ -172,8 +183,8 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     /** True to build a diagram of all public types in each package */
     private boolean buildPackageDiagrams;
 
-    /** Javadoc coverage for types in this project */
-    private JavadocCoverage coverage;
+    /** Javadoc coverage for sub-projects or types in this project */
+    private ObjectList<JavadocCoverage> coverage;
 
     private ObjectList<LexakaiProject> children;
 
@@ -227,18 +238,13 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public ObjectList<LexakaiProject> childProjects()
     {
-        return children;
-    }
-
-    public ObjectList<LexakaiProject> childProjects(final HashMap<Folder, LexakaiProject> projects)
-    {
         if (children == null)
         {
             children = ObjectList.objectList(projectFolder.absolute()
                     .folders()
                     .stream()
                     .filter(this::isProject)
-                    .map(projects::get)
+                    .map(lexakai::project)
                     .collect(Collectors.toSet()))
                     .sorted();
         }
@@ -397,62 +403,22 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
                 .safeCopyTo(propertiesFile(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
     }
 
-    public JavadocCoverage javadocCoverage()
+    public ObjectList<JavadocCoverage> javadocCoverage()
     {
         if (coverage == null)
         {
-            coverage = new JavadocCoverage();
-            final var warnings = new StringList();
-            final var types = new MutableCount();
-            final var covered = new MutableCount();
-            typeDeclarations(type ->
+            if (hasSourceCode())
             {
-                types.increment();
-                var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
-
-                final var javadoc = type.getJavadoc();
-                final var isSignificant = type.toString().length() > 4096;
-                final var significance = isSignificant ? "=>  " : "    ";
-                if (type.getFullyQualifiedName().isPresent())
+                coverage = ObjectList.objectList(projectJavadocCoverage());
+            }
+            else
+            {
+                coverage = new ObjectList<>();
+                for (final var child : childProjects())
                 {
-                    final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
-                    if (javadoc.isPresent())
-                    {
-                        if (type.isEnumDeclaration())
-                        {
-                            requiredLength = 64;
-                        }
-                        final var text = javadoc.get().toText();
-                        if (text.length() < requiredLength)
-                        {
-                            if (isSignificant)
-                            {
-                                coverage.significantUndocumentedClasses.add(typeName);
-                            }
-                            warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
-                                    significance, typeName,
-                                    text.length(), requiredLength);
-                        }
-                        else
-                        {
-                            covered.increment();
-                        }
-                    }
-                    else
-                    {
-                        if (isSignificant)
-                        {
-                            coverage.significantUndocumentedClasses.add(typeName);
-                        }
-                        warnings.add("${string}$: Javadoc is missing", significance, typeName);
-                    }
+                    coverage.addAll(child.javadocCoverage());
                 }
-            });
-
-            final var percent = types.get() == 0 ? Percent._0 : Percent.of(100.0 * covered.get() / types.get());
-            coverage.description.add("Javadoc coverage for $ is $", name(), percent);
-            coverage.description.addAll(warnings);
-            coverage.percent = percent;
+            }
         }
         return coverage;
     }
@@ -476,7 +442,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
                 : parentProject.join("-"));
     }
 
-    public File parentReadmeTemplateFile()
+    public File parentReadMeTemplateFile()
     {
         return documentationLexakaiFolder().file("lexakai-parent-readme-template.md");
     }
@@ -497,14 +463,14 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return value == null ? null : properties.expand(value);
     }
 
+    public File readMeTemplateFile()
+    {
+        return documentationLexakaiFolder().file("lexakai-readme-template.md");
+    }
+
     public File readmeFile()
     {
         return projectFolder.file("README.md");
-    }
-
-    public File readmeTemplateFile()
-    {
-        return documentationLexakaiFolder().file("lexakai-readme-template.md");
     }
 
     public Folder relativeFolder()
@@ -538,7 +504,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public void updateReadMe()
     {
-        new ReadMeIndexUpdater(this).update(childProjects());
+        new ReadMeUpdater(this).update();
     }
 
     public Version version()
@@ -600,6 +566,63 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
             typeDeclarations.sort(Comparator.comparing(Names::simpleName));
         }
         return typeDeclarations;
+    }
+
+    private JavadocCoverage projectJavadocCoverage()
+    {
+        final var coverage = new JavadocCoverage();
+        final var warnings = new StringList();
+        final var types = new MutableCount();
+        final var covered = new MutableCount();
+        typeDeclarations(type ->
+        {
+            types.increment();
+            var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
+
+            final var javadoc = type.getJavadoc();
+            final var isSignificant = type.toString().length() > 4096;
+            final var significance = isSignificant ? "=>  " : "    ";
+            if (type.getFullyQualifiedName().isPresent())
+            {
+                final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
+                if (javadoc.isPresent())
+                {
+                    if (type.isEnumDeclaration())
+                    {
+                        requiredLength = 64;
+                    }
+                    final var text = javadoc.get().toText();
+                    if (text.length() < requiredLength)
+                    {
+                        if (isSignificant)
+                        {
+                            coverage.significantUndocumentedClasses.add(typeName);
+                        }
+                        warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
+                                significance, typeName,
+                                text.length(), requiredLength);
+                    }
+                    else
+                    {
+                        covered.increment();
+                    }
+                }
+                else
+                {
+                    if (isSignificant)
+                    {
+                        coverage.significantUndocumentedClasses.add(typeName);
+                    }
+                    warnings.add("${string}$: Javadoc is missing", significance, typeName);
+                }
+            }
+        });
+
+        final var percent = types.get() == 0 ? Percent._0 : Percent.of(100.0 * covered.get() / types.get());
+        coverage.description.add("Javadoc coverage for $ is $", name(), percent);
+        coverage.description.addAll(warnings);
+        coverage.percent = percent;
+        return coverage;
     }
 
     private File propertiesFile()

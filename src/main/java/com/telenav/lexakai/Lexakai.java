@@ -167,7 +167,11 @@ public class Lexakai extends Application
     /** All unique types that have been included in a project diagram */
     private final Set<String> types = new HashSet<>();
 
+    /** Java parser for source code */
     private JavaParser parser;
+
+    /** Map from project folder to project */
+    private final HashMap<Folder, LexakaiProject> folderToProject = new HashMap<>();
 
     protected Lexakai()
     {
@@ -180,6 +184,11 @@ public class Lexakai extends Application
         final var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
         final var template = PackageResource.packageResource(getClass(), "Help.txt").reader().string();
         return variables.expand(template);
+    }
+
+    public LexakaiProject project(final Folder folder)
+    {
+        return folderToProject.get(folder);
     }
 
     @Override
@@ -208,18 +217,20 @@ public class Lexakai extends Application
             // build a set of dependency diagrams,
             outputFiles.addAll(buildDependencyDiagrams(absoluteRoot));
 
-            final var projects = new HashMap<Folder, LexakaiProject>();
+            // create projects for folders under the root,
             projectFolders(absoluteRoot, projectFolder ->
-                    projects.put(projectFolder, project(absoluteRoot, projectFolder)));
+            {
+                final var project = project(absoluteRoot, projectFolder);
+                folderToProject.put(projectFolder, project);
+            });
 
-            // the for each project under the root,
+            // the for each project,
             projectFolders(absoluteRoot, projectFolder ->
             {
                 // build UML diagrams.
-                final var project = project(absoluteRoot, projectFolder);
-                project.childProjects(projects);
+                final var project = project(projectFolder);
                 outputFiles.addAll(outputUmlDiagrams(project));
-                coverage.add(project.javadocCoverage());
+                coverage.addAll(project.javadocCoverage());
             });
         }
 
@@ -234,7 +245,7 @@ public class Lexakai extends Application
         list.add("Diagrams: $", totalDiagrams.get());
         list.add("Types: $", types.size());
         list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
-        list.add("Javadoc Coverage:\n\n$", coverage.sorted().asStringList().prefixedWith("    ").join("\n"));
+        list.add("Javadoc Coverage:\n\n$", coverage.uniqued().sorted().asStringList().prefixedWith("    ").join("\n"));
 
         announce(list.titledBox("Summary"));
     }
@@ -388,10 +399,13 @@ public class Lexakai extends Application
             });
         }
 
-        // get Javadoc coverage
+        // show Javadoc coverage
         if (get(JAVADOC_COVERAGE))
         {
-            information(project.javadocCoverage().description().indented(4).join("\n"));
+            for (final var coverage : project.javadocCoverage())
+            {
+                information(coverage.description().indented(4).join("\n"));
+            }
         }
 
         // and update the README.md index.

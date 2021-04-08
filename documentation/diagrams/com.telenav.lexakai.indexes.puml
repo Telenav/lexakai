@@ -4,12 +4,12 @@
     
     title "com.telenav.lexakai.indexes"
     
-    class ReadMeIndexUpdater
+    class ReadMeUpdater
     {
         --(constructors)--
-        +ReadMeIndexUpdater(LexakaiProject)
+        +ReadMeUpdater(LexakaiProject)
         --
-        +void update(List<LexakaiProject> childProjects)
+        +void update()
     }
     
 @enduml

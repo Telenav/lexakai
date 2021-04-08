@@ -14,15 +14,15 @@ ${user-text-top}
 
 ${child-projects}
 
+### Javadoc Coverage
+
+${project-javadoc-coverage}
+
 [//]: # (start-user-text)
 
 ${user-text-bottom}
 
 [//]: # (end-user-text)
-
-### Javadoc Coverage
-
-${project-javadoc-coverage}
 
 ![](documentation/images/horizontal-line.png)
 

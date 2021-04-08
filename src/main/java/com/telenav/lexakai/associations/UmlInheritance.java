@@ -18,7 +18,7 @@
 
 package com.telenav.lexakai.associations;
 
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -73,6 +73,6 @@ public class UmlInheritance implements Comparable<UmlInheritance>
 
     public String uml()
     {
-        return Name.withoutQualification(supertype) + " <|-- " + Name.withoutQualification(subtype);
+        return Names.withoutQualification(supertype) + " <|-- " + Names.withoutQualification(subtype);
     }
 }

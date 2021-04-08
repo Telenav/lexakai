@@ -1,18 +1,18 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application.associations"
-    
+
     interface Comparable
-    
+
     enum UmlAssociation.AssociationType
     {
         AGGREGATION
         COMPOSITION
         RELATION
     }
-    
+
     Comparable <|-- UmlAssociation
     class UmlAssociation
     {
@@ -22,7 +22,7 @@
         +AssociationType type()
         +String uml()
     }
-    
+
     Comparable <|-- UmlInheritance
     class UmlInheritance
     {
@@ -31,6 +31,6 @@
         --
         +String uml()
     }
-    
+
 @enduml
 

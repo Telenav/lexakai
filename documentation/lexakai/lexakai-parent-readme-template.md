@@ -42,6 +42,16 @@ ${package-diagram-index}
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+#### Javadoc Coverage
+
+${project-javadoc-coverage}.
+
+#### Significant undocumented classes
+
+${project-undocumented-classes}
+
+#### Javadoc Index
+
 | Class | Documentation Sections |
 |---|---|
 ${key-documentation}

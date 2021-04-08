@@ -79,10 +79,10 @@ link lexakai to kivakit_core_collections--><path d="M1599.4792,98.9424 C1599.479
 link lexakai to kivakit_core_network_http--><path d="M1639.8542,90.4632 C1692.1563,107.7236 1784.1875,138.109 1848.0417,159.182 " fill="none" id="lexakai-to-kivakit_core_network_http" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1853.3646,160.9424,1845.7758,154.0386,1848.4206,159.3043,1843.1549,161.9491,1853.3646,160.9424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d4ba3676ee627c419c5e0ad2a2234384]
 link lexakai to kivakit_core_resource--><path d="M1639.8438,84.7445 C1716.5,99.2236 1888.3958,131.9215 2032.8125,160.9945 C2037.1458,161.8695 2041.5938,162.7653 2046.0729,163.682 " fill="none" id="lexakai-to-kivakit_core_resource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2051.3542,164.7653,2043.0017,158.8082,2046.251,163.7238,2041.3353,166.9732,2051.3542,164.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[04cb1a05453d796d9762f5b5fe7f776d]
 link lexakai to kivakit_data_formats_xml--><path d="M1639.8021,81.6715 C1740.5729,93.1715 2011.4271,125.1195 2235.9375,160.9945 C2240.2813,161.6924 2244.7083,162.4215 2249.1875,163.182 " fill="none" id="lexakai-to-kivakit_data_formats_xml" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2254.4479,164.0778,2245.9094,158.3904,2249.3141,163.1998,2244.5047,166.6045,2254.4479,164.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M1603.6458,528.109 C1603.6458,544.5778 1603.6458,567.2757 1603.6458,584.8278 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1603.6458,590.109,1607.8125,580.734,1603.6458,584.9007,1599.4792,580.734,1603.6458,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c811ece8ec08e70f9f9bdf9f3296a402]
+link reflectasm to asm--><path d="M1603.6458,528.109 C1603.6458,544.5778 1603.6458,567.2757 1603.6458,584.8278 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1603.6458,590.109,1607.8125,580.734,1603.6458,584.9007,1599.4792,580.734,1603.6458,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4fa0400c1719788abc7ee3b5367ddd26]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "lexakai"
     

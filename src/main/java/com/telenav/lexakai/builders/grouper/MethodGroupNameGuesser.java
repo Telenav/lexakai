@@ -28,7 +28,7 @@ import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.library.Types;
 import com.telenav.lexakai.members.UmlMethod;
 
@@ -76,7 +76,7 @@ public class MethodGroupNameGuesser
         String returnTypeName = "";
         if (Types.isReference(returnType))
         {
-            returnTypeName = Name.of(returnType, Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITH_TYPE_PARAMETERS) + " ";
+            returnTypeName = Names.name(returnType, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITH_TYPE_PARAMETERS) + " ";
         }
         final var name = CaseFormat.camelCaseToHyphenated(returnTypeName + method.simpleName()) + "(" + parameterNames.join(",") + ")";
 
@@ -206,14 +206,14 @@ public class MethodGroupNameGuesser
 
     private void load()
     {
-        final var groupsFile = project.documentationFolder().file("lexakai.groups");
+        final var groupsFile = project.documentationLexakaiFolder().file("lexakai.groups");
         if (groupsFile.exists())
         {
             load(groupsFile);
         }
         else
         {
-            load(PackageResource.packageResource(Lexakai.class, "lexakai.groups"));
+            load(PackageResource.packageResource(Lexakai.class, "lexakai/lexakai.groups"));
         }
     }
 }

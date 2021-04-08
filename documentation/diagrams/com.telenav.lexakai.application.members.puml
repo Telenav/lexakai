@@ -1,11 +1,11 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application.members"
-    
+
     interface Comparable
-    
+
     Comparable <|-- UmlConstructor
     class UmlConstructor
     {
@@ -20,7 +20,7 @@
         --(naming)--
         +String name()
     }
-    
+
     Comparable <|-- UmlMethod
     class UmlMethod
     {
@@ -41,6 +41,6 @@
         +String name()
         +String simpleName()
     }
-    
+
 @enduml
 

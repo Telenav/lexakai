@@ -40,7 +40,7 @@ public class Diagrams
             final var expression = Annotations.value(annotation, "diagram");
             if (expression != null)
             {
-                if (diagramName.equals(Name.of(expression.asClassExpr(), Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS)))
+                if (diagramName.equals(Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS)))
                 {
                     return annotation;
                 }
@@ -60,7 +60,7 @@ public class Diagrams
             final var expression = Annotations.value(annotation, "diagram");
             if (expression != null)
             {
-                final var name = Name.of(expression.asClassExpr(), Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+                final var name = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
                 if (name != null)
                 {
                     diagrams.add(name);
@@ -73,7 +73,7 @@ public class Diagrams
             final var qualifiedName = type.getFullyQualifiedName();
             if (qualifiedName.isPresent())
             {
-                diagrams.add(Name.packageName(qualifiedName.get()));
+                diagrams.add(Names.packageName(qualifiedName.get()));
             }
         }
         return diagrams;

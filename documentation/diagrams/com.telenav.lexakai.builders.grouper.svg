@@ -8,10 +8,10 @@ class MethodGroups--><rect codeLine="47" fill="#282828" height="317.2384" id="Me
 reverse link Comparable to MethodGroup--><path codeLine="9" d="M729.9583,176.2653 C735.9167,201.984 743.8438,236.2132 751.9375,271.1611 " fill="none" id="Comparable-backto-MethodGroup" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="722.7813,177.5882,725.1875,155.6403,736.9896,174.2965,722.7813,177.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a7d8c91b274a17d2eb138d639d5080ce]
 reverse link Iterable to MethodGroup--><path codeLine="10" d="M847.125,176.2653 C841.1667,201.984 833.2396,236.2132 825.1458,271.1611 " fill="none" id="Iterable-backto-MethodGroup" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="840.0938,174.2965,851.8958,155.6403,854.3021,177.5882,840.0938,174.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[32003cb46ae9f046b2166a8df5af682c]
 link MethodGroupNameGuesser to MethodGrouper--><!--MD5=[14f2a0b7113e1325f3883301760043a2]
-link MethodGroupNameGuesser to MethodGroups--><!--MD5=[dbc68f85e86d41944aa223f475ab555b]
+link MethodGroupNameGuesser to MethodGroups--><!--MD5=[5ad417185642dc4189ab062369107e34]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.lexakai.builders.grouper"
     

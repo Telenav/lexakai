@@ -1,9 +1,9 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application.library"
-    
+
     class Annotations
     {
         --
@@ -20,7 +20,7 @@
         --(naming)--
         +String className(AnnotationExpr, String member)
     }
-    
+
     class Associations
     {
         --
@@ -28,14 +28,14 @@
         --(collection)--
         +List<UmlAssociation> explicitRelations(TypeDeclaration<?>, String diagramName)
     }
-    
+
     class Diagrams
     {
         --
         +AnnotationExpr diagramAnnotation(TypeDeclaration<?>, String diagramName)
         +Set<String> diagrams(TypeDeclaration<?>, boolean includePackageDiagram)
     }
-    
+
     class Fields
     {
         --
@@ -43,14 +43,14 @@
         --(filtering)--
         +boolean isExcluded(FieldDeclaration)
     }
-    
+
     class Members
     {
         --
         +String associationString(NodeWithAnnotations<?> member, String key)
         +String associationString(NodeWithAnnotations<?> member, Class<? extends Annotation>, String key)
     }
-    
+
     class Methods
     {
         --
@@ -60,7 +60,7 @@
         +boolean isExcluded(ConstructorDeclaration)
         +boolean isExcluded(MethodDeclaration)
     }
-    
+
     class Name
     {
         --
@@ -75,19 +75,19 @@
         +String simpleName(NodeWithSimpleName<?>)
         +String simpleName(Type node)
     }
-    
+
     enum Name.Qualification
     {
         QUALIFIED
         UNQUALIFIED
     }
-    
+
     enum Name.TypeParameters
     {
         WITHOUT_TYPE_PARAMETERS
         WITH_TYPE_PARAMETERS
     }
-    
+
     class Types
     {
         --
@@ -103,6 +103,6 @@
         --(collection)--
         +List<Type> typeParameters(Type)
     }
-    
+
 @enduml
 

@@ -130,7 +130,7 @@ public class Types
     {
         if (!type.isUnknownType() && !type.isWildcardType() && !type.isPrimitiveType())
         {
-            final var name = Name.of(type, Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            final var name = Names.name(type, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             return name != null && !excludedTypes.contains(name);
         }
         return false;

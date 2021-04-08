@@ -36,7 +36,7 @@ public abstract class BaseLexakaiDiagram extends BaseRepeater
         builder.appendLine("@startuml");
         builder.appendLine("");
         builder.indent();
-        builder.appendLine("!include ../lexakai.theme");
+        builder.appendLine("!include ../lexakai/lexakai.theme");
         builder.appendLine("");
         builder.appendLine("title \"" + title + "\"");
         builder.appendLine("");

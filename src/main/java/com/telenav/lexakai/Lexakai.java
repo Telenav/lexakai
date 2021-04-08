@@ -54,9 +54,15 @@ import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLaunch
 import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher.RedirectTo.CONSOLE;
 
 /**
- * Creates UML for a set of project(s) under a given root folder. See command line help for details.
+ * The <a href="https://telenav.github.io/lexakai/">Lexakai</a> application.
+ * <p>
+ * Lexakai creates markdown indexes and UML for the set of project(s) under the given root folder(s). See command line
+ * help (pass no arguments) for full details or look at the <a href="https://telenav.github.io/lexakai/">online
+ * version</a>.
+ * </p>
  *
  * @author jonathanl (shibo)
+ * @see <a href="https://telenav.github.io/lexakai/">Lexakai documentation</a>
  */
 public class Lexakai extends Application
 {
@@ -64,6 +70,12 @@ public class Lexakai extends Application
     {
         new Lexakai().run(arguments);
     }
+
+    final SwitchParser<Integer> JAVADOC_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-minimum-length", "THe minimum text length for Javadoc coverage")
+                    .optional()
+                    .defaultValue(128)
+                    .build();
 
     private final ArgumentParser<Folder> ROOT_FOLDER =
             Folder.folderArgument("Root folder to start at when locating projects")
@@ -124,6 +136,18 @@ public class Lexakai extends Application
                     .defaultValue(false)
                     .build();
 
+    private final SwitchParser<Boolean> JAVADOC_COVERAGE =
+            SwitchParser.booleanSwitch("javadoc-coverage", "True to show Javadoc coverage for the types in each project")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    private final SwitchParser<String> JAVADOC_SECTION_PATTERN =
+            SwitchParser.stringSwitch("javadoc-section-pattern", "regular expression for extracting javadoc section titles")
+                    .optional()
+                    .defaultValue("<p><b>(.*)</b></p>")
+                    .build();
+
     private final SwitchParser<Boolean> BUILD_SVG_FILES =
             SwitchParser.booleanSwitch("build-svg", "True to build .svg files from PlantUML output")
                     .optional()
@@ -135,12 +159,6 @@ public class Lexakai extends Application
                     .optional()
                     .defaultValue(false)
                     .build();
-
-    private final SwitchParser<String> JAVADOC_SECTION_PATTERN = SwitchParser.stringSwitch("javadoc-section-pattern",
-            "regular expression for extracting javadoc section titles")
-            .optional()
-            .defaultValue("<p><b>(.*)</b></p>")
-            .build();
 
     /** The total number of diagrams created */
     private final MutableCount totalDiagrams = new MutableCount();
@@ -158,7 +176,7 @@ public class Lexakai extends Application
     {
         final var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
         final var template = PackageResource.packageResource(getClass(), "Help.txt").reader().string();
-        return variables.expanded(template);
+        return variables.expand(template);
     }
 
     @Override
@@ -219,6 +237,9 @@ public class Lexakai extends Application
                 BUILD_SVG_FILES,
                 INCLUDE_OBJECT_METHODS,
                 INCLUDE_PROTECTED_METHODS,
+                JAVADOC_COVERAGE,
+                JAVADOC_MINIMUM_LENGTH,
+                JAVADOC_SECTION_PATTERN,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
                 RECURSE,
@@ -355,7 +376,13 @@ public class Lexakai extends Application
             });
         }
 
-        // and update the README.md index
+        // get Javadoc coverage
+        if (get(JAVADOC_COVERAGE))
+        {
+            information(project.javadocCoverage().description().join("\n"));
+        }
+
+        // and update the README.md index.
         if (get(UPDATE_README))
         {
             project.updateReadMe();

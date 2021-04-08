@@ -1,14 +1,14 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application.dependencies"
-    
+
     abstract BaseRepeater
     abstract BaseLexakaiDiagram
-    
+
     interface Comparable
-    
+
     Comparable <|-- Artifact
     class Artifact
     {
@@ -20,7 +20,7 @@
         +int identifier()
         +String version()
     }
-    
+
     Comparable <|-- Dependency
     class Dependency
     {
@@ -29,7 +29,7 @@
         --
         +String uml()
     }
-    
+
     BaseLexakaiDiagram <|-- DependencyDiagram
     class DependencyDiagram
     {
@@ -38,7 +38,7 @@
         --(filesystem)--
         +File save()
     }
-    
+
     class DependencyTree
     {
         --(constructors)--
@@ -57,7 +57,7 @@
         --(identity)--
         +String artifactId()
     }
-    
+
     BaseRepeater <|-- MavenDependencyTreeBuilder
     class MavenDependencyTreeBuilder
     {
@@ -66,6 +66,6 @@
         --
         +Set<DependencyTree> trees()
     }
-    
+
 @enduml
 

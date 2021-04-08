@@ -21,8 +21,8 @@ package com.telenav.lexakai.library;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.type.Type;
-import com.telenav.lexakai.associations.UmlAssociation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import com.telenav.lexakai.associations.UmlAssociation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +44,7 @@ public class Associations
         }
         if (Types.hasTypeParameters(type))
         {
-            final var name = Name.of(type, Name.Qualification.UNQUALIFIED, Name.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            final var name = Names.name(type, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             if (name != null)
             {
                 if (name.endsWith("List")

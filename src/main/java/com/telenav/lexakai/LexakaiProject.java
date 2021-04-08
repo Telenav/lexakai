@@ -23,9 +23,13 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.kernel.language.strings.Strip;
+import com.telenav.kivakit.core.kernel.language.values.count.MutableCount;
+import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.path.Extension;
@@ -33,7 +37,7 @@ import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.lexakai.indexes.ReadMeIndexUpdater;
 import com.telenav.lexakai.library.Diagrams;
-import com.telenav.lexakai.library.Name;
+import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
 import java.util.ArrayList;
@@ -50,15 +54,76 @@ import java.util.stream.Collectors;
 import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
 
 /**
+ * Represents a project for which Lexakai is producing diagrams.
+ *
+ * <p><b>Java Parsing</b></p>
+ * <p>
+ * The project has types that are discovered using the JavaParser API. Those types are available through {@link
+ * #typeDeclarations()} and {@link #typeDeclarations(Consumer)}.
+ * </p>
+ *
+ * <p><b>Settings</b></p>
+ *
+ * <p>
+ * Projects have various settings that are used to define how the UML for a project is generated. These settings are
+ * configured by the {@link Lexakai} application from the command line.
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #addHtmlAnchors(boolean)}</li>
+ *     <li>{@link #automaticMethodGroups(boolean)}</li>
+ *     <li>{@link #buildPackageDiagrams(boolean)}</li>
+ *     <li>{@link #includeObjectMethods(boolean)}</li>
+ *     <li>{@link #includeProtectedMethods(boolean)}</li>
+ *     <li>{@link #javadocSectionPattern(Pattern)}</li>
+ * </ul>
+ *
+ * <p><b>Functions</b></p>
+ *
+ * <p>
+ * These methods produce user-facing results for the {@link Lexakai} application:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #diagrams(Consumer)} - Produces UML diagram(s) for the project</li>
+ *     <li>{@link #javadocCoverage(int)} - Determines Javadoc coverage for types in the project</li>
+ *     <li>{@link #updateReadMe()} ()} - Updates the indexing in README.md for the project</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 public class LexakaiProject extends BaseRepeater
 {
+    public static class JavadocCoverage
+    {
+        private final StringList description = new StringList();
+
+        private Percent percent;
+
+        private final StringList significantUndocumentedClasses = new StringList();
+
+        public StringList description()
+        {
+            return description;
+        }
+
+        public Percent percent()
+        {
+            return percent;
+        }
+
+        public StringList significantUndocumentedClasses()
+        {
+            return significantUndocumentedClasses;
+        }
+    }
+
     private final Folder projectFolder;
 
     /** Parser to use on project source files */
     private final JavaParser parser;
 
+    /** Reference to the application that created this project model */
     private final Lexakai lexakai;
 
     /** The project version */
@@ -94,7 +159,13 @@ public class LexakaiProject extends BaseRepeater
     /** True to build a diagram of all public types in each package */
     private boolean buildPackageDiagrams;
 
-    public LexakaiProject(final Lexakai lexakai, final Version version, final Folder root, final Folder projectFolder,
+    /** Javadoc coverage for types in this project */
+    private JavadocCoverage coverage;
+
+    public LexakaiProject(final Lexakai lexakai,
+                          final Version version,
+                          final Folder root,
+                          final Folder projectFolder,
                           final JavaParser parser)
     {
         this.lexakai = lexakai;
@@ -110,6 +181,11 @@ public class LexakaiProject extends BaseRepeater
     {
         this.addHtmlAnchors = addHtmlAnchors;
         return this;
+    }
+
+    public boolean addHtmlAnchors()
+    {
+        return addHtmlAnchors;
     }
 
     public boolean automaticMethodGroups()
@@ -184,7 +260,7 @@ public class LexakaiProject extends BaseRepeater
                     final var qualifiedName = type.getFullyQualifiedName().orElse(null);
                     if (qualifiedName != null)
                     {
-                        final var diagramName = Name.packageName(qualifiedName);
+                        final var diagramName = Names.packageName(qualifiedName);
                         final var diagram = diagrams.computeIfAbsent(diagramName,
                                 ignored -> listenTo(new LexakaiClassDiagram(this, diagramName)));
 
@@ -215,6 +291,11 @@ public class LexakaiProject extends BaseRepeater
     public Folder documentationFolder()
     {
         return projectFolder.folder("documentation").mkdirs();
+    }
+
+    public Folder documentationLexakaiFolder()
+    {
+        return documentationFolder().folder("lexakai").mkdirs();
     }
 
     public Folder folder()
@@ -256,7 +337,7 @@ public class LexakaiProject extends BaseRepeater
         return includeProtectedMethods;
     }
 
-    public LexakaiProject includeProtectedMethods(final Boolean include)
+    public LexakaiProject includeProtectedMethods(final boolean include)
     {
         includeProtectedMethods = include;
         return this;
@@ -274,15 +355,80 @@ public class LexakaiProject extends BaseRepeater
             diagramFolder().mkdirs();
 
             // and install the lexakai theme and default groups patterns if they are not already installed,
-            resourceFolder.resource("lexakai.groups").safeCopyTo(documentationFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
-            resourceFolder.resource("lexakai.theme").safeCopyTo(documentationFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+            resourceFolder.resource("lexakai.groups").safeCopyTo(documentationLexakaiFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+            resourceFolder.resource("lexakai.theme").safeCopyTo(documentationLexakaiFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
         }
 
         // then install the lexakai properties file if it doesn't already exist.
         resourceFolder.resource("lexakai.properties")
                 .asStringResource()
-                .transform(text -> properties().expanded(text))
+                .transform(text -> properties().expand(text))
                 .safeCopyTo(propertiesFile(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+    }
+
+    public JavadocCoverage javadocCoverage()
+    {
+        if (coverage == null)
+        {
+            coverage = new JavadocCoverage();
+            final var warnings = new StringList();
+            final var types = new MutableCount();
+            final var covered = new MutableCount();
+            typeDeclarations(type ->
+            {
+                types.increment();
+                var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
+
+                final var javadoc = type.getJavadoc();
+                final var isSignificant = type.toString().length() > 4096;
+                final var significance = isSignificant ? "=>  " : "    ";
+                if (type.getFullyQualifiedName().isPresent())
+                {
+                    final var typeName = Strip.packagePrefix(type.getFullyQualifiedName().get());
+                    if (javadoc.isPresent())
+                    {
+                        if (type.isEnumDeclaration())
+                        {
+                            requiredLength = 64;
+                        }
+                        final var text = javadoc.get().toText();
+                        if (text.length() < requiredLength)
+                        {
+                            if (isSignificant)
+                            {
+                                coverage.significantUndocumentedClasses.add(typeName);
+                            }
+                            warnings.add("${string}$: Javadoc is only $ characters (minimum is $)",
+                                    significance, typeName,
+                                    text.length(), requiredLength);
+                        }
+                        else
+                        {
+                            covered.increment();
+                        }
+                    }
+                    else
+                    {
+                        if (isSignificant)
+                        {
+                            coverage.significantUndocumentedClasses.add(typeName);
+                        }
+                        warnings.add("${string}$: Javadoc is missing", significance, typeName);
+                    }
+                }
+            });
+
+            final var percent = Percent.percent(100.0 * covered.get() / types.get());
+            coverage.description.add("Javadoc coverage for $ is $", name(), percent);
+            coverage.description.addAll(warnings);
+            coverage.percent = percent;
+        }
+        return coverage;
+    }
+
+    public Pattern javadocSectionPattern()
+    {
+        return javadocSectionPattern;
     }
 
     public LexakaiProject javadocSectionPattern(final Pattern pattern)
@@ -299,6 +445,11 @@ public class LexakaiProject extends BaseRepeater
                 : parentProject.join("-"));
     }
 
+    public File parentReadmeTemplateFile()
+    {
+        return documentationLexakaiFolder().file("lexakai-parent-readme-template.md");
+    }
+
     public VariableMap<String> properties()
     {
         final var properties = lexakai.properties().copy();
@@ -312,12 +463,17 @@ public class LexakaiProject extends BaseRepeater
     {
         final var properties = properties();
         final var value = properties.get(key);
-        return value == null ? null : properties.expanded(value);
+        return value == null ? null : properties.expand(value);
     }
 
     public File readmeFile()
     {
         return projectFolder.file("README.md");
+    }
+
+    public File readmeTemplateFile()
+    {
+        return documentationLexakaiFolder().file("lexakai-readme-template.md");
     }
 
     public Folder sourceFolder()
@@ -336,17 +492,17 @@ public class LexakaiProject extends BaseRepeater
      */
     public void typeDeclarations(final Consumer<TypeDeclaration<?>> consumer)
     {
-        typeDeclarations().forEach(consumer);
+        parseTypeDeclarations().forEach(consumer);
     }
 
-    public List<TypeDeclaration<?>> types()
+    public List<TypeDeclaration<?>> typeDeclarations()
     {
         return typeDeclarations;
     }
 
     public void updateReadMe()
     {
-        new ReadMeIndexUpdater(this).update(javadocSectionPattern, childProjects(), addHtmlAnchors);
+        new ReadMeIndexUpdater(this).update(childProjects());
     }
 
     public Version version()
@@ -354,21 +510,21 @@ public class LexakaiProject extends BaseRepeater
         return version;
     }
 
+    private JavadocCoverage coverage()
+    {
+        return coverage;
+    }
+
     private boolean isProject(final Folder folder)
     {
         return folder.file("pom.xml").exists() || folder.file("gradle.properties").exists();
-    }
-
-    private File propertiesFile()
-    {
-        return documentationFolder().file("lexakai.properties");
     }
 
     /**
      * Parse the class, interface and enum declarations under this project's source folder
      */
     @SuppressWarnings("unchecked")
-    private List<TypeDeclaration<?>> typeDeclarations()
+    private List<TypeDeclaration<?>> parseTypeDeclarations()
     {
         // If we have not yet parsed the source code,
         if (typeDeclarations.isEmpty())
@@ -394,11 +550,7 @@ public class LexakaiProject extends BaseRepeater
                                             .filter(type ->
                                             {
                                                 final var qualifiedName = (Optional<String>) type.getFullyQualifiedName();
-                                                if (qualifiedName.isPresent())
-                                                {
-                                                    return !qualifiedName.get().contains("lexakai.diagrams");
-                                                }
-                                                return false;
+                                                return qualifiedName.filter(name -> !name.contains("lexakai.diagrams")).isPresent();
                                             })
                                             .forEach(typeDeclarations::add));
                         }
@@ -414,8 +566,13 @@ public class LexakaiProject extends BaseRepeater
                 }
             });
 
-            typeDeclarations.sort(Comparator.comparing(Name::simpleName));
+            typeDeclarations.sort(Comparator.comparing(Names::simpleName));
         }
         return typeDeclarations;
+    }
+
+    private File propertiesFile()
+    {
+        return documentationLexakaiFolder().file("lexakai.properties");
     }
 }

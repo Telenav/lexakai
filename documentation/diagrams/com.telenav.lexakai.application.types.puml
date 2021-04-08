@@ -1,9 +1,9 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application.types"
-    
+
     class UmlType
     {
         --(constructors)--
@@ -19,6 +19,6 @@
         +String name(Qualification, TypeParameters)
         +String simpleName()
     }
-    
+
 @enduml
 

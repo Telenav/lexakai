@@ -1,13 +1,13 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application.builders"
-    
+
     class AssociationBuilder
     {
     }
-    
+
     class MethodBuilder
     {
         --(constructors)--
@@ -15,7 +15,7 @@
         --(collection)--
         +void addMethodDeclarations(IndentingStringBuilder)
     }
-    
+
     class TypeBuilder
     {
         --(constructors)--
@@ -23,6 +23,6 @@
         --(collection)--
         +void addTypeDeclaration(IndentingStringBuilder)
     }
-    
+
 @enduml
 

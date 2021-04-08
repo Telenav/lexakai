@@ -21,14 +21,14 @@ package com.telenav.lexakai.types;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.lexakai.LexakaiClassDiagram;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.builders.MethodBuilder;
 import com.telenav.lexakai.builders.TypeBuilder;
 import com.telenav.lexakai.library.Annotations;
-import com.telenav.lexakai.library.Name;
-import com.telenav.lexakai.library.Name.Qualification;
-import com.telenav.lexakai.library.Name.TypeParameters;
+import com.telenav.lexakai.library.Names;
+import com.telenav.lexakai.library.Names.Qualification;
+import com.telenav.lexakai.library.Names.TypeParameters;
 import com.telenav.lexakai.members.UmlMethod;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -36,10 +36,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.telenav.lexakai.library.Name.Qualification.QUALIFIED;
-import static com.telenav.lexakai.library.Name.Qualification.UNQUALIFIED;
-import static com.telenav.lexakai.library.Name.TypeParameters.WITHOUT_TYPE_PARAMETERS;
-import static com.telenav.lexakai.library.Name.TypeParameters.WITH_TYPE_PARAMETERS;
+import static com.telenav.lexakai.library.Names.Qualification.QUALIFIED;
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITH_TYPE_PARAMETERS;
 
 /**
  * A UML type declaration belonging to a particular diagram. A type can belong to multiple type groups.
@@ -74,11 +74,7 @@ public class UmlType
     public Set<String> documentationSections()
     {
         final var expression = type.getAnnotationByClass(UmlClassDiagram.class);
-        if (expression.isPresent())
-        {
-            return Annotations.stringValues(expression.get(), "documentationSections");
-        }
-        return Set.of();
+        return expression.map(annotation -> Annotations.stringValues(annotation, "documentationSections")).orElseGet(Set::of);
     }
 
     @Override
@@ -116,12 +112,12 @@ public class UmlType
 
     public String name(final Qualification qualification, final TypeParameters parameters)
     {
-        return Name.of(type, qualification, parameters);
+        return Names.name(type, qualification, parameters);
     }
 
     public String simpleName()
     {
-        return Name.simpleName(type);
+        return Names.simpleName(type);
     }
 
     @Override
@@ -166,7 +162,7 @@ public class UmlType
             if (type.isEnumDeclaration())
             {
                 // add the enum declaration,
-                builder.appendLine("enum " + Name.of(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
+                builder.appendLine("enum " + Names.name(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
                 // add open curly,
                 builder.appendLine("{");
@@ -189,7 +185,7 @@ public class UmlType
             if (type.isAnnotationDeclaration())
             {
                 // add the annotation declaration,
-                builder.appendLine("annotation " + Name.of(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
+                builder.appendLine("annotation " + Names.name(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
                 if (!diagram.includedMethods(type).isEmpty())
                 {
                     // add open curly,

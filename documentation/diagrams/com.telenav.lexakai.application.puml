@@ -1,14 +1,14 @@
 @startuml
 
-    !include ../lexakai.theme
-    
+    !include ../lexakai/lexakai.theme
+
     title "com.telenav.lexakai.application"
-    
+
     abstract BaseRepeater
     abstract BaseLexakaiDiagram
-    
+
     interface Named
-    
+
     BaseRepeater <|-- BaseLexakaiDiagram
     abstract class BaseLexakaiDiagram
     {
@@ -16,7 +16,7 @@
         +String uml(String title)
         #void onUml(IndentingStringBuilder)
     }
-    
+
     Application <|-- Lexakai
     class Lexakai
     {
@@ -25,7 +25,7 @@
         --
         +void main(String[] arguments)
     }
-    
+
     BaseLexakaiDiagram <|-- LexakaiClassDiagram
     Named <|-- LexakaiClassDiagram
     class LexakaiClassDiagram
@@ -58,7 +58,7 @@
         --(naming)--
         +boolean includesQualifiedTypeName(String typeName)
     }
-    
+
     BaseRepeater <|-- LexakaiProject
     LexakaiProject --> LexakaiProject : "creates"
     class LexakaiProject
@@ -105,7 +105,7 @@
         --(read)--
         +void updateReadMe()
     }
-    
+
     class LexakaiClassDiagram.Referent
     {
         --(constructors)--
@@ -114,6 +114,6 @@
         +String cardinality()
         +Type referent()
     }
-    
+
 @enduml
 

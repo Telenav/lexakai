@@ -1,6 +1,6 @@
-[![](images/github-32.png)](https://github.com/Telenav/kivakit)
+[![](images/github-32.png)](https://github.com/Telenav/lexakai)
 &nbsp;
-[![](images/twitter-32.png)](https://twitter.com/openkivakit)
+[![](images/twitter-32.png)](https://twitter.com/openlexakai)
 
 ![](images/lexakai-background-1024.png)
 

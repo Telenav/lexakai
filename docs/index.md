@@ -1,3 +1,7 @@
+[![](images/github-32.png)](https://github.com/Telenav/kivakit)
+&nbsp;
+[![](images/twitter-32.png)](https://twitter.com/openkivakit)
+
 ![](images/lexakai-background-1024.png)
 
 ## Lexakai &nbsp; ![](images/lexakai-64.png)

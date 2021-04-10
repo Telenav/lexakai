@@ -570,7 +570,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         if (typeDeclarations.isEmpty())
         {
             // go through each Java file under the root's source folder,
-            sourceFolder().nestedFiles(Extension.JAVA.matcher()).forEach(file ->
+            sourceFolder().nestedFiles(Extension.JAVA.fileMatcher()).forEach(file ->
             {
                 // except for this weird file :),
                 if (!file.fileName().name().equals("module-info.java"))

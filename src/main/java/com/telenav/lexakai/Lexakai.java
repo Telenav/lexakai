@@ -301,7 +301,7 @@ public class Lexakai extends Application
         final var process = listenTo(new JarLauncher()
                 .processType(CHILD)
                 .arguments(arguments))
-                .source(PackageResource.packageResource(getClass(), "plantuml.jar"))
+                .addJarSource(PackageResource.packageResource(getClass(), "plantuml.jar"))
                 .redirectTo(CONSOLE)
                 .run();
 

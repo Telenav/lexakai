@@ -183,7 +183,7 @@ public class Lexakai extends Application
     public String description()
     {
         final var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
-        final var template = PackageResource.packageResource(getClass(), "Help.txt").reader().string();
+        final var template = PackageResource.of(getClass(), "Help.txt").reader().string();
         return variables.expand(template);
     }
 
@@ -301,7 +301,7 @@ public class Lexakai extends Application
         final var process = listenTo(new JarLauncher()
                 .processType(CHILD)
                 .arguments(arguments))
-                .addJarSource(PackageResource.packageResource(getClass(), "plantuml.jar"))
+                .addJarSource(PackageResource.of(getClass(), "plantuml.jar"))
                 .redirectTo(CONSOLE)
                 .run();
 

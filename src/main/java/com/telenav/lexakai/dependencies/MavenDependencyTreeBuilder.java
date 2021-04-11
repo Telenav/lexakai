@@ -54,7 +54,7 @@ public class MavenDependencyTreeBuilder extends BaseRepeater
                 Pattern.DOTALL).matcher(output);
 
         final var artifactIdToFolder = new HashMap<String, Folder>();
-        root.nestedFiles(file -> new FileName("pom.xml").fileMatcher().matches(file))
+        root.nestedFiles(file -> FileName.parse("pom.xml").fileMatcher().matches(file))
                 .forEach(file ->
                 {
                     final var pom = file.reader().string().replaceAll("(?s)<parent>.*</parent>", "");

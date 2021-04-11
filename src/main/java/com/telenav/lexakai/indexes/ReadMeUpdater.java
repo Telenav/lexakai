@@ -78,9 +78,9 @@ import static java.util.regex.Pattern.MULTILINE;
  */
 public class ReadMeUpdater
 {
-    private static final Resource README_TEMPLATE = PackageResource.packageResource(ReadMeUpdater.class, "lexakai-readme-template.md");
+    private static final Resource README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-readme-template.md");
 
-    private static final Resource PARENT_PROJECT_README_TEMPLATE = PackageResource.packageResource(ReadMeUpdater.class, "lexakai-parent-readme-template.md");
+    private static final Resource PARENT_PROJECT_README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-parent-readme-template.md");
 
     private final LexakaiProject project;
 

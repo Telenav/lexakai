@@ -213,7 +213,7 @@ public class MethodGroupNameGuesser
         }
         else
         {
-            load(PackageResource.packageResource(Lexakai.class, "lexakai/lexakai.groups"));
+            load(PackageResource.of(Lexakai.class, "lexakai/lexakai.groups"));
         }
     }
 }

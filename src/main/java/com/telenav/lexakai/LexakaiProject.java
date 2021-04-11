@@ -623,7 +623,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
             if (fullName.isPresent() && !fullName.get().endsWith("Test"))
             {
                 types.increment();
-                var requiredLength = lexakai.get(lexakai.JAVADOC_MINIMUM_LENGTH);
+                var requiredLength = lexakai.get(lexakai.JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH);
 
                 final var javadoc = type.getJavadoc();
                 final var isSignificant = type.toString().length() > 4096;

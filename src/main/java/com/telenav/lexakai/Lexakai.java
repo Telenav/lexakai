@@ -73,8 +73,8 @@ public class Lexakai extends Application
         new Lexakai().run(arguments);
     }
 
-    final SwitchParser<Integer> JAVADOC_MINIMUM_LENGTH =
-            SwitchParser.integerSwitch("javadoc-minimum-length", "THe minimum text length for Javadoc coverage")
+    final SwitchParser<Integer> JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-type-comment-minimum-length", "THe minimum text length for Javadoc coverage of a type")
                     .optional()
                     .defaultValue(128)
                     .build();
@@ -90,14 +90,14 @@ public class Lexakai extends Application
                     .defaultValue(true)
                     .build();
 
-    private final SwitchParser<Boolean> BUILD_PACKAGE_DIAGRAMS =
-            SwitchParser.booleanSwitch("build-package-diagrams", "Build whole-package diagrams for all public types")
+    private final SwitchParser<Boolean> CREATE_PACKAGE_DIAGRAMS =
+            SwitchParser.booleanSwitch("create-package-diagrams", "Build whole-package diagrams for all public types")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    private final SwitchParser<Traversal> RECURSE =
-            SwitchParser.enumSwitch("process-nested-projects", "Recursively process sub-projects", Traversal.class)
+    private final SwitchParser<Traversal> TRAVERSAL =
+            SwitchParser.enumSwitch("traversal", "Traversal of projects", Traversal.class)
                     .optional()
                     .defaultValue(Traversal.RECURSE)
                     .build();
@@ -150,8 +150,8 @@ public class Lexakai extends Application
                     .defaultValue("<p><b>(.*)</b></p>")
                     .build();
 
-    private final SwitchParser<Boolean> BUILD_SVG_FILES =
-            SwitchParser.booleanSwitch("build-svg", "True to build .svg files from PlantUML output")
+    private final SwitchParser<Boolean> CREATE_SVG_FILES =
+            SwitchParser.booleanSwitch("create-svg-files", "True to build .svg files from PlantUML output")
                     .optional()
                     .defaultValue(true)
                     .build();
@@ -201,7 +201,7 @@ public class Lexakai extends Application
     @Override
     protected void onRun()
     {
-        commandLineDescription("Lexakai");
+        announce(commandLineDescription("Lexakai"));
 
         // Get the root folder to locate projects from,
         final var roots = commandLine().arguments(ROOT_FOLDER);
@@ -236,7 +236,7 @@ public class Lexakai extends Application
         }
 
         // If the user wants SVG output and we have some .puml diagrams,
-        if (get(BUILD_SVG_FILES) && !outputFiles.isEmpty())
+        if (get(CREATE_SVG_FILES) && !outputFiles.isEmpty())
         {
             // then build those files.
             buildSvgFiles(outputFiles);
@@ -262,16 +262,16 @@ public class Lexakai extends Application
         return Set.of(
                 ADD_HTML_ANCHORS,
                 AUTOMATIC_METHOD_GROUPS,
-                BUILD_PACKAGE_DIAGRAMS,
-                BUILD_SVG_FILES,
+                CREATE_PACKAGE_DIAGRAMS,
+                CREATE_SVG_FILES,
                 INCLUDE_OBJECT_METHODS,
                 INCLUDE_PROTECTED_METHODS,
                 JAVADOC_COVERAGE,
-                JAVADOC_MINIMUM_LENGTH,
+                JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
                 JAVADOC_SECTION_PATTERN,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
-                RECURSE,
+                TRAVERSAL,
                 SAVE_DIAGRAMS,
                 UPDATE_README);
     }
@@ -347,7 +347,7 @@ public class Lexakai extends Application
         narrate("    Diagram $", diagram.name());
         var uml = diagram.uml(title);
         final var builder = IndentingStringBuilder.defaultTextIndenter();
-        uml = (builder.lines().isZero() ? "" : builder.toString() + "\n\n") + uml;
+        uml = (builder.lines().isZero() ? "" : builder + "\n\n") + uml;
 
         // and if the user wants output to the console,
         if (get(PRINT_DIAGRAMS_TO_CONSOLE))
@@ -430,7 +430,7 @@ public class Lexakai extends Application
                 .addHtmlAnchors(get(ADD_HTML_ANCHORS))
                 .includeObjectMethods(get(INCLUDE_OBJECT_METHODS))
                 .includeProtectedMethods(get(INCLUDE_PROTECTED_METHODS))
-                .buildPackageDiagrams(get(BUILD_PACKAGE_DIAGRAMS))
+                .buildPackageDiagrams(get(CREATE_PACKAGE_DIAGRAMS))
                 .automaticMethodGroups(get(AUTOMATIC_METHOD_GROUPS))
                 .javadocSectionPattern(Pattern.compile(get(JAVADOC_SECTION_PATTERN)));
     }
@@ -445,7 +445,7 @@ public class Lexakai extends Application
         ensure(root.exists());
 
         // then find all the pom or gradle files from the root and return based on those, the set of project folders.
-        root.files(file -> file.fileName().name().matches("pom.xml|gradle.properties"), get(RECURSE))
+        root.files(file -> file.fileName().name().matches("pom.xml|gradle.properties"), get(TRAVERSAL))
                 .stream()
                 .map(File::parent)
                 .map(Folder::absolute)

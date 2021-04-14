@@ -10,13 +10,13 @@ ${user-text-top}
 
 [//]: # (end-user-text)
 
-### Projects &nbsp; ![](documentation/images/gears-40.png)
+### Projects <a name = "projects"></a> &nbsp; ![](documentation/images/gears-40.png)
 
 ${child-projects}
 
 ![](documentation/images/short-horizontal-line.png)
 
-### Javadoc Coverage
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](documentation/images/bargraph-32.png)
 
 ${project-javadoc-coverage}
 

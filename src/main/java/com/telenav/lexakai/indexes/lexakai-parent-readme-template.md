@@ -14,6 +14,8 @@ ${user-text-top}
 
 ${child-projects}
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Javadoc Coverage
 
 ${project-javadoc-coverage}

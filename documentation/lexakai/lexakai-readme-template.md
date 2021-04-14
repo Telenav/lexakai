@@ -12,8 +12,9 @@ ${project-description}
 
 ### Index
 
+${project-index}  
+
 [**Dependencies**](#dependencies)  
-${project-index}
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)

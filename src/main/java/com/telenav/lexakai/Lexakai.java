@@ -347,7 +347,7 @@ public class Lexakai extends Application
                     final var warnings = coverage.warnings();
                     if (warnings.isNonEmpty())
                     {
-                        announce(warnings.indented(8).join("\n"));
+                        announce(warnings.indented(6).join("\n"));
                     }
                 }
             }

@@ -65,7 +65,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
 
             final var javadoc = type.getJavadoc();
             final var isSignificant = type.toString().length() > Lexakai.get().get(JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH);
-            final var significance = isSignificant ? "=>  " : "    ";
+            final var significance = isSignificant ? "+" : "";
             final var typeName = Strip.packagePrefix(fullName.get());
             var isCovered = true;
             var typeWarning = false;

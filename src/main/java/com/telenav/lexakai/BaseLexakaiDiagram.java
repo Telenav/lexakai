@@ -21,6 +21,8 @@ package com.telenav.lexakai;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 
+import static com.telenav.lexakai.Lexakai.SHOW_DIAGRAMS;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -42,6 +44,12 @@ public abstract class BaseLexakaiDiagram extends BaseRepeater
         builder.appendLine("");
 
         onUml(builder);
+
+        final var lexakai = Lexakai.get();
+        if (lexakai.get(SHOW_DIAGRAMS))
+        {
+            announce(builder.toString());
+        }
 
         // then add the epilogue,
         builder.unindent();

@@ -324,7 +324,6 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
         final var indenter = new IndentingStringBuilder(TEXT, Indentation.of(8));
         indenter.indent();
         indenter.appendLines(Wrap.wrap(added.join(", "), 80));
-        announce(indenter.toString());
     }
 
     /**
@@ -431,7 +430,10 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
                 title = identifier();
                 if (!isPackageDiagram())
                 {
-                    warning("No title found for diagram: $", identifier());
+                    if (Lexakai.get().get(Lexakai.SHOW_DIAGRAM_WARNINGS))
+                    {
+                        warning("    No title found for diagram: $", identifier());
+                    }
                 }
             }
         }

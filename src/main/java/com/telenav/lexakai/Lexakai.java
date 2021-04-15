@@ -26,6 +26,7 @@ import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeS
 import com.telenav.kivakit.core.application.Application;
 import com.telenav.kivakit.core.commandline.ArgumentParser;
 import com.telenav.kivakit.core.commandline.SwitchParser;
+import com.telenav.kivakit.core.configuration.lookup.Lookup;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.filesystem.Folder.Traversal;
@@ -40,9 +41,9 @@ import com.telenav.kivakit.core.kernel.language.vm.Processes;
 import com.telenav.kivakit.core.resource.project.CoreResourceProject;
 import com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
-import com.telenav.lexakai.LexakaiProject.JavadocCoverage;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
+import com.telenav.lexakai.javadoc.JavadocCoverage;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,111 +69,164 @@ import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLaunch
  */
 public class Lexakai extends Application
 {
-    public static void main(final String[] arguments)
-    {
-        new Lexakai().run(arguments);
-    }
-
-    final SwitchParser<Integer> JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH =
-            SwitchParser.integerSwitch("javadoc-type-comment-minimum-length", "THe minimum text length for Javadoc coverage of a type")
-                    .optional()
-                    .defaultValue(128)
-                    .build();
-
-    private final ArgumentParser<Folder> ROOT_FOLDER =
-            Folder.folderArgument("Root folder to start at when locating projects")
-                    .oneOrMore()
-                    .build();
-
-    private final SwitchParser<Boolean> ADD_HTML_ANCHORS =
+    public static final SwitchParser<Boolean> ADD_HTML_ANCHORS =
             SwitchParser.booleanSwitch("add-html-anchors", "Add HTML anchor tags to indexed markdown titles")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    private final SwitchParser<Boolean> CREATE_PACKAGE_DIAGRAMS =
-            SwitchParser.booleanSwitch("create-package-diagrams", "Build whole-package diagrams for all public types")
-                    .optional()
-                    .defaultValue(true)
-                    .build();
-
-    private final SwitchParser<Traversal> TRAVERSAL =
-            SwitchParser.enumSwitch("traversal", "Traversal of projects", Traversal.class)
-                    .optional()
-                    .defaultValue(Traversal.RECURSE)
-                    .build();
-
-    private final SwitchParser<Boolean> INCLUDE_OBJECT_METHODS =
-            SwitchParser.booleanSwitch("include-object-methods", "Include hashCode(), equals() and toString()")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
-
-    private final SwitchParser<Version> PROJECT_VERSION =
-            SwitchParser.versionSwitch("project-version", "Version of project used in generating links in README.md indexes")
-                    .optional()
-                    .defaultValue(KivaKit.get().version())
-                    .build();
-
-    private final SwitchParser<Boolean> INCLUDE_PROTECTED_METHODS =
-            SwitchParser.booleanSwitch("include-protected-methods", "Include methods with protected access")
-                    .optional()
-                    .defaultValue(true)
-                    .build();
-
-    private final SwitchParser<Boolean> SAVE_DIAGRAMS =
-            SwitchParser.booleanSwitch("save", "True to save diagrams, false to write them to the console")
-                    .optional()
-                    .defaultValue(true)
-                    .build();
-
-    private final SwitchParser<Boolean> AUTOMATIC_METHOD_GROUPS =
+    public static final SwitchParser<Boolean> AUTOMATIC_METHOD_GROUPS =
             SwitchParser.booleanSwitch("automatic-method-groups", "True to automatically group methods")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    private final SwitchParser<Boolean> UPDATE_README =
-            SwitchParser.booleanSwitch("update-readme", "True to create and update a README.md file")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
-
-    private final SwitchParser<Boolean> JAVADOC_COVERAGE =
-            SwitchParser.booleanSwitch("javadoc-coverage", "True to show Javadoc coverage for the types in each project")
+    public static final SwitchParser<Boolean> CREATE_PACKAGE_DIAGRAMS =
+            SwitchParser.booleanSwitch("create-package-diagrams", "Build whole-package diagrams for all public types")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    private final SwitchParser<String> JAVADOC_SECTION_PATTERN =
-            SwitchParser.stringSwitch("javadoc-section-pattern", "regular expression for extracting javadoc section titles")
-                    .optional()
-                    .defaultValue("<p><b>(.*)</b></p>")
-                    .build();
-
-    private final SwitchParser<Boolean> CREATE_SVG_FILES =
+    public static final SwitchParser<Boolean> CREATE_SVG_FILES =
             SwitchParser.booleanSwitch("create-svg-files", "True to build .svg files from PlantUML output")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    private final SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
+    public static final SwitchParser<Boolean> INCLUDE_OBJECT_METHODS =
+            SwitchParser.booleanSwitch("include-object-methods", "Include hashCode(), equals() and toString()")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
+    public static final SwitchParser<Boolean> INCLUDE_PROTECTED_METHODS =
+            SwitchParser.booleanSwitch("include-protected-methods", "Include methods with protected access")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    public static final SwitchParser<Integer> JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-method-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a method")
+                    .optional()
+                    .defaultValue(64)
+                    .build();
+
+    public static final SwitchParser<Integer> JAVADOC_MINIMUM_METHOD_LINES =
+            SwitchParser.integerSwitch("javadoc-minimum-method-lines", "The minimum number of lines for a method to require a Javadoc comment")
+                    .optional()
+                    .defaultValue(4)
+                    .build();
+
+    public static final SwitchParser<String> JAVADOC_SECTION_PATTERN =
+            SwitchParser.stringSwitch("javadoc-section-pattern", "regular expression for extracting javadoc section titles")
+                    .optional()
+                    .defaultValue("<p><b>(.*)</b></p>")
+                    .build();
+
+    public static final SwitchParser<Integer> JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-significant-class-minimum-length", "The minimum length of class that is considered 'significant'")
+                    .optional()
+                    .defaultValue(2048)
+                    .build();
+
+    public static final SwitchParser<Integer> JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-type-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a type")
+                    .optional()
+                    .defaultValue(128)
+                    .build();
+
+    public static final SwitchParser<Integer> JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH =
+            SwitchParser.integerSwitch("javadoc-enum-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of an enum")
+                    .optional()
+                    .defaultValue(64)
+                    .build();
+
+    public static final SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
             SwitchParser.booleanSwitch("console", "True to write to the console")
                     .optional()
                     .defaultValue(false)
                     .build();
+
+    public static final SwitchParser<Version> PROJECT_VERSION =
+            SwitchParser.versionSwitch("project-version", "Version of project used in generating links in README.md indexes")
+                    .optional()
+                    .defaultValue(KivaKit.get().version())
+                    .build();
+
+    public static final ArgumentParser<Folder> ROOT_FOLDER =
+            Folder.folderArgument("Root folder to start at when locating projects")
+                    .oneOrMore()
+                    .build();
+
+    public static final SwitchParser<Boolean> SAVE_DIAGRAMS =
+            SwitchParser.booleanSwitch("save", "True to save diagrams, false to write them to the console")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    public static final SwitchParser<Boolean> SHOW_DIAGRAMS =
+            SwitchParser.booleanSwitch("show-diagrams", "Show what diagrams are created")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
+    public static final SwitchParser<Boolean> SHOW_DIAGRAM_WARNINGS =
+            SwitchParser.booleanSwitch("show-diagram-warnings", "Show warnings about diagrams as they are processed")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    public static final SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE =
+            SwitchParser.booleanSwitch("show-javadoc-coverage", "Show Javadoc coverage for each project as they are processed")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    public static final SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE_WARNINGS =
+            SwitchParser.booleanSwitch("show-javadoc-coverage-warnings", "Show Javadoc coverage warnings to help correct issues")
+                    .optional()
+                    .defaultValue(true)
+                    .build();
+
+    public static final SwitchParser<Boolean> SHOW_JAVADOC_UNCOVERED_TYPES =
+            SwitchParser.booleanSwitch("show-javadoc-uncovered types", "Show list of uncovered types in the summary")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
+    public static final SwitchParser<Traversal> TRAVERSAL =
+            SwitchParser.enumSwitch("traversal", "Traversal of projects", Traversal.class)
+                    .optional()
+                    .defaultValue(Traversal.RECURSE)
+                    .build();
+
+    public static final SwitchParser<Boolean> UPDATE_README =
+            SwitchParser.booleanSwitch("update-readme", "True to create and update a README.md file")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
+    public static Lexakai get()
+    {
+        return Lookup.global().locate(Lexakai.class);
+    }
+
+    public static void main(final String[] arguments)
+    {
+        new Lexakai().run(arguments);
+    }
+
+    /** Map from project folder to project */
+    private final HashMap<Folder, LexakaiProject> folderToProject = new HashMap<>();
+
+    /** Java parser for source code */
+    private JavaParser parser;
 
     /** The total number of diagrams created */
     private final MutableCount totalDiagrams = new MutableCount();
 
     /** All unique types that have been included in a project diagram */
     private final Set<String> types = new HashSet<>();
-
-    /** Java parser for source code */
-    private JavaParser parser;
-
-    /** Map from project folder to project */
-    private final HashMap<Folder, LexakaiProject> folderToProject = new HashMap<>();
 
     protected Lexakai()
     {
@@ -201,59 +255,21 @@ public class Lexakai extends Application
     @Override
     protected void onRun()
     {
+        // Show our command line parameters,
         announce(commandLineDescription("Lexakai"));
 
-        // Get the root folder to locate projects from,
+        // get the root folders to locate projects from,
         final var roots = commandLine().arguments(ROOT_FOLDER);
+
+        // create a new Java parser for the root folders,
         parser = newParser(roots);
 
         // and for each root folder,
-        final var outputFiles = new ObjectList<File>();
-        final var coverage = new ObjectList<JavadocCoverage>();
         for (final var root : roots)
         {
-            // convert it to an absolute path,
-            final var absoluteRoot = root.absolute();
-
-            // build a set of dependency diagrams,
-            outputFiles.addAll(buildDependencyDiagrams(absoluteRoot));
-
-            // create projects for folders under the root,
-            projectFolders(absoluteRoot, projectFolder ->
-            {
-                final var project = project(absoluteRoot, projectFolder);
-                folderToProject.put(projectFolder, project);
-            });
-
-            // the for each project,
-            projectFolders(absoluteRoot, projectFolder ->
-            {
-                // build UML diagrams.
-                final var project = project(projectFolder);
-                outputFiles.addAll(outputUmlDiagrams(project));
-                coverage.addAll(project.javadocCoverage());
-            });
+            // build documentation.
+            buildDocumentation(root);
         }
-
-        // If the user wants SVG output and we have some .puml diagrams,
-        if (get(CREATE_SVG_FILES) && !outputFiles.isEmpty())
-        {
-            // then build those files.
-            buildSvgFiles(outputFiles);
-        }
-
-        final var list = new StringList();
-        list.add("Diagrams: $", totalDiagrams.get());
-        list.add("Types: $", types.size());
-        list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
-        list.add("Javadoc Coverage:\n\n$", coverage
-                .uniqued()
-                .sorted()
-                .mapped(JavadocCoverage::detailed)
-                .asStringList()
-                .join("\n"));
-
-        announce(list.titledBox("Summary"));
     }
 
     @Override
@@ -266,13 +282,21 @@ public class Lexakai extends Application
                 CREATE_SVG_FILES,
                 INCLUDE_OBJECT_METHODS,
                 INCLUDE_PROTECTED_METHODS,
-                JAVADOC_COVERAGE,
-                JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
+                JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH,
+                JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH,
+                JAVADOC_MINIMUM_METHOD_LINES,
                 JAVADOC_SECTION_PATTERN,
+                JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH,
+                JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
-                TRAVERSAL,
                 SAVE_DIAGRAMS,
+                SHOW_DIAGRAMS,
+                SHOW_DIAGRAM_WARNINGS,
+                SHOW_JAVADOC_COVERAGE,
+                SHOW_JAVADOC_COVERAGE_WARNINGS,
+                SHOW_JAVADOC_UNCOVERED_TYPES,
+                TRAVERSAL,
                 UPDATE_README);
     }
 
@@ -286,6 +310,69 @@ public class Lexakai extends Application
             files.add(new DependencyDiagram(tree).save());
         }
         return files;
+    }
+
+    private void buildDocumentation(final Folder root)
+    {
+        // Get the absolute root folder and project,
+        final var absoluteRoot = root.absolute();
+
+        // build a set of dependency diagrams,
+        final var outputFiles = new ObjectList<File>();
+        outputFiles.addAll(buildDependencyDiagrams(absoluteRoot));
+
+        // create projects for folders under the root,
+        projectFolders(absoluteRoot, at -> folderToProject.put(at, project(absoluteRoot, at)));
+
+        // then for each project,
+        projectFolders(absoluteRoot, at ->
+        {
+            // build UML diagrams.
+            outputFiles.addAll(outputUmlDiagrams(project(at)));
+        });
+
+        // Show detailed Javadoc coverage
+        final var rootProject = project(absoluteRoot);
+        if (get(SHOW_JAVADOC_COVERAGE))
+        {
+            announce("");
+            announce(AsciiArt.line("Javadoc Coverage"));
+            announce("");
+            for (final var coverage : rootProject.nestedProjectJavadocCoverage())
+            {
+                announce("Project $", coverage.project().name());
+                announce("    $", coverage.coverage());
+                if (get(SHOW_JAVADOC_COVERAGE_WARNINGS))
+                {
+                    final var warnings = coverage.warnings();
+                    if (warnings.isNonEmpty())
+                    {
+                        announce(warnings.indented(6).join("\n"));
+                    }
+                }
+            }
+        }
+
+        // and summary.
+        final var list = new StringList();
+        list.add("Diagrams: $", totalDiagrams.get());
+        list.add("Types: $", types.size());
+        list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
+        list.add("Javadoc Coverage:\n\n$", rootProject.nestedProjectJavadocCoverage()
+                .uniqued()
+                .sorted()
+                .mapped(JavadocCoverage::details)
+                .asStringList()
+                .join("\n"));
+
+        announce(list.titledBox("Summary"));
+
+        // If the user wants SVG output and we have some .puml diagrams,
+        if (get(CREATE_SVG_FILES) && !outputFiles.isEmpty())
+        {
+            // then build those files.
+            buildSvgFiles(outputFiles);
+        }
     }
 
     private void buildSvgFiles(final ObjectList<File> outputFiles)
@@ -344,7 +431,10 @@ public class Lexakai extends Application
         final var title = diagram.title();
 
         // get the uml for the given diagram,
-        narrate("    Diagram $", diagram.name());
+        if (get(SHOW_DIAGRAMS))
+        {
+            narrate("    Diagram $", diagram.name());
+        }
         var uml = diagram.uml(title);
         final var builder = IndentingStringBuilder.defaultTextIndenter();
         uml = (builder.lines().isZero() ? "" : builder + "\n\n") + uml;
@@ -376,8 +466,7 @@ public class Lexakai extends Application
     /**
      * Parses source code under the project folder and outputs UML diagrams for that
      */
-    private ObjectList<File> outputUmlDiagrams(
-            final LexakaiProject project)
+    private ObjectList<File> outputUmlDiagrams(final LexakaiProject project)
     {
         // Create a UML project from the source files under the project folder,
         narrate("Project $", project.name());
@@ -403,15 +492,6 @@ public class Lexakai extends Application
                 types.addAll(diagram.qualifiedTypeNames());
                 totalDiagrams.increment();
             });
-        }
-
-        // show Javadoc coverage
-        if (get(JAVADOC_COVERAGE))
-        {
-            for (final var coverage : project.javadocCoverage())
-            {
-                information(coverage.description().indented(4).join("\n"));
-            }
         }
 
         // and update the README.md index.

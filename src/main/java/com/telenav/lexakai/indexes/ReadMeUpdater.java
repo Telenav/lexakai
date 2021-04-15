@@ -31,6 +31,7 @@ import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
 import com.telenav.lexakai.LexakaiProject;
+import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
@@ -104,8 +105,8 @@ public class ReadMeUpdater
 
         // create a variable map for the readme template,
         final var variables = project.properties();
-        variables.put("project-javadoc-average-coverage", project.averageCoverage().toString());
-        variables.put("project-javadoc-average-coverage-meter", LexakaiProject.meterMarkdownForPercent(project.averageCoverage()));
+        variables.put("project-javadoc-average-coverage", project.averageProjectJavadocCoverage().toString());
+        variables.put("project-javadoc-average-coverage-meter", LexakaiProject.meterMarkdownForPercent(project.averageProjectJavadocCoverage()));
         variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         variables.put("date", LocalTime.now().asDateString());
         variables.put("time", LocalTime.now().asTimeString());
@@ -144,13 +145,13 @@ public class ReadMeUpdater
     private void addParentProjectVariables(final VariableMap<String> variables)
     {
         variables.put("project-javadoc-coverage", project
-                .javadocCoverage()
-                .join("  \n", coverage -> "&nbsp; " + coverage.meterMarkdown() + " &nbsp; &nbsp; *" + coverage.project().name() + "*"));
+                .nestedProjectJavadocCoverage()
+                .join("  \n", JavadocCoverage::projectCoverageMeter));
         final var childProjectMarkdown = new StringList();
         final var childProjects = project.childProjects();
         if (!childProjects.isEmpty())
         {
-            childProjects.forEach(at -> childProjectMarkdown.add("[**" + at.name() + "**](" + at.folder().name() + "/README.md)  "));
+            childProjects.forEach(at -> childProjectMarkdown.add(at.link() + "  "));
         }
 
         // and populate the variable map with this information,
@@ -186,13 +187,7 @@ public class ReadMeUpdater
         variables.put("package-diagram-index", packageDiagramIndex.join("\n"));
 
         // add Javadoc coverage information,
-        final var coverage = project.javadocCoverage().first();
-        variables.put("project-javadoc-coverage", coverage.percent()
-                + ".  \n  \n&nbsp; &nbsp; " + coverage.meterMarkdown());
-        final var undocumented = coverage.significantUndocumentedClasses();
-        variables.put("project-undocumented-classes",
-                undocumented.isEmpty() ? "" : "The following significant classes are undocumented:  \n\n" +
-                        undocumented.prefixedWith("- ").join("  \n"));
+        project.nestedProjectJavadocCoverage().first().addToVariableMap(variables);
 
         // and javadoc sections,
         final var sections = new StringList();

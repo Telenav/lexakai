@@ -9,4 +9,5 @@ open module lexakai.application
     requires transitive com.github.javaparser.symbolsolver.core;
 
     exports com.telenav.lexakai;
+    exports com.telenav.lexakai.javadoc;
 }

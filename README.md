@@ -1,14 +1,14 @@
-[![](https://kivakit.org/images/twitter-32.png)](https://twitter.com/openlexakai)
+[![](https://www.kivakit.org/images/twitter-32.png)](https://twitter.com/openlexakai)
 &nbsp;
-[![](https://kivakit.org/images/web-32.png)](https://telenav.github.io/lexakai/)
+[![](https://www.kivakit.org/images/web-32.png)](https://telenav.github.io/lexakai/)
 
-![](https://kivakit.org/images/lexakai-background-1024.png)
+![](https://www.kivakit.org/images/lexakai-background-1024.png)
 
-# Lexakai &nbsp;&nbsp;![](https://kivakit.org/images/lexakai-64.png)
+# Lexakai &nbsp;&nbsp;![](https://www.kivakit.org/images/lexakai-64.png)
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 ### Index
 
@@ -31,7 +31,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](https://kivakit.org/images/dependencies-40.png)
+### Dependencies &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -43,7 +43,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
         <version>0.9.3</version>
     </dependency>
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -67,15 +67,15 @@ This documentation was created by Lexakai, including:
 
 For another example of Lexakai documentation, see [KivaKit](https://github.com/Telenav/kivakit).
 
-### Download Executable JAR <a name = "download"></a>&nbsp; ![](https://kivakit.org/images/down-arrow-32.png)
+### Download Executable JAR <a name = "download"></a>&nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
 
 [Lexakai 0.9.3](tools/building/lexakai-0.9.3.jar)
 
-### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://kivakit.org/images/box-40.png)
+### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
 Lexakai automatically creates basic package diagrams for all public types without further configuration.
 
-### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; ![](https://kivakit.org/images/diagram-48.png)
+### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
 To create a set of one or more custom diagrams for a project, annotations can be used from this project:
 
@@ -102,7 +102,7 @@ the marker interface name). A type can be used in more than one diagram, by spec
 The preferred location for diagram marker interfaces is in the sub-package *project.lexakai.diagrams*,  
 and they should be prefixed with *Diagram* to make their use clear.
 
-### Grouping Methods in Class Diagrams <a name = "grouping-methods-in-class-diagrams"></a>&nbsp; ![](https://kivakit.org/images/set-40.png)
+### Grouping Methods in Class Diagrams <a name = "grouping-methods-in-class-diagrams"></a>&nbsp; ![](https://www.kivakit.org/images/set-40.png)
 
 Groups of methods can be specified using the *@UmlMethodGroup* annotation. Method groups will  
 be given labeled separators in class diagrams, making the list of methods easier to understand.
@@ -114,7 +114,7 @@ For example:
 could be used to label all the configuration-related methods in a type. Multiple *@UmlMethodGroup*  
 annotations can be added to specify that a method should be shown in more than one group.
 
-### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](https://kivakit.org/images/gears-40.png)
+### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](https://www.kivakit.org/images/gears-40.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*  
 (which is the default). In this case, the best guess will be made based on method name and parameter  
@@ -123,7 +123,7 @@ an *@UmlMethodGroup* annotation can be applied to correct the result. The set of
 determine automatic groups is in a file called *lexakai.groups* in the documentation folder. This file can be  
 customized for a particular project.
 
-### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://kivakit.org/images/right-arrow-32.png)
+### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://www.kivakit.org/images/right-arrow-32.png)
 
 Patterns in the names of types, fields and methods are used to try to deduce UML associations.  
 The annotation *@UmlRelation* can be used to override this guess with an explicit relation if the association  
@@ -136,7 +136,7 @@ type, it can specify a relation with a particular referent and cardinality. An e
 can be made specific to a particular diagram with the *diagram* parameter. Multiple *@UmlRelation* tags can  
 be applied to a type.
 
-### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://kivakit.org/images/no-32.png)
+### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://www.kivakit.org/images/no-32.png)
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
@@ -144,7 +144,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 *@UmlNotPublicApi* marks a type or member as private even if it is not actually private.
 
-### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://kivakit.org/images/annotation-32.png)
+### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://www.kivakit.org/images/annotation-32.png)
 
     Diagrams:
 
@@ -165,7 +165,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
             @UmlAggregation - adds a UML aggregation association from the enclosing type to the annotated field type
             @UmlComposition - adds a UML composition association from the enclosing type to the annotated field type
 
-### Configuration <a name = "configuration"></a>&nbsp; ![](https://kivakit.org/images/tools-40.png)
+### Configuration <a name = "configuration"></a>&nbsp; ![](https://www.kivakit.org/images/tools-40.png)
 
 The *documentation* folder for each project should contain a *lexakai* folder with a *lexakai.properties* file that looks similar to this:
 
@@ -175,7 +175,7 @@ The *documentation* folder for each project should contain a *lexakai* folder wi
     project-name         = my-project
     project-description  = This is my project.
     project-javadoc-url  = https://me.github.io/myproject/javadoc/myproject
-    project-icon         = https://kivakit.org/images/myproject.png
+    project-icon         = https://www.kivakit.org/images/myproject.png
     project-footer       = Copyright by Me
 
     #
@@ -190,7 +190,7 @@ example:
 
 refers to the diagram title specified by the key *diagram-my-project* in the *lexakai.properties* file.
 
-### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](https://kivakit.org/images/pencil-32.png)
+### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](https://www.kivakit.org/images/pencil-32.png)
 
 If the *-update-readme* switch is set to *true* (it is *false* by default to ensure it doesn't overwrite an  
 existing file) then a *README.md* file will be generated or updated each time the UML diagrams are generated.  
@@ -216,11 +216,11 @@ remove them and run Lexakai again.
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](https://kivakit.org/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](https://www.kivakit.org/images/diagram-48.png)
 
 None
 
-### Package Diagrams &nbsp;&nbsp;![](https://kivakit.org/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](https://www.kivakit.org/images/box-40.png)
 
 [*com.telenav.lexakai*](documentation/diagrams/com.telenav.lexakai.svg)  
 [*com.telenav.lexakai.associations*](documentation/diagrams/com.telenav.lexakai.associations.svg)  
@@ -232,11 +232,11 @@ None
 [*com.telenav.lexakai.members*](documentation/diagrams/com.telenav.lexakai.members.svg)  
 [*com.telenav.lexakai.types*](documentation/diagrams/com.telenav.lexakai.types.svg)  
 
-### Javadoc &nbsp;&nbsp;![](https://kivakit.org/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](https://www.kivakit.org/images/books-40.png)
 
 Javadoc coverage for this project is 22.9%.  
   
-&nbsp; &nbsp;  ![](https://kivakit.org/images/meter-20-12.png)
+&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-20-12.png)
 
 The following significant classes are undocumented:  
 
@@ -295,7 +295,7 @@ The following significant classes are undocumented:
 
 <br/>
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy

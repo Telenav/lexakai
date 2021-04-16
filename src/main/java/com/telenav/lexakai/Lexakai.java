@@ -141,6 +141,11 @@ public class Lexakai extends Application
                     .defaultValue(64)
                     .build();
 
+    public static final SwitchParser<Folder> OUTPUT_ROOT_FOLDER =
+            Folder.folderSwitch("output-folder", "Root folder of output")
+                    .optional()
+                    .build();
+
     public static final SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
             SwitchParser.booleanSwitch("console", "True to write to the console")
                     .optional()
@@ -288,6 +293,7 @@ public class Lexakai extends Application
                 JAVADOC_SECTION_PATTERN,
                 JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH,
                 JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
+                OUTPUT_ROOT_FOLDER,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
                 SAVE_DIAGRAMS,
@@ -307,7 +313,7 @@ public class Lexakai extends Application
         for (final var tree : listenTo(new MavenDependencyTreeBuilder(root)).trees())
         {
             // build and save a dependency diagram.
-            files.add(new DependencyDiagram(tree).save());
+            files.add(new DependencyDiagram(root, outputRoot(root.absolute()), tree).save());
         }
         return files;
     }
@@ -418,6 +424,11 @@ public class Lexakai extends Application
         return new JavaParser(configuration);
     }
 
+    private Folder outputRoot(final Folder root)
+    {
+        return get(OUTPUT_ROOT_FOLDER, root);
+    }
+
     /**
      * Outputs a single UML diagram
      */
@@ -506,7 +517,9 @@ public class Lexakai extends Application
     private LexakaiProject project(final Folder root,
                                    final Folder projectFolder)
     {
-        return listenTo(new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, parser))
+        final var project = new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, outputRoot(root), parser);
+
+        return listenTo(project)
                 .addHtmlAnchors(get(ADD_HTML_ANCHORS))
                 .includeObjectMethods(get(INCLUDE_OBJECT_METHODS))
                 .includeProtectedMethods(get(INCLUDE_PROTECTED_METHODS))

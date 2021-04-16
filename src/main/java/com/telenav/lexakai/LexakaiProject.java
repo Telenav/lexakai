@@ -27,6 +27,7 @@ import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableM
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
@@ -95,13 +96,16 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
 public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
     @NotNull
-    public static String meterMarkdownForPercent(final Percent percent)
+    public static String meterMarkdownForPercent(final String projectImages, final Percent percent)
     {
-        return " ![](documentation/images/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
+        return " ![](" + Strip.trailing(projectImages, "/") + "/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
     }
 
     /** The folder for this project */
     private final Folder projectFolder;
+
+    /** The root output folder */
+    private final Folder outputRoot;
 
     /** Parser to use on project source files */
     private final JavaParser parser;
@@ -145,18 +149,21 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     /** Javadoc coverage for sub-projects or types in this project */
     private ObjectList<JavadocCoverage> coverage;
 
+    /** Any child projects of this project */
     private ObjectList<LexakaiProject> children;
 
     public LexakaiProject(final Lexakai lexakai,
                           final Version version,
                           final Folder root,
                           final Folder projectFolder,
+                          final Folder outputRoot,
                           final JavaParser parser)
     {
         this.lexakai = lexakai;
         this.version = version;
         this.root = root;
         this.projectFolder = projectFolder;
+        this.outputRoot = outputRoot;
         this.parser = parser;
 
         initialize();
@@ -297,7 +304,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public Folder documentationFolder()
     {
-        return projectFolder.folder("documentation").mkdirs();
+        return outputFolder().folder("documentation").mkdirs();
     }
 
     public Folder documentationLexakaiFolder()
@@ -322,7 +329,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public Folder imagesFolder()
     {
-        return documentationFolder().folder("images");
+        return outputRoot.folder("images");
     }
 
     /**
@@ -417,6 +424,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return coverage;
     }
 
+    public Folder outputFolder()
+    {
+        return outputRoot.folder(relativeFolder());
+    }
+
     public File parentReadMeTemplateFile()
     {
         return documentationLexakaiFolder().file("lexakai-parent-readme-template.md");
@@ -427,7 +439,8 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         final var properties = lexakai.properties().copy();
         properties.addAll(PropertyMap.load(sourceFolder().file("project.properties")));
         properties.addAll(PropertyMap.load(propertiesFile()));
-        properties.putIfAbsent("project-icon", "documentation/images/gears-40.png");
+        final var projectImages = properties.get("project-images", "images");
+        properties.putIfAbsent("project-icon", Strip.trailing(projectImages, "/") + "/gears-40.png");
         return properties;
     }
 
@@ -446,6 +459,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     public File readmeFile()
     {
         return projectFolder.file("README.md");
+    }
+
+    public File readmeOutputFile()
+    {
+        return outputFolder().file("README.md");
     }
 
     public Folder relativeFolder()

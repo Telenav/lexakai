@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.Wrap;
 import com.telenav.kivakit.core.kernel.language.time.LocalTime;
-import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
@@ -40,6 +39,8 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.core.resource.CopyMode.UPDATE;
 import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
@@ -105,8 +106,10 @@ public class ReadMeUpdater
 
         // create a variable map for the readme template,
         final var variables = project.properties();
+        final var projectImages = variables.get("project-images");
+        ensureNotNull(projectImages, "Project $: lexakai.properties does not contain a project-images value", project.name());
         variables.put("project-javadoc-average-coverage", project.averageProjectJavadocCoverage().toString());
-        variables.put("project-javadoc-average-coverage-meter", LexakaiProject.meterMarkdownForPercent(project.averageProjectJavadocCoverage()));
+        variables.put("project-javadoc-average-coverage-meter", LexakaiProject.meterMarkdownForPercent(projectImages, project.averageProjectJavadocCoverage()));
         variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         variables.put("date", LocalTime.now().asDateString());
         variables.put("time", LocalTime.now().asTimeString());
@@ -123,13 +126,19 @@ public class ReadMeUpdater
             addParentProjectVariables(variables);
         }
 
+        // expand variables in the user blocks,
         variables.put("user-text-top", expand(variables, topBlock));
         variables.put("user-text-bottom", expand(variables, bottomBlock));
 
-        // then write the interpolated template to the README.md file,
+        // then write the interpolated template
         final var template = (project.hasSourceCode() ? projectReadMeTemplate() : parentProjectReadMeTemplate()).reader().string();
         final var expanded = expand(variables, template);
-        new StringResource(expanded).safeCopyTo(project.readmeFile(), UPDATE, ProgressReporter.NULL);
+
+        // to the readme file in the source tree and the readme file in the output tree,
+        final var readme = new StringResource(expanded);
+        readme.safeCopyTo(project.readmeFile(), OVERWRITE, ProgressReporter.NULL);
+        variables.put("project-images", project.imagesFolder().toString());
+        readme.safeCopyTo(project.readmeOutputFile(), OVERWRITE, ProgressReporter.NULL);
 
         // and finally, update the referenced images.
         final var images = Package.of(getClass(), "documentation/images");
@@ -303,7 +312,7 @@ public class ReadMeUpdater
         final var parentProjectReadMeTemplate = project.parentReadMeTemplateFile();
         if (!parentProjectReadMeTemplate.exists())
         {
-            PARENT_PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadMeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
+            PARENT_PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadMeTemplate, OVERWRITE, ProgressReporter.NULL);
         }
         return parentProjectReadMeTemplate;
     }
@@ -316,7 +325,7 @@ public class ReadMeUpdater
         final var projectReadMeTemplate = project.readMeTemplateFile();
         if (!projectReadMeTemplate.exists())
         {
-            README_TEMPLATE.safeCopyTo(projectReadMeTemplate, CopyMode.OVERWRITE, ProgressReporter.NULL);
+            README_TEMPLATE.safeCopyTo(projectReadMeTemplate, OVERWRITE, ProgressReporter.NULL);
         }
         return projectReadMeTemplate;
     }

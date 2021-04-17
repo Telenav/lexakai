@@ -38,6 +38,7 @@ import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStri
 import com.telenav.kivakit.core.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.language.vm.Processes;
+import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.project.CoreResourceProject;
 import com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
@@ -53,6 +54,8 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
+import static com.telenav.kivakit.core.resource.CopyMode.UPDATE;
 import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher.RedirectTo.CONSOLE;
 
@@ -144,6 +147,12 @@ public class Lexakai extends Application
     public static final SwitchParser<Folder> OUTPUT_ROOT_FOLDER =
             Folder.folderSwitch("output-folder", "Root folder of output")
                     .optional()
+                    .build();
+
+    public static final SwitchParser<Boolean> OVERWRITE_RESOURCES =
+            SwitchParser.booleanSwitch("overwrite-resources", "True to update by overwriting: lexakai.groups, lexakai.theme, Lexakai templates and Lexakai images")
+                    .optional()
+                    .defaultValue(false)
                     .build();
 
     public static final SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
@@ -251,6 +260,11 @@ public class Lexakai extends Application
         return folderToProject.get(folder);
     }
 
+    public CopyMode resourceCopyMode()
+    {
+        return get(Lexakai.OVERWRITE_RESOURCES) ? UPDATE : DO_NOT_OVERWRITE;
+    }
+
     @Override
     protected List<ArgumentParser<?>> argumentParsers()
     {
@@ -294,6 +308,7 @@ public class Lexakai extends Application
                 JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH,
                 JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
                 OUTPUT_ROOT_FOLDER,
+                OVERWRITE_RESOURCES,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
                 SAVE_DIAGRAMS,

@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
+import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.library.Names;
@@ -39,7 +40,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.resource.CopyMode.OVERWRITE;
 import static com.telenav.kivakit.core.resource.CopyMode.UPDATE;
 import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
@@ -88,6 +88,10 @@ public class ReadMeUpdater
 
     private final Pattern SECTION_HEADING = Pattern.compile("^### ([ A-Za-z0-9_-]+)(\\s*<a name)?", MULTILINE);
 
+    private boolean updatedReadMeTemplate;
+
+    private boolean updatedParentReadMeTemplate;
+
     public ReadMeUpdater(final LexakaiProject project)
     {
         this.project = project;
@@ -105,40 +109,36 @@ public class ReadMeUpdater
         final var bottomBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
 
         // create a variable map for the readme template,
-        final var variables = project.properties();
-        final var projectImages = variables.get("project-images");
-        ensureNotNull(projectImages, "Project $: lexakai.properties does not contain a project-images value", project.name());
-        variables.put("project-javadoc-average-coverage", project.averageProjectJavadocCoverage().toString());
-        variables.put("project-javadoc-average-coverage-meter", LexakaiProject.meterMarkdownForPercent(projectImages, project.averageProjectJavadocCoverage()));
-        variables.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
-        variables.put("date", LocalTime.now().asDateString());
-        variables.put("time", LocalTime.now().asTimeString());
+        final var properties = project.properties();
+        properties.put("project-javadoc-average-coverage", project.averageProjectJavadocCoverage().toString());
+        properties.put("project-javadoc-average-coverage-meter", project.meterMarkdownForPercent(project.averageProjectJavadocCoverage()));
+        properties.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
+        properties.put("date", LocalTime.now().asDateString());
+        properties.put("time", LocalTime.now().asTimeString());
 
         // and if the project has source code,
         if (project.hasSourceCode())
         {
             // add the appropriate variables,
-            addProjectVariables(variables);
+            addProjectVariables(properties);
         }
         else
         {
             // or the variables for a parent project,
-            addParentProjectVariables(variables);
+            addParentProjectVariables(properties);
         }
 
         // expand variables in the user blocks,
-        variables.put("user-text-top", expand(variables, topBlock));
-        variables.put("user-text-bottom", expand(variables, bottomBlock));
+        properties.put("user-text-top", expand(properties, topBlock));
+        properties.put("user-text-bottom", expand(properties, bottomBlock));
 
         // then write the interpolated template
         final var template = (project.hasSourceCode() ? projectReadMeTemplate() : parentProjectReadMeTemplate()).reader().string();
-        final var expanded = expand(variables, template);
+        final var expanded = expand(properties, template);
 
         // to the readme file in the source tree and the readme file in the output tree,
         final var readme = new StringResource(expanded);
         readme.safeCopyTo(project.readmeFile(), OVERWRITE, ProgressReporter.NULL);
-        variables.put("project-images", project.imagesFolder().toString());
-        readme.safeCopyTo(project.readmeOutputFile(), OVERWRITE, ProgressReporter.NULL);
 
         // and finally, update the referenced images.
         final var images = Package.of(getClass(), "documentation/images");
@@ -180,7 +180,7 @@ public class ReadMeUpdater
         final var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
-            final var line = "[*" + diagram.title() + "*](documentation/diagrams/" + diagram.identifier() + ".svg)  ";
+            final var line = "[*" + diagram.title() + "*](" + project.documentationLocation() + "/diagrams/" + diagram.identifier() + ".svg)";
             (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
             types.addAll(diagram.includedQualifiedTypes());
         });
@@ -192,8 +192,8 @@ public class ReadMeUpdater
         {
             packageDiagramIndex.add("None");
         }
-        variables.put("class-diagram-index", classDiagramIndex.join("\n"));
-        variables.put("package-diagram-index", packageDiagramIndex.join("\n"));
+        variables.put("class-diagram-index", classDiagramIndex.join("\n  "));
+        variables.put("package-diagram-index", packageDiagramIndex.join("\n  "));
 
         // add Javadoc coverage information,
         project.nestedProjectJavadocCoverage().first().addToVariableMap(variables);
@@ -310,9 +310,10 @@ public class ReadMeUpdater
     private File parentProjectReadMeTemplate()
     {
         final var parentProjectReadMeTemplate = project.parentReadMeTemplateFile();
-        if (!parentProjectReadMeTemplate.exists())
+        if (!updatedParentReadMeTemplate)
         {
-            PARENT_PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadMeTemplate, OVERWRITE, ProgressReporter.NULL);
+            updatedParentReadMeTemplate = true;
+            PARENT_PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadMeTemplate, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
         }
         return parentProjectReadMeTemplate;
     }
@@ -323,9 +324,10 @@ public class ReadMeUpdater
     private File projectReadMeTemplate()
     {
         final var projectReadMeTemplate = project.readMeTemplateFile();
-        if (!projectReadMeTemplate.exists())
+        if (!updatedReadMeTemplate)
         {
-            README_TEMPLATE.safeCopyTo(projectReadMeTemplate, OVERWRITE, ProgressReporter.NULL);
+            updatedReadMeTemplate = true;
+            README_TEMPLATE.safeCopyTo(projectReadMeTemplate, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
         }
         return projectReadMeTemplate;
     }

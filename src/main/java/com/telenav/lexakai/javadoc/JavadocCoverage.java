@@ -135,8 +135,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
 
     public void addToVariableMap(final VariableMap<String> variables)
     {
-        variables.put("project-javadoc-coverage", projectCoverage()
-                + ".  \n  \n&nbsp; &nbsp; " + meterMarkdown(variables.get("project-images")));
+        variables.put("project-javadoc-coverage", projectCoverage() + ".  \n  \n&nbsp; &nbsp; " + meterMarkdown());
         final var undocumented = significantUndocumentedClasses;
         variables.put("project-undocumented-classes",
                 undocumented.isEmpty() ? "" : "The following significant classes are undocumented:  \n\n" +
@@ -172,7 +171,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
 
     public String projectCoverageMeter()
     {
-        return "&nbsp; " + meterMarkdown(project().property("project-images")) + " &nbsp; &nbsp; " + project.link();
+        return "&nbsp; " + meterMarkdown() + " &nbsp; &nbsp; " + project.link();
     }
 
     public StringList summary()
@@ -220,9 +219,9 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         return false;
     }
 
-    private String meterMarkdown(final String projectImages)
+    private String meterMarkdown()
     {
-        return LexakaiProject.meterMarkdownForPercent(projectImages, projectCoverage());
+        return project.meterMarkdownForPercent(projectCoverage());
     }
 
     private Percent methodCoverage()

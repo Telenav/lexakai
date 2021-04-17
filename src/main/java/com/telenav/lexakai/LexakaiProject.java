@@ -23,11 +23,9 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.core.kernel.language.paths.StringPath;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
@@ -52,6 +50,7 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
 
 /**
@@ -95,17 +94,11 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
  */
 public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
-    @NotNull
-    public static String meterMarkdownForPercent(final String projectImages, final Percent percent)
-    {
-        return " ![](" + Strip.trailing(projectImages, "/") + "/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
-    }
-
     /** The folder for this project */
     private final Folder projectFolder;
 
     /** The root output folder */
-    private final Folder outputRoot;
+    private final Folder outputRootFolder;
 
     /** Parser to use on project source files */
     private final JavaParser parser;
@@ -152,18 +145,24 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     /** Any child projects of this project */
     private ObjectList<LexakaiProject> children;
 
+    /**
+     * Properties for this project from system properties, project.properties, lexakai-settings.properties and
+     * lexakai.properties
+     */
+    private PropertyMap properties;
+
     public LexakaiProject(final Lexakai lexakai,
                           final Version version,
                           final Folder root,
                           final Folder projectFolder,
-                          final Folder outputRoot,
+                          final Folder outputRootFolder,
                           final JavaParser parser)
     {
         this.lexakai = lexakai;
         this.version = version;
         this.root = root;
         this.projectFolder = projectFolder;
-        this.outputRoot = outputRoot;
+        this.outputRootFolder = outputRootFolder;
         this.parser = parser;
 
         initialize();
@@ -239,6 +238,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return documentationFolder().folder("diagrams");
     }
 
+    public String diagramLocation()
+    {
+        return StringPath.stringPath(documentationLocation(), relativeFolder().toString(), "diagrams").toString();
+    }
+
     /**
      * Calls the consumer with the names of all diagrams in this project
      */
@@ -312,6 +316,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return documentationFolder().folder("lexakai").mkdirs();
     }
 
+    public String documentationLocation()
+    {
+        return properties().asPath("lexakai-documentation-location");
+    }
+
     public Folder folder()
     {
         return projectFolder;
@@ -329,7 +338,12 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public Folder imagesFolder()
     {
-        return outputRoot.folder("images");
+        return properties().asFolder("lexakai-images-folder");
+    }
+
+    public String imagesLocation()
+    {
+        return properties().asPath("lexakai-images-location");
     }
 
     /**
@@ -359,8 +373,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public void initialize()
     {
-        final var resourceFolder = Package.of(PackagePath.parsePackagePath(Lexakai.class,
-                hasSourceCode() ? "resources/source" : "resources/parent"));
+        final var resourceFolder = Package.of(Lexakai.class, "resources");
 
         // If the project has source code,
         if (hasSourceCode())
@@ -369,15 +382,27 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
             diagramFolder().mkdirs();
 
             // and install the lexakai theme and default groups patterns if they are not already installed,
-            resourceFolder.resource("lexakai.groups").safeCopyTo(documentationLexakaiFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
-            resourceFolder.resource("lexakai.theme").safeCopyTo(documentationLexakaiFolder(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+            final var copyMode = Lexakai.get().resourceCopyMode();
+            resourceFolder.resource("source/lexakai.groups").safeCopyTo(documentationLexakaiFolder(), copyMode, ProgressReporter.NULL);
+            resourceFolder.resource("lexakai.theme").safeCopyTo(documentationLexakaiFolder(), copyMode, ProgressReporter.NULL);
         }
 
-        // then install the lexakai properties file if it doesn't already exist.
-        resourceFolder.resource("lexakai.properties")
+        // then install the lexakai properties file if it doesn't already exist,
+        resourceFolder.resource(hasSourceCode() ? "source/lexakai.properties" : "parent/lexakai.properties")
                 .asStringResource()
                 .transform(text -> properties().expand(text))
                 .safeCopyTo(propertiesFile(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+
+        // and install the lexakai settings properties file if it doesn't already exist.
+        resourceFolder.resource("lexakai-settings.properties")
+                .asStringResource()
+                .transform(text -> properties().expand(text))
+                .safeCopyTo(outputRootFolder.file("lexakai-settings.properties"), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+    }
+
+    public String javadocLocation()
+    {
+        return properties().asPath("lexakai-javadoc-location");
     }
 
     public Pattern javadocSectionPattern()
@@ -394,6 +419,12 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     public String link()
     {
         return "[**" + name() + "**](" + folder().name() + "/README.md)";
+    }
+
+    @NotNull
+    public String meterMarkdownForPercent(final Percent percent)
+    {
+        return " ![](" + imagesLocation() + "/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
     }
 
     public String name()
@@ -426,7 +457,12 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public Folder outputFolder()
     {
-        return outputRoot.folder(relativeFolder());
+        return outputRootFolder().folder(relativeFolder());
+    }
+
+    public Folder outputRootFolder()
+    {
+        return outputRootFolder;
     }
 
     public File parentReadMeTemplateFile()
@@ -434,13 +470,47 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return documentationLexakaiFolder().file("lexakai-parent-readme-template.md");
     }
 
-    public VariableMap<String> properties()
+    public PropertyMap properties()
     {
-        final var properties = lexakai.properties().copy();
-        properties.addAll(PropertyMap.load(sourceFolder().file("project.properties")));
-        properties.addAll(PropertyMap.load(propertiesFile()));
-        final var projectImages = properties.get("project-images", "images");
-        properties.putIfAbsent("project-icon", Strip.trailing(projectImages, "/") + "/gears-40.png");
+        if (properties == null)
+        {
+            properties = PropertyMap.of(lexakai.properties());
+
+            // Add lexakai settings,
+            properties.addAll(PropertyMap.load(lexakaiSettingsFile()));
+
+            // project properties (which can override lexakai settings when needed),
+            properties.addAll(PropertyMap.load(projectPropertiesFile()));
+
+            // Lexakai properties,
+            properties.addAll(PropertyMap.load(propertiesFile()));
+
+            // and project folders.
+            properties.add("project-folder", folder().toString());
+            properties.add("project-relative-folder", relativeFolder().toString());
+            properties.add("project-output-folder", outputFolder().toString());
+            properties.add("project-output-root-folder", outputRootFolder().toString());
+            properties.add("project-relative-output-folder", relativeOutputFolder().toString());
+            properties.add("project-diagram-location", diagramLocation());
+
+            // Ensure that required properties are defined.
+            require(properties, "lexakai-documentation-location");
+            require(properties, "lexakai-images-location");
+            require(properties, "project-name");
+            require(properties, "project-description");
+
+            // Add defaults:
+
+            // project-dotted-name: The maven project name with dots instead of dashes (like kivakit.core.application)
+            properties.putIfAbsent("project-dotted-name", properties.get("project-name").replaceAll("-", "."));
+
+            // project-icon: Use the gears icon if no icon has been specified
+            properties.putIfAbsent("project-icon", properties.asPath("lexakai-images-location") + "/gears-40.png");
+
+            // project-javadoc-location: Compose the javadoc location from the lexakai-javadoc-location and the
+            // project's dotted name. For example, https://www.kivakit.org/javadoc/kivakit.core.application
+            properties.putIfAbsent("project-javadoc-location", properties.asPath("lexakai-javadoc-location") + "/" + properties.get("project-dotted-name"));
+        }
         return properties;
     }
 
@@ -461,14 +531,14 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return projectFolder.file("README.md");
     }
 
-    public File readmeOutputFile()
-    {
-        return outputFolder().file("README.md");
-    }
-
     public Folder relativeFolder()
     {
         return folder().relativeTo(root);
+    }
+
+    public Folder relativeOutputFolder()
+    {
+        return outputFolder().relativeTo(root);
     }
 
     public Folder sourceFolder()
@@ -508,6 +578,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     private boolean isProject(final Folder folder)
     {
         return folder.file("pom.xml").exists() || folder.file("gradle.properties").exists();
+    }
+
+    private File lexakaiSettingsFile()
+    {
+        return outputRootFolder().file("lexakai-settings.properties");
     }
 
     /**
@@ -568,8 +643,19 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return coverage;
     }
 
+    private File projectPropertiesFile()
+    {
+        return sourceFolder().file("project.properties");
+    }
+
     private File propertiesFile()
     {
         return documentationLexakaiFolder().file("lexakai.properties");
+    }
+
+    private void require(final PropertyMap map, final String key)
+    {
+        final var value = map.get(key);
+        ensure(value != null && !value.contains("[UNDEFINED]"), "The key '$' is not defined in lexakai-settings.properties or lexakai.properties", key);
     }
 }

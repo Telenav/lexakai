@@ -32,7 +32,6 @@ import com.telenav.kivakit.core.resource.resources.string.StringResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
-import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
 import java.util.ArrayList;
@@ -184,7 +183,7 @@ public class ReadMeUpdater
         final var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
-            final var line = "[*" + diagram.title() + "*](" + project.documentationLocation() + "/diagrams/" + diagram.identifier() + ".svg)";
+            final var line = "[*" + diagram.title() + "*](" + project.documentationLocation() + "/documentation/diagrams/" + diagram.identifier() + ".svg)";
             (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
             types.addAll(diagram.includedQualifiedTypes());
         });
@@ -270,9 +269,6 @@ public class ReadMeUpdater
      */
     private StringList javadocSections(final UmlType type, final Pattern javadocSectionPattern)
     {
-        final var javadocUrl = project.property("lexakai-javadoc-location");
-        final var qualifiedName = type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS);
-        final var name = type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
         final var sections = new StringList();
         final var javadocSections = new HashSet<>(type.documentationSections());
         if (javadocSections.isEmpty())
@@ -293,11 +289,13 @@ public class ReadMeUpdater
             }
         }
 
+        final var name = type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+
         for (final var section : javadocSections)
         {
             if (sections.isEmpty())
             {
-                sections.add("| [*" + name + "*](" + javadocUrl + "/" + Names.packageName(qualifiedName).replaceAll("\\.", "/") + "/" + name + ".html) | " + section + " |  ");
+                sections.add("| [*" + name + "*](" + project.javadocLocation(type) + ") | " + section + " |  ");
             }
             else
             {

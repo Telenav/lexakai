@@ -1,4 +1,4 @@
-open module lexakai.application
+open module lexakai
 {
     requires transitive lexakai.annotations;
     requires transitive kivakit.core.application;

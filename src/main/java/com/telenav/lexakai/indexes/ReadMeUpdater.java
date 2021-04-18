@@ -142,8 +142,12 @@ public class ReadMeUpdater
 
         // and finally, update the referenced images.
         final var images = Package.of(getClass(), "documentation/images");
-        final var imagesFolder = project.imagesFolder().absolute().mkdirs();
-        images.resources().forEach(image -> image.copyTo(imagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
+        final var imagesFolder = project.imagesFolder();
+        if (imagesFolder != null)
+        {
+            final var absoluteImagesFolder = imagesFolder.absolute().mkdirs();
+            images.resources().forEach(image -> image.copyTo(absoluteImagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
+        }
     }
 
     /**
@@ -192,8 +196,8 @@ public class ReadMeUpdater
         {
             packageDiagramIndex.add("None");
         }
-        variables.put("class-diagram-index", classDiagramIndex.join("\n  "));
-        variables.put("package-diagram-index", packageDiagramIndex.join("\n  "));
+        variables.put("class-diagram-index", classDiagramIndex.join("  \n"));
+        variables.put("package-diagram-index", packageDiagramIndex.join("  \n"));
 
         // add Javadoc coverage information,
         project.nestedProjectJavadocCoverage().first().addToVariableMap(variables);
@@ -203,7 +207,7 @@ public class ReadMeUpdater
         final var sorted = new ArrayList<>(types);
         sorted.sort(Comparator.comparing(type -> type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS)));
         sorted.forEach(type -> sections.addAll(javadocSections(type, project.javadocSectionPattern())));
-        variables.put("key-documentation", sections.join("\n"));
+        variables.put("javadoc-index", sections.join("\n"));
 
         // and the wrapped project description.
         final var description = variables.get("project-description");
@@ -266,7 +270,7 @@ public class ReadMeUpdater
      */
     private StringList javadocSections(final UmlType type, final Pattern javadocSectionPattern)
     {
-        final var javadocUrl = project.property("project-javadoc-url");
+        final var javadocUrl = project.property("lexakai-javadoc-location");
         final var qualifiedName = type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS);
         final var name = type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
         final var sections = new StringList();

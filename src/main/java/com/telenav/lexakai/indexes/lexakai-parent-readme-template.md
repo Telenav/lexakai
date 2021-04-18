@@ -1,4 +1,4 @@
-# ${project-name} &nbsp;&nbsp;![](${project-icon})
+# ${project-title} &nbsp;&nbsp;![](${project-icon})
 
 ${project-description}
 

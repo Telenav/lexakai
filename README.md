@@ -1,51 +1,48 @@
-[![](https://www.kivakit.org/images/twitter-32.png)](https://twitter.com/openlexakai)
-&nbsp;
-[![](https://www.kivakit.org/images/web-32.png)](https://telenav.github.io/lexakai/)
-
-![](https://www.kivakit.org/images/lexakai-background-1024.png)
-
 # Lexakai &nbsp;&nbsp;![](https://www.kivakit.org/images/lexakai-64.png)
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+![](https://www.lexakai.org/images/horizontal-line.png)
 
 ### Index
 
-[**Dependencies**](#dependencies)
-[**Summary**](#summary)
-[**Example**](#example)
-[**Download Executable JAR**](#download-executable-jar)
-[**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)
-[**Custom UML Diagrams**](#custom-uml-diagrams)
-[**Grouping Methods in Class Diagrams**](#grouping-methods-in-class-diagrams)
-[**Automatic Method Groups**](#automatic-method-groups)
-[**UML Associations**](#uml-associations)
-[**Excluding Types And Members**](#excluding-types-and-members)
-[**Non-Public Apis**](#non-public-apis)
-[**Annotation Summary**](#annotation-summary)
-[**Configuration**](#configuration)
-[**Readme Generation and Updating**](#readme-generation-and-updating)
-[**Custom README Templates**](#custom-readme-templates)
-[**Class Diagrams**](#class-diagrams)
-[**Package Diagrams**](#package-diagrams)
-[**Javadoc**](#javadoc)
+[**Summary**](#summary)  
+[**Example**](#example)  
+[**Download Executable JAR**](#download-executable-jar)  
+[**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
+[**Custom UML Diagrams**](#custom-uml-diagrams)  
+[**Grouping Methods in Class Diagrams**](#grouping-methods-in-class-diagrams)  
+[**Automatic Method Groups**](#automatic-method-groups)  
+[**UML Associations**](#uml-associations)  
+[**Excluding Types And Members**](#excluding-types-and-members)  
+[**Non-Public Apis**](#non-public-apis)  
+[**Annotation Summary**](#annotation-summary)  
+[**Configuration**](#configuration)  
+[**Targeting Output to a Different Repository**](#targeting-output-to-a-different-repository)  
+[**Readme Generation and Updating**](#readme-generation-and-updating)  
+[**Custom README Templates**](#custom-readme-templates)  
 
-### Dependencies &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+![](https://www.lexakai.org/images/horizontal-line.png)
+
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.lexakai.org/images/dependencies-40.png)
+
+[*Dependency Diagram*](https://www.lexakai.org/lexakai/lexakai/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4</version>
     </dependency>
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Summary <a name = "summary"></a>
 
@@ -53,6 +50,8 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 Creates documentation indexes and UML diagrams from the source code of each maven or gradle
 project discovered recursively from the root folder(s) given as argument(s).
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Example <a name = "example"></a>
 
@@ -67,13 +66,19 @@ This documentation was created by Lexakai, including:
 
 For another example of Lexakai documentation, see [KivaKit](https://github.com/Telenav/kivakit).
 
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
 ### Download Executable JAR <a name = "download"></a>&nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
 
-[Lexakai 0.9.3](tools/building/lexakai-0.9.3.jar)
+[Lexakai 0.9.4](https://www.lexakai.org/builds/lexakai-0.9.4.jar)
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
 Lexakai automatically creates basic package diagrams for all public types without further configuration.
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
@@ -102,6 +107,8 @@ the marker interface name). A type can be used in more than one diagram, by spec
 The preferred location for diagram marker interfaces is in the sub-package *project.lexakai.diagrams*,
 and they should be prefixed with *Diagram* to make their use clear.
 
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
 ### Grouping Methods in Class Diagrams <a name = "grouping-methods-in-class-diagrams"></a>&nbsp; ![](https://www.kivakit.org/images/set-40.png)
 
 Groups of methods can be specified using the *@UmlMethodGroup* annotation. Method groups will
@@ -114,6 +121,8 @@ For example:
 could be used to label all the configuration-related methods in a type. Multiple *@UmlMethodGroup*
 annotations can be added to specify that a method should be shown in more than one group.
 
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
 ### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](https://www.kivakit.org/images/gears-40.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*
@@ -122,6 +131,8 @@ patterns as to which group a method most likely belongs. When the guess is inacc
 an *@UmlMethodGroup* annotation can be applied to correct the result. The set of patterns that are used to
 determine automatic groups is in a file called *lexakai.groups* in the documentation folder. This file can be
 customized for a particular project.
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://www.kivakit.org/images/right-arrow-32.png)
 
@@ -136,13 +147,19 @@ type, it can specify a relation with a particular referent and cardinality. An e
 can be made specific to a particular diagram with the *diagram* parameter. Multiple *@UmlRelation* tags can
 be applied to a type.
 
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
 ### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://www.kivakit.org/images/no-32.png)
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
 ### Non-Public Apis <a name = "non-public-apis"></a>
 
 *@UmlNotPublicApi* marks a type or member as private even if it is not actually private.
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://www.kivakit.org/images/annotation-32.png)
 
@@ -164,6 +181,8 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
                @UmlRelation - adds a labeled UML relation from the enclosing type to the annotated member type
             @UmlAggregation - adds a UML aggregation association from the enclosing type to the annotated field type
             @UmlComposition - adds a UML composition association from the enclosing type to the annotated field type
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Configuration <a name = "configuration"></a>&nbsp; ![](https://www.kivakit.org/images/tools-40.png)
 
@@ -190,7 +209,9 @@ title of the diagram. For example:
 
 refers to the diagram title specified by the key *diagram-my-project* in the *lexakai.properties* file.
 
-### Targeting Output to a Different Repository
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
+### Targeting Output to a Different Repository <a name = "targeting-output-to-a-different-repository"></a>
 
 Lexakai is designed to direct output to a different repository. For example, in the [KivaKit](https://www.kivakit.org) 
 project, output can be directed to a different folder with:
@@ -204,6 +225,8 @@ Storing documentation (Lexakai and Javadoc) and binary data like applications in
 distracting files from the source repository and makes it faster to check out.
 
 By default, Lexakai targets the source tree, but it is recommended to supply an output folder in another repository.
+
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
 ### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](https://www.kivakit.org/images/pencil-32.png)
 
@@ -222,6 +245,8 @@ which is the style used in the KivaKit.
 Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved,
 allowing additional documentation to be maintained.
 
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
 ### Custom README Templates <a name = "custom-readme-templates"></a>
 
 The first run of Lexakai on a project will create two default templates in the *documentation* folder
@@ -231,76 +256,88 @@ remove them and run Lexakai again.
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](https://www.kivakit.org/images/diagram-48.png)
+![](https://www.lexakai.org/images/short-horizontal-line.png)
+
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.lexakai.org/images/diagram-48.png)
 
 None
 
-### Package Diagrams &nbsp;&nbsp;![](https://www.kivakit.org/images/box-40.png)
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
-[*com.telenav.lexakai*](documentation/diagrams/com.telenav.lexakai.svg)
-[*com.telenav.lexakai.associations*](documentation/diagrams/com.telenav.lexakai.associations.svg)
-[*com.telenav.lexakai.builders*](documentation/diagrams/com.telenav.lexakai.builders.svg)
-[*com.telenav.lexakai.builders.grouper*](documentation/diagrams/com.telenav.lexakai.builders.grouper.svg)
-[*com.telenav.lexakai.dependencies*](documentation/diagrams/com.telenav.lexakai.dependencies.svg)
-[*com.telenav.lexakai.indexes*](documentation/diagrams/com.telenav.lexakai.indexes.svg)
-[*com.telenav.lexakai.library*](documentation/diagrams/com.telenav.lexakai.library.svg)
-[*com.telenav.lexakai.members*](documentation/diagrams/com.telenav.lexakai.members.svg)
-[*com.telenav.lexakai.types*](documentation/diagrams/com.telenav.lexakai.types.svg)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.lexakai.org/images/box-40.png)
 
-### Javadoc &nbsp;&nbsp;![](https://www.kivakit.org/images/books-40.png)
+[*com.telenav.lexakai*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.svg)  
+[*com.telenav.lexakai.associations*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.associations.svg)  
+[*com.telenav.lexakai.builders*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.builders.svg)  
+[*com.telenav.lexakai.builders.grouper*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.builders.grouper.svg)  
+[*com.telenav.lexakai.dependencies*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.dependencies.svg)  
+[*com.telenav.lexakai.indexes*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.indexes.svg)  
+[*com.telenav.lexakai.javadoc*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.javadoc.svg)  
+[*com.telenav.lexakai.library*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.library.svg)  
+[*com.telenav.lexakai.members*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.members.svg)  
+[*com.telenav.lexakai.types*](https://www.lexakai.org/lexakai/lexakai/diagrams/com.telenav.lexakai.types.svg)
 
-Javadoc coverage for this project is 22.9%.
+![](https://www.lexakai.org/images/short-horizontal-line.png)
 
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-20-12.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.lexakai.org/images/books-40.png)
 
-The following significant classes are undocumented:
+Javadoc coverage for this project is 49.4%.  
+  
+&nbsp; &nbsp;  ![](https://www.lexakai.org/images/meter-50-12.png)
 
-- AssociationBuilder
-- LexakaiClassDiagram
-- MethodGroupNameGuesser
-- Types
-- UmlAssociation
+The following significant classes are undocumented:  
+
+- AssociationBuilder  
+- Associations  
+- JavadocCoverage  
+- LexakaiClassDiagram  
+- MavenDependencyTreeBuilder  
+- MethodGroup  
+- MethodGroupNameGuesser  
+- Types  
+- UmlAssociation  
+- UmlMethod
 
 | Class | Documentation Sections |
 |---|---|
-| [*Annotations*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Annotations.html) |  |
-| [*Artifact*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/Artifact.html) |  |
-| [*AssociationBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/AssociationBuilder.html) |  |
-| [*Associations*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Associations.html) |  |
-| [*BaseLexakaiDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/BaseLexakaiDiagram.html) |  |
-| [*Dependency*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/Dependency.html) |  |
-| [*DependencyDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/DependencyDiagram.html) |  |
-| [*DependencyTree*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/DependencyTree.html) |  |
-| [*Diagrams*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Diagrams.html) |  |
-| [*Fields*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Fields.html) |  |
-| [*Lexakai*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/Lexakai.html) |  |
-| [*LexakaiClassDiagram*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.html) |  |
-| [*LexakaiClassDiagram.Referent*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |
-| [*LexakaiProject*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |
-| | Functions |
-| | Settings |
-| [*LexakaiProject.JavadocCoverage*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/LexakaiProject.JavadocCoverage.html) |  |
-| [*MavenDependencyTreeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |
-| [*Members*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Members.html) |  |
-| [*MethodBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/MethodBuilder.html) |  |
-| [*MethodGroup*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroup.html) |  |
-| [*MethodGroupNameGuesser*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroupNameGuesser.html) |  |
-| [*MethodGrouper*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |
-| [*MethodGroups*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |
-| [*Methods*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Methods.html) |  |
-| [*Names*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Names.html) |  |
-| [*Names.Qualification*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Names.Qualification.html) |  |
-| [*Names.TypeParameters*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Names.TypeParameters.html) |  |
-| [*ReadMeUpdater*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/indexes/ReadMeUpdater.html) | Usage |
-| | Templates |
-| [*TypeBuilder*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/builders/TypeBuilder.html) |  |
-| [*Types*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/library/Types.html) |  |
-| [*UmlAssociation*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.html) |  |
-| [*UmlAssociation.AssociationType*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |
-| [*UmlConstructor*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/members/UmlConstructor.html) |  |
-| [*UmlInheritance*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/associations/UmlInheritance.html) |  |
-| [*UmlMethod*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/members/UmlMethod.html) |  |
-| [*UmlType*](https://telenav.github.io/lexakai/javadoc/lexakai.annotations/com/telenav/lexakai/types/UmlType.html) |  |
+| [*Annotations*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Annotations.html) |  |  
+| [*Artifact*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/dependencies/Artifact.html) |  |  
+| [*AssociationBuilder*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/AssociationBuilder.html) |  |  
+| [*Associations*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Associations.html) |  |  
+| [*BaseLexakaiDiagram*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/BaseLexakaiDiagram.html) |  |  
+| [*Dependency*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/dependencies/Dependency.html) |  |  
+| [*DependencyDiagram*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/dependencies/DependencyDiagram.html) |  |  
+| [*DependencyTree*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/dependencies/DependencyTree.html) |  |  
+| [*Diagrams*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Diagrams.html) |  |  
+| [*Fields*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Fields.html) |  |  
+| [*JavadocCoverage*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/javadoc/JavadocCoverage.html) |  |  
+| [*Lexakai*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/Lexakai.html) |  |  
+| [*LexakaiClassDiagram*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/LexakaiClassDiagram.html) |  |  
+| [*LexakaiClassDiagram.Referent*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
+| [*LexakaiProject*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |  
+| | Functions |  
+| | Settings |  
+| [*MavenDependencyTreeBuilder*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
+| [*Members*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Members.html) |  |  
+| [*MethodBuilder*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/MethodBuilder.html) |  |  
+| [*MethodGroup*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGroup.html) |  |  
+| [*MethodGroupNameGuesser*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGroupNameGuesser.html) |  |  
+| [*MethodGrouper*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |  
+| [*MethodGroups*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
+| [*Methods*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Methods.html) |  |  
+| [*Names*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Names.html) |  |  
+| [*Names.Qualification*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Names.Qualification.html) |  |  
+| [*Names.TypeParameters*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Names.TypeParameters.html) |  |  
+| [*ReadMeUpdater*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/indexes/ReadMeUpdater.html) | Usage |  
+| | Templates |  
+| [*TypeBuilder*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/builders/TypeBuilder.html) |  |  
+| [*Types*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/library/Types.html) |  |  
+| [*UmlAssociation*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
+| [*UmlAssociation.AssociationType*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |  
+| [*UmlConstructor*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/members/UmlConstructor.html) |  |  
+| [*UmlInheritance*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/associations/UmlInheritance.html) |  |  
+| [*UmlMethod*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/members/UmlMethod.html) |  |  
+| [*UmlType*](https://www.lexakai.org/javadoc/lexakai/com/telenav/lexakai/types/UmlType.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -310,9 +347,9 @@ The following significant classes are undocumented:
 
 <br/>
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+![](https://www.lexakai.org/images/horizontal-line.png)
 
-<sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

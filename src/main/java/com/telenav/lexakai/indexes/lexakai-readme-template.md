@@ -1,4 +1,4 @@
-# ${project-name} &nbsp;&nbsp;![](${project-icon})
+# ${project-title} &nbsp;&nbsp;![](${project-icon})
 
 ${project-description}
 
@@ -54,7 +54,7 @@ ${project-undocumented-classes}
 
 | Class | Documentation Sections |
 |---|---|
-${key-documentation}
+${javadoc-index}
 
 [//]: # (start-user-text)
 

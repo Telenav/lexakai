@@ -1,0 +1,7 @@
+#―――― Setup ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+system_variable LEXAKAI_WORKSPACE $KIVAKIT_WORKSPACE
+
+#―――― Lexakai ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+source $LEXAKAI_WORKSPACE/lexakai/tools/library/lexakai-common-profile.sh

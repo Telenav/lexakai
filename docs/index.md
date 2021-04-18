@@ -10,24 +10,24 @@ Lexakai is a command line tool used to create UML diagrams and markdown document
 
 ### Index
 
-[**Summary**](#summary)
-[**Example**](#example)
-[**Download Executable JAR**](#download-executable-jar)
-[**Source Code**](#source-code)
-[**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)
-[**Custom UML Diagrams**](#custom-uml-diagrams)
-[**Grouping Methods in Class Diagrams**](#grouping-methods-in-class-diagrams)
-[**Automatic Method Groups**](#automatic-method-groups)
-[**UML Associations**](#uml-associations)
-[**Excluding Types And Members**](#excluding-types-and-members)
-[**Non-Public Apis**](#non-public-apis)
-[**Annotation Summary**](#annotation-summary)
-[**Configuration**](#configuration)
-[**Readme Generation and Updating**](#readme-generation-and-updating)
-[**Custom README Templates**](#custom-readme-templates)
-[**Class Diagrams**](#class-diagrams)
-[**Package Diagrams**](#package-diagrams)
-[**Javadoc**](#javadoc)
+[**Summary**](#summary)  
+[**Example**](#example)  
+[**Download Executable JAR**](#download-executable-jar)  
+[**Source Code**](#source-code)  
+[**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
+[**Custom UML Diagrams**](#custom-uml-diagrams)  
+[**Grouping Methods in Class Diagrams**](#grouping-methods-in-class-diagrams)  
+[**Automatic Method Groups**](#automatic-method-groups)  
+[**UML Associations**](#uml-associations)  
+[**Excluding Types And Members**](#excluding-types-and-members)  
+[**Non-Public Apis**](#non-public-apis)  
+[**Annotation Summary**](#annotation-summary)  
+[**Configuration**](#configuration)  
+[**Readme Generation and Updating**](#readme-generation-and-updating)  
+[**Custom README Templates**](#custom-readme-templates)  
+[**Class Diagrams**](#class-diagrams)  
+[**Package Diagrams**](#package-diagrams)  
+[**Javadoc**](#javadoc)  
 
 ![](images/horizontal-line.png)
 
@@ -38,21 +38,31 @@ Lexakai is a command line tool used to create UML diagrams and markdown document
 Creates documentation indexes and UML diagrams from the source code of each maven or gradle project discovered recursively from the root
 folder(s) given as argument(s).
 
+![](images/short-horizontal-line.png)
+
 ### Example <a name = "example"></a>
 
 For an example of Lexakai created documentation see [KivaKit](https://github.com/Telenav/kivakit).
 
+![](images/short-horizontal-line.png)
+
 ### Download Executable JAR <a name = "download"></a>&nbsp; ![](images/down-arrow-32.png)
 
-[Lexakai 0.9.2](https://github.com/Telenav/lexakai/raw/master/tools/building/lexakai-0.9.2.jar)
+[Lexakai 0.9.4](https://www.lexakai.org/builds/lexakai-0.9.4.jar)
+
+![](images/short-horizontal-line.png)
 
 ### Source Code <a name = "source-code"></a>
 
 [GitHub Telenav/lexakai](https://github.com/Telenav/lexakai)
 
+![](images/short-horizontal-line.png)
+
 ### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](images/box-40.png)
 
 Lexakai automatically creates basic package diagrams for all public types without further configuration.
+
+![](images/short-horizontal-line.png)
 
 ### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; ![](images/diagram-48.png)
 
@@ -81,6 +91,8 @@ used in more than one diagram, by specifying more than one
 The preferred location for diagram marker interfaces is in the sub-package *project.lexakai.diagrams*, and they should be prefixed with *
 Diagram* to make their use clear.
 
+![](images/short-horizontal-line.png)
+
 ### Grouping Methods in Class Diagrams <a name = "grouping-methods-in-class-diagrams"></a>&nbsp; ![](images/set-40.png)
 
 Groups of methods can be specified using the *@UmlMethodGroup* annotation. Method groups will be given labeled separators in class diagrams,
@@ -93,6 +105,8 @@ For example:
 could be used to label all the configuration-related methods in a type. Multiple *@UmlMethodGroup*
 annotations can be added to specify that a method should be shown in more than one group.
 
+![](images/short-horizontal-line.png)
+
 ### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](images/gears-40.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*
@@ -100,6 +114,8 @@ The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method
 most likely belongs. When the guess is inaccurate, or no guess is made, an *@UmlMethodGroup* annotation can be applied to correct the
 result. The set of patterns that are used to determine automatic groups is in a file called *lexakai.groups* in the documentation folder.
 This file can be customized for a particular project.
+
+![](images/short-horizontal-line.png)
 
 ### UML Associations <a name = "uml-associations"></a>&nbsp; ![](images/right-arrow-32.png)
 
@@ -112,13 +128,19 @@ type to the type of the member. Similar annotations are available for field aggr
 explicit relation of this type can be made specific to a particular diagram with the *diagram* parameter. Multiple *@UmlRelation* tags can
 be applied to a type.
 
+![](images/short-horizontal-line.png)
+
 ### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](images/no-32.png)
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
+![](images/short-horizontal-line.png)
+
 ### Non-Public Apis <a name = "non-public-apis"></a>
 
 *@UmlNotPublicApi* marks a type or member as private even if it is not actually private.
+
+![](images/short-horizontal-line.png)
 
 ### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](images/annotation-32.png)
 
@@ -140,6 +162,8 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 - *@UmlRelation* - adds a labeled UML relation from the enclosing type to the annotated member type
 - *@UmlAggregation* - adds a UML aggregation association from the enclosing type to the annotated field type
 - *@UmlComposition* - adds a UML composition association from the enclosing type to the annotated field type
+
+![](images/short-horizontal-line.png)
 
 ### Configuration <a name = "configuration"></a>&nbsp; ![](images/tools-40.png)
 
@@ -166,6 +190,8 @@ example:
 
 refers to the diagram title specified by the key *diagram-my-project* in the *lexakai.properties* file.
 
+![](images/short-horizontal-line.png)
+
 ### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](images/pencil-32.png)
 
 If the *-update-readme* switch is set to *true* (it is *false* by default to ensure it doesn't overwrite an existing file) then a *
@@ -181,6 +207,8 @@ which is the style used in the KivaKit.
 
 Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved, allowing additional documentation to be
 maintained.
+
+![](images/short-horizontal-line.png)
 
 ### Custom README Templates
 

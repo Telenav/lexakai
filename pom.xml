@@ -13,7 +13,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
-    <version>0.9.3</version>
+    <version>0.9.4</version>
     <packaging>jar</packaging>
 
     <!-- Metadata -->
@@ -299,8 +299,7 @@
                     <detectJavaApiLink>false</detectJavaApiLink>
                     <doclint>none</doclint>
                     <nohelp>true</nohelp>
-                    <reportOutputDirectory>docs</reportOutputDirectory>
-                    <destDir>javadoc</destDir>
+                    <reportOutputDirectory>${env.LEXAKAI_DATA_HOME}/docs/javadoc/lexakai</reportOutputDirectory>
                     <additionalOptions>--show-module-contents all --show-packages all --show-types protected</additionalOptions>
                 </configuration>
                 <executions>
@@ -341,7 +340,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
                                         </echo>
-                                        <java jar = "${maven.multiModuleProjectDirectory}/tools/building/kivakit-build-metadata-0.9.3.jar"
+                                        <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
@@ -361,7 +360,9 @@
                             <target name = "Install ${lexakai.jar}">
                                 <echo message = "Installing ${lexakai.jar}"/>
                                 <copy file = "target/${lexakai.jar}"
-                                      tofile = "${project.basedir}/../../../tools/applications/bin/${lexakai.jar}"/>
+                                      tofile = "${env.LEXAKAI_DATA_HOME}/docs/builds/${lexakai.jar}"/>
+                                <copy file = "target/${lexakai.jar}"
+                                      tofile = "${env.KIVAKIT_DATA_HOME}/docs/applications/${lexakai.jar}"/>
                             </target>
                         </configuration>
                         <goals>

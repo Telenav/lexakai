@@ -301,7 +301,7 @@
                     <nohelp>true</nohelp>
                     <reportOutputDirectory>${env.LEXAKAI_DATA_HOME}/docs/javadoc</reportOutputDirectory>
                     <destDir>lexakai</destDir>
-                    <additionalOptions>--show-module-contents all --show-packages all --show-types protected</additionalOptions>
+                    <additionalOptions>--show-module-contents all --show-packages all --show-types private</additionalOptions>
                 </configuration>
                 <executions>
                     <execution>

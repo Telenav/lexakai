@@ -52,6 +52,7 @@ import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**
  * Represents a project for which Lexakai is producing diagrams.
@@ -240,8 +241,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public String diagramLocation()
     {
+        //  kivakit-core/application/documentation/diagrams/diagram-application.svg
         final var documentationLocation = documentationLocation();
-        return documentationLocation == null ? null : StringPath.stringPath(documentationLocation, relativeFolder().toString(), "diagrams").toString();
+        return documentationLocation == null
+                ? null
+                : StringPath.stringPath(documentationLocation, relativeFolder().toString(), "application/documentation/diagrams").toString();
     }
 
     /**
@@ -406,6 +410,13 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return properties().asPath("lexakai-javadoc-location");
     }
 
+    public String javadocLocation(final UmlType type)
+    {
+        final var qualifiedName = type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS).replaceAll("\\.", "/");
+
+        return javadocLocation() + "/" + name() + "/" + qualifiedName + ".html";
+    }
+
     public Pattern javadocSectionPattern()
     {
         return javadocSectionPattern;
@@ -518,6 +529,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
             // project's dotted name. For example, https://www.kivakit.org/javadoc/kivakit.core.application
             properties.putIfAbsent("project-javadoc-location", properties.asPath("lexakai-javadoc-location") + "/" + properties.get("project-dotted-name"));
         }
+
         return properties;
     }
 

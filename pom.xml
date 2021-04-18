@@ -299,7 +299,8 @@
                     <detectJavaApiLink>false</detectJavaApiLink>
                     <doclint>none</doclint>
                     <nohelp>true</nohelp>
-                    <reportOutputDirectory>${env.LEXAKAI_DATA_HOME}/docs/javadoc/lexakai</reportOutputDirectory>
+                    <reportOutputDirectory>${env.LEXAKAI_DATA_HOME}/docs/javadoc</reportOutputDirectory>
+                    <destDir>lexakai</destDir>
                     <additionalOptions>--show-module-contents all --show-packages all --show-types protected</additionalOptions>
                 </configuration>
                 <executions>

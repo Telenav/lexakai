@@ -42,8 +42,6 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [//]: # (start-user-text)
 
-![](https://www.lexakai.org/images/short-horizontal-line.png)
-
 ### Summary <a name = "summary"></a>
 
 *Lexakai* - from lexis (greek for 'word') and kai (hawaiian for 'ocean').

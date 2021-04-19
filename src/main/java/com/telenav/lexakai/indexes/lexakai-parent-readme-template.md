@@ -1,4 +1,4 @@
-# ${project-title} &nbsp;&nbsp; <img src="https://www.lexakai.org/images/${project-icon}.png" srcset="https://www.lexakai.org/images/${project-icon}-2x.png 2x"></img>
+# ${project-title} &nbsp;&nbsp; <img src="https://www.lexakai.org/images/${project-icon}.png" srcset="https://www.lexakai.org/images/${project-icon}-2x.png 2x"/>
 
 ${project-description}
 
@@ -10,13 +10,13 @@ ${user-text-top}
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"></img>
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"/>
 
 ${child-projects}
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"></img>
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"/>
 
 ${project-javadoc-coverage}
 

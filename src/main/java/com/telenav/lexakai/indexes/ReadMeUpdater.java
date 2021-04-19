@@ -31,7 +31,6 @@ import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
-import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.types.UmlType;
 
 import java.util.ArrayList;
@@ -154,12 +153,23 @@ public class ReadMeUpdater
     {
         variables.put("project-javadoc-coverage", project
                 .nestedProjectJavadocCoverage()
-                .join("  \n", JavadocCoverage::projectCoverageMeter));
+                .join("  \n", coverage ->
+                {
+                    final var child = coverage.project().folders().sourceProject();
+                    final var projectFolder = project.folders().sourceProject();
+                    final var folder = child.relativeTo(projectFolder);
+                    return coverage.projectCoverageMeter(folder);
+                }));
+
         final var childProjectMarkdown = new StringList();
         final var childProjects = project.childProjects();
         if (!childProjects.isEmpty())
         {
-            childProjects.forEach(at -> childProjectMarkdown.add(at.link() + "  "));
+            childProjects.forEach(at ->
+            {
+                final var child = at.folders().sourceProject().last();
+                childProjectMarkdown.add(at.link(child) + "  ");
+            });
         }
 
         // and populate the variable map with this information,

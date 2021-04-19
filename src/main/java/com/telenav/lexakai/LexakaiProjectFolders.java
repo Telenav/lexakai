@@ -10,22 +10,22 @@ public class LexakaiProjectFolders
     private final LexakaiProject project;
 
     /** The root folder that is being processed */
-    private final Folder root;
+    private final Folder sourceRoot;
 
     /** The project folder under the root folder for this project */
-    private final Folder projectFolder;
+    private final Folder sourceProject;
 
     /** The root output folder */
     private final Folder outputRootFolder;
 
     public LexakaiProjectFolders(final LexakaiProject project,
-                                 final Folder root,
-                                 final Folder projectFolder,
+                                 final Folder sourceRoot,
+                                 final Folder sourceProject,
                                  final Folder outputRootFolder)
     {
         this.project = project;
-        this.root = root;
-        this.projectFolder = projectFolder;
+        this.sourceRoot = sourceRoot;
+        this.sourceProject = sourceProject;
         this.outputRootFolder = outputRootFolder;
     }
 
@@ -42,7 +42,7 @@ public class LexakaiProjectFolders
      */
     public Folder output()
     {
-        return project.folders().outputRoot().folder(sourceRelativeProject());
+        return project.folders().outputRoot().folder(sourceProjectRelativeToRoot());
     }
 
     /**
@@ -78,17 +78,9 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The root folder that Lexakai is processing
-     */
-    public Folder root()
-    {
-        return root;
-    }
-
-    /**
      * @return The source folder for this project, if the {@link LexakaiProject#hasSourceCode()} method returns true
      */
-    public Folder sourceFolder()
+    public Folder sourceCode()
     {
         return project.folders().sourceProject().folder("src/main/java");
     }
@@ -98,14 +90,22 @@ public class LexakaiProjectFolders
      */
     public Folder sourceProject()
     {
-        return projectFolder;
+        return sourceProject;
     }
 
     /**
      * @return This folder in the source tree for this project, relative to the root folder
      */
-    public Folder sourceRelativeProject()
+    public Folder sourceProjectRelativeToRoot()
     {
-        return project.folders().sourceProject().relativeTo(project.folders().root());
+        return sourceProject().relativeTo(sourceRoot());
+    }
+
+    /**
+     * @return The root folder that Lexakai is processing
+     */
+    public Folder sourceRoot()
+    {
+        return sourceRoot;
     }
 }

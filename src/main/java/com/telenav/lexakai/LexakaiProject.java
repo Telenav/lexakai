@@ -91,7 +91,7 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
 public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
     /** The folder for this project */
-    private final Folder projectFolder;
+    private final Folder sourceProject;
 
     /** The root output folder */
     private final Folder outputRootFolder;
@@ -106,7 +106,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     private final Version version;
 
     /** The project root folder */
-    private final Folder root;
+    private final Folder sourceRoot;
 
     /** True to include equals, hashCode and toString */
     private boolean includeObjectMethods;
@@ -155,19 +155,19 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public LexakaiProject(final Lexakai lexakai,
                           final Version version,
-                          final Folder root,
-                          final Folder projectFolder,
+                          final Folder sourceRoot,
+                          final Folder sourceProject,
                           final Folder outputRootFolder,
                           final JavaParser parser)
     {
         this.lexakai = lexakai;
         this.version = version;
-        this.root = root;
-        this.projectFolder = projectFolder;
+        this.sourceRoot = sourceRoot;
+        this.sourceProject = sourceProject;
         this.outputRootFolder = outputRootFolder;
         this.parser = parser;
 
-        folders = new LexakaiProjectFolders(this, root, projectFolder, outputRootFolder);
+        folders = new LexakaiProjectFolders(this, sourceRoot, sourceProject, outputRootFolder);
         files = new LexakaiProjectFiles(this);
 
         initialize();
@@ -318,7 +318,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public boolean hasSourceCode()
     {
-        return projectFolder.folder("src").exists();
+        return sourceProject.folder("src").exists();
     }
 
     /**
@@ -386,9 +386,9 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return this;
     }
 
-    public String link()
+    public String link(final Folder folder)
     {
-        return "[**" + name() + "**](" + folders().sourceRelativeProject().path().withoutFirst() + "/README.md)";
+        return "[**" + name() + "**](" + folder + "/README.md)";
     }
 
     @NotNull
@@ -399,9 +399,9 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public String name()
     {
-        final var parentProject = projectFolder.relativePath(root.absolute());
+        final var parentProject = sourceProject.relativePath(sourceRoot.absolute());
         return (parentProject.isEmpty()
-                ? projectFolder.name().name()
+                ? sourceProject.name().name()
                 : parentProject.join("-"));
     }
 
@@ -443,7 +443,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public String rootProjectName()
     {
-        return root.name().name();
+        return sourceRoot.name().name();
     }
 
     @Override
@@ -490,7 +490,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         if (typeDeclarations.isEmpty())
         {
             // go through each Java file under the root's source folder,
-            folders().sourceFolder().nestedFiles(Extension.JAVA.fileMatcher()).forEach(file ->
+            folders().sourceCode().nestedFiles(Extension.JAVA.fileMatcher()).forEach(file ->
             {
                 // except for this weird file :),
                 if (!file.fileName().name().equals("module-info.java"))

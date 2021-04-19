@@ -60,7 +60,7 @@ public class LexakaiProjectFiles
     public File sourceProjectProperties()
     {
         return project.hasSourceCode()
-                ? project.folders().sourceFolder().file("project.properties")
+                ? project.folders().sourceCode().file("project.properties")
                 : project.folders().sourceProject().file("project.properties");
     }
 }

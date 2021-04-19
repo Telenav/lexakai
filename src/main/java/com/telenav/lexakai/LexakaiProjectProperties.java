@@ -48,7 +48,7 @@ public class LexakaiProjectProperties extends PropertyMap
 
         // project folders,
         add("project-folder", project.folders().sourceProject().toString());
-        add("project-relative-folder", project.folders().sourceRelativeProject().toString());
+        add("project-relative-folder", project.folders().sourceProjectRelativeToRoot().toString());
         add("project-output-folder", project.folders().output().toString());
         add("project-output-root-folder", project.folders().outputRoot().toString());
 
@@ -81,7 +81,7 @@ public class LexakaiProjectProperties extends PropertyMap
                 (
                         output,
                         project.rootProjectName(),
-                        project.folders().sourceRelativeProject().toString(),
+                        project.folders().sourceProjectRelativeToRoot().toString(),
                         "documentation/diagrams"
                 )
                 .toString();

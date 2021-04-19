@@ -3,6 +3,7 @@ package com.telenav.lexakai.javadoc;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.strings.Align;
@@ -169,9 +170,9 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         return projectCoverage;
     }
 
-    public String projectCoverageMeter()
+    public String projectCoverageMeter(final Folder folder)
     {
-        return "&nbsp; " + meterMarkdown() + " &nbsp; &nbsp; " + project.link();
+        return "&nbsp; " + meterMarkdown() + " &nbsp; &nbsp; " + project.link(folder);
     }
 
     public StringList summary()

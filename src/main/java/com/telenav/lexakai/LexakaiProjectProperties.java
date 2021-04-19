@@ -126,6 +126,11 @@ public class LexakaiProjectProperties extends PropertyMap
         return get("project-module-name");
     }
 
+    public String projectName()
+    {
+        return get("project-name");
+    }
+
     private void require(final String key)
     {
         final var value = get(key);

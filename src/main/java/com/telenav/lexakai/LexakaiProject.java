@@ -388,7 +388,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public String link()
     {
-        return "[**" + name() + "**](" + folders().sourceRelativeProject().name() + "/README.md)";
+        return "[**" + name() + "**](" + folders().sourceRelativeProject().path().withoutFirst() + "/README.md)";
     }
 
     @NotNull

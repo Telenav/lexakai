@@ -79,17 +79,13 @@ import static java.util.regex.Pattern.MULTILINE;
  */
 public class ReadMeUpdater
 {
-    private static final Resource README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-readme-template.md");
+    private static final Resource SOURCE_README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-source-readme-template.md");
 
-    private static final Resource PARENT_PROJECT_README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-parent-readme-template.md");
+    private static final Resource PARENT_README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-parent-readme-template.md");
 
     private final LexakaiProject project;
 
     private final Pattern SECTION_HEADING = Pattern.compile("^### ([ A-Za-z0-9_-]+)(\\s*<a name)?", MULTILINE);
-
-    private boolean updatedReadMeTemplate;
-
-    private boolean updatedParentReadMeTemplate;
 
     public ReadMeUpdater(final LexakaiProject project)
     {
@@ -103,7 +99,7 @@ public class ReadMeUpdater
     {
         // Get any user text blocks from any existing read me file,
         final var index = new StringList();
-        final var blocks = userTextBlocks(project.readmeFile());
+        final var blocks = userTextBlocks(project.files().readme());
         final var topBlock = indexUserText(blocks.getOrDefault(0, ""), index, project.addHtmlAnchors());
         final var bottomBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
 
@@ -132,16 +128,16 @@ public class ReadMeUpdater
         properties.put("user-text-bottom", expand(properties, bottomBlock));
 
         // then write the interpolated template
-        final var template = (project.hasSourceCode() ? projectReadMeTemplate() : parentProjectReadMeTemplate()).reader().string();
+        final var template = readMeTemplate().reader().string();
         final var expanded = expand(properties, template);
 
         // to the readme file in the source tree and the readme file in the output tree,
         final var readme = new StringResource(expanded);
-        readme.safeCopyTo(project.readmeFile(), OVERWRITE, ProgressReporter.NULL);
+        readme.safeCopyTo(project.files().readme(), OVERWRITE, ProgressReporter.NULL);
 
         // and finally, update the referenced images.
         final var images = Package.of(getClass(), "documentation/images");
-        final var imagesFolder = project.imagesFolder();
+        final var imagesFolder = project.folders().images();
         if (imagesFolder != null)
         {
             final var absoluteImagesFolder = imagesFolder.absolute().mkdirs();
@@ -183,7 +179,7 @@ public class ReadMeUpdater
         final var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
-            final var line = "[*" + diagram.title() + "*](" + project.documentationLocation() + "/documentation/diagrams/" + diagram.identifier() + ".svg)";
+            final var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
             (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
             types.addAll(diagram.includedQualifiedTypes());
         });
@@ -295,7 +291,7 @@ public class ReadMeUpdater
         {
             if (sections.isEmpty())
             {
-                sections.add("| [*" + name + "*](" + project.javadocLocation(type) + ") | " + section + " |  ");
+                sections.add("| [*" + name + "*](" + project.properties().outputJavadocLocation(type) + ") | " + section + " |  ");
             }
             else
             {
@@ -309,29 +305,12 @@ public class ReadMeUpdater
     /**
      * @return The readme template for a project with source code
      */
-    private File parentProjectReadMeTemplate()
+    private File readMeTemplate()
     {
-        final var parentProjectReadMeTemplate = project.parentReadMeTemplateFile();
-        if (!updatedParentReadMeTemplate)
-        {
-            updatedParentReadMeTemplate = true;
-            PARENT_PROJECT_README_TEMPLATE.safeCopyTo(parentProjectReadMeTemplate, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
-        }
-        return parentProjectReadMeTemplate;
-    }
-
-    /**
-     * @return The readme template for a parent project
-     */
-    private File projectReadMeTemplate()
-    {
-        final var projectReadMeTemplate = project.readMeTemplateFile();
-        if (!updatedReadMeTemplate)
-        {
-            updatedReadMeTemplate = true;
-            README_TEMPLATE.safeCopyTo(projectReadMeTemplate, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
-        }
-        return projectReadMeTemplate;
+        final var readmeTemplate = project.files().readMeTemplate();
+        (project.hasSourceCode() ? SOURCE_README_TEMPLATE : PARENT_README_TEMPLATE)
+                .safeCopyTo(readmeTemplate, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
+        return readmeTemplate;
     }
 
     /**

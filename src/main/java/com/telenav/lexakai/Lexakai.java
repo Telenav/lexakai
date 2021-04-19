@@ -73,25 +73,25 @@ import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLaunch
 public class Lexakai extends Application
 {
     public static final SwitchParser<Boolean> ADD_HTML_ANCHORS =
-            SwitchParser.booleanSwitch("add-html-anchors", "Add HTML anchor tags to indexed markdown titles")
+            SwitchParser.booleanSwitch("add-html-anchors", "Add HTML anchor tags to markdown indexes")
                     .optional()
                     .defaultValue(true)
                     .build();
 
     public static final SwitchParser<Boolean> AUTOMATIC_METHOD_GROUPS =
-            SwitchParser.booleanSwitch("automatic-method-groups", "True to automatically group methods")
+            SwitchParser.booleanSwitch("automatic-method-groups", "Automatically group methods")
                     .optional()
                     .defaultValue(true)
                     .build();
 
     public static final SwitchParser<Boolean> CREATE_PACKAGE_DIAGRAMS =
-            SwitchParser.booleanSwitch("create-package-diagrams", "Build whole-package diagrams for all public types")
+            SwitchParser.booleanSwitch("create-package-diagrams", "Build package diagrams for all public types")
                     .optional()
                     .defaultValue(true)
                     .build();
 
     public static final SwitchParser<Boolean> CREATE_SVG_FILES =
-            SwitchParser.booleanSwitch("create-svg-files", "True to build .svg files from PlantUML output")
+            SwitchParser.booleanSwitch("create-svg-files", "Build .svg files from PlantUML output")
                     .optional()
                     .defaultValue(true)
                     .build();
@@ -150,21 +150,20 @@ public class Lexakai extends Application
                     .build();
 
     public static final SwitchParser<Boolean> OVERWRITE_RESOURCES =
-            SwitchParser.booleanSwitch("overwrite-resources", "True to update by overwriting: lexakai.groups, lexakai.theme, Lexakai templates and Lexakai images")
+            SwitchParser.booleanSwitch("overwrite-resources", "True to update all resources except lexakai-settings.properties and lexakai.properties")
                     .optional()
                     .defaultValue(false)
                     .build();
 
     public static final SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
-            SwitchParser.booleanSwitch("console", "True to write to the console")
+            SwitchParser.booleanSwitch("console-output", "Print diagrams to the console")
                     .optional()
                     .defaultValue(false)
                     .build();
 
     public static final SwitchParser<Version> PROJECT_VERSION =
-            SwitchParser.versionSwitch("project-version", "Version of project used in generating links in README.md indexes")
-                    .optional()
-                    .defaultValue(KivaKit.get().version())
+            SwitchParser.versionSwitch("project-version", "Version of project used when generating markdown")
+                    .required()
                     .build();
 
     public static final ArgumentParser<Folder> ROOT_FOLDER =
@@ -173,13 +172,13 @@ public class Lexakai extends Application
                     .build();
 
     public static final SwitchParser<Boolean> SAVE_DIAGRAMS =
-            SwitchParser.booleanSwitch("save", "True to save diagrams, false to write them to the console")
+            SwitchParser.booleanSwitch("save", "Save PlantUML diagrams")
                     .optional()
                     .defaultValue(true)
                     .build();
 
     public static final SwitchParser<Boolean> SHOW_DIAGRAMS =
-            SwitchParser.booleanSwitch("show-diagrams", "Show what diagrams are created")
+            SwitchParser.booleanSwitch("show-diagrams", "Show created diagrams")
                     .optional()
                     .defaultValue(false)
                     .build();
@@ -453,7 +452,7 @@ public class Lexakai extends Application
         final var diagramName = diagram.identifier();
 
         // get the UML output folder and read in the lexakai.properties file with diagram titles,
-        final var diagramFolder = diagram.project().diagramFolder().mkdirs();
+        final var diagramFolder = diagram.project().folders().outputDiagrams().mkdirs();
         final var title = diagram.title();
 
         // get the uml for the given diagram,

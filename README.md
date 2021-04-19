@@ -28,7 +28,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.lexakai.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.lexakai.org/lexakai/lexakai/application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.lexakai.org/lexakai/lexakai/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
@@ -279,7 +279,7 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.lexakai.org/images/books-40.png)
 
-Javadoc coverage for this project is 49.5%.  
+Javadoc coverage for this project is 48.8%.  
   
 &nbsp; &nbsp;  ![](https://www.lexakai.org/images/meter-50-12.png)
 
@@ -289,6 +289,7 @@ The following significant classes are undocumented:
 - Associations  
 - JavadocCoverage  
 - LexakaiClassDiagram  
+- LexakaiProjectProperties  
 - MavenDependencyTreeBuilder  
 - MethodGroup  
 - MethodGroupNameGuesser  
@@ -311,10 +312,13 @@ The following significant classes are undocumented:
 | [*JavadocCoverage*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/javadoc/JavadocCoverage.html) |  |  
 | [*Lexakai*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/Lexakai.html) |  |  
 | [*LexakaiClassDiagram*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiClassDiagram.html) |  |  
-| [*LexakaiClassDiagram.Referent*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiClassDiagram/Referent.html) |  |  
+| [*LexakaiClassDiagram.Referent*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
 | [*LexakaiProject*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |  
 | | Functions |  
 | | Settings |  
+| [*LexakaiProjectFiles*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProjectFiles.html) |  |  
+| [*LexakaiProjectFolders*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProjectFolders.html) |  |  
+| [*LexakaiProjectProperties*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProjectProperties.html) |  |  
 | [*MavenDependencyTreeBuilder*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
 | [*Members*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Members.html) |  |  
 | [*MethodBuilder*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/MethodBuilder.html) |  |  
@@ -324,14 +328,14 @@ The following significant classes are undocumented:
 | [*MethodGroups*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
 | [*Methods*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Methods.html) |  |  
 | [*Names*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names.html) |  |  
-| [*Names.Qualification*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names/Qualification.html) |  |  
-| [*Names.TypeParameters*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names/TypeParameters.html) |  |  
+| [*Names.Qualification*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names.Qualification.html) |  |  
+| [*Names.TypeParameters*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names.TypeParameters.html) |  |  
 | [*ReadMeUpdater*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/indexes/ReadMeUpdater.html) | Usage |  
 | | Templates |  
 | [*TypeBuilder*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/TypeBuilder.html) |  |  
 | [*Types*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Types.html) |  |  
 | [*UmlAssociation*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
-| [*UmlAssociation.AssociationType*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlAssociation/AssociationType.html) |  |  
+| [*UmlAssociation.AssociationType*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |  
 | [*UmlConstructor*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/members/UmlConstructor.html) |  |  
 | [*UmlInheritance*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlInheritance.html) |  |  
 | [*UmlMethod*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/members/UmlMethod.html) |  |  

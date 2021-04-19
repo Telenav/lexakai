@@ -14,7 +14,7 @@ ${project-index}
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](${lexakai-images-location}/dependencies-40.png)
 
-[*Dependency Diagram*](${project-diagram-location}/dependencies.svg)
+[*Dependency Diagram*](${project-diagrams-location}/dependencies.svg)
 
 #### Maven Dependency
 

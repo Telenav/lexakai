@@ -18,7 +18,7 @@
 
 [//]: # (end-user-text)
 
-# Lexakai &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lexakai-64.png" srcset="https://www.kivakit.org/images/lexakai-64-2x.png 2x"/>
+# Lexakai &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 

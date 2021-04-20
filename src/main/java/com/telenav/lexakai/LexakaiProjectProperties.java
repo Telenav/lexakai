@@ -29,7 +29,6 @@ public class LexakaiProjectProperties extends PropertyMap
         require("lexakai-documentation-location");
         require("lexakai-javadoc-location");
         require("lexakai-images-location");
-        require("lexakai-images-folder");
 
         // project.properties
         addAll(PropertyMap.load(project.files().sourceProjectProperties()));

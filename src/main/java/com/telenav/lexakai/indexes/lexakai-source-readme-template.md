@@ -4,7 +4,7 @@ ${user-text-top}
 
 [//]: # (end-user-text)
 
-# ${project-title} &nbsp;&nbsp; <img src="https://www.kivakit.org/images/${project-icon}.png" srcset="https://www.kivakit.org/images/${project-icon}-2x.png 2x"/>
+# ${project-title} &nbsp;&nbsp; <img src="${project-images-location}/${project-icon}.png" srcset="${project-images-location}/${project-icon}-2x.png 2x"/>
 
 ${project-description}
 

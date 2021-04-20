@@ -30,14 +30,6 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The images folder
-     */
-    public Folder images()
-    {
-        return project.properties().asFolder("lexakai-images-folder");
-    }
-
-    /**
      * @return The output folder for this project
      */
     public Folder output()

@@ -130,7 +130,7 @@ public class ReadMeUpdater
         final var template = readMeTemplate().reader().string();
         final var expanded = expand(properties, template);
 
-        // to the readme file in the source tree and the readme file in the output tree,
+        // to the readme file in the source tree and the readme file in the output tree.
         final var readme = new StringResource(expanded);
         readme.safeCopyTo(project.files().readme(), OVERWRITE, ProgressReporter.NULL);
     }

@@ -18,7 +18,7 @@
 
 [//]: # (end-user-text)
 
-# Lexakai &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
+# Lexakai &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lexakai-64.png" srcset="https://www.kivakit.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
@@ -28,8 +28,8 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Summary**](#summary)  
 [**Project Resources**](#project-resources)  
-[**Download Executable JAR**](#download)  
-[**Example**](#example)  
+[**Download Executable JAR**](#download-executable-jar)  
+[**Examples**](#examples)  
 [**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
 [**Custom UML Diagrams**](#custom-uml-diagrams)  
 [**Grouping Methods in Class Diagrams**](#grouping-methods-in-class-diagrams)  
@@ -58,10 +58,10 @@ A tool for generating UML diagrams and markdown documentation indexes.
         <version>0.9.4</version>
     </dependency>
 
+
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
-
 
 ### Summary <a name = "summary"></a>
 
@@ -262,7 +262,7 @@ maintained.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Custom README Templates
+### Custom README Templates <a name = "custom-readme-templates"></a>
 
 The first run of Lexakai on a project will create two default templates in the *documentation* folder one for projects with source code and
 one for parent projects (projects with sub-projects). These template files can be modified to produce custom output. To revert to the

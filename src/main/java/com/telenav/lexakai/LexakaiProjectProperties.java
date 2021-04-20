@@ -41,7 +41,7 @@ public class LexakaiProjectProperties extends PropertyMap
 
         // lexakai.properties
         addAll(PropertyMap.load(project.files().outputLexakaiProperties()));
-        putIfAbsent("project-icon", imagesLocation() + "/gears-40.png");
+        putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");
         require("project-icon");

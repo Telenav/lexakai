@@ -26,7 +26,6 @@ import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.Wrap;
 import com.telenav.kivakit.core.kernel.language.time.LocalTime;
 import com.telenav.kivakit.core.resource.Resource;
-import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
 import com.telenav.lexakai.Lexakai;
@@ -39,7 +38,6 @@ import java.util.HashSet;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.resource.CopyMode.OVERWRITE;
-import static com.telenav.kivakit.core.resource.CopyMode.UPDATE;
 import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 import static java.util.regex.Pattern.DOTALL;
@@ -133,15 +131,6 @@ public class ReadMeUpdater
         // to the readme file in the source tree and the readme file in the output tree,
         final var readme = new StringResource(expanded);
         readme.safeCopyTo(project.files().readme(), OVERWRITE, ProgressReporter.NULL);
-
-        // and finally, update the referenced images.
-        final var images = Package.of(getClass(), "documentation/images");
-        final var imagesFolder = project.folders().images();
-        if (imagesFolder != null)
-        {
-            final var absoluteImagesFolder = imagesFolder.absolute().mkdirs();
-            images.resources().forEach(image -> image.copyTo(absoluteImagesFolder.file(image.fileName()), UPDATE, ProgressReporter.NULL));
-        }
     }
 
     /**

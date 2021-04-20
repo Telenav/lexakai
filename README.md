@@ -1,21 +1,4 @@
-
-<a href="https://www.lexakai.org">
-<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
-</a>
-&nbsp;
-<a href="https://twitter.com/openlexakai">
-<img src="https://www.kivakit.org/images/twitter-32.png" srcset="https://www.kivakit.org/images/twitter-32-2x.png 2x"/>
-</a>
-&nbsp;
-<a href="https://lexakai.zulipchat.com">
-<img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
-</a>
-
-<p></p>
-
-<img src="https://www.lexakai.org/images/lexakai-background-1024.png" srcset="https://www.lexakai.org/images/lexakai-background-1024-2x.png 2x"/>  
-
-# Lexakai &nbsp; <img src="http://www.lexakai.org/images/lexakai-64.png" srcset="http://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
+# Lexakai &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
@@ -165,7 +148,7 @@ be applied to a type.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;<img src="https://www.kivakit.org/images/no-32.png" srcset="https://www.kivakit.org/images/no-32-2x.png 2x"/>
+### Excluding Types And Members <a name = "excluding-types-and-members"></a> &nbsp; <img src="https://www.kivakit.org/images/no-32.png" srcset="https://www.kivakit.org/images/no-32-2x.png 2x"/>
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
@@ -297,11 +280,12 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 48.8%.  
+Javadoc coverage for this project is 48.6%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-50-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-50-96.png" srcset="https://www.kivakit.org/images/meter-50-96-2x.png 2x"/>
 
-The following significant classes are undocumented:  
+
+The following significant classes are undocumented:   
 
 - AssociationBuilder  
 - Associations  

@@ -395,8 +395,8 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     @NotNull
     public String meterMarkdownForPercent(final Percent percent)
     {
-        final var images = properties.imagesLocation();
-        final var png = "meter-" + Ints.quantized(percent.asInt(), 10) + "-12";
+        final var images = properties().imagesLocation();
+        final var png = "meter-" + Ints.quantized(percent.asInt(), 10) + "-96";
         return Message.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
     }
 

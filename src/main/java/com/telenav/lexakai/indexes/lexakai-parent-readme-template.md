@@ -1,3 +1,9 @@
+[//]: # (start-user-text)
+
+${user-text-top}
+
+[//]: # (end-user-text)
+
 # ${project-title} &nbsp;&nbsp; <img src="https://www.kivakit.org/images/${project-icon}.png" srcset="https://www.kivakit.org/images/${project-icon}-2x.png 2x"/>
 
 ${project-description}
@@ -6,7 +12,7 @@ ${project-description}
 
 [//]: # (start-user-text)
 
-${user-text-top}
+${user-text-middle}
 
 [//]: # (end-user-text)
 

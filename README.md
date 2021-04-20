@@ -1,3 +1,24 @@
+
+[//]: # (start-user-text)
+
+<a href="https://www.lexakai.org">
+<img src="https://www.lexakai.org/images/web-32.png" srcset="https://www.lexakai.org/images/web-32-2x.png 2x"/>
+</a>
+&nbsp;
+<a href="https://twitter.com/openlexakai">
+<img src="https://www.lexakai.org/images/twitter-32.png" srcset="https://www.lexakai.org/images/twitter-32-2x.png 2x"/>
+</a>
+&nbsp;
+<a href="https://lexakai.zulipchat.com">
+<img src="https://www.lexakai.org/images/zulip-32.png" srcset="https://www.lexakai.org/images/zulip-32-2x.png 2x"/>
+</a>
+
+<p></p>
+
+<img src="https://www.lexakai.org/images/lexakai-backgroung-1024.png" srcset="https://www.lexakai.org/images/lexakai-background-1024-2x.png 2x"/>
+
+[//]: # (end-user-text)
+
 # Lexakai &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.

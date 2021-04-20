@@ -98,7 +98,8 @@ public class ReadMeUpdater
         final var index = new StringList();
         final var blocks = userTextBlocks(project.files().readme());
         final var topBlock = indexUserText(blocks.getOrDefault(0, ""), index, project.addHtmlAnchors());
-        final var bottomBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
+        final var middleBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
+        final var bottomBlock = indexUserText(blocks.getOrDefault(2, ""), index, project.addHtmlAnchors());
 
         // create a variable map for the readme template,
         final var properties = project.properties();
@@ -122,6 +123,7 @@ public class ReadMeUpdater
 
         // expand variables in the user blocks,
         properties.put("user-text-top", expand(properties, topBlock));
+        properties.put("user-text-middle", expand(properties, middleBlock));
         properties.put("user-text-bottom", expand(properties, bottomBlock));
 
         // then write the interpolated template

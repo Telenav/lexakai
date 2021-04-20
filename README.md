@@ -26,7 +26,6 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 ### Index
 
-
 [**Summary**](#summary)  
 [**Project Resources**](#project-resources)  
 [**Download Executable JAR**](#download)  
@@ -42,9 +41,6 @@ A tool for generating UML diagrams and markdown documentation indexes.
 [**Configuration**](#configuration)  
 [**Readme Generation and Updating**](#readme-generation-and-updating)  
 [**Custom README Templates**](#custom-readme-templates)  
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 

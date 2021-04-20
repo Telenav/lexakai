@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
+import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.resources.packaged.Package;
@@ -394,7 +395,9 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     @NotNull
     public String meterMarkdownForPercent(final Percent percent)
     {
-        return " ![](" + properties().imagesLocation() + "/meter-" + Ints.quantized(percent.asInt(), 10) + "-12.png)";
+        final var images = properties.imagesLocation();
+        final var png = "meter-" + Ints.quantized(percent.asInt(), 10) + "-12";
+        return Message.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
     }
 
     public String name()

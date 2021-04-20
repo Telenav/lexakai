@@ -1,5 +1,6 @@
-<a href="https://github.com/Telenav/lexakai">
-<img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/github-32-2x.png 2x"/>
+
+<a href="https://www.lexakai.org">
+<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openlexakai">
@@ -10,7 +11,11 @@
 <img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
 </a>
 
-# Lexakai &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lexakai-64.png" srcset="https://www.kivakit.org/images/lexakai-64-2x.png 2x"/>
+<p></p>
+
+<img src="https://www.lexakai.org/images/lexakai-background-1024.png" srcset="https://www.lexakai.org/images/lexakai-background-1024-2x.png 2x"/>  
+
+# Lexakai &nbsp; <img src="http://www.lexakai.org/images/lexakai-64.png" srcset="http://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
@@ -91,7 +96,7 @@ Lexakai automatically creates basic package diagrams for all public types withou
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
+### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 To create a set of one or more custom diagrams for a project, annotations can be used from this project:
 
@@ -269,7 +274,7 @@ remove them and run Lexakai again.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 None
 

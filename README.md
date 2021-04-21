@@ -270,7 +270,7 @@ This global settings file contains the following properties:
     lexakai-javadoc-location       = https://www.lexakai.org/javadoc
     lexakai-images-location        = https://www.lexakai.org/images
 
-    project-footer                 = <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>
+    project-footer                 = <sub>Copyright &#169; 2011-2021, Me</sub>
 
 These values specify the location of resources for Lexakai when it is producing links in *README.md* files.
 When using GitHub Pages, the folders *lexakai*, *javadoc* and *images* are normally in the *docs* folder 

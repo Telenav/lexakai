@@ -68,7 +68,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 *The palest ink is better than the best memory.*
 
-&nbsp; &nbsp; &nbsp; &nbsp;  *Chinese proverb*
+&nbsp; &nbsp; &nbsp; &mdash; Chinese proverb
 
 *Lexakai* - from lexis (greek for *word*) and kai (hawaiian for *ocean*).
 

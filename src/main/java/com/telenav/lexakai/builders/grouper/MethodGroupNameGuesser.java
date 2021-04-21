@@ -206,7 +206,7 @@ public class MethodGroupNameGuesser
 
     private void load()
     {
-        final var groupsFile = project.folders().lexakaiOutput().file("lexakai.groups");
+        final var groupsFile = project.files().lexakaiGroups();
         if (groupsFile.exists())
         {
             load(groupsFile);

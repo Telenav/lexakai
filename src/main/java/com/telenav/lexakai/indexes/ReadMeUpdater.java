@@ -21,7 +21,6 @@ package com.telenav.lexakai.indexes;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.Wrap;
 import com.telenav.kivakit.core.kernel.language.time.LocalTime;
@@ -132,7 +131,7 @@ public class ReadMeUpdater
 
         // to the readme file in the source tree and the readme file in the output tree.
         final var readme = new StringResource(expanded);
-        readme.safeCopyTo(project.files().readme(), OVERWRITE, ProgressReporter.NULL);
+        readme.safeCopyTo(project.files().readme(), OVERWRITE);
     }
 
     /**
@@ -310,7 +309,7 @@ public class ReadMeUpdater
     {
         final var template = project.files().readMeTemplate();
         (project.hasSourceCode() ? SOURCE_README_TEMPLATE : PARENT_README_TEMPLATE)
-                .safeCopyTo(template, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
+                .safeCopyTo(template, Lexakai.get().resourceCopyMode());
         return template;
     }
 

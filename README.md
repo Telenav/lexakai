@@ -38,8 +38,9 @@ A tool for generating UML diagrams and markdown documentation indexes.
 [**Excluding Types And Members**](#excluding-types-and-members)  
 [**Non-Public Apis**](#non-public-apis)  
 [**Annotation Summary**](#annotation-summary)  
-[**Configuration**](#configuration)  
+[**Settings**](#settings)  
 [**Readme Generation and Updating**](#readme-generation-and-updating)  
+[**Preserving Text Between Updates**](#preserving-text-between-updates)  
 [**Custom README Templates**](#custom-readme-templates)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
@@ -65,11 +66,11 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 ### Summary <a name = "summary"></a>
 
-“The palest ink is better than the best memory.” 
+*The palest ink is better than the best memory.*
 
-&nbsp; &nbsp; &nbsp; &nbsp; — *Chinese proverb*
+&nbsp; &nbsp; &nbsp; &nbsp;  *Chinese proverb*
 
-*Lexakai* - from lexis (greek for 'word') and kai (hawaiian for 'ocean').
+*Lexakai* - from lexis (greek for *word*) and kai (hawaiian for *ocean*).
 
 Lexakai creates documentation indexes and UML diagrams from the source code of each maven or gradle project
 discovered recursively from the root folder(s) given as argument(s). 
@@ -156,9 +157,9 @@ making the list of methods easier to understand.
 
 For example:
 
-    @UmlMethodGroup("configuration")
+    @UmlMethodGroup("settings")
 
-could be used to label all the configuration-related methods in a type. Multiple *@UmlMethodGroup*
+could be used to label all the settings-related methods in a type. Multiple *@UmlMethodGroup*
 annotations can be added to specify that a method should be shown in more than one group.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -166,10 +167,12 @@ annotations can be added to specify that a method should be shown in more than o
 ### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](http://www.kivakit.org/images/gears-32.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*
-(which is the default). In this case, the best guess will be made based on method name and parameter patterns as to which group a method
-most likely belongs. When the guess is inaccurate, or no guess is made, an *@UmlMethodGroup* annotation can be applied to correct the
-result. The set of patterns that are used to determine automatic groups is in a file called *lexakai.groups* in the documentation folder.
-This file can be customized for a particular project.
+(which is the default). In this case, the best guess will be made based on method name and parameter patterns 
+as to which group a method most likely belongs. When the guess is inaccurate, or no guess is made, 
+an *@UmlMethodGroup* annotation can be applied to correct the result. The set of patterns that are used to 
+determine automatic groups is in a file called *lexakai.groups* in the Lexakai settings folder.
+This file can be customized for a particular project. An explicit annotation can be used to override 
+any automatic group assignment(s) for a method.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -221,56 +224,119 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Configuration <a name = "configuration"></a>&nbsp; ![](http://www.kivakit.org/images/tools-32.png)
+### Settings <a name = "settings"></a>&nbsp; ![](http://www.kivakit.org/images/tools-32.png)
 
-The *documentation* folder for each project should contain a *lexakai* folder with a *lexakai.properties* file that looks similar to this:
+Each root project that Lexakai processes must have a *documentation/lexakai* folder. This folder must contain 
+all the settings that Lexakai uses to create documentation. When Lexakai is run for the first time, this folder will 
+be created and populated with default settings files. Settings for individual projects can then be added to
+the *projects* subfolder, so the final tree looks like this:
+
+    + documentation
+    \---+ lexakai
+        |     lexakai.settings
+        |     lexakai.theme
+        |     lexakai.groups
+        |     lexakai-source-readme-template.md
+        |     lexakai-project-readme-template.md
+        \---+ projects
+                  my-project.properties
+                  my-project-sub-project.properties
+
+where these files are described as follows:
+
+| Settings File     |     Description                                          |
+|-------------------|----------------------------------------------------------|
+| *lexakai.settings*  | Global settings for all projects under the root folder   |
+| *lexakai.theme*     | PlantUML theme file copied to each diagram output folder |
+| *lexakai.groups*    | Patterns used to automatically group methods             |
+| *lexakai-source-readme-template.md*  | *README.md* template for projects that have source code |
+| *lexakai-project-readme-template.md* | *README.md* template for projects that have child projects |
+| *projects/[project].properties* | Markdown and UML settings for each project in the source tree |
+
+The *.theme*, *.groups* and *README.md* template files can be customized. To perform a 'factory-reset' 
+on these resources, run Lexakai with *-overwrite-resources=true* or simply remove the files and 
+Lexakai will re-create them. The [project] value in the table above should be the hyphenated 
+artifact id for the project, as defined in pom.xml, such as *kivakit-core-kernel*.
+
+#### lexakai.settings
+
+This global settings file contains the following properties:
+
+    #
+    # Locations of resources linked to from README.md files
+    #
+
+    lexakai-documentation-location = https://www.lexakai.org/lexakai
+    lexakai-javadoc-location       = https://www.lexakai.org/javadoc
+    lexakai-images-location        = https://www.lexakai.org/images
+
+    project-footer                 = <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>
+
+These values specify the location of resources for Lexakai when it is producing links in *README.md* files.
+When using GitHub Pages, the folders *lexakai*, *javadoc* and *images* are normally in the *docs* folder 
+in a documentation project and GitHub Pages is configured to share that folder with the world.
+
+#### [project].properties
+
+Each project in the source tree requires a *[project].properties* file in the *projects* folder, which looks like:
 
     #
     # Project
     #
-    project-name         = my-project
-    project-description  = This is my project.
-    project-javadoc-url  = https://me.github.io/myproject/javadoc/myproject
-    project-icon         = http://www.kivakit.org/images/myproject.png
-    project-footer       = Copyright by Me
 
+    project-title            = kivakit-core-network-core
+    project-description      = This module provides core networking functionality.
+    project-icon             = nucleus-32
+    
     #
-    # Diagram Titles
+    # Diagrams
     #
-    diagram-my-project   = My Project
 
-The diagram name (the lowercase, hyphenated version of the marker interface) is used as a key to locate the title of the diagram. For
-example:
+    diagram-port             = Hosts, Ports and Protocols
+    diagram-network-location = Network Locations
+    
+The *project-title*, *project-description* and *project-icon* values will be used to populate values in the 
+*README.md* templates (described above). The *project-icon* value is used as the base name of *[project-icon].png* and
+*[project-icon]-2x.png*, in order to support HiDPI displays. The *diagrams* section provides titles for 
+individual UML diagrams. The lowercase, hyphenated name of the marker interface (as described above) is used 
+as a key to locate the title of the diagram. For example:
 
-    @UmlClassDiagram(diagram = DiagramMyProject.class)
+    @UmlClassDiagram(diagram = DiagramMyUtilities.class)
 
-refers to the diagram title specified by the key *diagram-my-project* in the *lexakai.properties* file.
+refers to the diagram title specified by the key *diagram-my-utilities* in the *.properties* file for the
+project.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](http://www.kivakit.org/images/pencil-32.png)
 
-If the *-update-readme* switch is set to *true* (it is *false* by default to ensure it doesn't overwrite an existing file) then a *
-README.md* file will be generated or updated each time the UML diagrams are generated. This markdown file will use *project-name* as its
-title and insert the description *project-description*
-from the *lexakai.properties* file as the project description. An index of project diagrams is updated along with an index of any Javadoc
-at *project-javadoc-url* for all diagrammed types. Sections of documentation in the Javadoc will also be indexed based on the pattern
-specified by the switch *-javadoc-section-pattern*. By default, this pattern is:
+If the *-update-readme* switch is set to *true* (it is *false* by default to ensure it doesn't overwrite an existing 
+file), then a *README.md* file will be generated or updated each time the UML diagrams are generated. This markdown 
+file will use *project-title* as its title and insert the description *project-description* from the *[project].properties* 
+file as the project description. 
+
+An index of project diagrams is updated along with an index of the Javadoc (which should be available at 
+*lexakai-javadoc-location*) for all types. Sections of documentation in the Javadoc can also 
+be indexed based on the pattern specified by the switch *-javadoc-section-pattern*. By default, this 
+pattern is:
 
     <p><b>section-title</b></p>
 
-which is the style used in the KivaKit.
+which is the style used in KivaKit, but any regular expression pattern can be substituted.
 
-Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved, allowing additional documentation to be
-maintained.
+### Preserving Text Between Updates <a name = "preserving-text-between-updates"></a>
+
+Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved, allowing 
+additional documentation to be maintained.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Custom README Templates <a name = "custom-readme-templates"></a>
 
-The first run of Lexakai on a project will create two default templates in the *documentation* folder one for projects with source code and
-one for parent projects (projects with sub-projects). These template files can be modified to produce custom output. To revert to the
-default templates, simply remove them and run Lexakai again.
+The first run of Lexakai on a project will create two default templates in the *documentation/lexakai* settings 
+folder one for projects with source code and one for parent projects (projects with sub-projects). These template 
+files can be modified to produce custom output. To revert to the default templates, simply remove them and run 
+Lexakai again.
 
 [//]: # (end-user-text)
 
@@ -299,7 +365,7 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 48.6%.  
+Javadoc coverage for this project is 48.7%.  
   
 &nbsp; &nbsp; <img src="https://www.lexakai.org/images/meter-50-96.png" srcset="https://www.lexakai.org/images/meter-50-96-2x.png 2x"/>
 

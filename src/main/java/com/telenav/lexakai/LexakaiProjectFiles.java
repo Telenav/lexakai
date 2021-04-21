@@ -15,26 +15,52 @@ public class LexakaiProjectFiles
     }
 
     /**
+     * @return The lexakai.groups file for automatic method grouping
+     */
+    public File lexakaiGroups()
+    {
+        return folders()
+                .settings()
+                .file("lexakai.groups");
+    }
+
+    /**
      * @return The lexakai.properties file for this project in the output tree
      */
     public File lexakaiProperties()
     {
-        return project
-                .folders()
-                .configuration()
-                .folder("projects")
-                .file(project.properties().projectArtifactId() + ".properties");
+        return lexakaiProperties(project.properties().projectArtifactId());
     }
 
     /**
-     * @return The lexakai-settings.properties file in the output tree
+     * @return The lexakai.properties file for this project in the output tree
+     */
+    public File lexakaiProperties(final String artifactId)
+    {
+        return folders()
+                .settings()
+                .folder("projects")
+                .file(artifactId + ".properties");
+    }
+
+    /**
+     * @return The lexakai.settings file in the output tree
      */
     public File lexakaiSettings()
     {
-        return project
-                .folders()
-                .configuration()
-                .file("lexakai-settings.properties");
+        return folders()
+                .settings()
+                .file("lexakai.settings");
+    }
+
+    /**
+     * @return The lexakai.theme file for diagrams
+     */
+    public File lexakaiTheme()
+    {
+        return folders()
+                .settings()
+                .file("lexakai.theme");
     }
 
     /**
@@ -43,8 +69,8 @@ public class LexakaiProjectFiles
     public File projectProperties()
     {
         return project.hasSourceCode()
-                ? project.folders().sourceCode().file("project.properties")
-                : project.folders().project().file("project.properties");
+                ? folders().sourceCode().file("project.properties")
+                : folders().project().file("project.properties");
     }
 
     /**
@@ -52,9 +78,8 @@ public class LexakaiProjectFiles
      */
     public File readMeTemplate()
     {
-        return project
-                .folders()
-                .configuration()
+        return folders()
+                .settings()
                 .file(project.hasSourceCode()
                         ? "lexakai-source-readme-template.md"
                         : "lexakai-parent-readme-template.md");
@@ -65,9 +90,13 @@ public class LexakaiProjectFiles
      */
     public File readme()
     {
-        return project
-                .folders()
+        return folders()
                 .project()
                 .file("README.md");
+    }
+
+    private LexakaiProjectFolders folders()
+    {
+        return project.folders();
     }
 }

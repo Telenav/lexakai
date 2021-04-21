@@ -7,34 +7,26 @@ import com.telenav.kivakit.core.filesystem.Folder;
  */
 public class LexakaiProjectFolders
 {
-    private final LexakaiProject project;
+    private final LexakaiProject lexakaiProject;
 
     /** The root folder that is being processed */
     private final Folder root;
 
     /** The project folder under the root folder for this project */
-    private final Folder projectFolder;
+    private final Folder project;
 
     /** The root output folder */
     private final Folder outputRoot;
 
-    public LexakaiProjectFolders(final LexakaiProject project,
+    public LexakaiProjectFolders(final LexakaiProject lexakaiProject,
                                  final Folder root,
-                                 final Folder projectFolder,
+                                 final Folder project,
                                  final Folder outputRoot)
     {
-        this.project = project;
+        this.lexakaiProject = lexakaiProject;
         this.root = root;
-        this.projectFolder = projectFolder;
+        this.project = project;
         this.outputRoot = outputRoot;
-    }
-
-    /**
-     * @return The folder where lexakai configuration is stored in the source tree
-     */
-    public Folder configuration()
-    {
-        return project().folder("documentation/lexakai");
     }
 
     /**
@@ -42,7 +34,7 @@ public class LexakaiProjectFolders
      */
     public Folder diagramOutput()
     {
-        return documentationOutput().folder("diagrams");
+        return documentationOutput().folder("diagrams").mkdirs();
     }
 
     /**
@@ -66,7 +58,7 @@ public class LexakaiProjectFolders
      */
     public Folder output()
     {
-        return project.folders().outputRoot().folder(projectRelativeToRoot());
+        return lexakaiProject.folders().outputRoot().folder(projectRelativeToRoot()).mkdirs();
     }
 
     /**
@@ -74,7 +66,7 @@ public class LexakaiProjectFolders
      */
     public Folder outputRoot()
     {
-        return outputRoot;
+        return outputRoot.mkdirs();
     }
 
     /**
@@ -82,7 +74,7 @@ public class LexakaiProjectFolders
      */
     public Folder project()
     {
-        return projectFolder;
+        return project;
     }
 
     /**
@@ -102,10 +94,18 @@ public class LexakaiProjectFolders
     }
 
     /**
+     * @return The folder where lexakai configuration is stored in the source tree
+     */
+    public Folder settings()
+    {
+        return root().folder("documentation/lexakai").mkdirs();
+    }
+
+    /**
      * @return The source folder for this project, if the {@link LexakaiProject#hasSourceCode()} method returns true
      */
     public Folder sourceCode()
     {
-        return project.folders().project().folder("src/main/java");
+        return lexakaiProject.folders().project().folder("src/main/java");
     }
 }

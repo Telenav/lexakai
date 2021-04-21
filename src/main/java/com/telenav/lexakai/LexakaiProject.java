@@ -23,7 +23,6 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;
-import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.Message;
@@ -91,12 +90,6 @@ import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
  */
 public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
 {
-    /** The folder for this project */
-    private final Folder sourceProject;
-
-    /** The root output folder */
-    private final Folder outputRootFolder;
-
     /** Parser to use on project source files */
     private final JavaParser parser;
 
@@ -105,9 +98,6 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     /** The project version */
     private final Version version;
-
-    /** The project root folder */
-    private final Folder sourceRoot;
 
     /** True to include equals, hashCode and toString */
     private boolean includeObjectMethods;
@@ -143,8 +133,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     private ObjectList<LexakaiProject> children;
 
     /**
-     * Properties for this project from system properties, project.properties, lexakai-settings.properties and
-     * lexakai.properties
+     * Properties for this project from system properties, project.properties, lexakai.settings and lexakai.properties
      */
     private LexakaiProjectProperties properties;
 
@@ -156,19 +145,16 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public LexakaiProject(final Lexakai lexakai,
                           final Version version,
-                          final Folder sourceRoot,
-                          final Folder sourceProject,
-                          final Folder outputRootFolder,
+                          final Folder root,
+                          final Folder project,
+                          final Folder outputRoot,
                           final JavaParser parser)
     {
         this.lexakai = lexakai;
         this.version = version;
-        this.sourceRoot = sourceRoot;
-        this.sourceProject = sourceProject;
-        this.outputRootFolder = outputRootFolder;
         this.parser = parser;
 
-        folders = new LexakaiProjectFolders(this, sourceRoot, sourceProject, outputRootFolder);
+        folders = new LexakaiProjectFolders(this, root, project, outputRoot);
         files = new LexakaiProjectFiles(this);
 
         initialize();
@@ -319,7 +305,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public boolean hasSourceCode()
     {
-        return sourceProject.folder("src").exists();
+        return folders().sourceCode().exists();
     }
 
     /**
@@ -354,26 +340,23 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         // If the project has source code,
         if (hasSourceCode())
         {
-            // ensure that diagram folder exists,
-            folders().diagramOutput().mkdirs();
-
-            // and install the lexakai theme and default groups patterns into the configuration folder if they are not already installed,
+            // install the lexakai theme and default groups patterns into the configuration folder if they are not already installed,
             final var copyMode = Lexakai.get().resourceCopyMode();
-            resourceFolder.resource("source/lexakai.groups").safeCopyTo(folders().configuration(), copyMode, ProgressReporter.NULL);
-            resourceFolder.resource("lexakai.theme").safeCopyTo(folders().configuration(), copyMode, ProgressReporter.NULL);
+            resourceFolder.resource("source/lexakai.groups").safeCopyTo(folders().settings(), copyMode);
+            resourceFolder.resource("lexakai.theme").safeCopyTo(folders().settings(), copyMode);
         }
 
         // install the lexakai settings properties file if it doesn't already exist,
-        resourceFolder.resource("lexakai-settings.properties")
+        resourceFolder.resource("lexakai.settings")
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
-                .safeCopyTo(files().lexakaiSettings(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+                .safeCopyTo(files().lexakaiSettings(), DO_NOT_OVERWRITE);
 
         // then install the lexakai properties file if it doesn't already exist.
         resourceFolder.resource(hasSourceCode() ? "source/lexakai.properties" : "parent/lexakai.properties")
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
-                .safeCopyTo(files().lexakaiProperties(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+                .safeCopyTo(files().lexakaiProperties(), DO_NOT_OVERWRITE);
     }
 
     public Pattern javadocSectionPattern()
@@ -402,10 +385,10 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public String name()
     {
-        final var parentProject = sourceProject.relativePath(sourceRoot.absolute());
-        return (parentProject.isEmpty()
-                ? sourceProject.name().name()
-                : parentProject.join("-"));
+        final var relative = folders().projectRelativeToRoot().path();
+        return (relative.isEmpty()
+                ? folders().project().name().name()
+                : relative.join("-"));
     }
 
     public ObjectList<JavadocCoverage> nestedProjectJavadocCoverage()
@@ -446,7 +429,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public String rootProjectName()
     {
-        return sourceRoot.name().name();
+        return folders().root().name().name();
     }
 
     @Override

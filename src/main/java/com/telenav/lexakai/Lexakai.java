@@ -150,7 +150,7 @@ public class Lexakai extends Application
                     .build();
 
     public static final SwitchParser<Boolean> OVERWRITE_RESOURCES =
-            SwitchParser.booleanSwitch("overwrite-resources", "True to update all resources except lexakai-settings.properties and lexakai.properties")
+            SwitchParser.booleanSwitch("overwrite-resources", "True to update all resources except settings")
                     .optional()
                     .defaultValue(false)
                     .build();
@@ -452,7 +452,7 @@ public class Lexakai extends Application
         final var diagramName = diagram.identifier();
 
         // get the UML output folder and read in the lexakai.properties file with diagram titles,
-        final var diagramFolder = diagram.project().folders().diagramOutput().mkdirs();
+        final var diagramFolder = diagram.project().folders().diagramOutput();
         final var title = diagram.title();
 
         // get the uml for the given diagram,
@@ -498,6 +498,9 @@ public class Lexakai extends Application
 
         // create a documentation folder and install defaults if project is new,
         project.initialize();
+
+        // and copy the project's theme file into the diagram output folder.
+        project.files().lexakaiTheme().safeCopyTo(project.folders().diagramOutput(), UPDATE);
 
         // If the project has source code,
         final var outputFiles = new ObjectList<File>();

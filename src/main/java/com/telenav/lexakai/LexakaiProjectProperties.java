@@ -24,7 +24,7 @@ public class LexakaiProjectProperties extends PropertyMap
         // Add system and application properties,
         addAll(Lexakai.get().properties());
 
-        // lexakai-settings.properties,
+        // lexakai.settings,
         addAll(PropertyMap.load(project.files().lexakaiSettings()));
         require("lexakai-documentation-location");
         require("lexakai-javadoc-location");
@@ -32,14 +32,15 @@ public class LexakaiProjectProperties extends PropertyMap
 
         // project.properties
         addAll(PropertyMap.load(project.files().projectProperties()));
-        add("project-module-name", get("project-artifact-id").replaceAll("-", "."));
+        final var artifactId = get("project-artifact-id");
+        add("project-module-name", artifactId.replaceAll("-", "."));
         require("project-name");
         require("project-version");
         require("project-group-id");
         require("project-artifact-id");
 
         // lexakai.properties
-        addAll(PropertyMap.load(project.files().lexakaiProperties()));
+        addAll(PropertyMap.load(project.files().lexakaiProperties(artifactId)));
         putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");
@@ -134,6 +135,6 @@ public class LexakaiProjectProperties extends PropertyMap
     {
         final var value = get(key);
         ensure(value != null && !value.contains("[UNDEFINED]"),
-                "Project $: The key '$' is not defined in project.properties, lexakai-settings.properties or lexakai.properties", project.name(), key);
+                "Project $: The required key '$' is not defined", project.name(), key);
     }
 }

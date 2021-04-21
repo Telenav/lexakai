@@ -222,7 +222,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     {
         if (children == null)
         {
-            children = ObjectList.objectList(folders().sourceProject().absolute()
+            children = ObjectList.objectList(folders().project().absolute()
                     .folders()
                     .stream()
                     .filter(this::isProject)
@@ -355,25 +355,25 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         if (hasSourceCode())
         {
             // ensure that diagram folder exists,
-            folders().outputDiagrams().mkdirs();
+            folders().diagramOutput().mkdirs();
 
-            // and install the lexakai theme and default groups patterns if they are not already installed,
+            // and install the lexakai theme and default groups patterns into the configuration folder if they are not already installed,
             final var copyMode = Lexakai.get().resourceCopyMode();
-            resourceFolder.resource("source/lexakai.groups").safeCopyTo(folders().outputLexakai(), copyMode, ProgressReporter.NULL);
-            resourceFolder.resource("lexakai.theme").safeCopyTo(folders().outputLexakai(), copyMode, ProgressReporter.NULL);
+            resourceFolder.resource("source/lexakai.groups").safeCopyTo(folders().configuration(), copyMode, ProgressReporter.NULL);
+            resourceFolder.resource("lexakai.theme").safeCopyTo(folders().configuration(), copyMode, ProgressReporter.NULL);
         }
 
         // install the lexakai settings properties file if it doesn't already exist,
         resourceFolder.resource("lexakai-settings.properties")
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
-                .safeCopyTo(outputRootFolder.file("lexakai-settings.properties"), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+                .safeCopyTo(files().lexakaiSettings(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
 
         // then install the lexakai properties file if it doesn't already exist.
         resourceFolder.resource(hasSourceCode() ? "source/lexakai.properties" : "parent/lexakai.properties")
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
-                .safeCopyTo(files().outputLexakaiProperties(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
+                .safeCopyTo(files().lexakaiProperties(), DO_NOT_OVERWRITE, ProgressReporter.NULL);
     }
 
     public Pattern javadocSectionPattern()

@@ -10,45 +10,45 @@ public class LexakaiProjectFolders
     private final LexakaiProject project;
 
     /** The root folder that is being processed */
-    private final Folder sourceRoot;
+    private final Folder root;
 
     /** The project folder under the root folder for this project */
-    private final Folder sourceProject;
+    private final Folder projectFolder;
 
     /** The root output folder */
-    private final Folder outputRootFolder;
+    private final Folder outputRoot;
 
     public LexakaiProjectFolders(final LexakaiProject project,
-                                 final Folder sourceRoot,
-                                 final Folder sourceProject,
-                                 final Folder outputRootFolder)
+                                 final Folder root,
+                                 final Folder projectFolder,
+                                 final Folder outputRoot)
     {
         this.project = project;
-        this.sourceRoot = sourceRoot;
-        this.sourceProject = sourceProject;
-        this.outputRootFolder = outputRootFolder;
+        this.root = root;
+        this.projectFolder = projectFolder;
+        this.outputRoot = outputRoot;
     }
 
     /**
-     * @return The output folder for this project
+     * @return The folder where lexakai configuration is stored in the source tree
      */
-    public Folder output()
+    public Folder configuration()
     {
-        return project.folders().outputRoot().folder(sourceProjectRelativeToRoot());
+        return project().folder("documentation/lexakai");
     }
 
     /**
      * @return The folder where diagrams are output
      */
-    public Folder outputDiagrams()
+    public Folder diagramOutput()
     {
-        return outputDocumentation().folder("diagrams");
+        return documentationOutput().folder("diagrams");
     }
 
     /**
      * @return The folder where documentation is stored
      */
-    public Folder outputDocumentation()
+    public Folder documentationOutput()
     {
         return output().folder("documentation").mkdirs();
     }
@@ -56,9 +56,17 @@ public class LexakaiProjectFolders
     /**
      * @return The folder for lexakai output
      */
-    public Folder outputLexakai()
+    public Folder lexakaiOutput()
     {
-        return outputDocumentation().folder("lexakai").mkdirs();
+        return documentationOutput().folder("lexakai").mkdirs();
+    }
+
+    /**
+     * @return The output folder for this project
+     */
+    public Folder output()
+    {
+        return project.folders().outputRoot().folder(projectRelativeToRoot());
     }
 
     /**
@@ -66,7 +74,31 @@ public class LexakaiProjectFolders
      */
     public Folder outputRoot()
     {
-        return outputRootFolder;
+        return outputRoot;
+    }
+
+    /**
+     * @return This project's folder in the source tree
+     */
+    public Folder project()
+    {
+        return projectFolder;
+    }
+
+    /**
+     * @return This folder in the source tree for this project, relative to the root folder
+     */
+    public Folder projectRelativeToRoot()
+    {
+        return project().relativeTo(root());
+    }
+
+    /**
+     * @return The root folder that Lexakai is processing
+     */
+    public Folder root()
+    {
+        return root;
     }
 
     /**
@@ -74,30 +106,6 @@ public class LexakaiProjectFolders
      */
     public Folder sourceCode()
     {
-        return project.folders().sourceProject().folder("src/main/java");
-    }
-
-    /**
-     * @return This project's folder in the source tree
-     */
-    public Folder sourceProject()
-    {
-        return sourceProject;
-    }
-
-    /**
-     * @return This folder in the source tree for this project, relative to the root folder
-     */
-    public Folder sourceProjectRelativeToRoot()
-    {
-        return sourceProject().relativeTo(sourceRoot());
-    }
-
-    /**
-     * @return The root folder that Lexakai is processing
-     */
-    public Folder sourceRoot()
-    {
-        return sourceRoot;
+        return project.folders().project().folder("src/main/java");
     }
 }

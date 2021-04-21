@@ -17,20 +17,34 @@ public class LexakaiProjectFiles
     /**
      * @return The lexakai.properties file for this project in the output tree
      */
-    public File outputLexakaiProperties()
+    public File lexakaiProperties()
     {
         return project
                 .folders()
-                .outputLexakai()
-                .file("lexakai.properties");
+                .configuration()
+                .folder("projects")
+                .file(project.properties().projectArtifactId() + ".properties");
     }
 
     /**
      * @return The lexakai-settings.properties file in the output tree
      */
-    public File outputLexakaiSettings()
+    public File lexakaiSettings()
     {
-        return project.folders().outputRoot().file("lexakai-settings.properties");
+        return project
+                .folders()
+                .configuration()
+                .file("lexakai-settings.properties");
+    }
+
+    /**
+     * @return The project.properties file for this project, from the source tree
+     */
+    public File projectProperties()
+    {
+        return project.hasSourceCode()
+                ? project.folders().sourceCode().file("project.properties")
+                : project.folders().project().file("project.properties");
     }
 
     /**
@@ -40,7 +54,7 @@ public class LexakaiProjectFiles
     {
         return project
                 .folders()
-                .outputLexakai()
+                .configuration()
                 .file(project.hasSourceCode()
                         ? "lexakai-source-readme-template.md"
                         : "lexakai-parent-readme-template.md");
@@ -51,16 +65,9 @@ public class LexakaiProjectFiles
      */
     public File readme()
     {
-        return project.folders().sourceProject().file("README.md");
-    }
-
-    /**
-     * @return The project.properties file for this project, from the source tree
-     */
-    public File sourceProjectProperties()
-    {
-        return project.hasSourceCode()
-                ? project.folders().sourceCode().file("project.properties")
-                : project.folders().sourceProject().file("project.properties");
+        return project
+                .folders()
+                .project()
+                .file("README.md");
     }
 }

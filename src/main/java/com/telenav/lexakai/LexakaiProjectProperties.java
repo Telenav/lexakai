@@ -25,13 +25,13 @@ public class LexakaiProjectProperties extends PropertyMap
         addAll(Lexakai.get().properties());
 
         // lexakai-settings.properties,
-        addAll(PropertyMap.load(project.files().outputLexakaiSettings()));
+        addAll(PropertyMap.load(project.files().lexakaiSettings()));
         require("lexakai-documentation-location");
         require("lexakai-javadoc-location");
         require("lexakai-images-location");
 
         // project.properties
-        addAll(PropertyMap.load(project.files().sourceProjectProperties()));
+        addAll(PropertyMap.load(project.files().projectProperties()));
         add("project-module-name", get("project-artifact-id").replaceAll("-", "."));
         require("project-name");
         require("project-version");
@@ -39,15 +39,15 @@ public class LexakaiProjectProperties extends PropertyMap
         require("project-artifact-id");
 
         // lexakai.properties
-        addAll(PropertyMap.load(project.files().outputLexakaiProperties()));
+        addAll(PropertyMap.load(project.files().lexakaiProperties()));
         putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");
         require("project-icon");
 
         // project folders,
-        add("project-folder", project.folders().sourceProject().toString());
-        add("project-relative-folder", project.folders().sourceProjectRelativeToRoot().toString());
+        add("project-folder", project.folders().project().toString());
+        add("project-relative-folder", project.folders().projectRelativeToRoot().toString());
         add("project-output-folder", project.folders().output().toString());
         add("project-output-root-folder", project.folders().outputRoot().toString());
 
@@ -80,7 +80,7 @@ public class LexakaiProjectProperties extends PropertyMap
                 (
                         output,
                         project.rootProjectName(),
-                        project.folders().sourceProjectRelativeToRoot().toString(),
+                        project.folders().projectRelativeToRoot().toString(),
                         "documentation/diagrams"
                 )
                 .toString();

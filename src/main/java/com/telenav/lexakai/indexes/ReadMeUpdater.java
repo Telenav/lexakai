@@ -146,8 +146,8 @@ public class ReadMeUpdater
                 .nestedProjectJavadocCoverage()
                 .join("  \n", coverage ->
                 {
-                    final var child = coverage.project().folders().sourceProject();
-                    final var projectFolder = project.folders().sourceProject();
+                    final var child = coverage.project().folders().project();
+                    final var projectFolder = project.folders().project();
                     final var folder = child.relativeTo(projectFolder);
                     return coverage.projectCoverageMeter(folder);
                 }));
@@ -158,7 +158,7 @@ public class ReadMeUpdater
         {
             childProjects.forEach(at ->
             {
-                final var child = at.folders().sourceProject().last();
+                final var child = at.folders().project().last();
                 childProjectMarkdown.add(at.link(child) + "  ");
             });
         }
@@ -308,10 +308,10 @@ public class ReadMeUpdater
      */
     private File readMeTemplate()
     {
-        final var readmeTemplate = project.files().readMeTemplate();
+        final var template = project.files().readMeTemplate();
         (project.hasSourceCode() ? SOURCE_README_TEMPLATE : PARENT_README_TEMPLATE)
-                .safeCopyTo(readmeTemplate, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
-        return readmeTemplate;
+                .safeCopyTo(template, Lexakai.get().resourceCopyMode(), ProgressReporter.NULL);
+        return template;
     }
 
     /**

@@ -452,7 +452,7 @@ public class Lexakai extends Application
         final var diagramName = diagram.identifier();
 
         // get the UML output folder and read in the lexakai.properties file with diagram titles,
-        final var diagramFolder = diagram.project().folders().outputDiagrams().mkdirs();
+        final var diagramFolder = diagram.project().folders().diagramOutput().mkdirs();
         final var title = diagram.title();
 
         // get the uml for the given diagram,

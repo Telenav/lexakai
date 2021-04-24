@@ -60,7 +60,6 @@ import static com.telenav.lexakai.library.Names.TypeParameters.WITH_TYPE_PARAMET
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("ClassEscapesDefinedScope")
 public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 {
     public static class Referent

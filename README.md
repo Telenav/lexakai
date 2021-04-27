@@ -56,7 +56,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 
@@ -102,7 +102,7 @@ discovered recursively from the root folder(s) given as argument(s).
 
 ### Download Executable JAR <a name = "download"></a>&nbsp; ![](http://www.kivakit.org/images/down-arrow-32.png)
 
-[Lexakai 0.9.4](https://www.lexakai.org/builds/lexakai-0.9.4.jar)
+[Lexakai 0.9.5-alpha-SNAPSHOT](https://www.lexakai.org/builds/lexakai-0.9.5-alpha-SNAPSHOT.jar)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 

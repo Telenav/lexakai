@@ -13,7 +13,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.5-alpha-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <!-- Metadata -->
@@ -60,7 +60,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.0-SNAPSHOT</kivakit.version>
+        <kivakit.version>0.9.5-alpha-SNAPSHOT</kivakit.version>
 
         <!-- Java -->
 
@@ -129,11 +129,6 @@
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-core-application</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-data-formats-xml</artifactId>
             <version>${kivakit.version}</version>
         </dependency>
         <dependency>
@@ -317,6 +312,15 @@
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                        </echo>
+                                        <echo file = "project.properties">
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                        </echo>
+                                        <echo file = "${env.LEXAKAI_ANNOTATIONS_HOME}/project.properties">
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                        </echo>
+                                        <echo file = "${env.LEXAKAI_ANNOTATIONS_HOME}/src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"

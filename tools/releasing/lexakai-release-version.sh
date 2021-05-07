@@ -16,7 +16,7 @@ version=$1
 
 require_variable version "$help"
 
-for project_home in "${LEXAKAI_PROJECT_HOMES[@]}"; do
+for project_home in "${LEXAKAI_ALL_HOMES[@]}"; do
 
     update_version $project_home $version
 

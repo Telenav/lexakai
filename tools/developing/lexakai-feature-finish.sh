@@ -10,7 +10,7 @@
 source library-functions.sh
 source lexakai-projects.sh
 
-$help="[feature-name]"
+help="[feature-name]"
 
 feature_name=$1
 

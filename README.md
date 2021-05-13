@@ -28,7 +28,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Summary**](#summary)  
 [**Project Resources**](#project-resources)  
-[**Setup*](#setup)  
+[**Setup**](#setup)  
 [**Examples**](#examples)  
 [**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
 [**Custom UML Diagrams**](#custom-uml-diagrams)  

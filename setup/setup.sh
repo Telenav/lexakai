@@ -14,7 +14,7 @@ if [ -z "$LEXAKAI_HOME" ]; then
 fi
 
 cd $LEXAKAI_WORKSPACE
-git clone git@github.com:Telenav/lexakai-data.git
+git clone https://github.com/Telenav/lexakai-assets.git
 
 cd $LEXAKAI_HOME
 git checkout develop

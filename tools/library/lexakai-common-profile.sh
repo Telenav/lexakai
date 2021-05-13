@@ -1,5 +1,11 @@
 #―――― Lexakai ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 
+if [ -z "$LEXAKAI_WORKSPACE" ]; then
+
+    system_variable LEXAKAI_WORKSPACE "$KIVAKIT_WORKSPACE"
+
+fi
+
 system_variable LEXAKAI_HOME "$LEXAKAI_WORKSPACE/lexakai"
 system_variable LEXAKAI_ANNOTATIONS_HOME "$LEXAKAI_WORKSPACE/lexakai-annotations"
 system_variable LEXAKAI_DATA_HOME "$LEXAKAI_WORKSPACE/lexakai-data"

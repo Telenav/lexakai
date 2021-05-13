@@ -28,7 +28,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Summary**](#summary)  
 [**Project Resources**](#project-resources)  
-[**Download Executable JAR**](#download-executable-jar)  
+[**Setup*](#setup)  
 [**Examples**](#examples)  
 [**Creating Basic UML Package Diagrams**](#creating-basic-uml-package-diagrams)  
 [**Custom UML Diagrams**](#custom-uml-diagrams)  
@@ -100,9 +100,16 @@ discovered recursively from the root folder(s) given as argument(s).
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Download Executable JAR <a name = "download"></a>&nbsp; ![](http://www.kivakit.org/images/down-arrow-32.png)
+### Setup <a name = "setup"></a> &nbsp; <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[Lexakai 0.9.5-alpha-SNAPSHOT](https://www.lexakai.org/builds/lexakai-0.9.5-alpha-SNAPSHOT.jar)
+1. Install [GraphViz](https://plantuml.com/graphviz-dot) for generating SVG files
+
+2. Download Lexakai
+
+   [**Lexakai 0.9.5-alpha-SNAPSHOT**](https://www.lexakai.org/builds/lexakai-0.9.5-alpha-SNAPSHOT.jar) &nbsp; ![](http://www.kivakit.org/images/down-arrow-32.png)  
+
+
+3. Run Lexakai with *java -jar*
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 

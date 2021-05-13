@@ -312,16 +312,16 @@
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
-                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
                                         <echo file = "project.properties">
-                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
                                         <echo file = "${env.LEXAKAI_ANNOTATIONS_HOME}/project.properties">
-                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
                                         <echo file = "${env.LEXAKAI_ANNOTATIONS_HOME}/src/main/java/project.properties">
-                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}project-basedir=${project.basedir}${line.separator}
+                                            project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
                                               failonerror = "true"

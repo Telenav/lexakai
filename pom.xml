@@ -98,8 +98,8 @@
     <repositories>
 
         <repository>
-            <id>github-kivakit-build-public</id>
-            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/kivakit-build</url>
+            <id>github-cactus-build-public</id>
+            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/cactus-build</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -119,13 +119,16 @@
 
     <dependencies>
 
-        <!-- KivaKit -->
+        <!-- Lexakai -->
 
         <dependency>
             <groupId>com.telenav.lexakai</groupId>
             <artifactId>lexakai-annotations</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- KivaKit -->
+
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-core-application</artifactId>
@@ -163,6 +166,10 @@
     </dependencies>
 
     <build>
+
+        <directory>target.nosync</directory>
+        <outputDirectory>target.nosync/classes</outputDirectory>
+        <testOutputDirectory>target.nosync/test-classes</testOutputDirectory>
 
         <!-- Resource Copying -->
 
@@ -309,6 +316,7 @@
                                 </condition>
                                 <taskdef resource = "net/sf/antcontrib/antcontrib.properties" classpathref = "maven.plugin.classpath"/>
                                 <if>
+                                    <!--suppress MavenModelInspection -->
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
@@ -323,7 +331,7 @@
                                         <echo file = "${env.LEXAKAI_ANNOTATIONS_HOME}/src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
+                                        <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
@@ -342,10 +350,10 @@
                         <configuration>
                             <target name = "Install ${lexakai.jar}">
                                 <echo message = "Installing ${lexakai.jar}"/>
-                                <copy file = "target/${lexakai.jar}"
-                                      tofile = "${env.LEXAKAI_DATA_HOME}/docs/builds/${lexakai.jar}"/>
-                                <copy file = "target/${lexakai.jar}"
-                                      tofile = "${env.KIVAKIT_DATA_HOME}/docs/applications/${lexakai.jar}"/>
+                                <copy file = "${project.build.directory}/${lexakai.jar}"
+                                      tofile = "${env.LEXAKAI_ASSETS_HOME}/docs/builds/${lexakai.jar}"/>
+                                <copy file = "${project.build.directory}/${lexakai.jar}"
+                                      tofile = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/${lexakai.jar}"/>
                             </target>
                         </configuration>
                         <goals>
@@ -374,7 +382,7 @@
                     <detectJavaApiLink>false</detectJavaApiLink>
                     <doclint>none</doclint>
                     <nohelp>true</nohelp>
-                    <reportOutputDirectory>${env.LEXAKAI_DATA_HOME}/docs/javadoc</reportOutputDirectory>
+                    <reportOutputDirectory>${env.LEXAKAI_ASSETS_HOME}/docs/javadoc</reportOutputDirectory>
                     <destDir>lexakai</destDir>
                     <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
                 </configuration>

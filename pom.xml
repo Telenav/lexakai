@@ -167,10 +167,6 @@
 
     <build>
 
-        <directory>target.nosync</directory>
-        <outputDirectory>target.nosync/classes</outputDirectory>
-        <testOutputDirectory>target.nosync/test-classes</testOutputDirectory>
-
         <!-- Resource Copying -->
 
         <resources>

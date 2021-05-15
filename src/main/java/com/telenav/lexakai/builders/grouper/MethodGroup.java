@@ -18,10 +18,10 @@
 
 package com.telenav.lexakai.builders.grouper;
 
-import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.core.kernel.language.collections.set.Sets;
-import com.telenav.kivakit.core.kernel.language.primitives.Ints;
-import com.telenav.kivakit.core.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.kernel.language.collections.set.Sets;
+import com.telenav.kivakit.kernel.language.primitives.Ints;
+import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.lexakai.members.UmlMethod;
 import org.jetbrains.annotations.NotNull;
 

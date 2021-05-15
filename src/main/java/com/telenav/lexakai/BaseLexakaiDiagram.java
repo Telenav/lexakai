@@ -18,8 +18,8 @@
 
 package com.telenav.lexakai;
 
-import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
-import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
+import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 
 import static com.telenav.lexakai.Lexakai.SHOW_DIAGRAMS;
 

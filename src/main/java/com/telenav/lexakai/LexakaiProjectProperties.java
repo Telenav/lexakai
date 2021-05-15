@@ -1,13 +1,13 @@
 package com.telenav.lexakai;
 
-import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.core.kernel.language.paths.StringPath;
-import com.telenav.kivakit.core.kernel.language.strings.Packages;
-import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.kernel.language.paths.StringPath;
+import com.telenav.kivakit.kernel.language.strings.Packages;
+import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**

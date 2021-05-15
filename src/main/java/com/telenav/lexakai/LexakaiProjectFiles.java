@@ -1,6 +1,6 @@
 package com.telenav.lexakai;
 
-import com.telenav.kivakit.core.filesystem.File;
+import com.telenav.kivakit.filesystem.File;
 
 /**
  * @author jonathanl (shibo)

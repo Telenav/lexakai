@@ -18,8 +18,8 @@
 
 package com.telenav.lexakai.dependencies;
 
-import com.telenav.kivakit.core.kernel.language.objects.Hash;
-import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.objects.Hash;
+import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import org.jetbrains.annotations.NotNull;
 
 /**

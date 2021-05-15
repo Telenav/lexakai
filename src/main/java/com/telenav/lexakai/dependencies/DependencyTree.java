@@ -18,7 +18,7 @@
 
 package com.telenav.lexakai.dependencies;
 
-import com.telenav.kivakit.core.filesystem.Folder;
+import com.telenav.kivakit.filesystem.Folder;
 
 import java.util.HashMap;
 import java.util.HashSet;

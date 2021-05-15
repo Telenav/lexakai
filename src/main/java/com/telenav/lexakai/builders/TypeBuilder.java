@@ -20,7 +20,7 @@ package com.telenav.lexakai.builders;
 
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
-import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
+import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.lexakai.LexakaiClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.library.Annotations;

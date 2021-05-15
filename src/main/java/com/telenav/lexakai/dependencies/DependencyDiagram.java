@@ -18,10 +18,10 @@
 
 package com.telenav.lexakai.dependencies;
 
-import com.telenav.kivakit.core.filesystem.File;
-import com.telenav.kivakit.core.filesystem.Folder;
-import com.telenav.kivakit.core.kernel.language.collections.Collections;
-import com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder;
+import com.telenav.kivakit.filesystem.File;
+import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.language.collections.Collections;
+import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.lexakai.BaseLexakaiDiagram;
 
 /**

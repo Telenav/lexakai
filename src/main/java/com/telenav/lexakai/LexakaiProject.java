@@ -20,15 +20,15 @@ package com.telenav.lexakai;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
-import com.telenav.kivakit.core.filesystem.Folder;
-import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.core.kernel.language.primitives.Ints;
-import com.telenav.kivakit.core.kernel.language.values.level.Percent;
-import com.telenav.kivakit.core.kernel.language.values.version.Version;
-import com.telenav.kivakit.core.kernel.messaging.Message;
-import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.resource.path.Extension;
-import com.telenav.kivakit.core.resource.resources.packaged.Package;
+import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.kernel.language.primitives.Ints;
+import com.telenav.kivakit.kernel.language.values.level.Percent;
+import com.telenav.kivakit.kernel.language.values.version.Version;
+import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.library.Diagrams;
@@ -47,7 +47,7 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.core.resource.CopyMode.DO_NOT_OVERWRITE;
+import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
 
 /**
  * Represents a project for which Lexakai is producing diagrams.

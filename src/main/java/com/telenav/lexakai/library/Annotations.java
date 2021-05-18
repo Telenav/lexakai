@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,7 +18,15 @@
 
 package com.telenav.lexakai.library;
 
-import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.expr.AnnotationExpr;
+import com.github.javaparser.ast.expr.ArrayInitializerExpr;
+import com.github.javaparser.ast.expr.BooleanLiteralExpr;
+import com.github.javaparser.ast.expr.ClassExpr;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
+import com.github.javaparser.ast.expr.NameExpr;
+import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
+import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
 import org.jetbrains.annotations.NotNull;
 

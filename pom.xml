@@ -165,6 +165,56 @@
 
     </dependencies>
 
+    <profiles>
+
+        <!-- Exclude Slow Tests -->
+
+        <profile>
+            <id>test-quick</id>
+            <properties>
+                <exclude.test.groups>com.telenav.kivakit.core.test.annotations.SlowTests</exclude.test.groups>
+                <testQuick>true</testQuick>
+            </properties>
+        </profile>
+
+        <!-- Attach JARs -->
+
+        <profile>
+            <id>attach-jars</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-source-jar</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc-jar</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
     <build>
 
         <!-- Resource Copying -->

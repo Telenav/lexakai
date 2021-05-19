@@ -9,6 +9,8 @@ system_variable LEXAKAI_VERSION "$(project_version $LEXAKAI_HOME)"
 system_variable LEXAKAI_BUILD "$(project_build $LEXAKAI_HOME)"
 system_variable LEXAKAI_TOOLS "$LEXAKAI_HOME/tools"
 
+system_variable LEXAKAI_URL "https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/lexakai/lexakai/0.9.5-alpha-SNAPSHOT/lexakai-0.9.5-alpha-20210519.035416-1.jar"
+
 append_path "$LEXAKAI_TOOLS/building"
 append_path "$LEXAKAI_TOOLS/developing"
 append_path "$LEXAKAI_TOOLS/library"

@@ -8,49 +8,94 @@
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <name>Lexakai</name>
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
     <version>0.9.5-alpha-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <!-- Metadata -->
-
+    <name>Lexakai</name>
     <description>Lexakai annotations are used by Lexakai to generate UML diagrams.</description>
+    <url>http://www.lexakai.org</url>
+    <inceptionYear>2021</inceptionYear>
 
     <organization>
         <name>Telenav</name>
         <url>https://www.telenav.com</url>
     </organization>
 
-    <inceptionYear>2021</inceptionYear>
-
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/Telenav/lexakai-annotations/issues</url>
-    </issueManagement>
 
     <developers>
         <developer>
             <id>jonathanl</id>
             <name>Jonathan Locke (Luo Shibo)</name>
             <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>http://www.telenav.com/</organizationUrl>
             <roles>
                 <role>lead</role>
                 <role>administrator</role>
             </roles>
         </developer>
+        <developer>
+            <id>hfzhu</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:https://Telenav/lexakai.git</connection>
+        <developerConnection>scm:git:https://Telenav/lexakai.git</developerConnection>
+        <url>https://Telenav/lexakai.git</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Telenav/lexakai/issues</url>
+    </issueManagement>
+
+    <distributionManagement>
+
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+    </distributionManagement>
+
+    <repositories>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
 
     <!-- Properties -->
 
@@ -72,6 +117,7 @@
         <!-- Java -->
 
         <java.version>12</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Maven -->
 
@@ -81,46 +127,15 @@
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-        <maven.build.timestamp.format>yyyy.MM.dd-HH.mma</maven.build.timestamp.format>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+
+        <!-- Build -->
+
+        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
 
     </properties>
-
-    <!-- Deployment Repositories -->
-
-    <distributionManagement>
-
-        <repository>
-            <id>github</id>
-            <name>GitHub Lexakai Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/Telenav/lexakai</url>
-        </repository>
-
-    </distributionManagement>
-
-    <!-- Repositories -->
-
-    <repositories>
-
-        <repository>
-            <id>github-cactus-build-public</id>
-            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/cactus-build</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>github-kivakit-public</id>
-            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/kivakit</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-    </repositories>
 
     <!-- Dependencies -->
 
@@ -174,16 +189,6 @@
 
     <profiles>
 
-        <!-- Exclude Slow Tests -->
-
-        <profile>
-            <id>test-quick</id>
-            <properties>
-                <exclude.test.groups>com.telenav.kivakit.core.test.annotations.SlowTests</exclude.test.groups>
-                <testQuick>true</testQuick>
-            </properties>
-        </profile>
-
         <!-- Attach JARs -->
 
         <profile>
@@ -207,6 +212,15 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <show>public</show>
+                            <source>12</source>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                            <doclint>none</doclint>
+                            <nohelp>true</nohelp>
+                            <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
+                            <destDir>target/attached-javadocs</destDir>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>attach-javadoc-jar</id>
@@ -218,6 +232,38 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+        <!-- Sign Artifacts -->
+
+        <profile>
+
+            <id>sign-artifacts</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
         </profile>
 
     </profiles>
@@ -403,22 +449,6 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <id>install-log-viewer-jar</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <target name = "Install ${lexakai.jar}">
-                                <echo message = "Installing ${lexakai.jar}"/>
-                                <copy file = "${project.build.directory}/${lexakai.jar}"
-                                      tofile = "${env.LEXAKAI_ASSETS_HOME}/docs/builds/${lexakai.jar}"/>
-                                <copy file = "${project.build.directory}/${lexakai.jar}"
-                                      tofile = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/${lexakai.jar}"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>
@@ -454,6 +484,21 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+
+            <!-- Publishing -->
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
             </plugin>
 
         </plugins>

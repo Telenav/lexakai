@@ -41,7 +41,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 [**Settings**](#settings)  
 [**Readme Generation and Updating**](#readme-generation-and-updating)  
 [**Preserving Text Between Updates**](#preserving-text-between-updates)  
-[**Custom README Templates**](#custom-readme-templates)  
+[**Custom README Templates**](#custom-readme-templates)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -103,7 +103,7 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 
 2. Download Lexakai
 
-   [**Lexakai 0.9.7-alpha**](https://www.lexakai.org/builds/lexakai-0.9.7-alpha.jar) &nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
+   [**Lexakai 0.9.7-alpha**](https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/0.9.7-alpha/lexakai-0.9.7.alpha.jar) &nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
 
 
 3. Run Lexakai with *java -jar*
@@ -339,23 +339,22 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 48.6%.  
-  
+Javadoc coverage for this project is 48.6%.
+
 &nbsp; &nbsp; <img src="https://www.lexakai.org/images/meter-50-96.png" srcset="https://www.lexakai.org/images/meter-50-96-2x.png 2x"/>
 
+The following significant classes are undocumented:
 
-The following significant classes are undocumented:  
-
-- AssociationBuilder  
-- Associations  
-- JavadocCoverage  
-- LexakaiClassDiagram  
-- LexakaiProjectProperties  
-- MavenDependencyTreeBuilder  
-- MethodGroup  
-- MethodGroupNameGuesser  
-- Types  
-- UmlAssociation  
+- AssociationBuilder
+- Associations
+- JavadocCoverage
+- LexakaiClassDiagram
+- LexakaiProjectProperties
+- MavenDependencyTreeBuilder
+- MethodGroup
+- MethodGroupNameGuesser
+- Types
+- UmlAssociation
 - UmlMethod
 
 | Class | Documentation Sections |
@@ -403,7 +402,6 @@ The following significant classes are undocumented:
 | [*UmlType*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/types/UmlType.html) |  |  
 
 [//]: # (start-user-text)
-
 
 
 [//]: # (end-user-text)

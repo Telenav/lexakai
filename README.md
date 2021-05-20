@@ -18,7 +18,7 @@
 
 [//]: # (end-user-text)
 
-# Lexakai &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
+# lexakai 0.9.6-alpha &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
@@ -41,7 +41,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
 [**Settings**](#settings)  
 [**Readme Generation and Updating**](#readme-generation-and-updating)  
 [**Preserving Text Between Updates**](#preserving-text-between-updates)  
-[**Custom README Templates**](#custom-readme-templates)
+[**Custom README Templates**](#custom-readme-templates)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -56,7 +56,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai</artifactId>
-        <version>0.9.5-alpha-SNAPSHOT</version>
+        <version>0.9.6-alpha</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -103,7 +103,7 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 
 2. Download Lexakai
 
-   [**Lexakai 0.9.5-alpha-SNAPSHOT**](https://www.lexakai.org/builds/lexakai-0.9.5-alpha-SNAPSHOT.jar) &nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
+   [**Lexakai 0.9.6-alpha**](https://www.lexakai.org/builds/lexakai-0.9.6-alpha.jar) &nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
 
 
 3. Run Lexakai with *java -jar*
@@ -339,22 +339,23 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 48.7%.
-
+Javadoc coverage for this project is 48.6%.  
+  
 &nbsp; &nbsp; <img src="https://www.lexakai.org/images/meter-50-96.png" srcset="https://www.lexakai.org/images/meter-50-96-2x.png 2x"/>
 
-The following significant classes are undocumented:
 
-- AssociationBuilder
-- Associations
-- JavadocCoverage
-- LexakaiClassDiagram
-- LexakaiProjectProperties
-- MavenDependencyTreeBuilder
-- MethodGroup
-- MethodGroupNameGuesser
-- Types
-- UmlAssociation
+The following significant classes are undocumented:  
+
+- AssociationBuilder  
+- Associations  
+- JavadocCoverage  
+- LexakaiClassDiagram  
+- LexakaiProjectProperties  
+- MavenDependencyTreeBuilder  
+- MethodGroup  
+- MethodGroupNameGuesser  
+- Types  
+- UmlAssociation  
 - UmlMethod
 
 | Class | Documentation Sections |
@@ -402,6 +403,7 @@ The following significant classes are undocumented:
 | [*UmlType*](https://www.lexakai.org/javadoc/lexakai/lexakai/com/telenav/lexakai/types/UmlType.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)

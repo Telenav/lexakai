@@ -8,7 +8,7 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source library-functions.sh
-source lexakai-projects.sh
+source kivakit-projects.sh
 
 help="[version]"
 
@@ -16,8 +16,4 @@ version=$1
 
 require_variable version "$help"
 
-for project_home in "${LEXAKAI_PROJECT_HOMES[@]}"; do
-
-    git_flow_release_start $project_home $version
-
-done
+update_version $LEXAKAI_ANNOTATIONS_HOME $version

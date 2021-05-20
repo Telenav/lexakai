@@ -1,0 +1,71 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.lexakai.dependencies"
+    
+    abstract BaseRepeater
+    abstract BaseLexakaiDiagram
+    
+    interface Comparable
+    
+    Comparable <|-- Artifact
+    class Artifact
+    {
+        --(constructors)--
+        +Artifact(int, String, String, String)
+        --(identity)--
+        +String artifactId()
+        +String groupId()
+        +int identifier()
+        +String version()
+    }
+    
+    Comparable <|-- Dependency
+    class Dependency
+    {
+        --(constructors)--
+        +Dependency(Artifact, Artifact)
+        --
+        +String uml()
+    }
+    
+    BaseLexakaiDiagram <|-- DependencyDiagram
+    class DependencyDiagram
+    {
+        --(constructors)--
+        +DependencyDiagram(Folder, Folder, DependencyTree)
+        --(filesystem)--
+        +File save()
+    }
+    
+    class DependencyTree
+    {
+        --(constructors)--
+        +DependencyTree(String, Folder)
+        --
+        +Artifact artifact(int identifier)
+        +Set<Artifact> artifacts()
+        +Set<Dependency> dependencies()
+        +String title()
+        --(collection)--
+        +void add(Dependency)
+        +void add(Artifact)
+        +boolean isEmpty()
+        --(filesystem)--
+        +Folder projectFolder()
+        --(identity)--
+        +String artifactId()
+    }
+    
+    BaseRepeater <|-- MavenDependencyTreeBuilder
+    class MavenDependencyTreeBuilder
+    {
+        --(constructors)--
+        +MavenDependencyTreeBuilder(Folder)
+        --
+        +Set<DependencyTree> trees()
+    }
+    
+@enduml
+

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="651.0417px" preserveAspectRatio="none" style="width:1214px;height:651px;background:#333333;" version="1.1" viewBox="0 0 1214 651" width="1214.5833px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="365.625" x="417.1875" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="342.7083" x="428.6458" y="30.5583">com.telenav.lexakai.dependencies</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="67.1875" y="200.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="67.1875" y="200.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="67.1875" y="223.6328"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="67.1875" y="200.5778"/><ellipse cx="81.7708" cy="216.272" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M81.8848,212.974 L81.0364,216.7033 L82.7393,216.7033 Z M80.7861,211.3261 L82.9895,211.3261 L85.4492,220.4386 L83.6487,220.4386 L83.0872,218.1864 L80.6763,218.1864 L80.127,220.4386 L78.3264,220.4386 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="98.4375" y="220.9961">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="68.2292" x2="190.1042" y1="231.9661" y2="231.9661"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="68.2292" x2="190.1042" y1="240.2995" y2="240.2995"/><!--MD5=[d366ac531d94add6ab38903d6804b189]
+class BaseLexakaiDiagram--><rect codeLine="7" fill="#282828" height="48.055" id="BaseLexakaiDiagram" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="171.875" x="368.2292" y="200.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="171.875" x="368.2292" y="200.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="171.875" x="368.2292" y="223.6328"/><rect codeLine="7" fill="none" height="48.055" id="BaseLexakaiDiagram" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="171.875" x="368.2292" y="200.5778"/><ellipse cx="382.8125" cy="216.272" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M382.9264,212.974 L382.078,216.7033 L383.7809,216.7033 Z M381.8278,211.3261 L384.0312,211.3261 L386.4909,220.4386 L384.6903,220.4386 L384.1288,218.1864 L381.7179,218.1864 L381.1686,220.4386 L379.3681,220.4386 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="134.375" x="399.4792" y="220.9961">BaseLexakaiDiagram</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="369.2708" x2="539.0625" y1="231.9661" y2="231.9661"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="369.2708" x2="539.0625" y1="240.2995" y2="240.2995"/><!--MD5=[7a4729d26b999f6a4650b01106c103c5]
+class Comparable--><rect codeLine="9" fill="#282828" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="829.6875" y="200.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="829.6875" y="200.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="829.6875" y="223.6328"/><rect codeLine="9" fill="none" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="829.6875" y="200.5778"/><ellipse cx="844.2708" cy="216.272" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M841.154,213.4338 L841.154,211.8469 L846.58,211.8469 L846.58,213.4338 L844.7673,213.4338 L844.7673,219.3726 L846.58,219.3726 L846.58,220.9595 L841.154,220.9595 L841.154,219.3726 L842.9667,219.3726 L842.9667,213.4338 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="860.9375" y="220.9961">Comparable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="830.7292" x2="944.2708" y1="231.9661" y2="231.9661"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="830.7292" x2="944.2708" y1="240.2995" y2="240.2995"/><!--MD5=[00cff116ff6c3ad2c4e5e0dddbe6ceff]
+class Artifact--><rect codeLine="12" fill="#282828" height="186.2691" id="Artifact" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="215.625" x="657.8125" y="457.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="215.625" x="657.8125" y="457.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="215.625" x="657.8125" y="480.9245"/><rect codeLine="12" fill="none" height="186.2691" id="Artifact" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="215.625" x="657.8125" y="457.8695"/><ellipse cx="734.375" cy="473.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M736.2854,477.9887 Q735.8582,478.2084 735.3882,478.3183 Q734.9182,478.4281 734.3994,478.4281 Q732.5562,478.4281 731.5857,477.2135 Q730.6152,475.9989 730.6152,473.704 Q730.6152,471.403 731.5857,470.1884 Q732.5562,468.9738 734.3994,468.9738 Q734.9182,468.9738 735.3943,469.0837 Q735.8704,469.1935 736.2854,469.4132 L736.2854,471.4152 Q735.8215,470.988 735.3851,470.7896 Q734.9487,470.5912 734.4849,470.5912 Q733.4961,470.5912 732.9926,471.3755 Q732.489,472.1598 732.489,473.704 Q732.489,475.2421 732.9926,476.0264 Q733.4961,476.8107 734.4849,476.8107 Q734.9487,476.8107 735.3851,476.6123 Q735.8215,476.414 736.2854,475.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="47.9167" x="757.2917" y="478.2878">Artifact</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="658.8542" x2="872.3958" y1="489.2578" y2="489.2578"/><ellipse cx="669.2708" cy="524.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="183.3333" x="680.7292" y="531.5389">Artifact(int, String, String, String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="658.8542" x2="721.875" y1="507.4636" y2="507.4636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="725" y="511.2732">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="809.375" x2="872.3958" y1="507.4636" y2="507.4636"/><ellipse cx="669.2708" cy="568.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="680.7292" y="575.1953">String artifactId()</text><ellipse cx="669.2708" cy="588.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="89.5833" x="680.7292" y="594.9402">String groupId()</text><ellipse cx="669.2708" cy="607.7738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="76.0417" x="680.7292" y="614.6851">int identifier()</text><ellipse cx="669.2708" cy="627.5187" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="680.7292" y="634.4299">String version()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="658.8542" x2="737.5" y1="551.12" y2="551.12"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="740.625" y="554.9296">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="793.75" x2="872.3958" y1="551.12" y2="551.12"/><!--MD5=[3c634b536ee83ca98b8e440922e2fe77]
+class Dependency--><rect codeLine="24" fill="#282828" height="111.4563" id="Dependency" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="198.9583" x="909.8958" y="495.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="198.9583" x="909.8958" y="495.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="198.9583" x="909.8958" y="518.4245"/><rect codeLine="24" fill="none" height="111.4563" id="Dependency" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="198.9583" x="909.8958" y="495.3695"/><ellipse cx="962.5" cy="511.0636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M964.4104,515.4887 Q963.9832,515.7084 963.5132,515.8183 Q963.0432,515.9281 962.5244,515.9281 Q960.6812,515.9281 959.7107,514.7135 Q958.7402,513.4989 958.7402,511.204 Q958.7402,508.903 959.7107,507.6884 Q960.6812,506.4738 962.5244,506.4738 Q963.0432,506.4738 963.5193,506.5837 Q963.9954,506.6935 964.4104,506.9132 L964.4104,508.9152 Q963.9465,508.488 963.5101,508.2896 Q963.0737,508.0912 962.6099,508.0912 Q961.6211,508.0912 961.1176,508.8755 Q960.614,509.6598 960.614,511.204 Q960.614,512.7421 961.1176,513.5264 Q961.6211,514.3107 962.6099,514.3107 Q963.0737,514.3107 963.5101,514.1123 Q963.9465,513.914 964.4104,513.4867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="985.4167" y="515.7878">Dependency</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="910.9375" x2="1107.8125" y1="526.7578" y2="526.7578"/><ellipse cx="921.3542" cy="562.1277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="166.6667" x="932.8125" y="569.0389">Dependency(Artifact, Artifact)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="910.9375" x2="965.625" y1="544.9636" y2="544.9636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="968.75" y="548.7732">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1053.125" x2="1107.8125" y1="544.9636" y2="544.9636"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="910.9375" x2="1107.8125" y1="578.7476" y2="578.7476"/><ellipse cx="921.3542" cy="590.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="932.8125" y="597.1171">String uml()</text><!--MD5=[d10b9a335f10b8869baf6e4bba7a6503]
+class DependencyDiagram--><rect codeLine="33" fill="#282828" height="127.0345" id="DependencyDiagram" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="333.3333" x="287.5" y="487.557"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="333.3333" x="287.5" y="487.557"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="333.3333" x="287.5" y="510.612"/><rect codeLine="33" fill="none" height="127.0345" id="DependencyDiagram" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="333.3333" x="287.5" y="487.557"/><ellipse cx="379.6875" cy="503.2511" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M381.5979,507.6762 Q381.1707,507.8959 380.7007,508.0058 Q380.2307,508.1156 379.7119,508.1156 Q377.8687,508.1156 376.8982,506.901 Q375.9277,505.6864 375.9277,503.3915 Q375.9277,501.0905 376.8982,499.8759 Q377.8687,498.6613 379.7119,498.6613 Q380.2307,498.6613 380.7068,498.7712 Q381.1829,498.881 381.5979,499.1007 L381.5979,501.1027 Q381.134,500.6755 380.6976,500.4771 Q380.2612,500.2787 379.7974,500.2787 Q378.8086,500.2787 378.3051,501.063 Q377.8015,501.8473 377.8015,503.3915 Q377.8015,504.9296 378.3051,505.7139 Q378.8086,506.4982 379.7974,506.4982 Q380.2612,506.4982 380.6976,506.2998 Q381.134,506.1015 381.5979,505.6742 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="134.375" x="402.6042" y="507.9753">DependencyDiagram</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="288.5417" x2="619.7917" y1="518.9453" y2="518.9453"/><ellipse cx="298.9583" cy="554.3152" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="301.0417" x="310.4167" y="561.2264">DependencyDiagram(Folder, Folder, DependencyTree)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="288.5417" x2="410.4167" y1="537.1511" y2="537.1511"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="413.5417" y="540.9607">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="497.9167" x2="619.7917" y1="537.1511" y2="537.1511"/><ellipse cx="298.9583" cy="597.9716" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="55.2083" x="310.4167" y="604.8828">File save()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="288.5417" x2="418.75" y1="580.8075" y2="580.8075"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="421.875" y="584.6171">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="489.5833" x2="619.7917" y1="580.8075" y2="580.8075"/><!--MD5=[e7f76d25d57c9e8b8e924febeb46c90d]
+class DependencyTree--><rect codeLine="41" fill="#282828" height="341.1499" id="DependencyTree" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="225" x="982.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="225" x="982.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="225" x="982.2917" y="76.7578"/><rect codeLine="41" fill="none" height="341.1499" id="DependencyTree" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="225" x="982.2917" y="53.7028"/><ellipse cx="1033.8542" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1035.7646,73.822 Q1035.3373,74.0417 1034.8674,74.1516 Q1034.3974,74.2615 1033.8786,74.2615 Q1032.0353,74.2615 1031.0649,73.0469 Q1030.0944,71.8323 1030.0944,69.5374 Q1030.0944,67.2363 1031.0649,66.0217 Q1032.0353,64.8071 1033.8786,64.8071 Q1034.3974,64.8071 1034.8735,64.917 Q1035.3495,65.0269 1035.7646,65.2466 L1035.7646,67.2485 Q1035.3007,66.8213 1034.8643,66.6229 Q1034.4279,66.4246 1033.964,66.4246 Q1032.9753,66.4246 1032.4717,67.2089 Q1031.9682,67.9932 1031.9682,69.5374 Q1031.9682,71.0754 1032.4717,71.8597 Q1032.9753,72.644 1033.964,72.644 Q1034.4279,72.644 1034.8643,72.4457 Q1035.3007,72.2473 1035.7646,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="107.2917" x="1056.7708" y="74.1211">DependencyTree</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="983.3333" x2="1206.25" y1="85.0911" y2="85.0911"/><ellipse cx="993.75" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="177.0833" x="1005.2083" y="127.3722">DependencyTree(String, Folder)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="983.3333" x2="1051.0417" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1054.1667" y="107.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1138.5417" x2="1206.25" y1="103.2969" y2="103.2969"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="983.3333" x2="1206.25" y1="137.0809" y2="137.0809"/><ellipse cx="993.75" cy="148.5392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="160.4167" x="1005.2083" y="155.4504">Artifact artifact(int identifier)</text><ellipse cx="993.75" cy="168.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="134.375" x="1005.2083" y="175.1953">Set&lt;Artifact&gt; artifacts()</text><ellipse cx="993.75" cy="188.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="192.7083" x="1005.2083" y="194.9402">Set&lt;Dependency&gt; dependencies()</text><ellipse cx="993.75" cy="207.7738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="1005.2083" y="214.6851">String title()</text><ellipse cx="993.75" cy="251.4303" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="1005.2083" y="258.3415">void add(Dependency)</text><ellipse cx="993.75" cy="271.1751" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="1005.2083" y="278.0863">void add(Artifact)</text><ellipse cx="993.75" cy="290.92" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="1005.2083" y="297.8312">boolean isEmpty()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="983.3333" x2="1060.4167" y1="234.2662" y2="234.2662"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="1063.5417" y="238.0758">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1129.1667" x2="1206.25" y1="234.2662" y2="234.2662"/><ellipse cx="993.75" cy="334.5764" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="1005.2083" y="341.4876">Folder projectFolder()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="983.3333" x2="1059.375" y1="317.4123" y2="317.4123"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="1062.5" y="321.2219">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1130.2083" x2="1206.25" y1="317.4123" y2="317.4123"/><ellipse cx="993.75" cy="378.2328" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="1005.2083" y="385.144">String artifactId()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="983.3333" x2="1066.6667" y1="361.0687" y2="361.0687"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="1069.7917" y="364.8783">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1122.9167" x2="1206.25" y1="361.0687" y2="361.0687"/><!--MD5=[9af09f9f7accb8cc46e3fd72e746e958]
+class MavenDependencyTreeBuilder--><rect codeLine="61" fill="#282828" height="111.4563" id="MavenDependencyTreeBuilder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="243.75" x="7.2917" y="495.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="243.75" x="7.2917" y="495.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="243.75" x="7.2917" y="518.4245"/><rect codeLine="61" fill="none" height="111.4563" id="MavenDependencyTreeBuilder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="243.75" x="7.2917" y="495.3695"/><ellipse cx="27.0313" cy="511.0636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M28.9417,515.4887 Q28.5144,515.7084 28.0444,515.8183 Q27.5745,515.9281 27.0557,515.9281 Q25.2124,515.9281 24.2419,514.7135 Q23.2715,513.4989 23.2715,511.204 Q23.2715,508.903 24.2419,507.6884 Q25.2124,506.4738 27.0557,506.4738 Q27.5745,506.4738 28.0505,506.5837 Q28.5266,506.6935 28.9417,506.9132 L28.9417,508.9152 Q28.4778,508.488 28.0414,508.2896 Q27.605,508.0912 27.1411,508.0912 Q26.1523,508.0912 25.6488,508.8755 Q25.1453,509.6598 25.1453,511.204 Q25.1453,512.7421 25.6488,513.5264 Q26.1523,514.3107 27.1411,514.3107 Q27.605,514.3107 28.0414,514.1123 Q28.4778,513.914 28.9417,513.4867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="194.7917" x="44.8438" y="515.7878">MavenDependencyTreeBuilder</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="250" y1="526.7578" y2="526.7578"/><ellipse cx="18.75" cy="562.1277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="211.4583" x="30.2083" y="569.0389">MavenDependencyTreeBuilder(Folder)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="85.4167" y1="544.9636" y2="544.9636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="88.5417" y="548.7732">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="172.9167" x2="250" y1="544.9636" y2="544.9636"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="250" y1="578.7476" y2="578.7476"/><ellipse cx="18.75" cy="590.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="168.75" x="30.2083" y="597.1171">Set&lt;DependencyTree&gt; trees()</text><!--MD5=[116fb5544e30f5cec6257924390dd843]
+reverse link Comparable to Artifact--><path codeLine="11" d="M871.3333,268.609 C853.3021,316.6195 823.6042,395.6924 800.2708,457.8174 " fill="none" id="Comparable-backto-Artifact" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="864.5833,265.8486,878.7396,248.9111,878.2396,270.984,864.5833,265.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a8343765537c410118215e9143e6b44a]
+reverse link Comparable to Dependency--><path codeLine="23" d="M903.625,268.5049 C925.5417,326.8486 964.7396,431.234 988.7708,495.1924 " fill="none" id="Comparable-backto-Dependency" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="896.7604,270.984,896.2604,248.9111,910.4167,265.8486,896.7604,270.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d0d162150da7ef5379619142c57f0461]
+reverse link BaseLexakaiDiagram to DependencyDiagram--><path codeLine="32" d="M454.1667,269.9632 C454.1667,326.2132 454.1667,423.5153 454.1667,487.3382 " fill="none" id="BaseLexakaiDiagram-backto-DependencyDiagram" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="446.875,269.7445,454.1667,248.9111,461.4583,269.7445,446.875,269.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[de0ab70ee592e1b7a1bc3ef849329d8c]
+reverse link BaseRepeater to MavenDependencyTreeBuilder--><path codeLine="60" d="M129.1667,270.057 C129.1667,328.682 129.1667,431.7965 129.1667,495.1924 " fill="none" id="BaseRepeater-backto-MavenDependencyTreeBuilder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="121.875,269.7445,129.1667,248.9111,136.4583,269.7445,121.875,269.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[207f8e9a32993af3d711421d4425d227]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.lexakai.dependencies"
+    
+    abstract BaseRepeater
+    abstract BaseLexakaiDiagram
+    
+    interface Comparable
+    
+    Comparable <|- - Artifact
+    class Artifact
+    {
+        - -(constructors)- -
+        +Artifact(int, String, String, String)
+        - -(identity)- -
+        +String artifactId()
+        +String groupId()
+        +int identifier()
+        +String version()
+    }
+    
+    Comparable <|- - Dependency
+    class Dependency
+    {
+        - -(constructors)- -
+        +Dependency(Artifact, Artifact)
+        - -
+        +String uml()
+    }
+    
+    BaseLexakaiDiagram <|- - DependencyDiagram
+    class DependencyDiagram
+    {
+        - -(constructors)- -
+        +DependencyDiagram(Folder, Folder, DependencyTree)
+        - -(filesystem)- -
+        +File save()
+    }
+    
+    class DependencyTree
+    {
+        - -(constructors)- -
+        +DependencyTree(String, Folder)
+        - -
+        +Artifact artifact(int identifier)
+        +Set<Artifact> artifacts()
+        +Set<Dependency> dependencies()
+        +String title()
+        - -(collection)- -
+        +void add(Dependency)
+        +void add(Artifact)
+        +boolean isEmpty()
+        - -(filesystem)- -
+        +Folder projectFolder()
+        - -(identity)- -
+        +String artifactId()
+    }
+    
+    BaseRepeater <|- - MavenDependencyTreeBuilder
+    class MavenDependencyTreeBuilder
+    {
+        - -(constructors)- -
+        +MavenDependencyTreeBuilder(Folder)
+        - -
+        +Set<DependencyTree> trees()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.lexakai.dependencies"
+    
+    abstract BaseRepeater
+    abstract BaseLexakaiDiagram
+    
+    interface Comparable
+    
+    Comparable <|- - Artifact
+    class Artifact
+    {
+        - -(constructors)- -
+        +Artifact(int, String, String, String)
+        - -(identity)- -
+        +String artifactId()
+        +String groupId()
+        +int identifier()
+        +String version()
+    }
+    
+    Comparable <|- - Dependency
+    class Dependency
+    {
+        - -(constructors)- -
+        +Dependency(Artifact, Artifact)
+        - -
+        +String uml()
+    }
+    
+    BaseLexakaiDiagram <|- - DependencyDiagram
+    class DependencyDiagram
+    {
+        - -(constructors)- -
+        +DependencyDiagram(Folder, Folder, DependencyTree)
+        - -(filesystem)- -
+        +File save()
+    }
+    
+    class DependencyTree
+    {
+        - -(constructors)- -
+        +DependencyTree(String, Folder)
+        - -
+        +Artifact artifact(int identifier)
+        +Set<Artifact> artifacts()
+        +Set<Dependency> dependencies()
+        +String title()
+        - -(collection)- -
+        +void add(Dependency)
+        +void add(Artifact)
+        +boolean isEmpty()
+        - -(filesystem)- -
+        +Folder projectFolder()
+        - -(identity)- -
+        +String artifactId()
+    }
+    
+    BaseRepeater <|- - MavenDependencyTreeBuilder
+    class MavenDependencyTreeBuilder
+    {
+        - -(constructors)- -
+        +MavenDependencyTreeBuilder(Folder)
+        - -
+        +Set<DependencyTree> trees()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

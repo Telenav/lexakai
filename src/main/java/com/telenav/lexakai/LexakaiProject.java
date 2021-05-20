@@ -38,11 +38,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -55,7 +53,7 @@ import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
  * <p><b>Java Parsing</b></p>
  * <p>
  * The project has types that are discovered using the JavaParser API. Those types are available through {@link
- * #typeDeclarations()} and {@link #typeDeclarations(Consumer)}.
+ * #typeDeclarations(Consumer)}.
  * </p>
  *
  * <p><b>Settings</b></p>
@@ -107,9 +105,6 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     /** The UML diagrams in this project, deduced from @UmlClassDiagram annotations */
     private final LinkedHashMap<String, LexakaiClassDiagram> diagrams = new LinkedHashMap<>();
-
-    /** The names of all the diagrams in this project */
-    private final Set<String> diagramNames = new HashSet<>();
 
     /** True to automatically guess method groups */
     private boolean automaticMethodGroups;
@@ -226,25 +221,6 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     }
 
     /**
-     * Calls the consumer with the names of all diagrams in this project
-     */
-    public void diagramNames(final Consumer<String> consumer)
-    {
-        // If we haven't found diagrams in this project,
-        if (diagramNames.isEmpty())
-        {
-            // go through each type declaration,
-            typeDeclarations((type) ->
-            {
-                // and add the diagrams it belongs to.
-                diagramNames.addAll(Diagrams.diagrams(type, buildPackageDiagrams));
-            });
-        }
-
-        diagramNames.forEach(consumer);
-    }
-
-    /**
      * Calls the consumer with each diagram in this project
      */
     public void diagrams(final Consumer<LexakaiClassDiagram> consumer)
@@ -298,11 +274,6 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         return folders;
     }
 
-    public boolean hasChildProjects()
-    {
-        return !childProjects().isEmpty();
-    }
-
     public boolean hasSourceCode()
     {
         return folders().sourceCode().exists();
@@ -335,25 +306,25 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
 
     public void initialize()
     {
-        final var resourceFolder = Package.of(Lexakai.class, "resources");
+        final var resourcePackage = Package.of(Lexakai.class, "resources");
 
         // If the project has source code,
         if (hasSourceCode())
         {
             // install the lexakai theme and default groups patterns into the configuration folder if they are not already installed,
             final var copyMode = Lexakai.get().resourceCopyMode();
-            resourceFolder.resource("source/lexakai.groups").safeCopyTo(folders().settings(), copyMode);
-            resourceFolder.resource("lexakai.theme").safeCopyTo(folders().settings(), copyMode);
+            resourcePackage.resource("source/lexakai.groups").safeCopyTo(folders().settings(), copyMode);
+            resourcePackage.resource("lexakai.theme").safeCopyTo(folders().settings(), copyMode);
         }
 
         // install the lexakai settings properties file if it doesn't already exist,
-        resourceFolder.resource("lexakai.settings")
+        resourcePackage.resource("lexakai.settings")
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
                 .safeCopyTo(files().lexakaiSettings(), DO_NOT_OVERWRITE);
 
         // then install the lexakai properties file if it doesn't already exist.
-        resourceFolder.resource(hasSourceCode() ? "source/lexakai.properties" : "parent/lexakai.properties")
+        resourcePackage.resource(hasSourceCode() ? "source/lexakai.properties" : "parent/lexakai.properties")
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
                 .safeCopyTo(files().lexakaiProperties(), DO_NOT_OVERWRITE);
@@ -444,11 +415,6 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     public void typeDeclarations(final Consumer<TypeDeclaration<?>> consumer)
     {
         parseTypeDeclarations().forEach(consumer);
-    }
-
-    public List<TypeDeclaration<?>> typeDeclarations()
-    {
-        return typeDeclarations;
     }
 
     public void updateReadMe()

@@ -1,0 +1,30 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.lexakai.javadoc"
+    
+    interface Comparable
+    
+    Comparable <|-- JavadocCoverage
+    class JavadocCoverage
+    {
+        --(constructors)--
+        +JavadocCoverage(LexakaiProject)
+        --
+        +String coverage()
+        +String details()
+        +LexakaiProject project()
+        --(collection)--
+        +void add(TypeDeclaration<?>)
+        +void addToVariableMap(VariableMap<String> variables)
+        +StringList summary()
+        +StringList warnings()
+        --(distance)--
+        +String projectCoverageMeter(Folder)
+        --(math)--
+        +Percent projectCoverage()
+    }
+    
+@enduml
+

@@ -1,0 +1,87 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "lexakai"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact javaparser_core
+    artifact javaparser_symbol_solver_core
+    artifact jsr305
+    artifact error_prone_annotations
+    artifact failureaccess
+    artifact guava
+    artifact listenablefuture
+    artifact j2objc_annotations
+    artifact cactus_build_metadata
+    artifact kivakit_application
+    artifact kivakit_collections
+    artifact kivakit_commandline
+    artifact kivakit_configuration
+    artifact kivakit_kernel
+    artifact kivakit_network_core
+    artifact kivakit_network_http
+    artifact kivakit_resource
+    artifact kivakit_security
+    artifact kivakit_serialization_core
+    artifact kivakit_serialization_kryo
+    artifact kivakit_test
+    artifact lexakai_annotations
+    artifact lexakai
+    artifact commons_codec
+    artifact commons_logging
+    artifact kryo_serializers
+    artifact swagger_annotations
+    artifact junit
+    artifact httpclient
+    artifact httpcore
+    artifact checker_qual
+    artifact hamcrest_core
+    artifact javassist
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    guava --> checker_qual
+    guava --> error_prone_annotations
+    guava --> failureaccess
+    guava --> j2objc_annotations
+    guava --> jsr305
+    guava --> listenablefuture
+    httpclient --> commons_codec
+    httpclient --> commons_logging
+    httpclient --> httpcore
+    javaparser_symbol_solver_core --> guava
+    javaparser_symbol_solver_core --> javassist
+    junit --> hamcrest_core
+    kivakit_application --> kivakit_commandline
+    kivakit_application --> kivakit_configuration
+    kivakit_collections --> kivakit_serialization_kryo
+    kivakit_collections --> kivakit_test
+    kivakit_commandline --> kivakit_kernel
+    kivakit_kernel --> annotations
+    kivakit_kernel --> jackson_annotations
+    kivakit_kernel --> junit
+    kivakit_kernel --> swagger_annotations
+    kivakit_network_core --> kivakit_security
+    kivakit_network_http --> httpclient
+    kivakit_network_http --> kivakit_network_core
+    kivakit_resource --> kivakit_serialization_core
+    kivakit_serialization_kryo --> kryo
+    kivakit_serialization_kryo --> kryo_serializers
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    lexakai --> javaparser_core
+    lexakai --> javaparser_symbol_solver_core
+    lexakai --> kivakit_application
+    lexakai --> kivakit_collections
+    lexakai --> kivakit_network_http
+    lexakai --> kivakit_resource
+    lexakai --> lexakai_annotations
+    lexakai_annotations --> cactus_build_metadata
+    reflectasm --> asm
+    
+@enduml

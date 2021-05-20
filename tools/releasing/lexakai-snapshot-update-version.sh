@@ -8,11 +8,11 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source library-functions.sh
-source kivakit-projects.sh
+source lexakai-projects.sh
+
+version="${1%-SNAPSHOT}-SNAPSHOT"
 
 help="[version]"
-
-version=$1
 
 require_variable version "$help"
 

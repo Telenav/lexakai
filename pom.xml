@@ -123,14 +123,12 @@
 
     <properties>
 
-        <!-- Lexakai -->
-
-        <lexakai.downloads.folder>${user.home}/.lexakai/downloads</lexakai.downloads.folder>
-
         <!-- Cactus Build -->
 
-        <cactus.build.url>https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/cactus/cactus-build-metadata/0.9.5-alpha-SNAPSHOT/cactus-build-metadata-0.9.5-alpha-20210518.164351-1.jar</cactus.build.url>
-        <cactus.build.jar>${lexakai.downloads.folder}/cactus-build-metadata.jar</cactus.build.jar>
+        <cactus.version>0.9.6-alpha</cactus.version>
+        <cactus.downloads.folder>${user.home}/.cactus-build/downloads</cactus.downloads.folder>
+        <cactus.build.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.version}/cactus-build-metadata-${cactus.version}.jar</cactus.build.url>
+        <cactus.build.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.version}.jar</cactus.build.jar>
 
         <!-- KivaKit Version -->
 
@@ -439,7 +437,7 @@
                                 <if>
                                     <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
                                     <then>
-                                        <mkdir dir = "${lexakai.downloads.folder}"/>
+                                        <mkdir dir = "${cactus.downloads.folder}"/>
                                         <get src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
                                     </then>
                                 </if>

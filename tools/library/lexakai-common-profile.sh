@@ -9,7 +9,11 @@ system_variable LEXAKAI_VERSION "$(project_version $LEXAKAI_HOME)"
 system_variable LEXAKAI_BUILD "$(project_build $LEXAKAI_HOME)"
 system_variable LEXAKAI_TOOLS "$LEXAKAI_HOME/tools"
 
-system_variable LEXAKAI_URL "https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/lexakai/lexakai/0.9.5-alpha-SNAPSHOT/lexakai-0.9.5-alpha-20210519.035416-1.jar"
+system_variable CACTUS_DOWNLOAD_VERSION 0.9.6-alpha
+system_variable CACTUS_URL "https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${CACTUS_DOWNLOAD_VERSION}/cactus-build-metadata-${CACTUS_DOWNLOAD_VERSION}.jar"
+
+system_variable LEXAKAI_DOWNLOAD_VERSION 0.9.7-alpha
+system_variable LEXAKAI_URL "https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/${LEXAKAI_DOWNLOAD_VERSION}/lexakai-${LEXAKAI_DOWNLOAD_VERSION}.jar"
 
 append_path "$LEXAKAI_TOOLS/building"
 append_path "$LEXAKAI_TOOLS/developing"

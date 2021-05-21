@@ -18,7 +18,7 @@
 
 [//]: # (end-user-text)
 
-# lexakai 0.9.8-alpha-SNAPSHOT &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
+# lexakai 0.9.7-alpha &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lexakai-64.png" srcset="https://www.lexakai.org/images/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
@@ -56,7 +56,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai</artifactId>
-        <version>0.9.8-alpha-SNAPSHOT</version>
+        <version>0.9.7-alpha</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>

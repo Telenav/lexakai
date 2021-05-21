@@ -16,8 +16,4 @@ version=$1
 
 require_variable version "$help"
 
-for project_home in "${LEXAKAI_PROJECT_HOMES[@]}"; do
-
-    git_flow_release_finish $project_home $version
-
-done
+git_flow_release_finish $LEXAKAI_HOME $version

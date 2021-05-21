@@ -16,4 +16,4 @@ version=$1
 
 require_variable version "$help"
 
-git_flow_release_start $LEXAKAI_HOME $version
+update_version $LEXAKAI_HOME $version

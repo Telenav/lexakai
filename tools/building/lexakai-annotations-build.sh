@@ -8,16 +8,7 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 source library-functions.sh
+source library-build.sh
 source lexakai-projects.sh
 
-help="[version]"
-
-version=$1
-
-require_variable version "$help"
-
-for project_home in "${LEXAKAI_PROJECT_HOMES[@]}"; do
-
-    update_version $project_home $version
-
-done
+build $LEXAKAI_ANNOTATIONS_HOME $@

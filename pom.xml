@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
-    <version>0.9.7-alpha</version>
+    <version>0.9.8-alpha-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <!-- Project -->
@@ -132,7 +132,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.7-alpha</kivakit.version>
+        <kivakit.version>0.9.8-alpha-SNAPSHOT</kivakit.version>
 
         <!-- Java -->
 

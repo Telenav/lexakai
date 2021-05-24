@@ -22,16 +22,11 @@ public class LexakaiProjectProperties extends PropertyMap
         this.project = project;
 
         // Add system and application properties,
-        addAll(Lexakai.get().properties());
-
-        // lexakai.settings,
-        addAll(PropertyMap.load(project.files().lexakaiSettings()));
-        require("lexakai-documentation-location");
-        require("lexakai-javadoc-location");
-        require("lexakai-images-location");
+        final var systemProperties = Lexakai.get().properties();
+        addAll(systemProperties);
 
         // project.properties
-        addAll(PropertyMap.load(project.files().projectProperties()));
+        addAll(PropertyMap.load(project.files().projectProperties()).expandedWith(this));
         final var artifactId = get("project-artifact-id");
         add("project-module-name", artifactId.replaceAll("-", "."));
         require("project-name");
@@ -39,8 +34,14 @@ public class LexakaiProjectProperties extends PropertyMap
         require("project-group-id");
         require("project-artifact-id");
 
+        // lexakai.settings,
+        addAll(PropertyMap.load(project.files().lexakaiSettings()).expandedWith(this));
+        require("lexakai-documentation-location");
+        require("lexakai-javadoc-location");
+        require("lexakai-images-location");
+
         // lexakai.properties
-        addAll(PropertyMap.load(project.files().lexakaiProperties(artifactId)));
+        addAll(PropertyMap.load(project.files().lexakaiProperties(artifactId)).expandedWith(this));
         putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");

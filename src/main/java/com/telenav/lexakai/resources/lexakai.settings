@@ -8,8 +8,8 @@
 # Locations of resources linked to from README.md files
 #
 lexakai-documentation-location = [UNDEFINED] Add root URI or file path to Lexakai documentation folder here
-lexakai-images-location        = [UNDEFINED] Add root URI or file path to Lexakai images here
 lexakai-javadoc-location       = [UNDEFINED] Add root URI or file path to project Javadoc
+lexakai-images-location        = [UNDEFINED] Add root URI or file path to Lexakai images here
 lexakai-images-folder          = [UNDEFINED] Add file path to images folder
 
 #

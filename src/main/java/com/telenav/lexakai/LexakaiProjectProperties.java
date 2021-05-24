@@ -98,7 +98,13 @@ public class LexakaiProjectProperties extends PropertyMap
      */
     public String outputJavadocLocation()
     {
-        return asPath("lexakai-javadoc-location") + "/" + project.rootProjectName() + "/" + projectModuleName();
+        var location = asPath("lexakai-javadoc-location") + "/" + project.rootProjectName();
+        final var moduleName = projectModuleName();
+        if (moduleName != null && !moduleName.equalsIgnoreCase("none"))
+        {
+            location += "/" + moduleName;
+        }
+        return location;
     }
 
     /**

@@ -7,8 +7,8 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source library-functions.sh
-source library-build.sh
+source lexakai-library-functions.sh
+source lexakai-library-build.sh
 source lexakai-projects.sh
 
 for project_home in "${LEXAKAI_PROJECT_HOMES[@]}"; do

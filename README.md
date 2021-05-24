@@ -360,47 +360,47 @@ The following significant classes are undocumented:
 
 | Class | Documentation Sections |
 |---|---|
-| [*Annotations*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Annotations.html) |  |  
-| [*Artifact*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/dependencies/Artifact.html) |  |  
-| [*AssociationBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/AssociationBuilder.html) |  |  
-| [*Associations*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Associations.html) |  |  
-| [*BaseLexakaiDiagram*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/BaseLexakaiDiagram.html) |  |  
-| [*Dependency*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/dependencies/Dependency.html) |  |  
-| [*DependencyDiagram*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/dependencies/DependencyDiagram.html) |  |  
-| [*DependencyTree*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/dependencies/DependencyTree.html) |  |  
-| [*Diagrams*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Diagrams.html) |  |  
-| [*Fields*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Fields.html) |  |  
-| [*JavadocCoverage*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/javadoc/JavadocCoverage.html) |  |  
-| [*Lexakai*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/Lexakai.html) |  |  
-| [*LexakaiClassDiagram*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiClassDiagram.html) |  |  
-| [*LexakaiClassDiagram.Referent*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
-| [*LexakaiProject*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |  
+| [*Annotations*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Annotations.html) |  |  
+| [*Artifact*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/dependencies/Artifact.html) |  |  
+| [*AssociationBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/AssociationBuilder.html) |  |  
+| [*Associations*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Associations.html) |  |  
+| [*BaseLexakaiDiagram*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/BaseLexakaiDiagram.html) |  |  
+| [*Dependency*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/dependencies/Dependency.html) |  |  
+| [*DependencyDiagram*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/dependencies/DependencyDiagram.html) |  |  
+| [*DependencyTree*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/dependencies/DependencyTree.html) |  |  
+| [*Diagrams*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Diagrams.html) |  |  
+| [*Fields*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Fields.html) |  |  
+| [*JavadocCoverage*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/javadoc/JavadocCoverage.html) |  |  
+| [*Lexakai*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/Lexakai.html) |  |  
+| [*LexakaiClassDiagram*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/LexakaiClassDiagram.html) |  |  
+| [*LexakaiClassDiagram.Referent*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/LexakaiClassDiagram.Referent.html) |  |  
+| [*LexakaiProject*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/LexakaiProject.html) | Java Parsing |  
 | | Functions |  
 | | Settings |  
-| [*LexakaiProjectFiles*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProjectFiles.html) |  |  
-| [*LexakaiProjectFolders*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProjectFolders.html) |  |  
-| [*LexakaiProjectProperties*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/LexakaiProjectProperties.html) |  |  
-| [*MavenDependencyTreeBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
-| [*Members*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Members.html) |  |  
-| [*MethodBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/MethodBuilder.html) |  |  
-| [*MethodGroup*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/grouper/MethodGroup.html) |  |  
-| [*MethodGroupNameGuesser*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/grouper/MethodGroupNameGuesser.html) |  |  
-| [*MethodGrouper*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |  
-| [*MethodGroups*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
-| [*Methods*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Methods.html) |  |  
-| [*Names*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names.html) |  |  
-| [*Names.Qualification*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names.Qualification.html) |  |  
-| [*Names.TypeParameters*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Names.TypeParameters.html) |  |  
-| [*ReadMeUpdater*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/indexes/ReadMeUpdater.html) | Usage |  
+| [*LexakaiProjectFiles*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/LexakaiProjectFiles.html) |  |  
+| [*LexakaiProjectFolders*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/LexakaiProjectFolders.html) |  |  
+| [*LexakaiProjectProperties*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/LexakaiProjectProperties.html) |  |  
+| [*MavenDependencyTreeBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/dependencies/MavenDependencyTreeBuilder.html) |  |  
+| [*Members*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Members.html) |  |  
+| [*MethodBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/MethodBuilder.html) |  |  
+| [*MethodGroup*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGroup.html) |  |  
+| [*MethodGroupNameGuesser*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGroupNameGuesser.html) |  |  
+| [*MethodGrouper*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGrouper.html) |  |  
+| [*MethodGroups*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/grouper/MethodGroups.html) |  |  
+| [*Methods*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Methods.html) |  |  
+| [*Names*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Names.html) |  |  
+| [*Names.Qualification*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Names.Qualification.html) |  |  
+| [*Names.TypeParameters*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Names.TypeParameters.html) |  |  
+| [*ReadMeUpdater*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/indexes/ReadMeUpdater.html) | Usage |  
 | | Templates |  
-| [*TypeBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/builders/TypeBuilder.html) |  |  
-| [*Types*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/library/Types.html) |  |  
-| [*UmlAssociation*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
-| [*UmlAssociation.AssociationType*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |  
-| [*UmlConstructor*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/members/UmlConstructor.html) |  |  
-| [*UmlInheritance*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/associations/UmlInheritance.html) |  |  
-| [*UmlMethod*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/members/UmlMethod.html) |  |  
-| [*UmlType*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/lexakai/com/telenav/lexakai/types/UmlType.html) |  |  
+| [*TypeBuilder*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/builders/TypeBuilder.html) |  |  
+| [*Types*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/library/Types.html) |  |  
+| [*UmlAssociation*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/associations/UmlAssociation.html) |  |  
+| [*UmlAssociation.AssociationType*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/associations/UmlAssociation.AssociationType.html) |  |  
+| [*UmlConstructor*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/members/UmlConstructor.html) |  |  
+| [*UmlInheritance*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/associations/UmlInheritance.html) |  |  
+| [*UmlMethod*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/members/UmlMethod.html) |  |  
+| [*UmlType*](https://www.lexakai.org/0.9.8-alpha-SNAPSHOT/javadoc/lexakai/com/telenav/lexakai/types/UmlType.html) |  |  
 
 [//]: # (start-user-text)
 

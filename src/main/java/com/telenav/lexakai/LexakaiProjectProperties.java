@@ -114,10 +114,10 @@ public class LexakaiProjectProperties extends PropertyMap
     {
         final var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
-        // https://www.kivakit.org/javadoc/kivakit/kivakit.core.application/com/telenav/kivakit/core/application/Application.html
+        // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
         return StringPath.stringPath
                 (
-                        outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.core.application
+                        outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.application
                         qualifiedPath + ".html"    // com/kivakit/core/application/Application.html
                 )
                 .toString();

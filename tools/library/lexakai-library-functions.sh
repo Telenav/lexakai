@@ -85,9 +85,13 @@ clean_maven_repository() {
 
 remove_maven_repository() {
 
-    if yes_no "Remove ALL artifacts in ~\.m2"; then
+    if [ -d "$HOME/.m2/repository" ]; then
 
-        rm -rf ~/.m2
+        if yes_no "Remove ALL artifacts in ~/.m2/repository"; then
+
+            rm -rf ~/.m2/repository
+
+        fi
 
     fi
 }

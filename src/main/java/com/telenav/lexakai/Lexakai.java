@@ -228,7 +228,7 @@ public class Lexakai extends Application
 
     public static Lexakai get()
     {
-        return Lookup.global().locate(Lexakai.class);
+        return Lookup.global().lookup(Lexakai.class);
     }
 
     public static void main(final String[] arguments)

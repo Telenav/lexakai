@@ -28,6 +28,7 @@ import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
@@ -95,7 +96,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     private final Lexakai lexakai;
 
     /** The project version */
-    private final Version version;
+    private Version version;
 
     /** True to include equals, hashCode and toString */
     private boolean includeObjectMethods;
@@ -148,6 +149,26 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         this.lexakai = lexakai;
         this.version = version;
         this.parser = parser;
+
+        if (version == null)
+        {
+            final var propertiesFile = root.file("project.properties");
+            if (!propertiesFile.exists())
+            {
+                lexakai.exit("Project.properties file does not exist: $", propertiesFile);
+            }
+            final var properties = PropertyMap.load(propertiesFile);
+            final var rootVersion = properties.get("project-version");
+            if (rootVersion == null)
+            {
+                lexakai.exit("Root project.properties file does not contain a project-version key: $", propertiesFile);
+            }
+            this.version = Version.parse(rootVersion);
+            if (this.version == null)
+            {
+                lexakai.exit("Project project.properties declares invalid project-version: $", rootVersion);
+            }
+        }
 
         folders = new LexakaiProjectFolders(this, root, project, outputRoot);
         files = new LexakaiProjectFiles(this);
@@ -339,6 +360,11 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
     {
         javadocSectionPattern = pattern;
         return this;
+    }
+
+    public Lexakai lexakai()
+    {
+        return lexakai;
     }
 
     public String link(final Folder folder)

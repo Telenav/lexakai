@@ -151,9 +151,10 @@ public class Lexakai extends Application
                     .defaultValue(64)
                     .build();
 
-    public static final SwitchParser<Folder> OUTPUT_ROOT_FOLDER =
+    public static final SwitchParser<Folder> OUTPUT_FOLDER =
             folderSwitchParser("output-folder", "Root folder of output")
                     .optional()
+                    .defaultValue(Folder.parse("./documentation/lexakai/output"))
                     .build();
 
     public static final SwitchParser<Boolean> OVERWRITE_RESOURCES =
@@ -170,7 +171,7 @@ public class Lexakai extends Application
 
     public static final SwitchParser<Version> PROJECT_VERSION =
             versionSwitchParser("project-version", "Version of project used when generating markdown")
-                    .required()
+                    .optional()
                     .build();
 
     public static final ArgumentParser<Folder> ROOT_FOLDER =
@@ -313,7 +314,7 @@ public class Lexakai extends Application
                 JAVADOC_SECTION_PATTERN,
                 JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH,
                 JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
-                OUTPUT_ROOT_FOLDER,
+                OUTPUT_FOLDER,
                 OVERWRITE_RESOURCES,
                 PRINT_DIAGRAMS_TO_CONSOLE,
                 PROJECT_VERSION,
@@ -433,7 +434,7 @@ public class Lexakai extends Application
         roots.forEach(root ->
                 projectFolders(root, projectFolder ->
                 {
-                    if (projectFolder.folder("src").exists())
+                    if (projectFolder.folder("src/main/java").exists())
                     {
                         solver.add(new JavaParserTypeSolver(projectFolder.folder("src/main/java").absolute().asJavaFile()));
                     }
@@ -447,7 +448,7 @@ public class Lexakai extends Application
 
     private Folder outputRoot(final Folder root)
     {
-        return get(OUTPUT_ROOT_FOLDER, root);
+        return get(OUTPUT_FOLDER, root);
     }
 
     /**
@@ -566,6 +567,8 @@ public class Lexakai extends Application
                 .stream()
                 .map(File::parent)
                 .map(Folder::absolute)
+                .filter(folder -> !folder.path().join().contains("target"))
+                .filter(folder -> !folder.path().join().contains("src/main/resources"))
                 .forEach(consumer);
     }
 }

@@ -179,9 +179,12 @@ public class ReadMeUpdater
         final var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
-            final var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
-            (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
-            types.addAll(diagram.includedQualifiedTypes());
+            if (!Strings.isEmpty(diagram.title()))
+            {
+                final var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
+                (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
+                types.addAll(diagram.includedQualifiedTypes());
+            }
         });
         if (classDiagramIndex.isEmpty())
         {

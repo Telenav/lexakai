@@ -26,7 +26,12 @@ public class LexakaiProjectProperties extends PropertyMap
         addAll(systemProperties);
 
         // project.properties
-        addAll(PropertyMap.load(project.files().projectProperties()).expandedWith(this));
+        final var projectProperties = project.files().projectProperties();
+        if (!projectProperties.exists())
+        {
+            project.lexakai().exit("Project.properties not found: $", projectProperties);
+        }
+        addAll(PropertyMap.load(projectProperties).expandedWith(this));
         final var artifactId = get("project-artifact-id");
         add("project-module-name", artifactId.replaceAll("-", "."));
         require("project-name");
@@ -41,7 +46,12 @@ public class LexakaiProjectProperties extends PropertyMap
         require("lexakai-images-location");
 
         // lexakai.properties
-        addAll(PropertyMap.load(project.files().lexakaiProperties(artifactId)).expandedWith(this));
+        final var lexakaiProperties = project.files().lexakaiProperties(artifactId);
+        if (!lexakaiProperties.exists())
+        {
+            project.lexakai().exit("Lexakai.properties not found: $", lexakaiProperties);
+        }
+        addAll(PropertyMap.load(lexakaiProperties).expandedWith(this));
         putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");

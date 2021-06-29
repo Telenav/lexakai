@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
-    <version>0.9.8-alpha-SNAPSHOT</version>
+    <version>0.9.8-beta</version>
     <packaging>jar</packaging>
 
     <!-- Project -->
@@ -125,14 +125,14 @@
 
         <!-- Cactus Build -->
 
-        <cactus.version>0.9.6-alpha</cactus.version>
+        <cactus.version>0.9.8-beta</cactus.version>
         <cactus.downloads.folder>${user.home}/.cactus-build/downloads</cactus.downloads.folder>
         <cactus.build.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.version}/cactus-build-metadata-${cactus.version}.jar</cactus.build.url>
         <cactus.build.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.version}.jar</cactus.build.jar>
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.8-alpha-SNAPSHOT</kivakit.version>
+        <kivakit.version>0.9.8-beta</kivakit.version>
 
         <!-- Java -->
 

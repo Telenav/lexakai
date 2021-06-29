@@ -16,4 +16,5 @@ version=$1
 
 require_variable version "$help"
 
+update_version $LEXAKAI_ANNOTATIONS_HOME $version
 update_version $LEXAKAI_HOME $version

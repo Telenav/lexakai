@@ -431,7 +431,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
                 {
                     if (Lexakai.get().get(Lexakai.SHOW_DIAGRAM_WARNINGS))
                     {
-                        warning("    No title found for diagram: $", identifier());
+                        warning("    No title found for diagram '$'", identifier());
                     }
                 }
             }

@@ -22,16 +22,16 @@ public class LexakaiProjectProperties extends PropertyMap
         this.project = project;
 
         // Add system and application properties,
-        addAll(Lexakai.get().properties());
-
-        // lexakai.settings,
-        addAll(PropertyMap.load(project.files().lexakaiSettings()));
-        require("lexakai-documentation-location");
-        require("lexakai-javadoc-location");
-        require("lexakai-images-location");
+        final var systemProperties = Lexakai.get().properties();
+        addAll(systemProperties);
 
         // project.properties
-        addAll(PropertyMap.load(project.files().projectProperties()));
+        final var projectProperties = project.files().projectProperties();
+        if (!projectProperties.exists())
+        {
+            project.lexakai().exit("Project.properties not found: $", projectProperties);
+        }
+        addAll(PropertyMap.load(projectProperties).expandedWith(this));
         final var artifactId = get("project-artifact-id");
         add("project-module-name", artifactId.replaceAll("-", "."));
         require("project-name");
@@ -39,8 +39,19 @@ public class LexakaiProjectProperties extends PropertyMap
         require("project-group-id");
         require("project-artifact-id");
 
+        // lexakai.settings,
+        addAll(PropertyMap.load(project.files().lexakaiSettings()).expandedWith(this));
+        require("lexakai-documentation-location");
+        require("lexakai-javadoc-location");
+        require("lexakai-images-location");
+
         // lexakai.properties
-        addAll(PropertyMap.load(project.files().lexakaiProperties(artifactId)));
+        final var lexakaiProperties = project.files().lexakaiProperties(artifactId);
+        if (!lexakaiProperties.exists())
+        {
+            project.lexakai().exit("Lexakai.properties not found: $", lexakaiProperties);
+        }
+        addAll(PropertyMap.load(lexakaiProperties).expandedWith(this));
         putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");
@@ -97,7 +108,13 @@ public class LexakaiProjectProperties extends PropertyMap
      */
     public String outputJavadocLocation()
     {
-        return asPath("lexakai-javadoc-location") + "/" + project.rootProjectName() + "/" + projectModuleName();
+        var location = asPath("lexakai-javadoc-location") + "/" + project.rootProjectName();
+        final var moduleName = projectModuleName();
+        if (moduleName != null && !moduleName.equalsIgnoreCase("none"))
+        {
+            location += "/" + moduleName;
+        }
+        return location;
     }
 
     /**
@@ -107,10 +124,10 @@ public class LexakaiProjectProperties extends PropertyMap
     {
         final var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
-        // https://www.kivakit.org/javadoc/kivakit/kivakit.core.application/com/telenav/kivakit/core/application/Application.html
+        // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
         return StringPath.stringPath
                 (
-                        outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.core.application
+                        outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.application
                         qualifiedPath + ".html"    // com/kivakit/core/application/Application.html
                 )
                 .toString();

@@ -179,9 +179,12 @@ public class ReadMeUpdater
         final var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
-            final var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
-            (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
-            types.addAll(diagram.includedQualifiedTypes());
+            if (!Strings.isEmpty(diagram.title()))
+            {
+                final var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
+                (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
+                types.addAll(diagram.includedQualifiedTypes());
+            }
         });
         if (classDiagramIndex.isEmpty())
         {
@@ -225,7 +228,7 @@ public class ReadMeUpdater
         // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
         final var transformed = text.replaceAll("<!-- \\$\\{(.*?)} -->.*?<!-- end -->", "<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
 
-        // expand the transformed string, producing "{{{x}}} <expanded> {{{end}}}"
+        // expand the transformed string, producing "<<<x>>> <expanded> <<<end>>>"
         final var expanded = variables.expand(transformed, "");
 
         // and finally turn the expanded string into "<!-- ${x} --> <expanded> <!-- end -->"

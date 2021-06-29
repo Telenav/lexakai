@@ -15,6 +15,7 @@ fi
 
 cd $LEXAKAI_WORKSPACE
 git clone https://github.com/Telenav/lexakai-assets.git
+git config pull.ff only
 
 cd $LEXAKAI_HOME
 git checkout develop

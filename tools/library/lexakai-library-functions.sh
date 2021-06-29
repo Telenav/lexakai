@@ -76,7 +76,7 @@ clean_maven_repository() {
     project_home=$1
     name=$(basename -- "$project_home")
 
-    if yes_no "Remove all $name artifacts from ~\.m2"; then
+    if yes_no "Remove all $name artifacts from ~/.m2"; then
 
         rm -rf "~/.m2/repository/com/telenav/$name"
 
@@ -163,16 +163,16 @@ git_flow_release_start() {
     git checkout release/$version
 
     # and update its version
-    bash $project_name-update-version.sh $version
+    bash $project_name-release-update-version.sh $version
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  VERSION: $version"
     echo "┋"
-    echo "┋  1. A new release branch 'release/$version' has been created using git flow."
-    echo "┋  2. POM files and other version-related information in this branch has been updated to $version."
-    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master."
+    echo "┋  1. A new release branch 'release/$version' has been created using git flow"
+    echo "┋  2. POM files and other version-related information in this branch has been updated to $version"
+    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -191,12 +191,13 @@ git_flow_release_finish() {
     git push origin --tags
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged and Published  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master and Ready to Publish  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  VERSION: $version"
     echo "┋"
-    echo "┋  1. The branch 'release/$version' has been merged into master using git flow."
-    echo "┋  2. Artifacts from the release will be published shortly by Jenkins"
+    echo "┋  1. The branch 'release/$version' has been merged into master using git flow"
+    echo "┋  2. Artifacts from the release will now be built by GitHub"
+    echo "┋  3. When this succeeds, the release branch can be published on Maven Central using maven or GitHub actions"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -207,10 +208,10 @@ git_flow_feature_start() {
     project_home=$1
     feature_name=$2
 
-    if yes_no "Start 'Feature-$feature_name' branch of $project_home"; then
+    if yes_no "Start 'feature-$feature_name' branch of $project_home"; then
 
         cd $project_home
-        git-flow feature start Feature-$feature_name
+        git-flow feature start feature-$feature_name
 
     fi
 }
@@ -220,9 +221,9 @@ git_flow_feature_finish() {
     project_home=$1
     feature_name=$2
 
-    if yes_no "Finish 'Feature-$feature_name' branch of $project_home"; then
+    if yes_no "Finish 'feature-$feature_name' branch of $project_home"; then
         cd $project_home
-        git-flow feature finish Feature-$1
+        git-flow feature finish feature-$feature_name
     fi
 }
 

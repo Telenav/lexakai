@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="405.2083px" preserveAspectRatio="none" style="width:932px;height:405px;background:#333333;" version="1.1" viewBox="0 0 932 405" width="932.2917px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="348.9583" x="284.375" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="326.0417" x="295.8333" y="30.5583">com.telenav.lexakai.associations</text><!--MD5=[1ae9aca186b717b9e1a943df41269ac5]
+cluster UmlAssociation--><polygon fill="#333333" points="673.9583,52.6611,788.5417,52.6611,795.8333,79.8828,889.5833,79.8828,889.5833,233.9111,673.9583,233.9111,673.9583,52.6611" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="673.9583" x2="795.8333" y1="79.8828" y2="79.8828"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="102.0833" x="681.25" y="69.9544">UmlAssociation</text><!--MD5=[2aef2e5f29d7b0637e11bf285c3ab8ef]
+class UmlAssociation.AssociationType--><rect codeLine="8" fill="#282828" height="107.2896" id="UmlAssociation.AssociationType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="144.7917" x="719.2708" y="101.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="144.7917" x="719.2708" y="101.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="144.7917" x="719.2708" y="124.6745"/><rect codeLine="8" fill="none" height="107.2896" id="UmlAssociation.AssociationType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="144.7917" x="719.2708" y="101.6195"/><ellipse cx="733.8542" cy="117.3136" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M736.91,122.0011 L731.2337,122.0011 L731.2337,112.8886 L736.91,112.8886 L736.91,114.4755 L733.0343,114.4755 L733.0343,116.4408 L736.5438,116.4408 L736.5438,118.0278 L733.0343,118.0278 L733.0343,120.4142 L736.91,120.4142 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="107.2917" x="750.5208" y="122.0378">AssociationType</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="720.3125" x2="863.0208" y1="133.0078" y2="133.0078"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="83.3333" x="728.6458" y="151.3774">AGGREGATION</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="80.2083" x="728.6458" y="171.1222">COMPOSITION</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="56.25" x="728.6458" y="190.8671">RELATION</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="720.3125" x2="863.0208" y1="200.5758" y2="200.5758"/><!--MD5=[7a4729d26b999f6a4650b01106c103c5]
+class Comparable--><rect codeLine="6" fill="#282828" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="529.6875" y="131.307"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="529.6875" y="131.307"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="529.6875" y="154.362"/><rect codeLine="6" fill="none" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="529.6875" y="131.307"/><ellipse cx="544.2708" cy="147.0011" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M541.6748,144.163 L541.6748,142.5761 L547.1008,142.5761 L547.1008,144.163 L545.2881,144.163 L545.2881,150.1017 L547.1008,150.1017 L547.1008,151.6886 L541.6748,151.6886 L541.6748,150.1017 L543.4875,150.1017 L543.4875,144.163 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="560.9375" y="151.7253">Comparable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="530.7292" x2="644.2708" y1="162.6953" y2="162.6953"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="530.7292" x2="644.2708" y1="171.0286" y2="171.0286"/><!--MD5=[fb46b8d68415e5fa87bf16645d504f3f]
+class UmlAssociation--><rect codeLine="16" fill="#282828" height="127.0345" id="UmlAssociation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="683.3333" x="7.2917" y="271.4111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="683.3333" x="7.2917" y="271.4111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="683.3333" x="7.2917" y="294.4661"/><rect codeLine="16" fill="none" height="127.0345" id="UmlAssociation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="683.3333" x="7.2917" y="271.4111"/><ellipse cx="290.625" cy="287.1053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M292.5354,291.5304 Q292.1082,291.7501 291.6382,291.8599 Q291.1682,291.9698 290.6494,291.9698 Q288.8062,291.9698 287.8357,290.7552 Q286.8652,289.5406 286.8652,287.2457 Q286.8652,284.9447 287.8357,283.7301 Q288.8062,282.5155 290.6494,282.5155 Q291.1682,282.5155 291.6443,282.6253 Q292.1204,282.7352 292.5354,282.9549 L292.5354,284.9569 Q292.0715,284.5296 291.6351,284.3313 Q291.1987,284.1329 290.7349,284.1329 Q289.7461,284.1329 289.2426,284.9172 Q288.739,285.7015 288.739,287.2457 Q288.739,288.7838 289.2426,289.5681 Q289.7461,290.3524 290.7349,290.3524 Q291.1987,290.3524 291.6351,290.154 Q292.0715,289.9556 292.5354,289.5284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="102.0833" x="313.5417" y="291.8294">UmlAssociation</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="689.5833" y1="302.7995" y2="302.7995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="689.5833" y1="311.1328" y2="311.1328"/><ellipse cx="18.75" cy="322.5911" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="651.0417" x="30.2083" y="329.5024">UmlAssociation of(TypeDeclaration&lt;?&gt; referrer, AssociationType, String referent, String from, String to, String label)</text><ellipse cx="18.75" cy="342.336" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="644.7917" x="30.2083" y="349.2472">UmlAssociation of(TypeDeclaration&lt;?&gt; referrer, AssociationType, Type referent, String from, String to, String label)</text><ellipse cx="18.75" cy="362.0809" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="128.125" x="30.2083" y="368.9921">AssociationType type()</text><ellipse cx="18.75" cy="381.8258" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="30.2083" y="388.737">String uml()</text><!--MD5=[cf04ae26f36fe5fa3d684bca036c1c07]
+class UmlInheritance--><rect codeLine="26" fill="#282828" height="111.4563" id="UmlInheritance" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="197.9167" x="727.0833" y="279.2236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="197.9167" x="727.0833" y="279.2236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="197.9167" x="727.0833" y="302.2786"/><rect codeLine="26" fill="none" height="111.4563" id="UmlInheritance" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="197.9167" x="727.0833" y="279.2236"/><ellipse cx="769.7917" cy="294.9178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M771.7021,299.3429 Q771.2748,299.5626 770.8049,299.6724 Q770.3349,299.7823 769.8161,299.7823 Q767.9728,299.7823 767.0024,298.5677 Q766.0319,297.3531 766.0319,295.0582 Q766.0319,292.7572 767.0024,291.5426 Q767.9728,290.328 769.8161,290.328 Q770.3349,290.328 770.811,290.4378 Q771.287,290.5477 771.7021,290.7674 L771.7021,292.7694 Q771.2382,292.3421 770.8018,292.1438 Q770.3654,291.9454 769.9015,291.9454 Q768.9128,291.9454 768.4092,292.7297 Q767.9057,293.514 767.9057,295.0582 Q767.9057,296.5963 768.4092,297.3806 Q768.9128,298.1649 769.9015,298.1649 Q770.3654,298.1649 770.8018,297.9665 Q771.2382,297.7681 771.7021,297.3409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="97.9167" x="792.7083" y="299.6419">UmlInheritance</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="728.125" x2="923.9583" y1="310.612" y2="310.612"/><ellipse cx="738.5417" cy="345.9819" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="165.625" x="750" y="352.8931">UmlInheritance(String, String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="728.125" x2="782.2917" y1="328.8177" y2="328.8177"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="785.4167" y="332.6274">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="869.7917" x2="923.9583" y1="328.8177" y2="328.8177"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="728.125" x2="923.9583" y1="362.6017" y2="362.6017"/><ellipse cx="738.5417" cy="374.0601" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="750" y="380.9713">String uml()</text><!--MD5=[cbbfd834686ab3206403583211a11bcb]
+reverse link Comparable to UmlAssociation--><path codeLine="15" d="M539.1771,192.2861 C508.7292,214.9528 468.5938,244.8382 433.0313,271.3174 " fill="none" id="Comparable-backto-UmlAssociation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="535.25,186.1195,556.3125,179.5257,543.9583,197.8174,535.25,186.1195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[323fab434cf6f520f453c0e2e819e8a2]
+reverse link Comparable to UmlInheritance--><path codeLine="25" d="M614.5,196.3382 C628.2292,214.5674 646.125,235.4007 665.625,250.5778 C682.6146,263.807 690.1563,261.6924 709.375,271.4111 C715.1146,274.3174 721,277.3278 726.9167,280.4007 " fill="none" id="Comparable-backto-UmlInheritance" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="608.4792,200.4736,602.25,179.2965,620.3229,191.9632,608.4792,200.4736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1a670746982c8330824a2ccbefde02b9]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.lexakai.associations"
+    
+    interface Comparable
+    
+    enum UmlAssociation.AssociationType
+    {
+        AGGREGATION
+        COMPOSITION
+        RELATION
+    }
+    
+    Comparable <|- - UmlAssociation
+    class UmlAssociation
+    {
+        - -
+        +UmlAssociation of(TypeDeclaration<?> referrer, AssociationType, String referent, String from, String to, String label)
+        +UmlAssociation of(TypeDeclaration<?> referrer, AssociationType, Type referent, String from, String to, String label)
+        +AssociationType type()
+        +String uml()
+    }
+    
+    Comparable <|- - UmlInheritance
+    class UmlInheritance
+    {
+        - -(constructors)- -
+        +UmlInheritance(String, String)
+        - -
+        +String uml()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.lexakai.associations"
+    
+    interface Comparable
+    
+    enum UmlAssociation.AssociationType
+    {
+        AGGREGATION
+        COMPOSITION
+        RELATION
+    }
+    
+    Comparable <|- - UmlAssociation
+    class UmlAssociation
+    {
+        - -
+        +UmlAssociation of(TypeDeclaration<?> referrer, AssociationType, String referent, String from, String to, String label)
+        +UmlAssociation of(TypeDeclaration<?> referrer, AssociationType, Type referent, String from, String to, String label)
+        +AssociationType type()
+        +String uml()
+    }
+    
+    Comparable <|- - UmlInheritance
+    class UmlInheritance
+    {
+        - -(constructors)- -
+        +UmlInheritance(String, String)
+        - -
+        +String uml()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

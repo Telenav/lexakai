@@ -1,0 +1,24 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.lexakai.types"
+    
+    class UmlType
+    {
+        --(constructors)--
+        +UmlType(LexakaiClassDiagram, TypeDeclaration<?>)
+        --
+        +LexakaiClassDiagram diagram()
+        +Set<String> documentationSections()
+        +TypeDeclaration<?> type()
+        +String uml()
+        --(collection)--
+        +List<UmlMethod> includedMethods()
+        --(naming)--
+        +String name(Qualification, TypeParameters)
+        +String simpleName()
+    }
+    
+@enduml
+

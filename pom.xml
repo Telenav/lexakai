@@ -91,12 +91,12 @@
     <distributionManagement>
 
         <snapshotRepository>
-            <id>ossrh-snapshot</id>
+            <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
 
         <repository>
-            <id>ossrh-staging</id>
+            <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
 
@@ -159,14 +159,6 @@
     <!-- Dependencies -->
 
     <dependencies>
-
-        <!-- Lexakai -->
-
-        <dependency>
-            <groupId>com.telenav.lexakai</groupId>
-            <artifactId>lexakai-annotations</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <!-- KivaKit -->
 

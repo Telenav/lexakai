@@ -136,7 +136,7 @@
 
         <!-- Java -->
 
-        <java.version>12</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Maven -->
@@ -227,7 +227,7 @@
                         <version>${maven-javadoc-plugin.version}</version>
                         <configuration>
                             <show>public</show>
-                            <source>12</source>
+                            <source>11</source>
                             <detectJavaApiLink>false</detectJavaApiLink>
                             <doclint>none</doclint>
                             <nohelp>true</nohelp>

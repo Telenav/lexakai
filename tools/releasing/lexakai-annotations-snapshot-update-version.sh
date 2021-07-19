@@ -10,10 +10,10 @@
 source library-functions.sh
 source lexakai-projects.sh
 
-version="${1%-SNAPSHOT}-SNAPSHOT"
+version="$1"
 
-help="[version]"
+require_variable version "[version]"
 
-require_variable version "$help"
+snapshot_version="${1%-SNAPSHOT}-SNAPSHOT"
 
-update_version $LEXAKAI_ANNOTATIONS_HOME $version
+update_version $LEXAKAI_ANNOTATIONS_HOME $snapshot_version

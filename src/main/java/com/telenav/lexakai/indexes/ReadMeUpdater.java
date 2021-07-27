@@ -18,6 +18,7 @@
 
 package com.telenav.lexakai.indexes;
 
+import com.telenav.kivakit.configuration.BaseComponent;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
@@ -73,7 +74,7 @@ import static java.util.regex.Pattern.MULTILINE;
  *
  * @author jonathanl (shibo)
  */
-public class ReadMeUpdater
+public class ReadMeUpdater extends BaseComponent
 {
     private static final Resource SOURCE_README_TEMPLATE = PackageResource.of(ReadMeUpdater.class, "lexakai-source-readme-template.md");
 
@@ -312,7 +313,7 @@ public class ReadMeUpdater
     {
         final var template = project.files().readMeTemplate();
         (project.hasSourceCode() ? SOURCE_README_TEMPLATE : PARENT_README_TEMPLATE)
-                .safeCopyTo(template, Lexakai.get().resourceCopyMode());
+                .safeCopyTo(template, lookup(Lexakai.class).resourceCopyMode());
         return template;
     }
 

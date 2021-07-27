@@ -20,13 +20,13 @@ package com.telenav.lexakai;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import com.telenav.kivakit.configuration.BaseComponent;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.resources.packaged.Package;
@@ -87,7 +87,7 @@ import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
  *
  * @author jonathanl (shibo)
  */
-public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiProject>
+public class LexakaiProject extends BaseComponent implements Comparable<LexakaiProject>
 {
     /** Parser to use on project source files */
     private final JavaParser parser;
@@ -333,7 +333,7 @@ public class LexakaiProject extends BaseRepeater implements Comparable<LexakaiPr
         if (hasSourceCode())
         {
             // install the lexakai theme and default groups patterns into the configuration folder if they are not already installed,
-            final var copyMode = Lexakai.get().resourceCopyMode();
+            final var copyMode = lookup(Lexakai.class).resourceCopyMode();
             resourcePackage.resource("source/lexakai.groups").safeCopyTo(folders().settings(), copyMode);
             resourcePackage.resource("lexakai.theme").safeCopyTo(folders().settings(), copyMode);
         }

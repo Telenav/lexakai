@@ -26,7 +26,6 @@ import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeS
 import com.telenav.kivakit.application.Application;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
@@ -226,11 +225,6 @@ public class Lexakai extends Application
                     .optional()
                     .defaultValue(false)
                     .build();
-
-    public static Lexakai get()
-    {
-        return Registry.lookup(Lexakai.class);
-    }
 
     public static void main(final String[] arguments)
     {

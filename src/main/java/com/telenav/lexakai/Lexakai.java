@@ -229,7 +229,7 @@ public class Lexakai extends Application
 
     public static Lexakai get()
     {
-        return Registry.global().lookup(Lexakai.class);
+        return Registry.lookup(Lexakai.class);
     }
 
     public static void main(final String[] arguments)

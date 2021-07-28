@@ -53,7 +53,7 @@ public class Methods
     public static Set<String> explicitGroups(final MethodDeclaration method)
     {
         final var groups = new HashSet<String>();
-        for (final var annotation : Annotations.annotationsOfType(method, UmlMethodGroup.class))
+        for (final var annotation : Annotations.annotations(method, UmlMethodGroup.class))
         {
             groups.add(Annotations.stringValue(annotation));
         }

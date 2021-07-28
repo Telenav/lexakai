@@ -18,6 +18,7 @@
 
 package com.telenav.lexakai.library;
 
+import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.ArrayInitializerExpr;
 import com.github.javaparser.ast.expr.BooleanLiteralExpr;
@@ -28,11 +29,15 @@ import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**
  * Utility methods for extracting information from {@link AnnotationExpr} elements, including class names, expressions,
@@ -45,8 +50,8 @@ public class Annotations
     /**
      * @return A set of all the annotations of the given type
      */
-    public static Set<AnnotationExpr> annotationsOfType(final NodeWithAnnotations<?> type,
-                                                        final Class<? extends Annotation> annotationType)
+    public static Set<AnnotationExpr> annotations(final NodeWithAnnotations<?> type,
+                                                  final Class<? extends Annotation> annotationType)
     {
         final var annotations = new HashSet<AnnotationExpr>();
         for (final var annotation : type.getAnnotations())
@@ -164,6 +169,35 @@ public class Annotations
         return null;
     }
 
+    public static boolean hasAnnotation(final NodeWithAnnotations<?> type,
+                                        final Class<? extends Annotation> annotationType)
+    {
+        return !annotations(type, annotationType).isEmpty();
+    }
+
+    public static boolean shouldExcludeType(final TypeDeclaration<?> type)
+    {
+        var marker = false;
+        for (final var annotation : Annotations.annotations(type, UmlExcludeType.class))
+        {
+            final var expression = Annotations.value(annotation, "value");
+            if (expression != null)
+            {
+                final var thatTypeName = Names.name(expression.asClassExpr(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                final var thisTypeName = Names.name(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                if (thisTypeName.equals(thatTypeName))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                marker = true;
+            }
+        }
+        return marker;
+    }
+
     /**
      * @return The string value of the given annotation member
      */
@@ -229,6 +263,16 @@ public class Annotations
      */
     public static Expression value(final AnnotationExpr annotation, final String memberName)
     {
+        if (annotation.isMarkerAnnotationExpr())
+        {
+            return null;
+        }
+
+        if (annotation.isSingleMemberAnnotationExpr())
+        {
+            return annotation.asSingleMemberAnnotationExpr().getMemberValue();
+        }
+
         for (final var pair : annotation.asNormalAnnotationExpr().getPairs())
         {
             if (Names.simpleName(pair).equals(memberName))
@@ -236,6 +280,7 @@ public class Annotations
                 return pair.getValue();
             }
         }
+
         return null;
     }
 }

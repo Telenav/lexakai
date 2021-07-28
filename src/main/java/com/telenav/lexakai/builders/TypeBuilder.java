@@ -27,6 +27,9 @@ import com.telenav.lexakai.library.Annotations;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.library.Types;
 
+import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
+import static com.telenav.lexakai.library.Names.TypeParameters.WITH_TYPE_PARAMETERS;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -61,7 +64,7 @@ public class TypeBuilder
         }
 
         // then, add the full UML type declaration.
-        final var typeName = Names.name(type.asClassOrInterfaceDeclaration(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITH_TYPE_PARAMETERS);
+        final var typeName = Names.name(type.asClassOrInterfaceDeclaration(), UNQUALIFIED, WITH_TYPE_PARAMETERS);
         addNote(builder, type, typeName);
         for (final var method : type.getMethods())
         {

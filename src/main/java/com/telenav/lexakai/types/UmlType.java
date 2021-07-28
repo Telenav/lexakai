@@ -136,7 +136,7 @@ public class UmlType
      */
     public String uml()
     {
-        if (uml == null)
+        if (uml == null && !Annotations.shouldExcludeType(type))
         {
             // Create a string builder,
             final var builder = IndentingStringBuilder.defaultTextIndenter();

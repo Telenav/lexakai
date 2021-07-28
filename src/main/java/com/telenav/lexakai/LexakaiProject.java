@@ -20,7 +20,7 @@ package com.telenav.lexakai;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
-import com.telenav.kivakit.configuration.BaseComponent;
+import com.telenav.kivakit.application.component.BaseComponent;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.primitives.Ints;

@@ -125,7 +125,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             // go through each type declaration in the project
             project.typeDeclarations(type ->
             {
-                if (type.isClassOrInterfaceDeclaration())
+                if (type.isClassOrInterfaceDeclaration() && !Annotations.shouldExcludeType(type))
                 {
                     final var classOrInterface = type.asClassOrInterfaceDeclaration();
                     if (includesQualifiedTypeName(Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS)))
@@ -315,9 +315,14 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             final var umlType = includedQualifiedTypes.get(Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS));
             if (umlType != null)
             {
-                // add its UML.
-                added.add(umlType.name(UNQUALIFIED, WITH_TYPE_PARAMETERS));
-                builder.appendLines(umlType.uml());
+                // and there is UML for it,
+                final var uml = umlType.uml();
+                if (uml != null)
+                {
+                    // add its UML.
+                    added.add(umlType.name(UNQUALIFIED, WITH_TYPE_PARAMETERS));
+                    builder.appendLines(uml);
+                }
             }
         });
         final var indenter = new IndentingStringBuilder(TEXT, Indentation.of(8));
@@ -399,7 +404,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             // go through each type declaration in the project
             project.typeDeclarations(type ->
             {
-                if (type.isClassOrInterfaceDeclaration())
+                if (type.isClassOrInterfaceDeclaration() && !Annotations.shouldExcludeType(type))
                 {
                     final var classOrInterface = type.asClassOrInterfaceDeclaration();
                     if (includesQualifiedTypeName(Names.name(type, QUALIFIED, WITH_TYPE_PARAMETERS)))

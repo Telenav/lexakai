@@ -35,7 +35,7 @@ public class Diagrams
      */
     public static AnnotationExpr diagramAnnotation(final TypeDeclaration<?> type, final String diagramName)
     {
-        for (final var annotation : Annotations.annotationsOfType(type, UmlClassDiagram.class))
+        for (final var annotation : Annotations.annotations(type, UmlClassDiagram.class))
         {
             final var expression = Annotations.value(annotation, "diagram");
             if (expression != null)
@@ -55,7 +55,7 @@ public class Diagrams
     public static Set<String> diagrams(final TypeDeclaration<?> type, final boolean includePackageDiagram)
     {
         final var diagrams = new HashSet<String>();
-        for (final var annotation : Annotations.annotationsOfType(type, UmlClassDiagram.class))
+        for (final var annotation : Annotations.annotations(type, UmlClassDiagram.class))
         {
             final var expression = Annotations.value(annotation, "diagram");
             if (expression != null)

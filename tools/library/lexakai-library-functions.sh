@@ -296,7 +296,7 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version="0.9.8-beta"
+    lexakai_download_version="0.9.9-SNAPSHOT"
     lexakai_download_snapshot_version=""
 
     lexakai_downloads="$HOME/.lexakai/downloads"

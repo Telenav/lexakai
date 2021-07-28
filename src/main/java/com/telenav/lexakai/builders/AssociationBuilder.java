@@ -27,6 +27,7 @@ import com.telenav.lexakai.LexakaiClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.associations.UmlAssociation;
 import com.telenav.lexakai.associations.UmlInheritance;
+import com.telenav.lexakai.library.Annotations;
 import com.telenav.lexakai.library.Associations;
 import com.telenav.lexakai.library.Fields;
 import com.telenav.lexakai.library.Members;
@@ -109,13 +110,15 @@ public class AssociationBuilder
 
     void addInheritanceRelations(final IndentingStringBuilder builder)
     {
-        if (type.isClassOrInterfaceDeclaration())
+        if (type.isClassOrInterfaceDeclaration() && !Annotations.shouldExcludeType(type))
         {
             // add type inheritance associations,
             final var type = this.type.asClassOrInterfaceDeclaration();
             final var qualifiedTypeName = Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS);
             final var associations = new ArrayList<UmlInheritance>();
             final var interfaceDeclarations = new StringList();
+
+            // extended types,
             type.getExtendedTypes().forEach(at ->
             {
                 final var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
@@ -148,6 +151,8 @@ public class AssociationBuilder
                     }
                 }
             });
+
+            // and add associations to the builder.
             interfaceDeclarations.sorted().forEach(builder::appendLine);
             associations.forEach(at -> builder.appendLine(at.uml()));
         }

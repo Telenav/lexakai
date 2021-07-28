@@ -66,7 +66,7 @@ public class Associations
     {
         // Go through each annotation,
         final var relations = new ArrayList<UmlAssociation>();
-        for (final var annotation : Annotations.annotationsOfType(type, UmlRelation.class))
+        for (final var annotation : Annotations.annotations(type, UmlRelation.class))
         {
             // then loop through the key value pairs,
             final var relation = relation(diagramName, type, annotation);

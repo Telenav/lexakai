@@ -18,7 +18,7 @@
 
 package com.telenav.lexakai.indexes;
 
-import com.telenav.kivakit.application.component.BaseComponent;
+import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;

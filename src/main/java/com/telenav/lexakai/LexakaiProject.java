@@ -157,7 +157,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             {
                 lexakai.exit("Project.properties file does not exist: $", propertiesFile);
             }
-            final var properties = PropertyMap.load(propertiesFile);
+            final var properties = PropertyMap.load(this, propertiesFile);
             final var rootVersion = properties.get("project-version");
             if (rootVersion == null)
             {

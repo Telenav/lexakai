@@ -3,6 +3,8 @@ package com.telenav.lexakai;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.paths.StringPath;
 import com.telenav.kivakit.kernel.language.strings.Packages;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
@@ -15,6 +17,8 @@ import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARA
  */
 public class LexakaiProjectProperties extends PropertyMap
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     private final LexakaiProject project;
 
     public LexakaiProjectProperties(final LexakaiProject project)
@@ -31,7 +35,7 @@ public class LexakaiProjectProperties extends PropertyMap
         {
             project.lexakai().exit("Project.properties not found: $", projectProperties);
         }
-        addAll(PropertyMap.load(projectProperties).expandedWith(this));
+        addAll(PropertyMap.load(LOGGER, projectProperties).expandedWith(this));
         final var artifactId = get("project-artifact-id");
         add("project-module-name", artifactId.replaceAll("-", "."));
         require("project-name");
@@ -40,7 +44,7 @@ public class LexakaiProjectProperties extends PropertyMap
         require("project-artifact-id");
 
         // lexakai.settings,
-        addAll(PropertyMap.load(project.files().lexakaiSettings()).expandedWith(this));
+        addAll(PropertyMap.load(LOGGER, project.files().lexakaiSettings()).expandedWith(this));
         require("lexakai-documentation-location");
         require("lexakai-javadoc-location");
         require("lexakai-images-location");
@@ -51,7 +55,7 @@ public class LexakaiProjectProperties extends PropertyMap
         {
             project.lexakai().exit("Lexakai.properties not found: $", lexakaiProperties);
         }
-        addAll(PropertyMap.load(lexakaiProperties).expandedWith(this));
+        addAll(PropertyMap.load(LOGGER, lexakaiProperties).expandedWith(this));
         putIfAbsent("project-icon", "gears-32");
         require("project-title");
         require("project-description");
@@ -89,12 +93,12 @@ public class LexakaiProjectProperties extends PropertyMap
         return output == null
                 ? null
                 : StringPath.stringPath
-                (
-                        output,
-                        project.rootProjectName(),
-                        project.folders().projectRelativeToRoot().toString(),
-                        "documentation/diagrams"
-                )
+                        (
+                                output,
+                                project.rootProjectName(),
+                                project.folders().projectRelativeToRoot().toString(),
+                                "documentation/diagrams"
+                        )
                 .toString();
     }
 
@@ -126,10 +130,10 @@ public class LexakaiProjectProperties extends PropertyMap
 
         // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
         return StringPath.stringPath
-                (
-                        outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.application
-                        qualifiedPath + ".html"    // com/kivakit/core/application/Application.html
-                )
+                        (
+                                outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.application
+                                qualifiedPath + ".html"    // com/kivakit/core/application/Application.html
+                        )
                 .toString();
     }
 

@@ -476,13 +476,13 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                     try
                     {
                         // parse the file,
-                        final var optionalUnit = parser.parse(file.asJavaFile());
+                        final var parse = parser.parse(file.asJavaFile());
 
                         // and if that is successful,
-                        if (optionalUnit.isSuccessful())
+                        if (parse.isSuccessful())
                         {
                             // get the result and add the declarations to the set.
-                            optionalUnit.getResult().ifPresent(unit ->
+                            parse.getResult().ifPresent(unit ->
                                     unit.findAll(TypeDeclaration.class)
                                             .stream()
                                             .filter(type ->
@@ -494,12 +494,12 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                         }
                         else
                         {
-                            problem("Unable to parse: $", file);
+                            problem("Parse not successful: $\n$", file, parse);
                         }
                     }
                     catch (final Exception e)
                     {
-                        problem(e, "Unable to parse $", file);
+                        problem(e, "Parse failed with exception: $", file);
                     }
                 }
             });

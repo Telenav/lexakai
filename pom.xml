@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <!-- Project -->
@@ -125,14 +125,14 @@
 
         <!-- Cactus Build -->
 
-        <cactus.version>0.9.8-beta</cactus.version>
+        <cactus.version>1.0.0</cactus.version>
         <cactus.downloads.folder>${user.home}/.cactus-build/downloads</cactus.downloads.folder>
         <cactus.build.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.version}/cactus-build-metadata-${cactus.version}.jar</cactus.build.url>
         <cactus.build.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.version}.jar</cactus.build.jar>
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.9-SNAPSHOT</kivakit.version>
+        <kivakit.version>1.0.0</kivakit.version>
 
         <!-- Java -->
 
@@ -332,8 +332,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
                     <release>${java.version}</release>
                     <compilerArgs>
                         <compilerArgument>-Xlint:unchecked</compilerArgument>
@@ -431,7 +429,7 @@
                                     <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
                                     <then>
                                         <mkdir dir = "${cactus.downloads.folder}"/>
-                                        <get src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
+                                        <get ignoreerrors="true" src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
                                     </then>
                                 </if>
                                 <if>

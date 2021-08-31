@@ -32,6 +32,7 @@ import com.telenav.kivakit.filesystem.Folder.Traversal;
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.values.count.MutableCount;
@@ -293,9 +294,9 @@ public class Lexakai extends Application
     }
 
     @Override
-    protected Set<SwitchParser<?>> switchParsers()
+    protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return Set.of(
+        return ObjectSet.of(
                 ADD_HTML_ANCHORS,
                 AUTOMATIC_METHOD_GROUPS,
                 CREATE_PACKAGE_DIAGRAMS,

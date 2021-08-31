@@ -132,7 +132,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>1.0.0</kivakit.version>
+        <kivakit.version>1.1.0-SNAPSHOT</kivakit.version>
 
         <!-- Java -->
 
@@ -429,14 +429,15 @@
                                     <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
                                     <then>
                                         <mkdir dir = "${cactus.downloads.folder}"/>
-                                        <get ignoreerrors="true" src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
+                                        <get ignoreerrors = "true" src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
                                     </then>
                                 </if>
                                 <if>
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
-                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
+                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id =
+                                            ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
                                         <java jar = "${cactus.build.jar}" failonerror = "true" fork = "true">
                                             <arg value = "src/main/java"/>
@@ -444,7 +445,8 @@
                                     </then>
                                 </if>
                                 <echo file = "${project.basedir}/project.properties">
-                                    project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
+                                    project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id =
+                                    ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                 </echo>
                                 <java jar = "${cactus.build.jar}" failonerror = "true" fork = "true">
                                     <arg value = "${project.basedir}"/>

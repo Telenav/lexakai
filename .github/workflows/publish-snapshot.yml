@@ -1,4 +1,3 @@
-
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #
 #  © 2021 Telenav, Inc.
@@ -17,8 +16,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
 
 jobs:
   build:
@@ -33,7 +30,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: 12
+          java-version: 16
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
@@ -46,8 +43,8 @@ jobs:
 
       - name: Publish Snapshot to OSSRH
         run: |
-          mvn -P attach-jars -P sign-artifacts -P shade -P tools --no-transfer-progress --batch-mode \
-            -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} clean deploy
+          perl ./.github/scripts/build.pl publish
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          MESAKIT_HOME: $GITHUB_WORKSPACE/mesakit

@@ -29,7 +29,7 @@ clone("$github/kivakit", "dependency");
 clone("$github/kivakit-extensions", "dependency");
 clone("$github/lexakai", "build");
 
-build_kivakit($build_type);
-build_kivakit_extensions($build_type);
+build_kivakit("package");
+build_kivakit_extensions("package");
 build_lexakai($build_type);
 

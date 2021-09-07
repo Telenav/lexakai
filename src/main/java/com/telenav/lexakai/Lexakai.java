@@ -39,7 +39,7 @@ import com.telenav.kivakit.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.kernel.language.vm.Processes;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.project.ResourceProject;
+import com.telenav.kivakit.resource.ResourceProject;
 import com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.dependencies.DependencyDiagram;

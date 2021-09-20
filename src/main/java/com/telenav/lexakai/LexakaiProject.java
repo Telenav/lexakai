@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -139,12 +140,12 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /** Locations of project folders */
     private final LexakaiProjectFolders folders;
 
-    public LexakaiProject(final Lexakai lexakai,
-                          final Version version,
-                          final Folder root,
-                          final Folder project,
-                          final Folder outputRoot,
-                          final JavaParser parser)
+    protected LexakaiProject(final Lexakai lexakai,
+                             final Version version,
+                             final Folder root,
+                             final Folder project,
+                             final Folder outputRoot,
+                             final JavaParser parser)
     {
         this.lexakai = lexakai;
         this.version = version;
@@ -172,8 +173,6 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
         folders = new LexakaiProjectFolders(this, root, project, outputRoot);
         files = new LexakaiProjectFiles(this);
-
-        initialize();
     }
 
     public LexakaiProject addHtmlAnchors(final boolean addHtmlAnchors)
@@ -229,6 +228,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                             .stream()
                             .filter(this::isProject)
                             .map(lexakai::project)
+                            .filter(Objects::nonNull)
                             .collect(Collectors.toSet()))
                     .sorted();
         }
@@ -325,8 +325,13 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return this;
     }
 
-    public void initialize()
+    public boolean initialize()
     {
+        if (!isValid())
+        {
+            return false;
+        }
+
         final var resourcePackage = Package.of(Lexakai.class, "resources");
 
         // If the project has source code,
@@ -349,6 +354,13 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                 .asStringResource()
                 .transform(text -> lexakai.properties().expand(text))
                 .safeCopyTo(files().lexakaiProperties(), DO_NOT_OVERWRITE);
+
+        return true;
+    }
+
+    public boolean isValid()
+    {
+        return files().lexakaiProperties() != null;
     }
 
     public Pattern javadocSectionPattern()
@@ -412,7 +424,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     {
         if (properties == null)
         {
-            properties = new LexakaiProjectProperties(this);
+            properties = LexakaiProjectProperties.load(this);
         }
         return properties;
     }

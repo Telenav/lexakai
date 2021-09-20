@@ -19,15 +19,13 @@ public class LexakaiProjectProperties extends PropertyMap
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private final LexakaiProject project;
-
-    public LexakaiProjectProperties(final LexakaiProject project)
+    public static LexakaiProjectProperties load(final LexakaiProject project)
     {
-        this.project = project;
+        final var properties = new LexakaiProjectProperties(project);
 
         // Add system and application properties,
         final var systemProperties = Lexakai.get().properties();
-        addAll(systemProperties);
+        properties.addAll(systemProperties);
 
         // project.properties
         final var projectProperties = project.files().projectProperties();
@@ -35,19 +33,23 @@ public class LexakaiProjectProperties extends PropertyMap
         {
             project.lexakai().exit("Project.properties not found: $", projectProperties);
         }
-        addAll(PropertyMap.load(LOGGER, projectProperties).expandedWith(this));
-        final var artifactId = get("project-artifact-id");
-        add("project-module-name", artifactId.replaceAll("-", "."));
-        require("project-name");
-        require("project-version");
-        require("project-group-id");
-        require("project-artifact-id");
+        properties.addAll(PropertyMap.load(LOGGER, projectProperties).expandedWith(properties));
+        final var artifactId = properties.get("project-artifact-id");
+        if (artifactId.contains("superpom"))
+        {
+            return null;
+        }
+        properties.add("project-module-name", artifactId.replaceAll("-", "."));
+        properties.require("project-name");
+        properties.require("project-version");
+        properties.require("project-group-id");
+        properties.require("project-artifact-id");
 
         // lexakai.settings,
-        addAll(PropertyMap.load(LOGGER, project.files().lexakaiSettings()).expandedWith(this));
-        require("lexakai-documentation-location");
-        require("lexakai-javadoc-location");
-        require("lexakai-images-location");
+        properties.addAll(PropertyMap.load(LOGGER, project.files().lexakaiSettings()).expandedWith(properties));
+        properties.require("lexakai-documentation-location");
+        properties.require("lexakai-javadoc-location");
+        properties.require("lexakai-images-location");
 
         // lexakai.properties
         final var lexakaiProperties = project.files().lexakaiProperties(artifactId);
@@ -55,23 +57,32 @@ public class LexakaiProjectProperties extends PropertyMap
         {
             project.lexakai().exit("Lexakai.properties not found: $", lexakaiProperties);
         }
-        addAll(PropertyMap.load(LOGGER, lexakaiProperties).expandedWith(this));
-        putIfAbsent("project-icon", "gears-32");
-        require("project-title");
-        require("project-description");
-        require("project-icon");
+        properties.addAll(PropertyMap.load(LOGGER, lexakaiProperties).expandedWith(properties));
+        properties.putIfAbsent("project-icon", "gears-32");
+        properties.require("project-title");
+        properties.require("project-description");
+        properties.require("project-icon");
 
         // project folders,
-        add("project-folder", project.folders().project().toString());
-        add("project-relative-folder", project.folders().projectRelativeToRoot().toString());
-        add("project-output-folder", project.folders().output().toString());
-        add("project-output-root-folder", project.folders().outputRoot().toString());
+        properties.add("project-folder", project.folders().project().toString());
+        properties.add("project-relative-folder", project.folders().projectRelativeToRoot().toString());
+        properties.add("project-output-folder", project.folders().output().toString());
+        properties.add("project-output-root-folder", project.folders().outputRoot().toString());
 
         // and resource locations.
-        add("project-diagrams-location", outputDiagramsLocation());
-        add("project-documentation-location", outputDocumentationLocation());
-        add("project-images-location", imagesLocation());
-        add("project-javadoc-location", outputJavadocLocation());
+        properties.add("project-diagrams-location", properties.outputDiagramsLocation());
+        properties.add("project-documentation-location", properties.outputDocumentationLocation());
+        properties.add("project-images-location", properties.imagesLocation());
+        properties.add("project-javadoc-location", properties.outputJavadocLocation());
+
+        return properties;
+    }
+
+    private final LexakaiProject project;
+
+    protected LexakaiProjectProperties(final LexakaiProject project)
+    {
+        this.project = project;
     }
 
     @Override

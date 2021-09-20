@@ -29,7 +29,8 @@ public class LexakaiProjectFiles
      */
     public File lexakaiProperties()
     {
-        return lexakaiProperties(project.properties().projectArtifactId());
+        final var properties = project.properties();
+        return properties == null ? null : lexakaiProperties(properties.projectArtifactId());
     }
 
     /**

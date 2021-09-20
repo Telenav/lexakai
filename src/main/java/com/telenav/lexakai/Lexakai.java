@@ -49,6 +49,7 @@ import com.telenav.lexakai.javadoc.JavadocCoverage;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -345,18 +346,29 @@ public class Lexakai extends Application
         outputFiles.addAll(buildDependencyDiagrams(absoluteRoot));
 
         // create projects for folders under the root,
-        projectFolders(absoluteRoot, at -> folderToProject.put(at, project(absoluteRoot, at)));
+        projectFolders(absoluteRoot, at ->
+        {
+            final var project = project(absoluteRoot, at);
+            if (project != null)
+            {
+                folderToProject.put(at, project);
+            }
+        });
 
         // then for each project,
         projectFolders(absoluteRoot, at ->
         {
             // build UML diagrams.
-            outputFiles.addAll(outputUmlDiagrams(project(at)));
+            final var project = project(at);
+            if (project != null)
+            {
+                outputFiles.addAll(outputUmlDiagrams(project));
+            }
         });
 
         // Show detailed Javadoc coverage
         final var rootProject = project(absoluteRoot);
-        if (get(SHOW_JAVADOC_COVERAGE))
+        if (rootProject != null && get(SHOW_JAVADOC_COVERAGE))
         {
             announce("");
             announce(AsciiArt.line("Javadoc Coverage"));
@@ -538,14 +550,20 @@ public class Lexakai extends Application
                                    final Folder projectFolder)
     {
         final var project = new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, outputRoot(root), parser);
-
-        return listenTo(project)
-                .addHtmlAnchors(get(ADD_HTML_ANCHORS))
-                .includeObjectMethods(get(INCLUDE_OBJECT_METHODS))
-                .includeProtectedMethods(get(INCLUDE_PROTECTED_METHODS))
-                .buildPackageDiagrams(get(CREATE_PACKAGE_DIAGRAMS))
-                .automaticMethodGroups(get(AUTOMATIC_METHOD_GROUPS))
-                .javadocSectionPattern(Pattern.compile(get(JAVADOC_SECTION_PATTERN)));
+        if (project.initialize())
+        {
+            return listenTo(project)
+                    .addHtmlAnchors(get(ADD_HTML_ANCHORS))
+                    .includeObjectMethods(get(INCLUDE_OBJECT_METHODS))
+                    .includeProtectedMethods(get(INCLUDE_PROTECTED_METHODS))
+                    .buildPackageDiagrams(get(CREATE_PACKAGE_DIAGRAMS))
+                    .automaticMethodGroups(get(AUTOMATIC_METHOD_GROUPS))
+                    .javadocSectionPattern(Pattern.compile(get(JAVADOC_SECTION_PATTERN)));
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /**
@@ -564,6 +582,7 @@ public class Lexakai extends Application
                 .map(Folder::absolute)
                 .filter(folder -> !folder.path().join().contains("target"))
                 .filter(folder -> !folder.path().join().contains("src/main/resources"))
+                .filter(Objects::nonNull)
                 .forEach(consumer);
     }
 }

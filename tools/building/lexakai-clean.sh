@@ -10,4 +10,4 @@
 source library-functions.sh
 source lexakai-projects.sh
 
-clean_temporary_files $LEXAKAI_HOME
+clean_temporary_files "$LEXAKAI_HOME"

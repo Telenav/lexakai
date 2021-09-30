@@ -7,6 +7,6 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-rm -rf $KIVAKIT_ASSETS_HOME/docs/$LEXAKAI_VERSION/javadoc/
+rm -rf "$KIVAKIT_ASSETS_HOME"/docs/"$LEXAKAI_VERSION"/javadoc/
 
 bash lexakai-build.sh javadoc

@@ -10,6 +10,6 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-clean_maven_repository $LEXAKAI_HOME
+clean_maven_repository "$LEXAKAI_HOME"
 
 bash lexakai-clean.sh

@@ -13,6 +13,6 @@ source lexakai-projects.sh
 
 for project_home in "${LEXAKAI_PROJECT_HOMES[@]}"; do
 
-    build $project_home $@
+    build "$project_home" $@
 
 done

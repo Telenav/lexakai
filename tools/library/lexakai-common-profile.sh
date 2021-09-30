@@ -5,8 +5,8 @@ system_variable LEXAKAI_WORKSPACE "$KIVAKIT_WORKSPACE"
 system_variable LEXAKAI_HOME "$LEXAKAI_WORKSPACE/lexakai"
 system_variable LEXAKAI_ANNOTATIONS_HOME "$LEXAKAI_WORKSPACE/lexakai-annotations"
 system_variable LEXAKAI_ASSETS_HOME "$LEXAKAI_WORKSPACE/lexakai-assets"
-system_variable LEXAKAI_VERSION "$(project_version $LEXAKAI_HOME)"
-system_variable LEXAKAI_BUILD "$(project_build $LEXAKAI_HOME)"
+system_variable LEXAKAI_VERSION "$(project_version "$LEXAKAI_HOME")"
+system_variable LEXAKAI_BUILD "$(project_build "$LEXAKAI_HOME")"
 system_variable LEXAKAI_TOOLS "$LEXAKAI_HOME/tools"
 
 append_path "$LEXAKAI_TOOLS/building"
@@ -14,7 +14,7 @@ append_path "$LEXAKAI_TOOLS/developing"
 append_path "$LEXAKAI_TOOLS/library"
 append_path "$LEXAKAI_TOOLS/releasing"
 
-source $LEXAKAI_TOOLS/library/lexakai-projects.sh
+source "$LEXAKAI_TOOLS"/library/lexakai-projects.sh
 
 echo " "
 echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Lexakai Environment ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
@@ -30,4 +30,4 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
-cd $LEXAKAI_HOME
+cd "$LEXAKAI_HOME"

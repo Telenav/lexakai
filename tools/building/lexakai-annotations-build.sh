@@ -11,4 +11,4 @@ source library-functions.sh
 source library-build.sh
 source lexakai-projects.sh
 
-build $LEXAKAI_ANNOTATIONS_HOME $@
+build "$LEXAKAI_ANNOTATIONS_HOME" $@

@@ -24,7 +24,7 @@
 
     <name>Lexakai</name>
     <description>Lexakai annotations are used by Lexakai to generate UML diagrams.</description>
-    <url>http://www.lexakai.org</url>
+    <url>https://www.lexakai.org</url>
     <inceptionYear>2021</inceptionYear>
     <organization>
         <name>Telenav</name>
@@ -52,7 +52,7 @@
             <name>Jonathan Locke (Luo Shibo)</name>
             <email>jonathanl@telenav.com</email>
             <organization>Telenav</organization>
-            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
             <roles>
                 <role>lead</role>
                 <role>administrator</role>
@@ -64,7 +64,7 @@
             <name>Haifeng Zhu</name>
             <email>hfzhu@telenav.com</email>
             <organization>Telenav</organization>
-            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
             <roles>
                 <role>developer</role>
                 <role>administrator</role>

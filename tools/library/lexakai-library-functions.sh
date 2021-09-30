@@ -14,7 +14,7 @@ property_value() {
     file=$1
     key=$2
 
-    cat $file | grep "$key" | cut -d'=' -f2 | xargs echo
+    cat "$file" | grep "$key" | cut -d'=' -f2 | xargs echo
 }
 
 project_version() {

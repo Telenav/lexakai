@@ -6,8 +6,8 @@ open module lexakai
     requires transitive kivakit.resource;
     requires transitive kivakit.network.http;
 
-    requires transitive com.github.javaparser.core;
-    requires transitive com.github.javaparser.symbolsolver.core;
+    requires com.github.javaparser.core;
+    requires com.github.javaparser.symbolsolver.core;
 
     exports com.telenav.lexakai;
     exports com.telenav.lexakai.javadoc;

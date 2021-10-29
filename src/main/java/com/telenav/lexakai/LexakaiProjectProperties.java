@@ -19,22 +19,22 @@ public class LexakaiProjectProperties extends PropertyMap
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static LexakaiProjectProperties load(final LexakaiProject project)
+    public static LexakaiProjectProperties load(LexakaiProject project)
     {
-        final var properties = new LexakaiProjectProperties(project);
+        var properties = new LexakaiProjectProperties(project);
 
         // Add system and application properties,
-        final var systemProperties = Lexakai.get().properties();
+        var systemProperties = Lexakai.get().properties();
         properties.addAll(systemProperties);
 
         // project.properties
-        final var projectProperties = project.files().projectProperties();
+        var projectProperties = project.files().projectProperties();
         if (!projectProperties.exists())
         {
             project.lexakai().exit("Project.properties not found: $", projectProperties);
         }
         properties.addAll(PropertyMap.load(LOGGER, projectProperties).expandedWith(properties));
-        final var artifactId = properties.get("project-artifact-id");
+        var artifactId = properties.get("project-artifact-id");
         if (artifactId.contains("superpom"))
         {
             return null;
@@ -52,7 +52,7 @@ public class LexakaiProjectProperties extends PropertyMap
         properties.require("lexakai-images-location");
 
         // lexakai.properties
-        final var lexakaiProperties = project.files().lexakaiProperties(artifactId);
+        var lexakaiProperties = project.files().lexakaiProperties(artifactId);
         if (!lexakaiProperties.exists())
         {
             project.lexakai().exit("Lexakai.properties not found: $", lexakaiProperties);
@@ -80,15 +80,15 @@ public class LexakaiProjectProperties extends PropertyMap
 
     private final LexakaiProject project;
 
-    protected LexakaiProjectProperties(final LexakaiProject project)
+    protected LexakaiProjectProperties(LexakaiProject project)
     {
         this.project = project;
     }
 
     @Override
-    public VariableMap<String> add(final String key, final String value)
+    public VariableMap<String> add(String key, String value)
     {
-        final var map = super.add(key, value);
+        var map = super.add(key, value);
         require(key);
         return map;
     }
@@ -100,7 +100,7 @@ public class LexakaiProjectProperties extends PropertyMap
 
     public String outputDiagramsLocation()
     {
-        final var output = outputDocumentationLocation();
+        var output = outputDocumentationLocation();
         return output == null
                 ? null
                 : StringPath.stringPath
@@ -124,7 +124,7 @@ public class LexakaiProjectProperties extends PropertyMap
     public String outputJavadocLocation()
     {
         var location = asPath("lexakai-javadoc-location") + "/" + project.rootProjectName();
-        final var moduleName = projectModuleName();
+        var moduleName = projectModuleName();
         if (moduleName != null && !moduleName.equalsIgnoreCase("none"))
         {
             location += "/" + moduleName;
@@ -135,9 +135,9 @@ public class LexakaiProjectProperties extends PropertyMap
     /**
      * @return The location of the given type in this project's Javadoc in the output tree
      */
-    public String outputJavadocLocation(final UmlType type)
+    public String outputJavadocLocation(UmlType type)
     {
-        final var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
+        var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
         // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
         return StringPath.stringPath
@@ -163,9 +163,9 @@ public class LexakaiProjectProperties extends PropertyMap
         return get("project-name");
     }
 
-    private void require(final String key)
+    private void require(String key)
     {
-        final var value = get(key);
+        var value = get(key);
         ensure(value != null && !value.contains("[UNDEFINED]"),
                 "Project $: The required key '$' is not defined", project.name(), key);
     }

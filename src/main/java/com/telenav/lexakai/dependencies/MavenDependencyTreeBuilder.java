@@ -37,62 +37,62 @@ public class MavenDependencyTreeBuilder extends BaseRepeater
 {
     private final Folder root;
 
-    public MavenDependencyTreeBuilder(final Folder root)
+    public MavenDependencyTreeBuilder(Folder root)
     {
         this.root = root;
     }
 
     public Set<DependencyTree> trees()
     {
-        final var output = OperatingSystem.get()
+        var output = OperatingSystem.get()
                 .exec(root.asJavaFile(), "mvn", "-DoutputType=tgf", "dependency:tree")
                 .replaceAll("\\[INFO]", "");
 
-        final var matcher = Pattern.compile("--- maven-dependency-plugin.*?@ (?<projectArtifactId>.*?) ---" +
+        var matcher = Pattern.compile("--- maven-dependency-plugin.*?@ (?<projectArtifactId>.*?) ---" +
                         "(?<dependencies>.*?)#" +
                         "(?<references>.*?)---",
                 Pattern.DOTALL).matcher(output);
 
-        final var artifactIdToFolder = new HashMap<String, Folder>();
+        var artifactIdToFolder = new HashMap<String, Folder>();
         root.nestedFiles(file -> FileName.parse("pom.xml").fileMatcher().matches(file))
                 .forEach(file ->
                 {
-                    final var pom = file.reader().string().replaceAll("(?s)<parent>.*</parent>", "");
-                    final var artifactId = Strings.extract(pom, "(?s)<artifactId>(.*?)</artifactId>");
+                    var pom = file.reader().string().replaceAll("(?s)<parent>.*</parent>", "");
+                    var artifactId = Strings.extract(pom, "(?s)<artifactId>(.*?)</artifactId>");
                     artifactIdToFolder.put(artifactId, file.parent());
                 });
 
-        final var trees = new HashSet<DependencyTree>();
+        var trees = new HashSet<DependencyTree>();
 
         while (matcher.find())
         {
-            final var projectArtifactId = matcher.group("projectArtifactId").trim();
-            final var dependencies = matcher.group("dependencies");
-            final var references = matcher.group("references");
-            final var projectFolder = artifactIdToFolder.get(projectArtifactId);
+            var projectArtifactId = matcher.group("projectArtifactId").trim();
+            var dependencies = matcher.group("dependencies");
+            var references = matcher.group("references");
+            var projectFolder = artifactIdToFolder.get(projectArtifactId);
 
-            final var tree = new DependencyTree(projectArtifactId, projectFolder);
+            var tree = new DependencyTree(projectArtifactId, projectFolder);
 
-            final var dependencyPattern = Pattern.compile("(\\d+) (.*?):(.*?):jar:(.*?)(:.*)?");
-            final var dependencyMatcher = dependencyPattern.matcher(dependencies);
+            var dependencyPattern = Pattern.compile("(\\d+) (.*?):(.*?):jar:(.*?)(:.*)?");
+            var dependencyMatcher = dependencyPattern.matcher(dependencies);
             while (dependencyMatcher.find())
             {
-                final var identifier = Ints.parse(dependencyMatcher.group(1));
-                final var groupId = dependencyMatcher.group(2);
-                final var artifactId = dependencyMatcher.group(3);
-                final var version = dependencyMatcher.group(4);
-                final var artifact = new Artifact(identifier, groupId, artifactId, version);
+                var identifier = Ints.parse(dependencyMatcher.group(1));
+                var groupId = dependencyMatcher.group(2);
+                var artifactId = dependencyMatcher.group(3);
+                var version = dependencyMatcher.group(4);
+                var artifact = new Artifact(identifier, groupId, artifactId, version);
                 tree.add(artifact);
             }
 
-            final var referencePattern = Pattern.compile("(\\d+) (\\d+) (.*?)");
-            final var referenceMatcher = referencePattern.matcher(references);
+            var referencePattern = Pattern.compile("(\\d+) (\\d+) (.*?)");
+            var referenceMatcher = referencePattern.matcher(references);
             while (referenceMatcher.find())
             {
-                final var fromIdentifier = Ints.parse(referenceMatcher.group(1));
-                final var toIdentifier = Ints.parse(referenceMatcher.group(2));
-                final var from = tree.artifact(fromIdentifier);
-                final var to = tree.artifact(toIdentifier);
+                var fromIdentifier = Ints.parse(referenceMatcher.group(1));
+                var toIdentifier = Ints.parse(referenceMatcher.group(2));
+                var from = tree.artifact(fromIdentifier);
+                var to = tree.artifact(toIdentifier);
                 if (from != null && to != null)
                 {
                     tree.add(new Dependency(from, to));

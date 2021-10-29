@@ -50,24 +50,24 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
 
     private Percent projectCoverage;
 
-    public JavadocCoverage(final LexakaiProject project)
+    public JavadocCoverage(LexakaiProject project)
     {
         this.project = project;
     }
 
-    public void add(final TypeDeclaration<?> type)
+    public void add(TypeDeclaration<?> type)
     {
-        final var fullName = type.getFullyQualifiedName();
+        var fullName = type.getFullyQualifiedName();
         if (fullName.isPresent() && (type.isPublic() || type.isProtected()) && !fullName.get().endsWith("Test"))
         {
             totalTypes++;
 
             var requiredLength = Lexakai.get().get(JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH);
 
-            final var javadoc = type.getJavadoc();
-            final var isSignificant = type.toString().length() > Lexakai.get().get(JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH);
-            final var significance = isSignificant ? "+" : "";
-            final var typeName = Strip.packagePrefix(fullName.get());
+            var javadoc = type.getJavadoc();
+            var isSignificant = type.toString().length() > Lexakai.get().get(JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH);
+            var significance = isSignificant ? "+" : "";
+            var typeName = Strip.packagePrefix(fullName.get());
             var isCovered = true;
             var typeWarning = false;
             if (javadoc.isPresent())
@@ -82,7 +82,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
                     {
                         requiredLength = Lexakai.get().get(JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH);
                     }
-                    final var text = javadoc.get().toText();
+                    var text = javadoc.get().toText();
                     if (text.length() < requiredLength)
                     {
                         isCovered = false;
@@ -92,8 +92,8 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
                     }
                 }
 
-                final var methodWarnings = new StringList();
-                for (final var method : type.getMethods())
+                var methodWarnings = new StringList();
+                for (var method : type.getMethods())
                 {
                     if (method.isPublic() || method.isProtected())
                     {
@@ -134,17 +134,17 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         }
     }
 
-    public void addToVariableMap(final VariableMap<String> variables)
+    public void addToVariableMap(VariableMap<String> variables)
     {
         variables.put("project-javadoc-coverage", projectCoverage() + ".  \n  \n&nbsp; &nbsp; " + meterMarkdown());
-        final var undocumented = significantUndocumentedClasses;
+        var undocumented = significantUndocumentedClasses;
         variables.put("project-undocumented-classes",
                 undocumented.isEmpty() ? "" : "The following significant classes are undocumented:  \n\n" +
                         undocumented.prefixedWith("- ").join("  \n"));
     }
 
     @Override
-    public int compareTo(@NotNull final JavadocCoverage that)
+    public int compareTo(@NotNull JavadocCoverage that)
     {
         return projectCoverage().compareTo(that.projectCoverage());
     }
@@ -170,14 +170,14 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         return projectCoverage;
     }
 
-    public String projectCoverageMeter(final Folder folder)
+    public String projectCoverageMeter(Folder folder)
     {
         return "&nbsp; " + meterMarkdown() + " &nbsp; &nbsp; " + project.link(folder);
     }
 
     public StringList summary()
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.add(summaryCoverage());
         if (Lexakai.get().get(SHOW_JAVADOC_UNCOVERED_TYPES))
         {
@@ -210,14 +210,10 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         }
     }
 
-    private boolean isJavadocComplete(final NodeWithAnnotations<?> node)
+    private boolean isJavadocComplete(NodeWithAnnotations<?> node)
     {
-        final var optionalAnnotation = node.getAnnotationByClass(LexakaiJavadoc.class);
-        if (optionalAnnotation.isPresent())
-        {
-            return Annotations.booleanValue(optionalAnnotation.get(), "complete", false);
-        }
-        return false;
+        var optionalAnnotation = node.getAnnotationByClass(LexakaiJavadoc.class);
+        return optionalAnnotation.filter(expr -> Annotations.booleanValue(expr, "complete", false)).isPresent();
     }
 
     private String meterMarkdown()
@@ -231,14 +227,14 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         return methodCoverage;
     }
 
-    private boolean methodCovered(final MethodDeclaration method, final StringList warnings)
+    private boolean methodCovered(MethodDeclaration method, StringList warnings)
     {
         if (!isJavadocComplete(method))
         {
-            final var lines = method.getBody().toString().split("\n").length;
+            var lines = method.getBody().toString().split("\n").length;
             if (lines > Lexakai.get().get(JAVADOC_MINIMUM_METHOD_LINES))
             {
-                final var javadoc = method.getJavadoc();
+                var javadoc = method.getJavadoc();
                 if (javadoc.isEmpty())
                 {
                     warnings.add("    $(): Javadoc missing", method.getName());
@@ -246,8 +242,8 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
                 }
                 else
                 {
-                    final var length = javadoc.get().toText().length();
-                    final var minimumLength = Lexakai.get().get(JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH);
+                    var length = javadoc.get().toText().length();
+                    var minimumLength = Lexakai.get().get(JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH);
                     if (length < minimumLength)
                     {
                         warnings.add("    $(): Javadoc coverage of $ characters is insufficient (minimum is $)",

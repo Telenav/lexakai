@@ -50,12 +50,12 @@ public class UmlAssociation implements Comparable<UmlAssociation>
      * @param label The arrow label, or null if there is none
      * @return The {@link UmlAssociation} to include in a {@link LexakaiClassDiagram}
      */
-    public static UmlAssociation of(final TypeDeclaration<?> referrer,
-                                    final AssociationType type,
-                                    final Type referent,
-                                    final String from,
-                                    final String to,
-                                    final String label)
+    public static UmlAssociation of(TypeDeclaration<?> referrer,
+                                    AssociationType type,
+                                    Type referent,
+                                    String from,
+                                    String to,
+                                    String label)
     {
         if (Types.isObject(referent))
         {
@@ -64,12 +64,12 @@ public class UmlAssociation implements Comparable<UmlAssociation>
         return null;
     }
 
-    public static UmlAssociation of(final TypeDeclaration<?> referrer,
-                                    final AssociationType type,
-                                    final String referent,
-                                    final String from,
-                                    final String to,
-                                    final String label)
+    public static UmlAssociation of(TypeDeclaration<?> referrer,
+                                    AssociationType type,
+                                    String referent,
+                                    String from,
+                                    String to,
+                                    String label)
     {
         return new UmlAssociation(referrer, type, referent, from, to, label);
     }
@@ -90,7 +90,7 @@ public class UmlAssociation implements Comparable<UmlAssociation>
 
         private final String arrow;
 
-        AssociationType(final String arrow)
+        AssociationType(String arrow)
         {
             this.arrow = arrow;
         }
@@ -120,12 +120,12 @@ public class UmlAssociation implements Comparable<UmlAssociation>
     /** The arrow label */
     private final String label;
 
-    private UmlAssociation(final TypeDeclaration<?> referrer,
-                           final AssociationType type,
-                           final String referent,
-                           final String from,
-                           final String to,
-                           final String label)
+    private UmlAssociation(TypeDeclaration<?> referrer,
+                           AssociationType type,
+                           String referent,
+                           String from,
+                           String to,
+                           String label)
     {
         this.type = type;
         this.referrer = referrer;
@@ -136,17 +136,17 @@ public class UmlAssociation implements Comparable<UmlAssociation>
     }
 
     @Override
-    public int compareTo(@NotNull final UmlAssociation that)
+    public int compareTo(@NotNull UmlAssociation that)
     {
         return uml().compareTo(that.uml());
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof UmlAssociation)
         {
-            final UmlAssociation that = (UmlAssociation) object;
+            UmlAssociation that = (UmlAssociation) object;
             return referrer.equals(that.referrer) && referent.equals(that.referent) && label.equals(that.label);
         }
         return false;
@@ -171,7 +171,7 @@ public class UmlAssociation implements Comparable<UmlAssociation>
 
     public String uml()
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         builder.append(Names.name(referrer, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
         builder.append(" ");
         final String DOUBLE_QUOTES = "\"";

@@ -9,7 +9,7 @@ public class LexakaiProjectFiles
 {
     private final LexakaiProject project;
 
-    public LexakaiProjectFiles(final LexakaiProject project)
+    public LexakaiProjectFiles(LexakaiProject project)
     {
         this.project = project;
     }
@@ -29,14 +29,14 @@ public class LexakaiProjectFiles
      */
     public File lexakaiProperties()
     {
-        final var properties = project.properties();
+        var properties = project.properties();
         return properties == null ? null : lexakaiProperties(properties.projectArtifactId());
     }
 
     /**
      * @return The lexakai.properties file for this project in the output tree
      */
-    public File lexakaiProperties(final String artifactId)
+    public File lexakaiProperties(String artifactId)
     {
         return folders()
                 .settings()

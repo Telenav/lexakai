@@ -45,7 +45,7 @@ public class UmlMethod implements Comparable<UmlMethod>
     /** The set of method groups that this method belongs to */
     private final Set<String> explicitGroups;
 
-    public UmlMethod(final ClassOrInterfaceDeclaration parent, final MethodDeclaration method)
+    public UmlMethod(ClassOrInterfaceDeclaration parent, MethodDeclaration method)
     {
         this.parent = parent;
         this.method = method;
@@ -54,9 +54,9 @@ public class UmlMethod implements Comparable<UmlMethod>
     }
 
     @Override
-    public int compareTo(@NotNull final UmlMethod that)
+    public int compareTo(@NotNull UmlMethod that)
     {
-        final int compare = sortOrder() - that.sortOrder();
+        int compare = sortOrder() - that.sortOrder();
         if (compare == 0)
         {
             return name().compareTo(that.name());
@@ -65,11 +65,11 @@ public class UmlMethod implements Comparable<UmlMethod>
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof UmlMethod)
         {
-            final UmlMethod that = (UmlMethod) object;
+            UmlMethod that = (UmlMethod) object;
             return uml().equals(that.uml());
         }
         return false;
@@ -148,20 +148,20 @@ public class UmlMethod implements Comparable<UmlMethod>
 
     public String uml()
     {
-        final var methodName = name();
-        final var override = isOverride() ? "^" : "";
-        final var protection = (parent.isInterface() || isPublic()) ? "+" : "#";
-        final var returnType = method.getType();
-        final var parameters = method.getParameters();
-        final var list = new StringList();
-        for (final var parameter : parameters)
+        var methodName = name();
+        var override = isOverride() ? "^" : "";
+        var protection = (parent.isInterface() || isPublic()) ? "+" : "#";
+        var returnType = method.getType();
+        var parameters = method.getParameters();
+        var list = new StringList();
+        for (var parameter : parameters)
         {
             var parameterType = parameter.getType().asString();
             if (parameter.isVarArgs())
             {
                 parameterType += "...";
             }
-            final var parameterName = parameter.getName().asString();
+            var parameterName = parameter.getName().asString();
             if (Strings.containsIgnoreCase(parameterType, parameterName))
             {
                 list.add(parameterType);

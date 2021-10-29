@@ -228,7 +228,7 @@ public class Lexakai extends Application
                     .defaultValue(false)
                     .build();
 
-    public static void main(final String[] arguments)
+    public static void main(String[] arguments)
     {
         new Lexakai().run(arguments);
     }
@@ -253,12 +253,12 @@ public class Lexakai extends Application
     @Override
     public String description()
     {
-        final var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
-        final var template = PackageResource.of(getClass(), "Help.txt").reader().string();
+        var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
+        var template = PackageResource.of(getClass(), "Help.txt").reader().string();
         return variables.expand(template);
     }
 
-    public LexakaiProject project(final Folder folder)
+    public LexakaiProject project(Folder folder)
     {
         return folderToProject.get(folder);
     }
@@ -281,13 +281,13 @@ public class Lexakai extends Application
         announce(commandLineDescription("Lexakai"));
 
         // get the root folders to locate projects from,
-        final var roots = commandLine().arguments(ROOT_FOLDER);
+        var roots = commandLine().arguments(ROOT_FOLDER);
 
         // create a new Java parser for the root folders,
         parser = newParser(roots);
 
         // and for each root folder,
-        for (final var root : roots)
+        for (var root : roots)
         {
             // build documentation.
             buildDocumentation(root);
@@ -324,11 +324,11 @@ public class Lexakai extends Application
                 UPDATE_README);
     }
 
-    private Set<File> buildDependencyDiagrams(final Folder root)
+    private Set<File> buildDependencyDiagrams(Folder root)
     {
         // For each maven dependency tree under the root,
-        final var files = new HashSet<File>();
-        for (final var tree : listenTo(new MavenDependencyTreeBuilder(root)).trees())
+        var files = new HashSet<File>();
+        for (var tree : listenTo(new MavenDependencyTreeBuilder(root)).trees())
         {
             // build and save a dependency diagram.
             files.add(new DependencyDiagram(root, outputRoot(root.absolute()), tree).save());
@@ -336,19 +336,19 @@ public class Lexakai extends Application
         return files;
     }
 
-    private void buildDocumentation(final Folder root)
+    private void buildDocumentation(Folder root)
     {
         // Get the absolute root folder and project,
-        final var absoluteRoot = root.absolute();
+        var absoluteRoot = root.absolute();
 
         // build a set of dependency diagrams,
-        final var outputFiles = new ObjectList<File>();
+        var outputFiles = new ObjectList<File>();
         outputFiles.addAll(buildDependencyDiagrams(absoluteRoot));
 
         // create projects for folders under the root,
         projectFolders(absoluteRoot, at ->
         {
-            final var project = project(absoluteRoot, at);
+            var project = project(absoluteRoot, at);
             if (project != null)
             {
                 folderToProject.put(at, project);
@@ -359,7 +359,7 @@ public class Lexakai extends Application
         projectFolders(absoluteRoot, at ->
         {
             // build UML diagrams.
-            final var project = project(at);
+            var project = project(at);
             if (project != null)
             {
                 outputFiles.addAll(outputUmlDiagrams(project));
@@ -367,19 +367,19 @@ public class Lexakai extends Application
         });
 
         // Show detailed Javadoc coverage
-        final var rootProject = project(absoluteRoot);
+        var rootProject = project(absoluteRoot);
         if (rootProject != null && get(SHOW_JAVADOC_COVERAGE))
         {
             announce("");
             announce(AsciiArt.line("Javadoc Coverage"));
             announce("");
-            for (final var coverage : rootProject.nestedProjectJavadocCoverage())
+            for (var coverage : rootProject.nestedProjectJavadocCoverage())
             {
                 announce("Project $", coverage.project().name());
                 announce("    $", coverage.coverage());
                 if (get(SHOW_JAVADOC_COVERAGE_WARNINGS))
                 {
-                    final var warnings = coverage.warnings();
+                    var warnings = coverage.warnings();
                     if (warnings.isNonEmpty())
                     {
                         announce(warnings.indented(6).join("\n"));
@@ -389,7 +389,7 @@ public class Lexakai extends Application
         }
 
         // and summary.
-        final var list = new StringList();
+        var list = new StringList();
         list.add("Diagrams: $", totalDiagrams.get());
         list.add("Types: $", types.size());
         list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
@@ -410,9 +410,9 @@ public class Lexakai extends Application
         }
     }
 
-    private void buildSvgFiles(final ObjectList<File> outputFiles)
+    private void buildSvgFiles(ObjectList<File> outputFiles)
     {
-        final var arguments = new StringList();
+        var arguments = new StringList();
         arguments.add("-nbthread");
         arguments.add("12");
         arguments.add("-progress");
@@ -420,7 +420,7 @@ public class Lexakai extends Application
         arguments.addAll(outputFiles.asStringList());
 
         announce("Building SVG files with PlantUML (https://plantuml.com)...");
-        final var process = listenTo(new JarLauncher()
+        var process = listenTo(new JarLauncher()
                 .processType(CHILD)
                 .arguments(arguments))
                 .addJarSource(PackageResource.of(getClass(), "plantuml.jar"))
@@ -434,10 +434,10 @@ public class Lexakai extends Application
     /**
      * @return A parser that can resolve symbols from all projects under all specified roots
      */
-    private JavaParser newParser(final List<Folder> roots)
+    private JavaParser newParser(List<Folder> roots)
     {
         // Create type solver for all source folders under all roots
-        final var solver = new CombinedTypeSolver();
+        var solver = new CombinedTypeSolver();
         roots.forEach(root ->
                 projectFolders(root, projectFolder ->
                 {
@@ -448,12 +448,12 @@ public class Lexakai extends Application
                 }));
 
         // and return a configured parser.
-        final var configuration = new ParserConfiguration();
+        var configuration = new ParserConfiguration();
         configuration.setSymbolResolver(new JavaSymbolSolver(solver));
         return new JavaParser(configuration);
     }
 
-    private Folder outputRoot(final Folder root)
+    private Folder outputRoot(Folder root)
     {
         return get(OUTPUT_FOLDER, root);
     }
@@ -461,14 +461,14 @@ public class Lexakai extends Application
     /**
      * Outputs a single UML diagram
      */
-    private File outputUmlDiagram(final LexakaiClassDiagram diagram)
+    private File outputUmlDiagram(LexakaiClassDiagram diagram)
     {
         // Get the diagram name,
-        final var diagramName = diagram.identifier();
+        var diagramName = diagram.identifier();
 
         // get the UML output folder and read in the lexakai.properties file with diagram titles,
-        final var diagramFolder = diagram.project().folders().diagramOutput();
-        final var title = diagram.title();
+        var diagramFolder = diagram.project().folders().diagramOutput();
+        var title = diagram.title();
 
         // get the uml for the given diagram,
         if (get(SHOW_DIAGRAMS))
@@ -476,7 +476,7 @@ public class Lexakai extends Application
             narrate("    Diagram $", diagram.name());
         }
         var uml = diagram.uml(title);
-        final var builder = IndentingStringBuilder.defaultTextIndenter();
+        var builder = IndentingStringBuilder.defaultTextIndenter();
         uml = (builder.lines().isZero() ? "" : builder + "\n\n") + uml;
 
         // and if the user wants output to the console,
@@ -491,10 +491,10 @@ public class Lexakai extends Application
         if (get(SAVE_DIAGRAMS))
         {
             // create an output file
-            final var outputFile = diagramFolder.file(diagramName + ".puml");
+            var outputFile = diagramFolder.file(diagramName + ".puml");
 
             // and write the UML to it,
-            final var output = outputFile.printWriter();
+            var output = outputFile.printWriter();
             output.println(uml);
             output.close();
             return outputFile;
@@ -506,7 +506,7 @@ public class Lexakai extends Application
     /**
      * Parses source code under the project folder and outputs UML diagrams for that
      */
-    private ObjectList<File> outputUmlDiagrams(final LexakaiProject project)
+    private ObjectList<File> outputUmlDiagrams(LexakaiProject project)
     {
         // Create a UML project from the source files under the project folder,
         narrate("Project $", project.name());
@@ -518,14 +518,14 @@ public class Lexakai extends Application
         project.files().lexakaiTheme().safeCopyTo(project.folders().diagramOutput(), UPDATE);
 
         // If the project has source code,
-        final var outputFiles = new ObjectList<File>();
+        var outputFiles = new ObjectList<File>();
         if (project.hasSourceCode())
         {
             // then go through each diagram in the project,
             project.diagrams(diagram ->
             {
                 // output a UML diagram for it,
-                final var outputFile = outputUmlDiagram(diagram);
+                var outputFile = outputUmlDiagram(diagram);
                 if (outputFile != null)
                 {
                     outputFiles.add(outputFile);
@@ -546,10 +546,10 @@ public class Lexakai extends Application
         return outputFiles;
     }
 
-    private LexakaiProject project(final Folder root,
-                                   final Folder projectFolder)
+    private LexakaiProject project(Folder root,
+                                   Folder projectFolder)
     {
-        final var project = new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, outputRoot(root), parser);
+        var project = new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, outputRoot(root), parser);
         if (project.initialize())
         {
             return listenTo(project)
@@ -570,7 +570,7 @@ public class Lexakai extends Application
      * Calls the consumer with each project folder under the root folder and a boolean indicating whether it contains
      * source code
      */
-    private void projectFolders(final Folder root, final Consumer<Folder> consumer)
+    private void projectFolders(Folder root, Consumer<Folder> consumer)
     {
         // Make sure the root exists,
         ensure(root.exists());

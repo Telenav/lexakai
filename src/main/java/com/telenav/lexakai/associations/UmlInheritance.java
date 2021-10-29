@@ -39,7 +39,7 @@ public class UmlInheritance implements Comparable<UmlInheritance>
     /**
      * An inheritance arrow from the subclass to the superclass
      */
-    public UmlInheritance(final String supertype, final String subtype)
+    public UmlInheritance(String supertype, String subtype)
     {
         assert supertype != null;
         assert subtype != null;
@@ -49,17 +49,17 @@ public class UmlInheritance implements Comparable<UmlInheritance>
     }
 
     @Override
-    public int compareTo(@NotNull final UmlInheritance that)
+    public int compareTo(@NotNull UmlInheritance that)
     {
         return uml().compareTo(that.uml());
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof UmlInheritance)
         {
-            final UmlInheritance that = (UmlInheritance) object;
+            UmlInheritance that = (UmlInheritance) object;
             return supertype.equals(that.supertype) && subtype.equals(that.subtype);
         }
         return false;

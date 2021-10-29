@@ -33,7 +33,7 @@ public class MethodGrouper
 
     private final MethodGroupNameGuesser guesser;
 
-    public MethodGrouper(final UmlType type)
+    public MethodGrouper(UmlType type)
     {
         this.type = type;
 
@@ -43,15 +43,15 @@ public class MethodGrouper
     public MethodGroups groups()
     {
         // Get all included methods in the type,
-        final var methods = type.includedMethods();
+        var methods = type.includedMethods();
 
         // While there are methods to process,
-        final var groups = new MethodGroups();
+        var groups = new MethodGroups();
         while (!methods.isEmpty())
         {
             // add the next group of groups,
-            final var next = next(methods);
-            for (final var at : next.allGroups())
+            var next = next(methods);
+            for (var at : next.allGroups())
             {
                 if (!at.isEmpty())
                 {
@@ -74,21 +74,21 @@ public class MethodGrouper
         return groups;
     }
 
-    public MethodGroups next(final List<UmlMethod> methods)
+    public MethodGroups next(List<UmlMethod> methods)
     {
         // For each included method,
-        final var groups = new MethodGroups();
-        for (final var method : methods)
+        var groups = new MethodGroups();
+        for (var method : methods)
         {
             // if it is in one or more explicit groups,
-            final var groupNames = method.explicitGroupNames();
+            var groupNames = method.explicitGroupNames();
             if (!groupNames.isEmpty())
             {
                 // go through the explicit groups,
-                for (final var groupName : groupNames)
+                for (var groupName : groupNames)
                 {
                     // and for each method in the type,
-                    for (final var at : methods)
+                    for (var at : methods)
                     {
                         // if that method is in the group,
                         if (at.explicitGroupNames().contains(groupName))
@@ -104,7 +104,7 @@ public class MethodGrouper
             else
             {
                 // otherwise add it to all groups we guess it might be in,
-                for (final var name : guesser.groupNames(method))
+                for (var name : guesser.groupNames(method))
                 {
                     groups.add(name, method);
                 }
@@ -112,8 +112,8 @@ public class MethodGrouper
         }
 
         // Return only the group with the most methods.
-        final var largest = groups.largest();
-        final var singleton = new MethodGroups();
+        var largest = groups.largest();
+        var singleton = new MethodGroups();
         singleton.add(largest);
         return singleton;
     }

@@ -36,7 +36,7 @@ public class Associations
     /**
      * @return A guess as to the cardinality of the given type based on the type's name
      */
-    public static String cardinalityGuess(final Type type)
+    public static String cardinalityGuess(Type type)
     {
         if (type.isArrayType())
         {
@@ -44,7 +44,7 @@ public class Associations
         }
         if (Types.hasTypeParameters(type))
         {
-            final var name = Names.name(type, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            var name = Names.name(type, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             if (name != null)
             {
                 if (name.endsWith("List")
@@ -62,24 +62,24 @@ public class Associations
     /**
      * @return The set of UML associations defined by the given type with @UmlRelation annotations
      */
-    public static List<UmlAssociation> explicitRelations(final TypeDeclaration<?> type, final String diagramName)
+    public static List<UmlAssociation> explicitRelations(TypeDeclaration<?> type, String diagramName)
     {
         // Go through each annotation,
-        final var relations = new ArrayList<UmlAssociation>();
-        for (final var annotation : Annotations.annotations(type, UmlRelation.class))
+        var relations = new ArrayList<UmlAssociation>();
+        for (var annotation : Annotations.annotations(type, UmlRelation.class))
         {
             // then loop through the key value pairs,
-            final var relation = relation(diagramName, type, annotation);
+            var relation = relation(diagramName, type, annotation);
             if (relation != null)
             {
                 relations.add(relation);
             }
         }
 
-        final var diagramAnnotation = Diagrams.diagramAnnotation(type, diagramName);
+        var diagramAnnotation = Diagrams.diagramAnnotation(type, diagramName);
         if (diagramAnnotation != null)
         {
-            final var relation = relation(diagramName, type, diagramAnnotation);
+            var relation = relation(diagramName, type, diagramAnnotation);
             if (relation != null)
             {
                 relations.add(relation);
@@ -93,15 +93,15 @@ public class Associations
     /**
      * @return The UML relation association for the given annotation from the given type in the given diagram (only).
      */
-    private static UmlAssociation relation(final String diagramName,
-                                           final TypeDeclaration<?> type,
-                                           final AnnotationExpr annotation)
+    private static UmlAssociation relation(String diagramName,
+                                           TypeDeclaration<?> type,
+                                           AnnotationExpr annotation)
     {
-        final var label = Annotations.stringValue(annotation, "label");
-        final var referent = Annotations.className(annotation, "referent");
-        final var diagram = Annotations.className(annotation, "diagram");
-        final var refereeCardinality = Annotations.stringValue(annotation, "refereeCardinality");
-        final var referentCardinality = Annotations.stringValue(annotation, "referentCardinality");
+        var label = Annotations.stringValue(annotation, "label");
+        var referent = Annotations.className(annotation, "referent");
+        var diagram = Annotations.className(annotation, "diagram");
+        var refereeCardinality = Annotations.stringValue(annotation, "refereeCardinality");
+        var referentCardinality = Annotations.stringValue(annotation, "referentCardinality");
 
         // If the diagram specified is not the given diagram,
         if (diagram != null && !diagram.equals(diagramName))

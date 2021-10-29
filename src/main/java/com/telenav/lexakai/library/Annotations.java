@@ -50,11 +50,11 @@ public class Annotations
     /**
      * @return A set of all the annotations of the given type
      */
-    public static Set<AnnotationExpr> annotations(final NodeWithAnnotations<?> type,
-                                                  final Class<? extends Annotation> annotationType)
+    public static Set<AnnotationExpr> annotations(NodeWithAnnotations<?> type,
+                                                  Class<? extends Annotation> annotationType)
     {
-        final var annotations = new HashSet<AnnotationExpr>();
-        for (final var annotation : type.getAnnotations())
+        var annotations = new HashSet<AnnotationExpr>();
+        for (var annotation : type.getAnnotations())
         {
             if (annotation.getName().asString().equals(annotationType.getSimpleName()))
             {
@@ -67,9 +67,9 @@ public class Annotations
     /**
      * @return The boolean value for the given annotation member
      */
-    public static boolean booleanValue(final AnnotationExpr annotation, final String member, final boolean defaultValue)
+    public static boolean booleanValue(AnnotationExpr annotation, String member, boolean defaultValue)
     {
-        final var expression = expression(annotation, member);
+        var expression = expression(annotation, member);
         if (expression instanceof BooleanLiteralExpr)
         {
             return expression.asBooleanLiteralExpr().getValue();
@@ -77,9 +77,9 @@ public class Annotations
         return defaultValue;
     }
 
-    public static String className(final AnnotationExpr annotation, final String member)
+    public static String className(AnnotationExpr annotation, String member)
     {
-        final var expression = expression(annotation, member);
+        var expression = expression(annotation, member);
         if (expression != null && expression.isClassExpr())
         {
             return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
@@ -90,14 +90,14 @@ public class Annotations
     /**
      * @return The set of class names for the given annotation member
      */
-    public static Set<String> classNames(final AnnotationExpr annotation, final String member)
+    public static Set<String> classNames(AnnotationExpr annotation, String member)
     {
-        final var expression = expression(annotation, member);
+        var expression = expression(annotation, member);
         if (expression instanceof ArrayInitializerExpr)
         {
-            final var array = expression.asArrayInitializerExpr();
-            final var classes = new HashSet<String>();
-            for (final var value : array.getValues())
+            var array = expression.asArrayInitializerExpr();
+            var classes = new HashSet<String>();
+            for (var value : array.getValues())
             {
                 classes.add(Names.name(value.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS));
             }
@@ -105,7 +105,7 @@ public class Annotations
         }
         if (expression instanceof SingleMemberAnnotationExpr)
         {
-            final var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             return qualifiedName == null ? Set.of() : Set.of(qualifiedName);
         }
         return Set.of();
@@ -114,21 +114,21 @@ public class Annotations
     /**
      * @return The set of class names for the given annotation
      */
-    public static Set<String> classNames(final AnnotationExpr annotation)
+    public static Set<String> classNames(AnnotationExpr annotation)
     {
         if (annotation instanceof MarkerAnnotationExpr)
         {
             return Set.of();
         }
 
-        final var expression = annotation.asSingleMemberAnnotationExpr().getMemberValue();
+        var expression = annotation.asSingleMemberAnnotationExpr().getMemberValue();
         if (expression instanceof ArrayInitializerExpr)
         {
-            final var array = expression.asArrayInitializerExpr();
-            final var classes = new HashSet<String>();
-            for (final var value : array.getValues())
+            var array = expression.asArrayInitializerExpr();
+            var classes = new HashSet<String>();
+            for (var value : array.getValues())
             {
-                final var name = Names.name(value.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+                var name = Names.name(value.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
                 if (name != null)
                 {
                     classes.add(name);
@@ -139,7 +139,7 @@ public class Annotations
 
         if (expression instanceof ClassExpr)
         {
-            final var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             return qualifiedName == null ? Set.of() : Set.of(qualifiedName);
         }
 
@@ -149,17 +149,17 @@ public class Annotations
     /**
      * @return The expression for the designated annotation member
      */
-    public static Expression expression(final AnnotationExpr annotation, final String member)
+    public static Expression expression(AnnotationExpr annotation, String member)
     {
         if (annotation instanceof MarkerAnnotationExpr)
         {
             return null;
         }
-        for (final var pair : annotation.asNormalAnnotationExpr().getPairs())
+        for (var pair : annotation.asNormalAnnotationExpr().getPairs())
         {
             if (pair.getName().asString().equals(member))
             {
-                final var value = pair.getValue();
+                var value = pair.getValue();
                 if (value != null)
                 {
                     return value;
@@ -169,22 +169,22 @@ public class Annotations
         return null;
     }
 
-    public static boolean hasAnnotation(final NodeWithAnnotations<?> type,
-                                        final Class<? extends Annotation> annotationType)
+    public static boolean hasAnnotation(NodeWithAnnotations<?> type,
+                                        Class<? extends Annotation> annotationType)
     {
         return !annotations(type, annotationType).isEmpty();
     }
 
-    public static boolean shouldExcludeType(final TypeDeclaration<?> type)
+    public static boolean shouldExcludeType(TypeDeclaration<?> type)
     {
         var marker = false;
-        for (final var annotation : Annotations.annotations(type, UmlExcludeType.class))
+        for (var annotation : Annotations.annotations(type, UmlExcludeType.class))
         {
-            final var expression = Annotations.value(annotation, "value");
+            var expression = Annotations.value(annotation, "value");
             if (expression != null)
             {
-                final var thatTypeName = Names.name(expression.asClassExpr(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
-                final var thisTypeName = Names.name(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                var thatTypeName = Names.name(expression.asClassExpr(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                var thisTypeName = Names.name(type, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
                 if (thisTypeName.equals(thatTypeName))
                 {
                     return true;
@@ -201,16 +201,16 @@ public class Annotations
     /**
      * @return The string value of the given annotation member
      */
-    public static String stringValue(final AnnotationExpr annotation, final String member)
+    public static String stringValue(AnnotationExpr annotation, String member)
     {
-        final var expression = expression(annotation, member);
+        var expression = expression(annotation, member);
         if (expression instanceof StringLiteralExpr)
         {
             return expression.asStringLiteralExpr().asString();
         }
         if (expression instanceof NameExpr)
         {
-            final var type = expression.asNameExpr();
+            var type = expression.asNameExpr();
             return Names.simpleName(type);
         }
         if (expression instanceof ClassExpr)
@@ -223,10 +223,10 @@ public class Annotations
     /**
      * @return The single string value for the given annotation expression
      */
-    public static String stringValue(final AnnotationExpr annotation)
+    public static String stringValue(AnnotationExpr annotation)
     {
-        final var expression = annotation.asSingleMemberAnnotationExpr();
-        final var value = expression.getMemberValue();
+        var expression = annotation.asSingleMemberAnnotationExpr();
+        var value = expression.getMemberValue();
         if (value != null)
         {
             return value.asStringLiteralExpr().asString();
@@ -238,14 +238,14 @@ public class Annotations
      * @return The set of string values for the given annotation expression
      */
     @NotNull
-    public static Set<String> stringValues(final AnnotationExpr annotation, final String member)
+    public static Set<String> stringValues(AnnotationExpr annotation, String member)
     {
-        final var expression = expression(annotation, member);
+        var expression = expression(annotation, member);
         if (expression instanceof ArrayInitializerExpr)
         {
-            final var array = expression.asArrayInitializerExpr();
-            final var annotations = new HashSet<String>();
-            for (final var value : array.getValues())
+            var array = expression.asArrayInitializerExpr();
+            var annotations = new HashSet<String>();
+            for (var value : array.getValues())
             {
                 annotations.add(value.asStringLiteralExpr().asString());
             }
@@ -261,7 +261,7 @@ public class Annotations
     /**
      * @return The value of the given member of the given normal annotation
      */
-    public static Expression value(final AnnotationExpr annotation, final String memberName)
+    public static Expression value(AnnotationExpr annotation, String memberName)
     {
         if (annotation.isMarkerAnnotationExpr())
         {
@@ -273,7 +273,7 @@ public class Annotations
             return annotation.asSingleMemberAnnotationExpr().getMemberValue();
         }
 
-        for (final var pair : annotation.asNormalAnnotationExpr().getPairs())
+        for (var pair : annotation.asNormalAnnotationExpr().getPairs())
         {
             if (Names.simpleName(pair).equals(memberName))
             {

@@ -39,7 +39,7 @@ public class Artifact implements Comparable<Artifact>
     @KivaKitIncludeProperty
     private final String version;
 
-    public Artifact(final int identifier, final String groupId, final String artifactId, final String version)
+    public Artifact(int identifier, String groupId, String artifactId, String version)
     {
         this.identifier = identifier;
         this.groupId = groupId;
@@ -53,17 +53,17 @@ public class Artifact implements Comparable<Artifact>
     }
 
     @Override
-    public int compareTo(@NotNull final Artifact that)
+    public int compareTo(@NotNull Artifact that)
     {
         return dependencyIdentifier().compareTo(that.dependencyIdentifier());
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Artifact)
         {
-            final Artifact that = (Artifact) object;
+            Artifact that = (Artifact) object;
             return identifier == that.identifier;
         }
         return false;

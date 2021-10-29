@@ -84,7 +84,7 @@ public class ReadMeUpdater extends BaseComponent
 
     private final Pattern SECTION_HEADING = Pattern.compile("^### ([ A-Za-z0-9_-]+)(\\s*<a name)?", MULTILINE);
 
-    public ReadMeUpdater(final LexakaiProject project)
+    public ReadMeUpdater(LexakaiProject project)
     {
         this.project = project;
     }
@@ -95,14 +95,14 @@ public class ReadMeUpdater extends BaseComponent
     public void update()
     {
         // Get any user text blocks from any existing read me file,
-        final var index = new StringList();
-        final var blocks = userTextBlocks(project.files().readme());
-        final var topBlock = indexUserText(blocks.getOrDefault(0, ""), index, project.addHtmlAnchors());
-        final var middleBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
-        final var bottomBlock = indexUserText(blocks.getOrDefault(2, ""), index, project.addHtmlAnchors());
+        var index = new StringList();
+        var blocks = userTextBlocks(project.files().readme());
+        var topBlock = indexUserText(blocks.getOrDefault(0, ""), index, project.addHtmlAnchors());
+        var middleBlock = indexUserText(blocks.getOrDefault(1, ""), index, project.addHtmlAnchors());
+        var bottomBlock = indexUserText(blocks.getOrDefault(2, ""), index, project.addHtmlAnchors());
 
         // create a variable map for the readme template,
-        final var properties = project.properties();
+        var properties = project.properties();
         properties.put("project-javadoc-average-coverage", project.averageProjectJavadocCoverage().toString());
         properties.put("project-javadoc-average-coverage-meter", project.meterMarkdownForPercent(project.averageProjectJavadocCoverage()));
         properties.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
@@ -127,11 +127,11 @@ public class ReadMeUpdater extends BaseComponent
         properties.put("user-text-bottom", expand(properties, bottomBlock));
 
         // then write the interpolated template
-        final var template = readMeTemplate().reader().string();
-        final var expanded = expand(properties, template);
+        var template = readMeTemplate().reader().string();
+        var expanded = expand(properties, template);
 
         // to the readme file in the source tree and the readme file in the output tree.
-        final var readme = new StringResource(expanded);
+        var readme = new StringResource(expanded);
         readme.safeCopyTo(project.files().readme(), OVERWRITE);
     }
 
@@ -140,25 +140,25 @@ public class ReadMeUpdater extends BaseComponent
      *
      * @param variables The variable map to populate
      */
-    private void addParentProjectVariables(final VariableMap<String> variables)
+    private void addParentProjectVariables(VariableMap<String> variables)
     {
         variables.put("project-javadoc-coverage", project
                 .nestedProjectJavadocCoverage()
                 .join("  \n", coverage ->
                 {
-                    final var child = coverage.project().folders().project();
-                    final var projectFolder = project.folders().project();
-                    final var folder = child.relativeTo(projectFolder);
+                    var child = coverage.project().folders().project();
+                    var projectFolder = project.folders().project();
+                    var folder = child.relativeTo(projectFolder);
                     return coverage.projectCoverageMeter(folder);
                 }));
 
-        final var childProjectMarkdown = new StringList();
-        final var childProjects = project.childProjects();
+        var childProjectMarkdown = new StringList();
+        var childProjects = project.childProjects();
         if (!childProjects.isEmpty())
         {
             childProjects.forEach(at ->
             {
-                final var child = at.folders().project().last();
+                var child = at.folders().project().last();
                 childProjectMarkdown.add(at.link(child) + "  ");
             });
         }
@@ -172,17 +172,17 @@ public class ReadMeUpdater extends BaseComponent
      *
      * @param variables The variable map to populate
      */
-    private void addProjectVariables(final VariableMap<String> variables)
+    private void addProjectVariables(VariableMap<String> variables)
     {
         // Add diagram links,
-        final var types = new HashSet<UmlType>();
-        final var classDiagramIndex = new StringList();
-        final var packageDiagramIndex = new StringList();
+        var types = new HashSet<UmlType>();
+        var classDiagramIndex = new StringList();
+        var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
             if (!Strings.isEmpty(diagram.title()))
             {
-                final var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
+                var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
                 (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
                 types.addAll(diagram.includedQualifiedTypes());
             }
@@ -202,17 +202,17 @@ public class ReadMeUpdater extends BaseComponent
         project.nestedProjectJavadocCoverage().first().addToVariableMap(variables);
 
         // and javadoc sections,
-        final var sections = new StringList();
-        final var sorted = new ArrayList<>(types);
+        var sections = new StringList();
+        var sorted = new ArrayList<>(types);
         sorted.sort(Comparator.comparing(type -> type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS)));
         sorted.forEach(type -> sections.addAll(javadocSections(type, project.javadocSectionPattern())));
         variables.put("javadoc-index", sections.join("\n"));
 
         // and the wrapped project description.
-        final var description = variables.get("project-description");
+        var description = variables.get("project-description");
         if (description.length() > 120)
         {
-            final var wrapped = Wrap.wrap(description, 100).replaceAll("\n", "  \n");
+            var wrapped = Wrap.wrap(description, 100).replaceAll("\n", "  \n");
             variables.put("project-description", wrapped);
         }
     }
@@ -224,13 +224,13 @@ public class ReadMeUpdater extends BaseComponent
      * @param text The text to expand
      * @return The expanded text
      */
-    private String expand(final VariableMap<String> variables, final String text)
+    private String expand(VariableMap<String> variables, String text)
     {
         // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
-        final var transformed = text.replaceAll("<!-- \\$\\{(.*?)} -->.*?<!-- end -->", "<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
+        var transformed = text.replaceAll("<!-- \\$\\{(.*?)} -->.*?<!-- end -->", "<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
 
         // expand the transformed string, producing "<<<x>>> <expanded> <<<end>>>"
-        final var expanded = variables.expand(transformed, "");
+        var expanded = variables.expand(transformed, "");
 
         // and finally turn the expanded string into "<!-- ${x} --> <expanded> <!-- end -->"
         return expanded.replaceAll("<<<(.*?)>>>", "\\$\\{$1}");
@@ -240,20 +240,20 @@ public class ReadMeUpdater extends BaseComponent
      * @param index The section index to populate with references
      * @return The given block of user text with HTML anchors added
      */
-    private String indexUserText(final String block, final StringList index, final boolean addHtmlAnchors)
+    private String indexUserText(String block, StringList index, boolean addHtmlAnchors)
     {
-        final var matcher = SECTION_HEADING.matcher(block);
+        var matcher = SECTION_HEADING.matcher(block);
         if (matcher.find())
         {
-            final var anchored = new StringBuilder();
+            var anchored = new StringBuilder();
             do
             {
-                final var heading = matcher.group(1).trim();
-                final var anchor = heading.toLowerCase().replaceAll(" ", "-");
+                var heading = matcher.group(1).trim();
+                var anchor = heading.toLowerCase().replaceAll(" ", "-");
                 index.add("[**" + heading + "**](#" + anchor + ")");
                 if (Strings.isEmpty(matcher.group(2)))
                 {
-                    final var htmlAnchor = addHtmlAnchors ? " <a name = \"" + anchor + "\"></a>" : "";
+                    var htmlAnchor = addHtmlAnchors ? " <a name = \"" + anchor + "\"></a>" : "";
                     matcher.appendReplacement(anchored, "### " + heading + htmlAnchor);
                 }
             }
@@ -267,17 +267,17 @@ public class ReadMeUpdater extends BaseComponent
     /**
      * @return The Javadoc sections matching the given pattern for the given type
      */
-    private StringList javadocSections(final UmlType type, final Pattern javadocSectionPattern)
+    private StringList javadocSections(UmlType type, Pattern javadocSectionPattern)
     {
-        final var sections = new StringList();
-        final var javadocSections = new HashSet<>(type.documentationSections());
+        var sections = new StringList();
+        var javadocSections = new HashSet<>(type.documentationSections());
         if (javadocSections.isEmpty())
         {
-            final var javadoc = type.type().getJavadoc();
+            var javadoc = type.type().getJavadoc();
             if (javadoc.isPresent())
             {
-                final var text = javadoc.get().toText();
-                final var matcher = javadocSectionPattern.matcher(text);
+                var text = javadoc.get().toText();
+                var matcher = javadocSectionPattern.matcher(text);
                 while (matcher.find())
                 {
                     javadocSections.add(matcher.group(1));
@@ -289,9 +289,9 @@ public class ReadMeUpdater extends BaseComponent
             }
         }
 
-        final var name = type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+        var name = type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
 
-        for (final var section : javadocSections)
+        for (var section : javadocSections)
         {
             if (sections.isEmpty())
             {
@@ -311,7 +311,7 @@ public class ReadMeUpdater extends BaseComponent
      */
     private File readMeTemplate()
     {
-        final var template = project.files().readMeTemplate();
+        var template = project.files().readMeTemplate();
         (project.hasSourceCode() ? SOURCE_README_TEMPLATE : PARENT_README_TEMPLATE)
                 .safeCopyTo(template, lookup(Lexakai.class).resourceCopyMode());
         return template;
@@ -320,13 +320,13 @@ public class ReadMeUpdater extends BaseComponent
     /**
      * @return All user text blocks in the given file
      */
-    private StringList userTextBlocks(final File file)
+    private StringList userTextBlocks(File file)
     {
-        final var blocks = new StringList();
+        var blocks = new StringList();
         if (file.exists())
         {
-            final var readme = file.reader().string();
-            final var matcher = Pattern.compile("(?x) \\[//]: \\s+ \\# \\s+ \\(start-user-text\\) (.+?) \\[//]: \\s+ \\# \\s+ \\(end-user-text\\)", DOTALL).matcher(readme);
+            var readme = file.reader().string();
+            var matcher = Pattern.compile("(?x) \\[//]: \\s+ \\# \\s+ \\(start-user-text\\) (.+?) \\[//]: \\s+ \\# \\s+ \\(end-user-text\\)", DOTALL).matcher(readme);
             while (matcher.find())
             {
                 blocks.add(matcher.group(1).trim());

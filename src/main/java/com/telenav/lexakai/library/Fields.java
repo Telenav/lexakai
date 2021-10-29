@@ -35,7 +35,7 @@ public class Fields
     /**
      * @return The association type for the given field
      */
-    public static UmlAssociation.AssociationType associationType(final FieldDeclaration field)
+    public static UmlAssociation.AssociationType associationType(FieldDeclaration field)
     {
         if (field.getAnnotationByClass(UmlRelation.class).isPresent())
         {
@@ -55,7 +55,7 @@ public class Fields
     /**
      * @return True if the field is excluded from all diagrams
      */
-    public static boolean isExcluded(final FieldDeclaration field)
+    public static boolean isExcluded(FieldDeclaration field)
     {
         return field.getAnnotationByClass(UmlExcludeMember.class).isPresent();
     }

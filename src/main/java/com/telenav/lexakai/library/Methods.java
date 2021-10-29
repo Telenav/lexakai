@@ -38,7 +38,7 @@ public class Methods
     /**
      * @return The association type, if any, for the given method
      */
-    public static UmlAssociation.AssociationType associationType(final MethodDeclaration method)
+    public static UmlAssociation.AssociationType associationType(MethodDeclaration method)
     {
         if (method.getAnnotationByClass(UmlRelation.class).isPresent())
         {
@@ -50,10 +50,10 @@ public class Methods
     /**
      * @return The set of method groups that the given method belongs to
      */
-    public static Set<String> explicitGroups(final MethodDeclaration method)
+    public static Set<String> explicitGroups(MethodDeclaration method)
     {
-        final var groups = new HashSet<String>();
-        for (final var annotation : Annotations.annotations(method, UmlMethodGroup.class))
+        var groups = new HashSet<String>();
+        for (var annotation : Annotations.annotations(method, UmlMethodGroup.class))
         {
             groups.add(Annotations.stringValue(annotation));
         }
@@ -63,7 +63,7 @@ public class Methods
     /**
      * @return True if the given constructor is excluded from all diagrams
      */
-    public static boolean isExcluded(final ConstructorDeclaration constructor)
+    public static boolean isExcluded(ConstructorDeclaration constructor)
     {
         return constructor.getAnnotationByClass(UmlExcludeMember.class).isPresent();
     }
@@ -71,7 +71,7 @@ public class Methods
     /**
      * @return True if the given method is excluded from all diagrams
      */
-    public static boolean isExcluded(final MethodDeclaration method)
+    public static boolean isExcluded(MethodDeclaration method)
     {
         return method.getAnnotationByClass(UmlExcludeMember.class).isPresent();
     }

@@ -33,7 +33,7 @@ public class MethodBuilder
 
     private final TypeDeclaration<?> type;
 
-    public MethodBuilder(final LexakaiClassDiagram diagram, final TypeDeclaration<?> type)
+    public MethodBuilder(LexakaiClassDiagram diagram, TypeDeclaration<?> type)
     {
         this.diagram = diagram;
         this.type = type;
@@ -42,13 +42,13 @@ public class MethodBuilder
     /**
      * Adds any method declarations this type has to the given builder
      */
-    public void addMethodDeclarations(final IndentingStringBuilder builder)
+    public void addMethodDeclarations(IndentingStringBuilder builder)
     {
         // If this type should include members,
         if (diagram.includeMembers(type))
         {
             // get method groups,
-            final var groups = new MethodGrouper(new UmlType(diagram, type)).groups();
+            var groups = new MethodGrouper(new UmlType(diagram, type)).groups();
 
             // then add the UML for static method, constructors and ordinary methods.
             if (!groups.staticMethods().isEmpty())
@@ -60,7 +60,7 @@ public class MethodBuilder
                 builder.appendLine("--(constructors)--");
                 groups.constructors().forEach(at -> builder.appendLine(at.uml()));
             }
-            final var none = groups.none();
+            var none = groups.none();
             if (!none.isEmpty())
             {
                 builder.appendLines(none.uml());

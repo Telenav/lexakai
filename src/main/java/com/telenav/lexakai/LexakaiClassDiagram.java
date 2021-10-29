@@ -68,7 +68,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 
         final Type referent;
 
-        public Referent(final String cardinality, final Type referent)
+        public Referent(String cardinality, Type referent)
         {
             this.cardinality = cardinality;
             this.referent = referent;
@@ -106,7 +106,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /** The title of this diagram */
     private String title;
 
-    public LexakaiClassDiagram(final LexakaiProject project, final String name)
+    public LexakaiClassDiagram(LexakaiProject project, String name)
     {
         ensure(!Strings.isEmpty(name));
 
@@ -127,12 +127,12 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             {
                 if (type.isClassOrInterfaceDeclaration() && !Annotations.shouldExcludeType(type))
                 {
-                    final var classOrInterface = type.asClassOrInterfaceDeclaration();
+                    var classOrInterface = type.asClassOrInterfaceDeclaration();
                     if (includesQualifiedTypeName(Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS)))
                     {
                         classOrInterface.getExtendedTypes().forEach(at ->
                         {
-                            final var superClass = at.getName().asString();
+                            var superClass = at.getName().asString();
                             if (!Types.isExcludedSuperType(type, this, Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS)))
                             {
                                 if (superClass.startsWith("Base") || superClass.startsWith("Abstract"))
@@ -152,7 +152,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * Adds the given inheritance relation to this diagram
      */
-    public boolean add(final UmlInheritance inheritance)
+    public boolean add(UmlInheritance inheritance)
     {
         return inheritances.add(inheritance);
     }
@@ -165,14 +165,14 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * @return True if this diagram already has the given inheritance relation
      */
-    public boolean has(final UmlInheritance inheritance)
+    public boolean has(UmlInheritance inheritance)
     {
         return inheritances.contains(inheritance);
     }
 
     public String identifier()
     {
-        final var name = name();
+        var name = name();
 
         // If the diagram name is all lowercase, it is a package name,
         if (PackagePath.isPackagePath(name))
@@ -188,7 +188,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * Includes the given type in this diagram
      */
-    public void include(final UmlType type)
+    public void include(UmlType type)
     {
         includedQualifiedTypes.put(type.name(QUALIFIED, WITHOUT_TYPE_PARAMETERS), type);
     }
@@ -196,22 +196,22 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * @return True if the given type includes members in this diagram
      */
-    public boolean includeMembers(final TypeDeclaration<?> type)
+    public boolean includeMembers(TypeDeclaration<?> type)
     {
-        final var expression = Diagrams.diagramAnnotation(type, name());
-        final var includeMembers = expression != null && Annotations.booleanValue(expression, "includeMembers", true);
+        var expression = Diagrams.diagramAnnotation(type, name());
+        var includeMembers = expression != null && Annotations.booleanValue(expression, "includeMembers", true);
         return includeMembers || (isPackageDiagram() && project().buildPackageDiagrams());
     }
 
-    public boolean includeOverrides(final TypeDeclaration<?> type)
+    public boolean includeOverrides(TypeDeclaration<?> type)
     {
-        final var diagram = Diagrams.diagramAnnotation(type, name());
+        var diagram = Diagrams.diagramAnnotation(type, name());
         return diagram != null && Annotations.booleanValue(diagram, "includeOverrides", false);
     }
 
-    public List<MethodDeclaration> includedMethods(final TypeDeclaration<?> type)
+    public List<MethodDeclaration> includedMethods(TypeDeclaration<?> type)
     {
-        final var methods = new ArrayList<MethodDeclaration>();
+        var methods = new ArrayList<MethodDeclaration>();
         includedMethods(type, methods::add);
         return methods;
     }
@@ -219,7 +219,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * Calls the consumer with each method in this type that is included in the diagram we are building
      */
-    public void includedMethods(final TypeDeclaration<?> type, final Consumer<MethodDeclaration> consumer)
+    public void includedMethods(TypeDeclaration<?> type, Consumer<MethodDeclaration> consumer)
     {
         type.getMethods().forEach(method ->
         {
@@ -229,7 +229,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 
             if (!project().includeObjectMethods())
             {
-                final var methodName = method.getName().asString();
+                var methodName = method.getName().asString();
                 if (methodName.equals("hashCode") || methodName.equals("equals") || methodName.equals("toString"))
                 {
                     include = false;
@@ -257,7 +257,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 
     public List<UmlType> includedQualifiedTypes()
     {
-        final var sorted = new ArrayList<>(includedQualifiedTypes.values());
+        var sorted = new ArrayList<>(includedQualifiedTypes.values());
         sorted.sort(Comparator.comparing(type -> type.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS)));
         return sorted;
     }
@@ -265,7 +265,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * @return True if this diagram included the given type name
      */
-    public boolean includesQualifiedTypeName(final String typeName)
+    public boolean includesQualifiedTypeName(String typeName)
     {
         return includedQualifiedTypes.containsKey(Names.withoutTypeParameters(typeName));
     }
@@ -290,7 +290,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     @Override
-    public void onUml(final IndentingStringBuilder builder)
+    public void onUml(IndentingStringBuilder builder)
     {
         // add type declarations for any abstract superclasses that are not in the project
         // (otherwise they will be shown as normal classes in the diagram),
@@ -308,15 +308,15 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
         }
 
         // then for each type declaration in the project,
-        final var added = new StringList();
+        var added = new StringList();
         project.typeDeclarations(type ->
         {
             // if this diagram should include the given type,
-            final var umlType = includedQualifiedTypes.get(Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS));
+            var umlType = includedQualifiedTypes.get(Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS));
             if (umlType != null)
             {
                 // and there is UML for it,
-                final var uml = umlType.uml();
+                var uml = umlType.uml();
                 if (uml != null)
                 {
                     // add its UML.
@@ -325,7 +325,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
                 }
             }
         });
-        final var indenter = new IndentingStringBuilder(TEXT, Indentation.of(8));
+        var indenter = new IndentingStringBuilder(TEXT, Indentation.of(8));
         indenter.indent();
         indenter.appendLines(Wrap.wrap(added.join(", "), 80));
     }
@@ -350,7 +350,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
      * @return The type of the referent if it is included in the diagram or if it is not, the first type argument that
      * is included in the diagram.
      */
-    public Referent referent(final Type referent)
+    public Referent referent(Type referent)
     {
         // If the type is included in the diagram,
         if (includesQualifiedTypeName(Names.name(referent, QUALIFIED, WITHOUT_TYPE_PARAMETERS)))
@@ -361,7 +361,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
         else
         {
             // otherwise go through the relevant types of the referent (including type arguments),
-            for (final var at : Types.typeParameters(referent))
+            for (var at : Types.typeParameters(referent))
             {
                 // and if the type is part of our diagram,
                 if (includesQualifiedTypeName(Names.name(at, QUALIFIED, WITH_TYPE_PARAMETERS)))
@@ -374,10 +374,10 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             }
 
             // There is no type in the diagram in the referent, so guess its cardinality
-            final var cardinality = Associations.cardinalityGuess(referent);
+            var cardinality = Associations.cardinalityGuess(referent);
 
             // get its type parameters
-            final var typeParameters = Types.typeParameters(referent);
+            var typeParameters = Types.typeParameters(referent);
 
             // and if the cardinality is * and there are type parameters,
             if (cardinality.equals("*") && !typeParameters.isEmpty())
@@ -406,12 +406,12 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             {
                 if (type.isClassOrInterfaceDeclaration() && !Annotations.shouldExcludeType(type))
                 {
-                    final var classOrInterface = type.asClassOrInterfaceDeclaration();
+                    var classOrInterface = type.asClassOrInterfaceDeclaration();
                     if (includesQualifiedTypeName(Names.name(type, QUALIFIED, WITH_TYPE_PARAMETERS)))
                     {
                         classOrInterface.getImplementedTypes().forEach(at ->
                         {
-                            final var superInterface = at.getName().asString();
+                            var superInterface = at.getName().asString();
                             if (!Types.isExcludedSuperType(type, this, Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS)))
                             {
                                 superInterfaces.add(superInterface);
@@ -444,9 +444,9 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
         return title;
     }
 
-    private boolean typeIncludesProtectedMethods(final TypeDeclaration<?> type)
+    private boolean typeIncludesProtectedMethods(TypeDeclaration<?> type)
     {
-        final var umlDiagramAnnotation = type.getAnnotationByClass(UmlClassDiagram.class);
+        var umlDiagramAnnotation = type.getAnnotationByClass(UmlClassDiagram.class);
         return umlDiagramAnnotation.map(annotation -> Annotations.booleanValue(annotation, "includeProtectedMethods", true)).orElse(true);
     }
 }

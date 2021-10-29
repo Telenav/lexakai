@@ -35,7 +35,7 @@ public class DependencyDiagram extends BaseLexakaiDiagram
 
     private final DependencyTree tree;
 
-    public DependencyDiagram(final Folder root, final Folder outputRoot, final DependencyTree tree)
+    public DependencyDiagram(Folder root, Folder outputRoot, DependencyTree tree)
     {
         this.root = root;
         this.outputRoot = outputRoot;
@@ -44,10 +44,10 @@ public class DependencyDiagram extends BaseLexakaiDiagram
 
     public File save()
     {
-        final var relativeFolder = tree.projectFolder().relativeTo(root);
-        final var outputFolder = outputRoot.folder(relativeFolder);
+        var relativeFolder = tree.projectFolder().relativeTo(root);
+        var outputFolder = outputRoot.folder(relativeFolder);
 
-        final var file = outputFolder
+        var file = outputFolder
                 .folder("documentation/diagrams")
                 .file("dependencies.puml");
 
@@ -58,14 +58,14 @@ public class DependencyDiagram extends BaseLexakaiDiagram
     }
 
     @Override
-    protected void onUml(final IndentingStringBuilder builder)
+    protected void onUml(IndentingStringBuilder builder)
     {
-        for (final var artifact : Collections.sorted(tree.artifacts()))
+        for (var artifact : Collections.sorted(tree.artifacts()))
         {
             builder.appendLine("artifact " + artifact.artifactId());
         }
 
-        for (final var dependency : Collections.sorted(tree.dependencies()))
+        for (var dependency : Collections.sorted(tree.dependencies()))
         {
             builder.appendLine(dependency.uml());
         }

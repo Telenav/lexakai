@@ -40,24 +40,24 @@ public class DependencyTree
 
     private final Folder projectFolder;
 
-    public DependencyTree(final String artifactId, final Folder projectFolder)
+    public DependencyTree(String artifactId, Folder projectFolder)
     {
         this.artifactId = artifactId;
         this.projectFolder = projectFolder;
     }
 
-    public void add(final Dependency dependency)
+    public void add(Dependency dependency)
     {
         dependencies.add(dependency);
     }
 
-    public void add(final Artifact artifact)
+    public void add(Artifact artifact)
     {
         artifacts.add(artifact);
         identifierToArtifact.put(artifact.identifier(), artifact);
     }
 
-    public Artifact artifact(final int identifier)
+    public Artifact artifact(int identifier)
     {
         return identifierToArtifact.get(identifier);
     }
@@ -92,4 +92,3 @@ public class DependencyTree
         return artifactId;
     }
 }
-

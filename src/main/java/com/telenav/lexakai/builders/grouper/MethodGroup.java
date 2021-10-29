@@ -44,18 +44,18 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
 
     private String name;
 
-    public MethodGroup(final String name)
+    public MethodGroup(String name)
     {
         this.name = name;
     }
 
-    public boolean add(final UmlMethod method)
+    public boolean add(UmlMethod method)
     {
         return methods.add(method);
     }
 
     @Override
-    public int compareTo(@NotNull final MethodGroup that)
+    public int compareTo(@NotNull MethodGroup that)
     {
         if (name.equals("static"))
         {
@@ -79,11 +79,11 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof MethodGroup)
         {
-            final MethodGroup that = (MethodGroup) object;
+            MethodGroup that = (MethodGroup) object;
             return name.equals(that.name);
         }
         return false;
@@ -117,7 +117,7 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
         return name;
     }
 
-    public void name(final String name)
+    public void name(String name)
     {
         this.name = name;
     }
@@ -129,7 +129,7 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
 
     public List<UmlMethod> sorted()
     {
-        final var sorted = new ArrayList<>(methods);
+        var sorted = new ArrayList<>(methods);
         Collections.sort(sorted);
         return sorted;
     }
@@ -142,7 +142,7 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
 
     public String uml()
     {
-        final var builder = new StringList();
+        var builder = new StringList();
         if (name.equals("none"))
         {
             builder.append("--");
@@ -155,4 +155,3 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
         return builder.join("\n");
     }
 }
-

@@ -140,12 +140,12 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /** Locations of project folders */
     private final LexakaiProjectFolders folders;
 
-    protected LexakaiProject(final Lexakai lexakai,
-                             final Version version,
-                             final Folder root,
-                             final Folder project,
-                             final Folder outputRoot,
-                             final JavaParser parser)
+    protected LexakaiProject(Lexakai lexakai,
+                             Version version,
+                             Folder root,
+                             Folder project,
+                             Folder outputRoot,
+                             JavaParser parser)
     {
         this.lexakai = lexakai;
         this.version = version;
@@ -153,13 +153,13 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
         if (version == null)
         {
-            final var propertiesFile = root.file("project.properties");
+            var propertiesFile = root.file("project.properties");
             if (!propertiesFile.exists())
             {
                 lexakai.exit("Project.properties file does not exist: $", propertiesFile);
             }
-            final var properties = PropertyMap.load(this, propertiesFile);
-            final var rootVersion = properties.get("project-version");
+            var properties = PropertyMap.load(this, propertiesFile);
+            var rootVersion = properties.get("project-version");
             if (rootVersion == null)
             {
                 lexakai.exit("Root project.properties file does not contain a project-version key: $", propertiesFile);
@@ -175,7 +175,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         files = new LexakaiProjectFiles(this);
     }
 
-    public LexakaiProject addHtmlAnchors(final boolean addHtmlAnchors)
+    public LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
     {
         this.addHtmlAnchors = addHtmlAnchors;
         return this;
@@ -191,7 +191,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return automaticMethodGroups;
     }
 
-    public LexakaiProject automaticMethodGroups(final boolean automaticMethodGroups)
+    public LexakaiProject automaticMethodGroups(boolean automaticMethodGroups)
     {
         this.automaticMethodGroups = automaticMethodGroups;
         return this;
@@ -200,15 +200,15 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     public Percent averageProjectJavadocCoverage()
     {
         double total = 0;
-        final var coverage = nestedProjectJavadocCoverage().uniqued();
-        for (final var at : coverage)
+        var coverage = nestedProjectJavadocCoverage().uniqued();
+        for (var at : coverage)
         {
             total += at.projectCoverage().value();
         }
         return Percent.of(total / coverage.size());
     }
 
-    public LexakaiProject buildPackageDiagrams(final boolean packageDiagrams)
+    public LexakaiProject buildPackageDiagrams(boolean packageDiagrams)
     {
         buildPackageDiagrams = packageDiagrams;
         return this;
@@ -236,7 +236,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     }
 
     @Override
-    public int compareTo(@NotNull final LexakaiProject that)
+    public int compareTo(@NotNull LexakaiProject that)
     {
         return name().compareTo(that.name());
     }
@@ -244,7 +244,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /**
      * Calls the consumer with each diagram in this project
      */
-    public void diagrams(final Consumer<LexakaiClassDiagram> consumer)
+    public void diagrams(Consumer<LexakaiClassDiagram> consumer)
     {
         // If we haven't created the diagrams yet,
         if (diagrams.isEmpty())
@@ -254,11 +254,11 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             {
                 if (buildPackageDiagrams)
                 {
-                    final var qualifiedName = type.getFullyQualifiedName().orElse(null);
+                    var qualifiedName = type.getFullyQualifiedName().orElse(null);
                     if (qualifiedName != null)
                     {
-                        final var diagramName = Names.packageName(qualifiedName);
-                        final var diagram = diagrams.computeIfAbsent(diagramName,
+                        var diagramName = Names.packageName(qualifiedName);
+                        var diagram = diagrams.computeIfAbsent(diagramName,
                                 ignored -> listenTo(new LexakaiClassDiagram(this, diagramName)));
 
                         // and include the type
@@ -267,10 +267,10 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                 }
 
                 // and go through the diagram names the type belongs to,
-                for (final String diagramName : Diagrams.diagrams(type, buildPackageDiagrams))
+                for (String diagramName : Diagrams.diagrams(type, buildPackageDiagrams))
                 {
                     // get the diagram,
-                    final var diagram = diagrams.computeIfAbsent(diagramName,
+                    var diagram = diagrams.computeIfAbsent(diagramName,
                             ignored -> listenTo(new LexakaiClassDiagram(this, diagramName)));
 
                     // and include the type
@@ -280,7 +280,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         }
 
         // Call the consumer with each diagram.
-        final var sorted = new ArrayList<>(diagrams.values());
+        var sorted = new ArrayList<>(diagrams.values());
         sorted.sort(Comparator.comparing(LexakaiClassDiagram::title));
         sorted.forEach(consumer);
     }
@@ -308,7 +308,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return includeObjectMethods;
     }
 
-    public LexakaiProject includeObjectMethods(final boolean include)
+    public LexakaiProject includeObjectMethods(boolean include)
     {
         includeObjectMethods = include;
         return this;
@@ -319,7 +319,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return includeProtectedMethods;
     }
 
-    public LexakaiProject includeProtectedMethods(final boolean include)
+    public LexakaiProject includeProtectedMethods(boolean include)
     {
         includeProtectedMethods = include;
         return this;
@@ -332,13 +332,13 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             return false;
         }
 
-        final var resourcePackage = Package.of(Lexakai.class, "resources");
+        var resourcePackage = Package.of(Lexakai.class, "resources");
 
         // If the project has source code,
         if (hasSourceCode())
         {
             // install the lexakai theme and default groups patterns into the configuration folder if they are not already installed,
-            final var copyMode = lookup(Lexakai.class).resourceCopyMode();
+            var copyMode = lookup(Lexakai.class).resourceCopyMode();
             resourcePackage.resource("source/lexakai.groups").safeCopyTo(folders().settings(), copyMode);
             resourcePackage.resource("lexakai.theme").safeCopyTo(folders().settings(), copyMode);
         }
@@ -368,7 +368,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return javadocSectionPattern;
     }
 
-    public LexakaiProject javadocSectionPattern(final Pattern pattern)
+    public LexakaiProject javadocSectionPattern(Pattern pattern)
     {
         javadocSectionPattern = pattern;
         return this;
@@ -379,22 +379,22 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return lexakai;
     }
 
-    public String link(final Folder folder)
+    public String link(Folder folder)
     {
         return "[**" + name() + "**](" + folder + "/README.md)";
     }
 
     @NotNull
-    public String meterMarkdownForPercent(final Percent percent)
+    public String meterMarkdownForPercent(Percent percent)
     {
-        final var images = properties().imagesLocation();
-        final var png = "meter-" + Ints.quantized(percent.asInt(), 10) + "-96";
+        var images = properties().imagesLocation();
+        var png = "meter-" + Ints.quantized(percent.asInt(), 10) + "-96";
         return Message.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
     }
 
     public String name()
     {
-        final var relative = folders().projectRelativeToRoot().path();
+        var relative = folders().projectRelativeToRoot().path();
         return (relative.isEmpty()
                 ? folders().project().name().name()
                 : relative.join("-"));
@@ -411,7 +411,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             else
             {
                 coverage = new ObjectList<>();
-                for (final var child : childProjects())
+                for (var child : childProjects())
                 {
                     coverage.addAll(child.nestedProjectJavadocCoverage());
                 }
@@ -429,10 +429,10 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return properties;
     }
 
-    public String property(final String key)
+    public String property(String key)
     {
-        final var properties = properties();
-        final var value = properties.get(key);
+        var properties = properties();
+        var value = properties.get(key);
         return value == null ? null : properties.expand(value);
     }
 
@@ -450,7 +450,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /**
      * Calls the consumer with the type declarations in this project
      */
-    public void typeDeclarations(final Consumer<TypeDeclaration<?>> consumer)
+    public void typeDeclarations(Consumer<TypeDeclaration<?>> consumer)
     {
         parseTypeDeclarations().forEach(consumer);
     }
@@ -465,7 +465,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return version;
     }
 
-    private boolean isProject(final Folder folder)
+    private boolean isProject(Folder folder)
     {
         return folder.file("pom.xml").exists() || folder.file("gradle.properties").exists();
     }
@@ -488,7 +488,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                     try
                     {
                         // parse the file,
-                        final var parse = parser.parse(file.asJavaFile());
+                        var parse = parser.parse(file.asJavaFile());
 
                         // and if that is successful,
                         if (parse.isSuccessful())
@@ -499,7 +499,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                                             .stream()
                                             .filter(type ->
                                             {
-                                                final var qualifiedName = (Optional<String>) type.getFullyQualifiedName();
+                                                var qualifiedName = (Optional<String>) type.getFullyQualifiedName();
                                                 return qualifiedName.filter(name -> !name.contains("lexakai.diagrams")).isPresent();
                                             })
                                             .forEach(typeDeclarations::add));
@@ -509,7 +509,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                             problem("Parse not successful: $\n$", file, parse);
                         }
                     }
-                    catch (final Exception e)
+                    catch (Exception e)
                     {
                         problem(e, "Parse failed with exception: $", file);
                     }
@@ -523,7 +523,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
     private JavadocCoverage projectJavadocCoverage()
     {
-        final var coverage = new JavadocCoverage(this);
+        var coverage = new JavadocCoverage(this);
         typeDeclarations(coverage::add);
         return coverage;
     }

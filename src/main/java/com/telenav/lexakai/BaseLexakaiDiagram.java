@@ -28,10 +28,10 @@ import static com.telenav.lexakai.Lexakai.SHOW_DIAGRAMS;
  */
 public abstract class BaseLexakaiDiagram extends BaseRepeater
 {
-    public String uml(final String title)
+    public String uml(String title)
     {
         // Create a string builder,
-        final var builder = IndentingStringBuilder.defaultTextIndenter();
+        var builder = IndentingStringBuilder.defaultTextIndenter();
 
         // add the PlantUML prologue,
         builder.appendLine("");
@@ -45,7 +45,7 @@ public abstract class BaseLexakaiDiagram extends BaseRepeater
 
         onUml(builder);
 
-        final var lexakai = Lexakai.get();
+        var lexakai = Lexakai.get();
         if (lexakai.get(SHOW_DIAGRAMS))
         {
             announce(builder.toString());

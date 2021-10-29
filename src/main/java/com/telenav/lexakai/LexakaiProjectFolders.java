@@ -18,10 +18,10 @@ public class LexakaiProjectFolders
     /** The root output folder */
     private final Folder outputRoot;
 
-    public LexakaiProjectFolders(final LexakaiProject lexakaiProject,
-                                 final Folder root,
-                                 final Folder project,
-                                 final Folder outputRoot)
+    public LexakaiProjectFolders(LexakaiProject lexakaiProject,
+                                 Folder root,
+                                 Folder project,
+                                 Folder outputRoot)
     {
         this.lexakaiProject = lexakaiProject;
         this.root = root;

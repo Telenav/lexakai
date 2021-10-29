@@ -39,31 +39,31 @@ public class MethodGroups
 
     private final Set<UmlConstructor> constructors = new HashSet<>();
 
-    public void add(final String groupName, final UmlMethod method)
+    public void add(String groupName, UmlMethod method)
     {
         groups.computeIfAbsent(groupName, MethodGroup::new).add(method);
     }
 
-    public void add(final UmlConstructor constructor)
+    public void add(UmlConstructor constructor)
     {
         constructors.add(constructor);
     }
 
-    public void add(final MethodGroup group)
+    public void add(MethodGroup group)
     {
         groups.put(group.name(), group);
     }
 
     public Iterable<MethodGroup> allGroups()
     {
-        final var sorted = new ArrayList<>(groups.values());
+        var sorted = new ArrayList<>(groups.values());
         Collections.sort(sorted);
         return sorted;
     }
 
     public List<UmlConstructor> constructors()
     {
-        final var sorted = new ArrayList<>(constructors);
+        var sorted = new ArrayList<>(constructors);
         Collections.sort(sorted);
         return sorted;
     }
@@ -75,16 +75,16 @@ public class MethodGroups
 
     public MethodGroup largest()
     {
-        final var maximum = groups.values().stream().max(Comparator.comparingInt(MethodGroup::size));
-        return maximum.isPresent() ? maximum.get() : null;
+        var maximum = groups.values().stream().max(Comparator.comparingInt(MethodGroup::size));
+        return maximum.orElse(null);
     }
 
     public Iterable<MethodGroup> namedGroups()
     {
-        final var copy = new HashMap<>(groups);
+        var copy = new HashMap<>(groups);
         copy.remove("static");
         copy.remove("none");
-        final var sorted = new ArrayList<>(copy.values());
+        var sorted = new ArrayList<>(copy.values());
         Collections.sort(sorted);
         return sorted;
     }

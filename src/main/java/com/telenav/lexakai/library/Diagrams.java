@@ -33,11 +33,11 @@ public class Diagrams
     /**
      * @return The @UmlClassDiagram annotation with the given lowercase hyphenated diagram name
      */
-    public static AnnotationExpr diagramAnnotation(final TypeDeclaration<?> type, final String diagramName)
+    public static AnnotationExpr diagramAnnotation(TypeDeclaration<?> type, String diagramName)
     {
-        for (final var annotation : Annotations.annotations(type, UmlClassDiagram.class))
+        for (var annotation : Annotations.annotations(type, UmlClassDiagram.class))
         {
-            final var expression = Annotations.value(annotation, "diagram");
+            var expression = Annotations.value(annotation, "diagram");
             if (expression != null)
             {
                 if (diagramName.equals(Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS)))
@@ -52,15 +52,15 @@ public class Diagrams
     /**
      * @return The set of diagrams that the given type belongs to
      */
-    public static Set<String> diagrams(final TypeDeclaration<?> type, final boolean includePackageDiagram)
+    public static Set<String> diagrams(TypeDeclaration<?> type, boolean includePackageDiagram)
     {
-        final var diagrams = new HashSet<String>();
-        for (final var annotation : Annotations.annotations(type, UmlClassDiagram.class))
+        var diagrams = new HashSet<String>();
+        for (var annotation : Annotations.annotations(type, UmlClassDiagram.class))
         {
-            final var expression = Annotations.value(annotation, "diagram");
+            var expression = Annotations.value(annotation, "diagram");
             if (expression != null)
             {
-                final var name = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+                var name = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
                 if (name != null)
                 {
                     diagrams.add(name);
@@ -70,11 +70,8 @@ public class Diagrams
 
         if (includePackageDiagram)
         {
-            final var qualifiedName = type.getFullyQualifiedName();
-            if (qualifiedName.isPresent())
-            {
-                diagrams.add(Names.packageName(qualifiedName.get()));
-            }
+            var qualifiedName = type.getFullyQualifiedName();
+            qualifiedName.ifPresent(it -> diagrams.add(Names.packageName(it)));
         }
         return diagrams;
     }

@@ -60,7 +60,7 @@ public class UmlType
     /**
      * Constructor for classes an interfaces
      */
-    public UmlType(final LexakaiClassDiagram diagram, final TypeDeclaration<?> type)
+    public UmlType(LexakaiClassDiagram diagram, TypeDeclaration<?> type)
     {
         this.diagram = diagram;
         this.type = type;
@@ -73,16 +73,16 @@ public class UmlType
 
     public Set<String> documentationSections()
     {
-        final var expression = type.getAnnotationByClass(UmlClassDiagram.class);
+        var expression = type.getAnnotationByClass(UmlClassDiagram.class);
         return expression.map(annotation -> Annotations.stringValues(annotation, "documentationSections")).orElseGet(Set::of);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof UmlType)
         {
-            final UmlType that = (UmlType) object;
+            UmlType that = (UmlType) object;
             return name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS).equals(that.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
         }
         return false;
@@ -97,11 +97,11 @@ public class UmlType
     public List<UmlMethod> includedMethods()
     {
         // For each included method,
-        final var methods = new ArrayList<UmlMethod>();
+        var methods = new ArrayList<UmlMethod>();
         diagram.includedMethods(type, at ->
         {
             // if the method is not excluded,
-            final var method = new UmlMethod(type.asClassOrInterfaceDeclaration(), at);
+            var method = new UmlMethod(type.asClassOrInterfaceDeclaration(), at);
             if (!method.isExcluded())
             {
                 methods.add(method);
@@ -110,7 +110,7 @@ public class UmlType
         return methods;
     }
 
-    public String name(final Qualification qualification, final TypeParameters parameters)
+    public String name(Qualification qualification, TypeParameters parameters)
     {
         return Names.name(type, qualification, parameters);
     }
@@ -139,7 +139,7 @@ public class UmlType
         if (uml == null && !Annotations.shouldExcludeType(type))
         {
             // Create a string builder,
-            final var builder = IndentingStringBuilder.defaultTextIndenter();
+            var builder = IndentingStringBuilder.defaultTextIndenter();
 
             if (type.isClassOrInterfaceDeclaration())
             {
@@ -169,9 +169,9 @@ public class UmlType
                 builder.indent();
 
                 // add enum entries,
-                final var sorted = new ArrayList<>(type.asEnumDeclaration().getEntries());
+                var sorted = new ArrayList<>(type.asEnumDeclaration().getEntries());
                 sorted.sort(Comparator.comparing(value -> value.getName().asString()));
-                for (final var entry : sorted)
+                for (var entry : sorted)
                 {
                     builder.appendLine(entry.getName().asString());
                 }

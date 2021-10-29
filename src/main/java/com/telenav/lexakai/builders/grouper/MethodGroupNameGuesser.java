@@ -57,33 +57,33 @@ public class MethodGroupNameGuesser
 
     private final LexakaiProject project;
 
-    public MethodGroupNameGuesser(final LexakaiProject project)
+    public MethodGroupNameGuesser(LexakaiProject project)
     {
         this.project = project;
 
         load();
     }
 
-    public Set<String> groupNames(final UmlMethod method)
+    public Set<String> groupNames(UmlMethod method)
     {
-        final var parameterNames = new StringList();
-        for (final var parameter : method.method().getParameters())
+        var parameterNames = new StringList();
+        for (var parameter : method.method().getParameters())
         {
             parameterNames.add(CaseFormat.camelCaseToHyphenated(parameter.getType().asString() + " " + parameter.getName().asString()));
         }
 
-        final var returnType = method.method().getType();
+        var returnType = method.method().getType();
         String returnTypeName = "";
         if (Types.isReference(returnType))
         {
             returnTypeName = Names.name(returnType, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITH_TYPE_PARAMETERS) + " ";
         }
-        final var name = CaseFormat.camelCaseToHyphenated(returnTypeName + method.simpleName()) + "(" + parameterNames.join(",") + ")";
+        var name = CaseFormat.camelCaseToHyphenated(returnTypeName + method.simpleName()) + "(" + parameterNames.join(",") + ")";
 
-        final var names = new HashSet<String>();
-        for (final var pattern : groupNamePatterns.keySet())
+        var names = new HashSet<String>();
+        for (var pattern : groupNamePatterns.keySet())
         {
-            final var groupName = groupNamePatterns.get(pattern);
+            var groupName = groupNamePatterns.get(pattern);
             if (pattern.matcher(name).matches())
             {
                 names.add("(" + groupName + ")");
@@ -98,18 +98,18 @@ public class MethodGroupNameGuesser
         return names;
     }
 
-    private void add(final String groupName, final String pattern, final int flags)
+    private void add(String groupName, String pattern, int flags)
     {
         groupNamePatterns.put(Pattern.compile(pattern, flags), groupName);
     }
 
-    private void add(final String groupName, final List<String> patterns, final Map<String, String> macros)
+    private void add(String groupName, List<String> patterns, Map<String, String> macros)
     {
-        final var words = new StringList();
-        final var regularExpressions = new StringList();
+        var words = new StringList();
+        var regularExpressions = new StringList();
 
         // Go through the patterns that select the given group name,
-        for (final var pattern : patterns)
+        for (var pattern : patterns)
         {
             // and if the pattern is a bare word,
             if (Strings.isJavaIdentifier(pattern))
@@ -120,12 +120,12 @@ public class MethodGroupNameGuesser
             else
             {
                 // otherwise, we have a regular expression so resolve any pattern macros
-                final var matcher = MACRO_PATTERN.matcher(pattern);
-                final var regularExpression = matcher.replaceAll(match ->
+                var matcher = MACRO_PATTERN.matcher(pattern);
+                var regularExpression = matcher.replaceAll(match ->
                 {
                     // by getting the name and parameter
-                    final var macroName = matcher.group("name");
-                    final var parameter = matcher.group("parameter");
+                    var macroName = matcher.group("name");
+                    var parameter = matcher.group("parameter");
 
                     // retrieving the named macro
                     var macro = macros.get(macroName);
@@ -163,13 +163,13 @@ public class MethodGroupNameGuesser
         add(groupName, "(?x) " + regularExpressions.join("|"), CASE_INSENSITIVE);
     }
 
-    private void load(final Resource resource)
+    private void load(Resource resource)
     {
         String groupName = null;
         String macroName = null;
-        final var groups = new MultiMap<String, String>();
-        final var macros = new HashMap<String, String>();
-        for (final var line : resource.reader().lines())
+        var groups = new MultiMap<String, String>();
+        var macros = new HashMap<String, String>();
+        for (var line : resource.reader().lines())
         {
             if (Strings.isEmpty(line.trim()) || line.startsWith("//"))
             {
@@ -198,7 +198,7 @@ public class MethodGroupNameGuesser
             }
         }
 
-        for (final var group : groups.keySet())
+        for (var group : groups.keySet())
         {
             add(group, groups.list(group), macros);
         }
@@ -206,7 +206,7 @@ public class MethodGroupNameGuesser
 
     private void load()
     {
-        final var groupsFile = project.files().lexakaiGroups();
+        var groupsFile = project.files().lexakaiGroups();
         if (groupsFile.exists())
         {
             load(groupsFile);

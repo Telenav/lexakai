@@ -52,15 +52,15 @@ public class AssociationBuilder
 
     private final TypeDeclaration<?> type;
 
-    AssociationBuilder(final LexakaiClassDiagram diagram, final TypeDeclaration<?> type)
+    AssociationBuilder(LexakaiClassDiagram diagram, TypeDeclaration<?> type)
     {
         this.diagram = diagram;
         this.type = type;
     }
 
-    void addExplicitRelations(final IndentingStringBuilder builder)
+    void addExplicitRelations(IndentingStringBuilder builder)
     {
-        for (final var association : Associations.explicitRelations(type, diagram.name()))
+        for (var association : Associations.explicitRelations(type, diagram.name()))
         {
             if (association != null)
             {
@@ -69,27 +69,27 @@ public class AssociationBuilder
         }
     }
 
-    void addFieldAssociations(final IndentingStringBuilder builder)
+    void addFieldAssociations(IndentingStringBuilder builder)
     {
         // For each field,
-        final var associations = new ArrayList<UmlAssociation>();
+        var associations = new ArrayList<UmlAssociation>();
         type.getFields().forEach(field ->
         {
-            final var diagram = Members.associationString(field, "diagram");
+            var diagram = Members.associationString(field, "diagram");
             if (diagram == null || diagram.equals(this.diagram.name()))
             {
                 // that isn't ignored or a non-reference,
-                final var fieldType = field.getCommonType();
+                var fieldType = field.getCommonType();
                 if (!Fields.isExcluded(field) && fieldType != null && Types.isReference(fieldType))
                 {
                     // extract the type and type parameters,
-                    final var associationType = Fields.associationType(field);
+                    var associationType = Fields.associationType(field);
                     if (associationType != null)
                     {
                         if (Types.isReference(fieldType))
                         {
                             // and add an association to the diagram.
-                            final var association = createAssociation(associationType, fieldType,
+                            var association = createAssociation(associationType, fieldType,
                                     Members.associationString(field, "referent"),
                                     Members.associationString(field, "refereeCardinality"),
                                     Members.associationString(field, "referentCardinality"),
@@ -108,23 +108,23 @@ public class AssociationBuilder
         associations.forEach(at -> builder.appendLine(at.uml()));
     }
 
-    void addInheritanceRelations(final IndentingStringBuilder builder)
+    void addInheritanceRelations(IndentingStringBuilder builder)
     {
         if (type.isClassOrInterfaceDeclaration() && !Annotations.shouldExcludeType(type))
         {
             // add type inheritance associations,
-            final var type = this.type.asClassOrInterfaceDeclaration();
-            final var qualifiedTypeName = Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS);
-            final var associations = new ArrayList<UmlInheritance>();
-            final var interfaceDeclarations = new StringList();
+            var type = this.type.asClassOrInterfaceDeclaration();
+            var qualifiedTypeName = Names.name(type, QUALIFIED, WITHOUT_TYPE_PARAMETERS);
+            var associations = new ArrayList<UmlInheritance>();
+            var interfaceDeclarations = new StringList();
 
             // extended types,
             type.getExtendedTypes().forEach(at ->
             {
-                final var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
                 if (superType != null)
                 {
-                    final var inheritance = new UmlInheritance(superType, qualifiedTypeName);
+                    var inheritance = new UmlInheritance(superType, qualifiedTypeName);
                     if (!diagram.has(inheritance) && !Types.isExcludedSuperType(this.type, diagram, superType))
                     {
                         diagram.add(inheritance);
@@ -140,10 +140,10 @@ public class AssociationBuilder
             // implemented interfaces,
             type.getImplementedTypes().forEach(at ->
             {
-                final var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
+                var superType = Names.name(at, UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
                 if (superType != null)
                 {
-                    final var inheritance = new UmlInheritance(superType, qualifiedTypeName);
+                    var inheritance = new UmlInheritance(superType, qualifiedTypeName);
                     if (!diagram.has(inheritance) && !Types.isExcludedSuperType(this.type, diagram, superType))
                     {
                         diagram.add(inheritance);
@@ -158,27 +158,27 @@ public class AssociationBuilder
         }
     }
 
-    void addMethodAssociations(final IndentingStringBuilder builder)
+    void addMethodAssociations(IndentingStringBuilder builder)
     {
         // For each included method,
         diagram.includedMethods(type, method ->
         {
-            final var diagram = Members.associationString(method, "diagram");
+            var diagram = Members.associationString(method, "diagram");
             if (diagram == null || diagram.equals(this.diagram.name()))
             {
                 // that isn't ignored or a non-reference,
-                final var returnType = method.getType();
+                var returnType = method.getType();
                 boolean associated = false;
                 if (!Methods.isExcluded(method) && Types.isReference(returnType))
                 {
                     // extract the type and type parameters,
-                    final var associationType = Methods.associationType(method);
+                    var associationType = Methods.associationType(method);
                     if (associationType != null)
                     {
                         if (Types.isReference(returnType))
                         {
                             // and add an association to the UML.
-                            final var association = createAssociation(associationType, returnType,
+                            var association = createAssociation(associationType, returnType,
                                     Members.associationString(method, UmlRelation.class, "referent"),
                                     Members.associationString(method, UmlRelation.class, "refereeCardinality"),
                                     Members.associationString(method, UmlRelation.class, "referentCardinality"),
@@ -197,7 +197,7 @@ public class AssociationBuilder
                 if (!associated && Names.simpleName(method).toLowerCase()
                         .matches("(build[A-Z]?\\w+|create[A-Z]\\w+|new[A-Z]\\w+)"))
                 {
-                    final var association = createAssociation(
+                    var association = createAssociation(
                             RELATION,
                             returnType,
                             Members.associationString(method, UmlRelation.class, "referent"),
@@ -218,12 +218,12 @@ public class AssociationBuilder
      * @return Creates a {@link UmlAssociation} of the given type pointing to the given referent with the given label to
      * this type's diagram.
      */
-    private UmlAssociation createAssociation(final UmlAssociation.AssociationType associationType,
-                                             final Type referentType,
-                                             final String explicitReferentType,
+    private UmlAssociation createAssociation(UmlAssociation.AssociationType associationType,
+                                             Type referentType,
+                                             String explicitReferentType,
                                              String refereeCardinality,
                                              String referentCardinality,
-                                             final String label)
+                                             String label)
     {
         // Assume 1 for any missing referee cardinality,
         refereeCardinality = Strings.isEmpty(refereeCardinality) ? "1" : refereeCardinality;
@@ -247,7 +247,7 @@ public class AssociationBuilder
         }
 
         // Resolve the referent cardinality and type,
-        final var referent = diagram.referent(referentType);
+        var referent = diagram.referent(referentType);
         if (referent != null)
         {
             // and if there is no explicit cardinality, use the deduced cardinality,

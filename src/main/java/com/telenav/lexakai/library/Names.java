@@ -43,15 +43,15 @@ public class Names
     /**
      * @return The name of the given type with or without qualification or type parameters
      */
-    public static String name(final Type type,
-                              final Qualification qualification,
-                              final TypeParameters parameters)
+    public static String name(Type type,
+                              Qualification qualification,
+                              TypeParameters parameters)
     {
         // If the type is a class or interface,
         if (type.isClassOrInterfaceType())
         {
             // get the qualified name using the scope recursively,
-            final var classOrInterface = type.asClassOrInterfaceType();
+            var classOrInterface = type.asClassOrInterfaceType();
             if (classOrInterface.getScope().isPresent())
             {
                 return qualifiedName(classOrInterface);
@@ -59,7 +59,7 @@ public class Names
         }
 
         // otherwise try resolving the type to some type in the set of projects that the parser knows about,
-        final var resolved = resolve(type);
+        var resolved = resolve(type);
         if (resolved != null)
         {
             // and return that if it's found,
@@ -73,32 +73,32 @@ public class Names
     /**
      * @return The name of the given type declaration with or without qualification or type parameters
      */
-    public static String name(final TypeDeclaration<?> type,
-                              final Qualification qualification,
-                              final TypeParameters parameters)
+    public static String name(TypeDeclaration<?> type,
+                              Qualification qualification,
+                              TypeParameters parameters)
     {
         // Get the fully qualified type name,
-        final var qualifiedName = type.getFullyQualifiedName();
+        var qualifiedName = type.getFullyQualifiedName();
 
         // but just return the simple name if we can't do that.
-        final var name = qualifiedName.isPresent() ? qualifiedName.get() : simpleName(type);
-        final var typeParameters = typeParameters(type);
+        var name = qualifiedName.orElseGet(() -> simpleName(type));
+        var typeParameters = typeParameters(type);
         return apply(name + Strings.notNull(typeParameters), qualification, parameters);
     }
 
     /**
      * @return The name of the given class expression with or without qualification or type parameters
      */
-    public static String name(final ClassExpr expression,
-                              final Qualification qualification,
-                              final TypeParameters parameters)
+    public static String name(ClassExpr expression,
+                              Qualification qualification,
+                              TypeParameters parameters)
     {
         if (qualification == UNQUALIFIED)
         {
             return expression.getType().asString();
         }
 
-        final var resolved = resolve(expression.getType());
+        var resolved = resolve(expression.getType());
         if (resolved != null)
         {
             return name(resolved, qualification, parameters);
@@ -107,17 +107,17 @@ public class Names
         return expression.getType().asString();
     }
 
-    public static String packageName(final String qualifiedName)
+    public static String packageName(String qualifiedName)
     {
         return qualifiedName.substring(0, qualifiedName.length() - withoutQualification(qualifiedName).length() - 1);
     }
 
-    public static String simpleName(final Type node)
+    public static String simpleName(Type node)
     {
         return node.asString();
     }
 
-    public static String simpleName(final NodeWithSimpleName<?> node)
+    public static String simpleName(NodeWithSimpleName<?> node)
     {
         return node.getName().asString();
     }
@@ -125,12 +125,12 @@ public class Names
     /**
      * @return Any type parameters of the given type as a string
      */
-    public static String typeParameters(final TypeDeclaration<?> declaration)
+    public static String typeParameters(TypeDeclaration<?> declaration)
     {
         if (declaration.isClassOrInterfaceDeclaration())
         {
-            final var parameters = new StringList();
-            for (final var parameter : declaration.asClassOrInterfaceDeclaration().getTypeParameters())
+            var parameters = new StringList();
+            for (var parameter : declaration.asClassOrInterfaceDeclaration().getTypeParameters())
             {
                 parameters.append(parameter.getName().asString());
             }
@@ -142,9 +142,9 @@ public class Names
     /**
      * @return The given qualified class name without the package qualifier
      */
-    public static String withoutQualification(final String qualifiedClassName)
+    public static String withoutQualification(String qualifiedClassName)
     {
-        final var components = StringList.split(qualifiedClassName, ".");
+        var components = StringList.split(qualifiedClassName, ".");
         while (!components.isEmpty() && !CaseFormat.isCapitalized(components.get(0)))
         {
             components.remove(0);
@@ -155,7 +155,7 @@ public class Names
     /**
      * @return The given type name without type parameters
      */
-    public static String withoutTypeParameters(final String typeName)
+    public static String withoutTypeParameters(String typeName)
     {
         return typeName.replaceAll("<.*>", "");
     }
@@ -182,7 +182,7 @@ public class Names
         WITHOUT_TYPE_PARAMETERS
     }
 
-    private static String apply(String name, final Qualification qualification, final TypeParameters parameters)
+    private static String apply(String name, Qualification qualification, TypeParameters parameters)
     {
         // Un-qualify the name if desired,
         if (qualification == UNQUALIFIED)
@@ -199,15 +199,15 @@ public class Names
         return name;
     }
 
-    private static String name(final ResolvedReferenceType referenceType,
-                               final Qualification qualification,
-                               final TypeParameters parameters)
+    private static String name(ResolvedReferenceType referenceType,
+                               Qualification qualification,
+                               TypeParameters parameters)
     {
-        final var name = referenceType.asReferenceType().getQualifiedName();
+        var name = referenceType.asReferenceType().getQualifiedName();
         return apply(name, qualification, parameters);
     }
 
-    private static String qualifiedName(final ClassOrInterfaceType classOrInterface)
+    private static String qualifiedName(ClassOrInterfaceType classOrInterface)
     {
         String name = "";
         if (classOrInterface.getScope().isPresent())
@@ -217,17 +217,17 @@ public class Names
         return name + classOrInterface.getNameAsString();
     }
 
-    private static ResolvedReferenceType resolve(final Type type)
+    private static ResolvedReferenceType resolve(Type type)
     {
         try
         {
-            final var resolved = type.resolve();
+            var resolved = type.resolve();
             if (resolved.isReferenceType())
             {
                 return resolved.asReferenceType();
             }
         }
-        catch (final Exception ignored)
+        catch (Exception ignored)
         {
         }
         return null;

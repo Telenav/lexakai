@@ -32,13 +32,13 @@ public class UmlConstructor implements Comparable<UmlConstructor>
     /** The constructor declaration */
     private final ConstructorDeclaration constructor;
 
-    public UmlConstructor(final ConstructorDeclaration constructor)
+    public UmlConstructor(ConstructorDeclaration constructor)
     {
         this.constructor = constructor;
     }
 
     @Override
-    public int compareTo(@NotNull final UmlConstructor that)
+    public int compareTo(@NotNull UmlConstructor that)
     {
         return constructor.getDeclarationAsString().compareTo(that.constructor.getDeclarationAsString());
     }

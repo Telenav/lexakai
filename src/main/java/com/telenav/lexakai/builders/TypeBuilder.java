@@ -39,7 +39,7 @@ public class TypeBuilder
 
     private final TypeDeclaration<?> type;
 
-    public TypeBuilder(final LexakaiClassDiagram diagram, final TypeDeclaration<?> type)
+    public TypeBuilder(LexakaiClassDiagram diagram, TypeDeclaration<?> type)
     {
         this.diagram = diagram;
         this.type = type;
@@ -48,10 +48,10 @@ public class TypeBuilder
     /**
      * Adds the type declaration for this type to the given builder
      */
-    public void addTypeDeclaration(final IndentingStringBuilder builder)
+    public void addTypeDeclaration(IndentingStringBuilder builder)
     {
         // Add inheritance and explicit relations,
-        final var associationBuilder = new AssociationBuilder(diagram, type);
+        var associationBuilder = new AssociationBuilder(diagram, type);
         associationBuilder.addInheritanceRelations(builder);
         associationBuilder.addExplicitRelations(builder);
 
@@ -64,18 +64,18 @@ public class TypeBuilder
         }
 
         // then, add the full UML type declaration.
-        final var typeName = Names.name(type.asClassOrInterfaceDeclaration(), UNQUALIFIED, WITH_TYPE_PARAMETERS);
+        var typeName = Names.name(type.asClassOrInterfaceDeclaration(), UNQUALIFIED, WITH_TYPE_PARAMETERS);
         addNote(builder, type, typeName);
-        for (final var method : type.getMethods())
+        for (var method : type.getMethods())
         {
             addNote(builder, method, typeName + "::" + Names.simpleName(method));
         }
         builder.appendLine(Types.typeDeclarationModifiers(type) + " " + typeName);
     }
 
-    private void addNote(final IndentingStringBuilder builder, final NodeWithAnnotations<?> node, final String element)
+    private void addNote(IndentingStringBuilder builder, NodeWithAnnotations<?> node, String element)
     {
-        final var note = node.getAnnotationByClass(UmlNote.class);
+        var note = node.getAnnotationByClass(UmlNote.class);
         if (note.isPresent())
         {
             var alignment = Annotations.stringValue(note.get(), "align");

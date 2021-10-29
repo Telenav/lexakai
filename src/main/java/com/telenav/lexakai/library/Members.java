@@ -33,41 +33,32 @@ public class Members
     /**
      * @return The association string for the given method and member
      */
-    public static String associationString(final NodeWithAnnotations<?> member,
-                                           final Class<? extends Annotation> annotation,
-                                           final String key)
+    public static String associationString(NodeWithAnnotations<?> member,
+                                           Class<? extends Annotation> annotation,
+                                           String key)
     {
-        final var expression = member.getAnnotationByClass(annotation);
-        if (expression.isPresent())
-        {
-            return Annotations.stringValue(expression.get(), key);
-        }
-        return null;
+        var expression = member.getAnnotationByClass(annotation);
+        return expression.map(expr -> Annotations.stringValue(expr, key)).orElse(null);
     }
 
     /**
      * @return Any relation value for the given key on the given member
      */
-    public static String associationString(final NodeWithAnnotations<?> member, final String key)
+    public static String associationString(NodeWithAnnotations<?> member, String key)
     {
-        final var aggregation = member.getAnnotationByClass(UmlAggregation.class);
+        var aggregation = member.getAnnotationByClass(UmlAggregation.class);
         if (aggregation.isPresent())
         {
             return Annotations.stringValue(aggregation.get(), key);
         }
 
-        final var composition = member.getAnnotationByClass(UmlComposition.class);
+        var composition = member.getAnnotationByClass(UmlComposition.class);
         if (composition.isPresent())
         {
             return Annotations.stringValue(composition.get(), key);
         }
 
-        final var relation = member.getAnnotationByClass(UmlRelation.class);
-        if (relation.isPresent())
-        {
-            return Annotations.stringValue(relation.get(), key);
-        }
-
-        return null;
+        var relation = member.getAnnotationByClass(UmlRelation.class);
+        return relation.map(expr -> Annotations.stringValue(expr, key)).orElse(null);
     }
 }

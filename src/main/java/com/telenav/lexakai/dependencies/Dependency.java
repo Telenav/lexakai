@@ -36,7 +36,7 @@ public class Dependency implements Comparable<Dependency>
     @KivaKitIncludeProperty
     private final Artifact to;
 
-    public Dependency(final Artifact from, final Artifact to)
+    public Dependency(Artifact from, Artifact to)
     {
         assert from != null;
         assert to != null;
@@ -46,17 +46,17 @@ public class Dependency implements Comparable<Dependency>
     }
 
     @Override
-    public int compareTo(@NotNull final Dependency that)
+    public int compareTo(@NotNull Dependency that)
     {
         return uml().compareTo(that.uml());
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Dependency)
         {
-            final Dependency that = (Dependency) object;
+            Dependency that = (Dependency) object;
             return from.equals(that.from) && to.equals(that.to);
         }
         return false;

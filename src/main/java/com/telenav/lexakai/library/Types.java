@@ -55,11 +55,11 @@ public class Types
     /**
      * @return True if the given type has generic type parameters
      */
-    public static boolean hasTypeParameters(final Type type)
+    public static boolean hasTypeParameters(Type type)
     {
         if (type.isClassOrInterfaceType())
         {
-            final var arguments = type.asClassOrInterfaceType().getTypeArguments();
+            var arguments = type.asClassOrInterfaceType().getTypeArguments();
             return arguments.isPresent() && !arguments.get().isEmpty();
         }
         return false;
@@ -68,30 +68,30 @@ public class Types
     /**
      * @return True if the given supertype is excluded by a @UmlExcludeSuperTypes annotation
      */
-    public static boolean isExcludedSuperType(final TypeDeclaration<?> type,
-                                              final LexakaiClassDiagram diagram,
-                                              final String supertype)
+    public static boolean isExcludedSuperType(TypeDeclaration<?> type,
+                                              LexakaiClassDiagram diagram,
+                                              String supertype)
     {
         if (supertype != null)
         {
-            final var annotation = type.getAnnotationByClass(UmlExcludeSuperTypes.class);
+            var annotation = type.getAnnotationByClass(UmlExcludeSuperTypes.class);
             if (annotation.isPresent())
             {
                 if (annotation.get().isMarkerAnnotationExpr())
                 {
                     return true;
                 }
-                final var classes = Annotations.classNames(annotation.get());
+                var classes = Annotations.classNames(annotation.get());
                 if (classes.contains(supertype))
                 {
                     return true;
                 }
             }
 
-            final var diagramAnnotation = Diagrams.diagramAnnotation(type, diagram.name());
+            var diagramAnnotation = Diagrams.diagramAnnotation(type, diagram.name());
             if (diagramAnnotation != null)
             {
-                final var excludeAll = Annotations.booleanValue(diagramAnnotation.asAnnotationExpr(), "excludeAllSuperTypes", false);
+                var excludeAll = Annotations.booleanValue(diagramAnnotation.asAnnotationExpr(), "excludeAllSuperTypes", false);
                 return excludeAll || Annotations.classNames(diagramAnnotation, "excludeSuperTypes").contains(supertype);
             }
         }
@@ -101,7 +101,7 @@ public class Types
     /**
      * @return True if the given type is an interface
      */
-    public static boolean isInterface(final TypeDeclaration<?> type)
+    public static boolean isInterface(TypeDeclaration<?> type)
     {
         return type.isClassOrInterfaceDeclaration() && type.asClassOrInterfaceDeclaration().isInterface();
     }
@@ -109,7 +109,7 @@ public class Types
     /**
      * @return True if the given type has a @UmlNotPublicApi annotation
      */
-    public static boolean isNotPublicApi(final TypeDeclaration<?> type)
+    public static boolean isNotPublicApi(TypeDeclaration<?> type)
     {
         return type.getAnnotationByClass(UmlNotPublicApi.class).isPresent();
     }
@@ -117,7 +117,7 @@ public class Types
     /**
      * @return True if the given type is a reference to an object, but not an array.
      */
-    public static boolean isObject(final Type type)
+    public static boolean isObject(Type type)
     {
         return type.isReferenceType() && !type.isArrayType();
     }
@@ -126,11 +126,11 @@ public class Types
      * @return True if the given type is a valid reference type. Unknown types, wildcards, primitive types and the
      * built-in list of excluded types are not considered valid references.
      */
-    public static boolean isReference(final Type type)
+    public static boolean isReference(Type type)
     {
         if (!type.isUnknownType() && !type.isWildcardType() && !type.isPrimitiveType())
         {
-            final var name = Names.name(type, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            var name = Names.name(type, Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
             return name != null && !excludedTypes.contains(name);
         }
         return false;
@@ -139,11 +139,11 @@ public class Types
     /**
      * @return The type of the declaration: interface, abstract class, class, enum or annotation.
      */
-    public static String type(final TypeDeclaration<?> type)
+    public static String type(TypeDeclaration<?> type)
     {
         if (type.isClassOrInterfaceDeclaration())
         {
-            final var classOrInterface = type.asClassOrInterfaceDeclaration();
+            var classOrInterface = type.asClassOrInterfaceDeclaration();
             if (isInterface(type))
             {
                 return "interface";
@@ -175,16 +175,16 @@ public class Types
     /**
      * @return The leading modifiers to a type name, for example, "-abstract class"
      */
-    public static String typeDeclarationModifiers(final TypeDeclaration<?> type)
+    public static String typeDeclarationModifiers(TypeDeclaration<?> type)
     {
-        final String modifiers = Types.type(type);
+        String modifiers = Types.type(type);
         return (Types.isNotPublicApi(type) ? "-" : "") + modifiers;
     }
 
     /**
      * @return Returns the parameters to the given type. The element type of an array is considered a type argument.
      */
-    public static List<Type> typeParameters(final Type type)
+    public static List<Type> typeParameters(Type type)
     {
         if (isObject(type))
         {
@@ -196,7 +196,7 @@ public class Types
             {
                 if (type.isClassOrInterfaceType())
                 {
-                    final var typeArguments = type.asClassOrInterfaceType().getTypeArguments();
+                    var typeArguments = type.asClassOrInterfaceType().getTypeArguments();
                     if (typeArguments.isPresent())
                     {
                         return typeArguments.get().stream()

@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.language.values.version.Version;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
@@ -164,7 +165,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             {
                 lexakai.exit("Root project.properties file does not contain a project-version key: $", propertiesFile);
             }
-            this.version = Version.parse(rootVersion);
+            this.version = Version.parse(Listener.none(), rootVersion);
             if (this.version == null)
             {
                 lexakai.exit("Project project.properties declares invalid project-version: $", rootVersion);
@@ -473,7 +474,6 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /**
      * Parse the class, interface and enum declarations under this project's source folder
      */
-    @SuppressWarnings("unchecked")
     private List<TypeDeclaration<?>> parseTypeDeclarations()
     {
         // If we have not yet parsed the source code,

@@ -16,13 +16,6 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.library.Annotations;
 import org.jetbrains.annotations.NotNull;
 
-import static com.telenav.lexakai.Lexakai.JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH;
-import static com.telenav.lexakai.Lexakai.JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH;
-import static com.telenav.lexakai.Lexakai.JAVADOC_MINIMUM_METHOD_LINES;
-import static com.telenav.lexakai.Lexakai.JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH;
-import static com.telenav.lexakai.Lexakai.JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH;
-import static com.telenav.lexakai.Lexakai.SHOW_JAVADOC_UNCOVERED_TYPES;
-
 /**
  * @author jonathanl (shibo)
  */
@@ -62,10 +55,9 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         {
             totalTypes++;
 
-            var requiredLength = Lexakai.get().get(JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH);
-
+            var requiredLength = lexakai().get(lexakai().JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH);
             var javadoc = type.getJavadoc();
-            var isSignificant = type.toString().length() > Lexakai.get().get(JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH);
+            var isSignificant = type.toString().length() > lexakai().get(lexakai().JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH);
             var significance = isSignificant ? "+" : "";
             var typeName = Strip.packagePrefix(fullName.get());
             var isCovered = true;
@@ -80,7 +72,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
                 {
                     if (type.isEnumDeclaration())
                     {
-                        requiredLength = Lexakai.get().get(JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH);
+                        requiredLength = lexakai().get(lexakai().JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH);
                     }
                     var text = javadoc.get().toText();
                     if (text.length() < requiredLength)
@@ -179,7 +171,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
     {
         var list = new StringList();
         list.add(summaryCoverage());
-        if (Lexakai.get().get(SHOW_JAVADOC_UNCOVERED_TYPES))
+        if (lexakai().get(lexakai().SHOW_JAVADOC_UNCOVERED_TYPES))
         {
             if (!undocumentedClasses.isEmpty())
             {
@@ -187,6 +179,11 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
             }
         }
         return list;
+    }
+
+    private Lexakai lexakai()
+    {
+        return Lexakai.get();
     }
 
     @Override
@@ -232,7 +229,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         if (!isJavadocComplete(method))
         {
             var lines = method.getBody().toString().split("\n").length;
-            if (lines > Lexakai.get().get(JAVADOC_MINIMUM_METHOD_LINES))
+            if (lines > lexakai().get(lexakai().JAVADOC_MINIMUM_METHOD_LINES))
             {
                 var javadoc = method.getJavadoc();
                 if (javadoc.isEmpty())
@@ -243,7 +240,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
                 else
                 {
                     var length = javadoc.get().toText().length();
-                    var minimumLength = Lexakai.get().get(JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH);
+                    var minimumLength = lexakai().get(lexakai().JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH);
                     if (length < minimumLength)
                     {
                         warnings.add("    $(): Javadoc coverage of $ characters is insufficient (minimum is $)",

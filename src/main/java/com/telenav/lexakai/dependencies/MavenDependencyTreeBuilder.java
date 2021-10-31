@@ -54,7 +54,7 @@ public class MavenDependencyTreeBuilder extends BaseRepeater
                 Pattern.DOTALL).matcher(output);
 
         var artifactIdToFolder = new HashMap<String, Folder>();
-        root.nestedFiles(file -> FileName.parse("pom.xml").fileMatcher().matches(file))
+        root.nestedFiles(file -> FileName.parse(this, "pom.xml").fileMatcher().matches(file))
                 .forEach(file ->
                 {
                     var pom = file.reader().string().replaceAll("(?s)<parent>.*</parent>", "");
@@ -77,7 +77,7 @@ public class MavenDependencyTreeBuilder extends BaseRepeater
             var dependencyMatcher = dependencyPattern.matcher(dependencies);
             while (dependencyMatcher.find())
             {
-                var identifier = Ints.parse(dependencyMatcher.group(1));
+                var identifier = Ints.parse(this, dependencyMatcher.group(1));
                 var groupId = dependencyMatcher.group(2);
                 var artifactId = dependencyMatcher.group(3);
                 var version = dependencyMatcher.group(4);
@@ -89,8 +89,8 @@ public class MavenDependencyTreeBuilder extends BaseRepeater
             var referenceMatcher = referencePattern.matcher(references);
             while (referenceMatcher.find())
             {
-                var fromIdentifier = Ints.parse(referenceMatcher.group(1));
-                var toIdentifier = Ints.parse(referenceMatcher.group(2));
+                var fromIdentifier = Ints.parse(this, referenceMatcher.group(1));
+                var toIdentifier = Ints.parse(this, referenceMatcher.group(2));
                 var from = tree.artifact(fromIdentifier);
                 var to = tree.artifact(toIdentifier);
                 if (from != null && to != null)

@@ -434,7 +434,8 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
                 title = identifier();
                 if (!isPackageDiagram())
                 {
-                    if (Lexakai.get().get(Lexakai.SHOW_DIAGRAM_WARNINGS))
+                    var lexakai = Lexakai.get();
+                    if (lexakai.get(lexakai.SHOW_DIAGRAM_WARNINGS))
                     {
                         warning("    No title found for diagram '$'", identifier());
                     }

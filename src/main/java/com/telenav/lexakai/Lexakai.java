@@ -80,150 +80,155 @@ import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.Re
  */
 public class Lexakai extends Application
 {
-    public static final SwitchParser<Boolean> ADD_HTML_ANCHORS =
-            booleanSwitchParser("add-html-anchors", "Add HTML anchor tags to markdown indexes")
+    public static Lexakai get()
+    {
+        return (Lexakai) Application.get();
+    }
+
+    public SwitchParser<Boolean> ADD_HTML_ANCHORS =
+            booleanSwitchParser(this, "add-html-anchors", "Add HTML anchor tags to markdown indexes")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> AUTOMATIC_METHOD_GROUPS =
-            booleanSwitchParser("automatic-method-groups", "Automatically group methods")
+    public SwitchParser<Boolean> AUTOMATIC_METHOD_GROUPS =
+            booleanSwitchParser(this, "automatic-method-groups", "Automatically group methods")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> CREATE_PACKAGE_DIAGRAMS =
-            booleanSwitchParser("create-package-diagrams", "Build package diagrams for all public types")
+    public SwitchParser<Boolean> CREATE_PACKAGE_DIAGRAMS =
+            booleanSwitchParser(this, "create-package-diagrams", "Build package diagrams for all public types")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> CREATE_SVG_FILES =
-            booleanSwitchParser("create-svg-files", "Build .svg files from PlantUML output")
+    public SwitchParser<Boolean> CREATE_SVG_FILES =
+            booleanSwitchParser(this, "create-svg-files", "Build .svg files from PlantUML output")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> INCLUDE_OBJECT_METHODS =
-            booleanSwitchParser("include-object-methods", "Include hashCode(), equals() and toString()")
+    public SwitchParser<Boolean> INCLUDE_OBJECT_METHODS =
+            booleanSwitchParser(this, "include-object-methods", "Include hashCode(), equals() and toString()")
                     .optional()
                     .defaultValue(false)
                     .build();
 
-    public static final SwitchParser<Boolean> INCLUDE_PROTECTED_METHODS =
-            booleanSwitchParser("include-protected-methods", "Include methods with protected access")
+    public SwitchParser<Boolean> INCLUDE_PROTECTED_METHODS =
+            booleanSwitchParser(this, "include-protected-methods", "Include methods with protected access")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Integer> JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH =
-            integerSwitchParser("javadoc-method-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a method")
+    public SwitchParser<Integer> JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH =
+            integerSwitchParser(this, "javadoc-method-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a method")
                     .optional()
                     .defaultValue(64)
                     .build();
 
-    public static final SwitchParser<Integer> JAVADOC_MINIMUM_METHOD_LINES =
-            integerSwitchParser("javadoc-minimum-method-lines", "The minimum number of lines for a method to require a Javadoc comment")
+    public SwitchParser<Integer> JAVADOC_MINIMUM_METHOD_LINES =
+            integerSwitchParser(this, "javadoc-minimum-method-lines", "The minimum number of lines for a method to require a Javadoc comment")
                     .optional()
                     .defaultValue(4)
                     .build();
 
-    public static final SwitchParser<String> JAVADOC_SECTION_PATTERN =
-            stringSwitchParser("javadoc-section-pattern", "regular expression for extracting javadoc section titles")
+    public SwitchParser<String> JAVADOC_SECTION_PATTERN =
+            stringSwitchParser(this, "javadoc-section-pattern", "regular expression for extracting javadoc section titles")
                     .optional()
                     .defaultValue("<p><b>(.*)</b></p>")
                     .build();
 
-    public static final SwitchParser<Integer> JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH =
-            integerSwitchParser("javadoc-significant-class-minimum-length", "The minimum length of class that is considered 'significant'")
+    public SwitchParser<Integer> JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH =
+            integerSwitchParser(this, "javadoc-significant-class-minimum-length", "The minimum length of class that is considered 'significant'")
                     .optional()
                     .defaultValue(2048)
                     .build();
 
-    public static final SwitchParser<Integer> JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH =
-            integerSwitchParser("javadoc-type-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a type")
+    public SwitchParser<Integer> JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH =
+            integerSwitchParser(this, "javadoc-type-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a type")
                     .optional()
                     .defaultValue(128)
                     .build();
 
-    public static final SwitchParser<Integer> JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH =
-            integerSwitchParser("javadoc-enum-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of an enum")
+    public SwitchParser<Integer> JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH =
+            integerSwitchParser(this, "javadoc-enum-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of an enum")
                     .optional()
                     .defaultValue(64)
                     .build();
 
-    public static final SwitchParser<Folder> OUTPUT_FOLDER =
-            folderSwitchParser("output-folder", "Root folder of output")
+    public SwitchParser<Folder> OUTPUT_FOLDER =
+            folderSwitchParser(this, "output-folder", "Root folder of output")
                     .optional()
-                    .defaultValue(Folder.parse("./documentation/lexakai/output"))
+                    .defaultValue(Folder.parse(this, "./documentation/lexakai/output"))
                     .build();
 
-    public static final SwitchParser<Boolean> OVERWRITE_RESOURCES =
-            booleanSwitchParser("overwrite-resources", "True to update all resources except settings")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
-
-    public static final SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
-            booleanSwitchParser("console-output", "Print diagrams to the console")
+    public SwitchParser<Boolean> OVERWRITE_RESOURCES =
+            booleanSwitchParser(this, "overwrite-resources", "True to update all resources except settings")
                     .optional()
                     .defaultValue(false)
                     .build();
 
-    public static final SwitchParser<Version> PROJECT_VERSION =
-            versionSwitchParser("project-version", "Version of project used when generating markdown")
+    public SwitchParser<Boolean> PRINT_DIAGRAMS_TO_CONSOLE =
+            booleanSwitchParser(this, "console-output", "Print diagrams to the console")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
+    public SwitchParser<Version> PROJECT_VERSION =
+            versionSwitchParser(this, "project-version", "Version of project used when generating markdown")
                     .optional()
                     .build();
 
-    public static final ArgumentParser<Folder> ROOT_FOLDER =
-            folderArgumentParser("Root folder to start at when locating projects")
+    public ArgumentParser<Folder> ROOT_FOLDER =
+            folderArgumentParser(this, "Root folder to start at when locating projects")
                     .oneOrMore()
                     .build();
 
-    public static final SwitchParser<Boolean> SAVE_DIAGRAMS =
-            booleanSwitchParser("save", "Save PlantUML diagrams")
+    public SwitchParser<Boolean> SAVE_DIAGRAMS =
+            booleanSwitchParser(this, "save", "Save PlantUML diagrams")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> SHOW_DIAGRAMS =
-            booleanSwitchParser("show-diagrams", "Show created diagrams")
+    public SwitchParser<Boolean> SHOW_DIAGRAMS =
+            booleanSwitchParser(this, "show-diagrams", "Show created diagrams")
                     .optional()
                     .defaultValue(false)
                     .build();
 
-    public static final SwitchParser<Boolean> SHOW_DIAGRAM_WARNINGS =
-            booleanSwitchParser("show-diagram-warnings", "Show warnings about diagrams as they are processed")
+    public SwitchParser<Boolean> SHOW_DIAGRAM_WARNINGS =
+            booleanSwitchParser(this, "show-diagram-warnings", "Show warnings about diagrams as they are processed")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE =
-            booleanSwitchParser("show-javadoc-coverage", "Show Javadoc coverage for each project as they are processed")
+    public SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE =
+            booleanSwitchParser(this, "show-javadoc-coverage", "Show Javadoc coverage for each project as they are processed")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE_WARNINGS =
-            booleanSwitchParser("show-javadoc-coverage-warnings", "Show Javadoc coverage warnings to help correct issues")
+    public SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE_WARNINGS =
+            booleanSwitchParser(this, "show-javadoc-coverage-warnings", "Show Javadoc coverage warnings to help correct issues")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public static final SwitchParser<Boolean> SHOW_JAVADOC_UNCOVERED_TYPES =
-            booleanSwitchParser("show-javadoc-uncovered types", "Show list of uncovered types in the summary")
+    public SwitchParser<Boolean> SHOW_JAVADOC_UNCOVERED_TYPES =
+            booleanSwitchParser(this, "show-javadoc-uncovered types", "Show list of uncovered types in the summary")
                     .optional()
                     .defaultValue(false)
                     .build();
 
-    public static final SwitchParser<Traversal> TRAVERSAL =
-            enumSwitchParser("traversal", "Traversal of projects", Traversal.class)
+    public SwitchParser<Traversal> TRAVERSAL =
+            enumSwitchParser(this, "traversal", "Traversal of projects", Traversal.class)
                     .optional()
                     .defaultValue(Traversal.RECURSE)
                     .build();
 
-    public static final SwitchParser<Boolean> UPDATE_README =
-            booleanSwitchParser("update-readme", "True to create and update a README.md file")
+    public SwitchParser<Boolean> UPDATE_README =
+            booleanSwitchParser(this, "update-readme", "True to create and update a README.md file")
                     .optional()
                     .defaultValue(false)
                     .build();
@@ -254,7 +259,7 @@ public class Lexakai extends Application
     public String description()
     {
         var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
-        var template = PackageResource.of(getClass(), "Help.txt").reader().string();
+        var template = PackageResource.packageResource(this, getClass(), "Help.txt").reader().string();
         return variables.expand(template);
     }
 
@@ -265,7 +270,7 @@ public class Lexakai extends Application
 
     public CopyMode resourceCopyMode()
     {
-        return get(Lexakai.OVERWRITE_RESOURCES) ? UPDATE : DO_NOT_OVERWRITE;
+        return get(OVERWRITE_RESOURCES) ? UPDATE : DO_NOT_OVERWRITE;
     }
 
     @Override
@@ -297,7 +302,7 @@ public class Lexakai extends Application
     @Override
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return ObjectSet.of(
+        return ObjectSet.objectSet(
                 ADD_HTML_ANCHORS,
                 AUTOMATIC_METHOD_GROUPS,
                 CREATE_PACKAGE_DIAGRAMS,
@@ -423,7 +428,7 @@ public class Lexakai extends Application
         var process = listenTo(new JarLauncher()
                 .processType(CHILD)
                 .arguments(arguments))
-                .addJarSource(PackageResource.of(getClass(), "plantuml.jar"))
+                .addJarSource(PackageResource.packageResource(this, getClass(), "plantuml.jar"))
                 .redirectTo(CONSOLE)
                 .run();
 

@@ -164,7 +164,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             {
                 lexakai.exit("Root project.properties file does not contain a project-version key: $", propertiesFile);
             }
-            this.version = Version.parse(rootVersion);
+            this.version = Version.parse(this, rootVersion);
             if (this.version == null)
             {
                 lexakai.exit("Project project.properties declares invalid project-version: $", rootVersion);
@@ -332,7 +332,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             return false;
         }
 
-        var resourcePackage = Package.of(Lexakai.class, "resources");
+        var resourcePackage = Package.packageFrom(this, Lexakai.class, "resources");
 
         // If the project has source code,
         if (hasSourceCode())

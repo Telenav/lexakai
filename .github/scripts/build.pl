@@ -31,9 +31,10 @@ clone("$github/lexakai", "build");
 
 build_kivakit("package");
 
-system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-grpc-merged -Dfile=./kivakit-extensions/kivakit-merged-jars/lib/kivakit-grpc-merged-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
-system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-protostuff-merged -Dfile=./kivakit-extensions/kivakit-merged-jars/lib/kivakit-protostuff-merged-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
-system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-prometheus-merged -Dfile=./kivakit-extensions/kivakit-merged-jars/lib/kivakit-prometheus-merged-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
+system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-merged-grpc -Dfile=./kivakit-extensions/kivakit-merged/lib/kivakit-merged-grpc-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
+system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-merged-protostuff -Dfile=./kivakit-extensions/kivakit-merged/lib/kivakit-merged-protostuff-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
+system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-merged-prometheus -Dfile=./kivakit-extensions/kivakit-merged/lib/kivakit-merged-prometheus-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
+system("mvn -DgroupId=com.telenav.kivakit -DartifactId=kivakit-merged-zookeeper -Dfile=./kivakit-extensions/kivakit-merged/lib/kivakit-merged-zookeeper-1.1.0.jar -Dversion=1.1.0 -Dpackaging=jar install:install-file");
 
 build_kivakit_extensions("package");
 build_lexakai($build_type);

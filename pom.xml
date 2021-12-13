@@ -22,7 +22,7 @@
 
     <!-- Project -->
 
-    <name>Lexakai</name>
+    <name>lexakai</name>
     <description>Lexakai annotations are used by Lexakai to generate UML diagrams.</description>
     <url>https://www.lexakai.org</url>
     <inceptionYear>2021</inceptionYear>

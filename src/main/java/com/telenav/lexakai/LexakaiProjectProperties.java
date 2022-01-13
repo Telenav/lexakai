@@ -67,7 +67,7 @@ public class LexakaiProjectProperties extends PropertyMap
         properties.add("project-folder", project.folders().project().toString());
         properties.add("project-relative-folder", project.folders().projectRelativeToRoot().toString());
         properties.add("project-output-folder", project.folders().output().toString());
-        properties.add("project-output-root-folder", project.folders().outputRoot().toString());
+        properties.add("project-output-root-folder", project.folders().outputRoot().path().asContraction(80));
 
         // and resource locations.
         properties.add("project-diagrams-location", properties.outputDiagramsLocation());

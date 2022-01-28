@@ -55,7 +55,7 @@ public class LexakaiProjectProperties extends PropertyMap
         var lexakaiProperties = project.files().lexakaiProperties(artifactId);
         if (!lexakaiProperties.exists())
         {
-            project.lexakai().exit("Lexakai.properties not found: $", lexakaiProperties);
+            project.lexakai().exit("Lexakai properties not found: $", lexakaiProperties);
         }
         properties.addAll(PropertyMap.load(LOGGER, lexakaiProperties).expandedWith(properties));
         properties.putIfAbsent("project-icon", "gears-32");

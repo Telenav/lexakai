@@ -3,6 +3,7 @@ package com.telenav.lexakai;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.paths.StringPath;
 import com.telenav.kivakit.kernel.language.strings.Packages;
+import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
@@ -101,16 +102,11 @@ public class LexakaiProjectProperties extends PropertyMap
     public String outputDiagramsLocation()
     {
         var output = outputDocumentationLocation();
-        return output == null
-                ? null
-                : StringPath.stringPath
-                        (
-                                output,
-                                project.rootProjectName(),
-                                project.folders().projectRelativeToRoot().toString(),
-                                "documentation/diagrams"
-                        )
-                .toString();
+        if (output != null)
+        {
+            return Paths.concatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
+        }
+        return null;
     }
 
     public String outputDocumentationLocation()

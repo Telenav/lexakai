@@ -22,6 +22,7 @@ import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.Wrap;
 import com.telenav.kivakit.kernel.language.time.LocalTime;
@@ -76,13 +77,13 @@ import static java.util.regex.Pattern.MULTILINE;
  */
 public class ReadMeUpdater extends BaseComponent
 {
-    private final Resource SOURCE_README_TEMPLATE = PackageResource.packageResource(this, ReadMeUpdater.class, "lexakai-source-readme-template.md");
-
     private final Resource PARENT_README_TEMPLATE = PackageResource.packageResource(this, ReadMeUpdater.class, "lexakai-parent-readme-template.md");
 
-    private final LexakaiProject project;
-
     private final Pattern SECTION_HEADING = Pattern.compile("^### ([ A-Za-z0-9_-]+)(\\s*<a name)?", MULTILINE);
+
+    private final Resource SOURCE_README_TEMPLATE = PackageResource.packageResource(this, ReadMeUpdater.class, "lexakai-source-readme-template.md");
+
+    private final LexakaiProject project;
 
     public ReadMeUpdater(LexakaiProject project)
     {
@@ -182,7 +183,7 @@ public class ReadMeUpdater extends BaseComponent
         {
             if (!Strings.isEmpty(diagram.title()))
             {
-                var line = "[*" + diagram.title() + "*](" + project.properties().outputDiagramsLocation() + "/" + diagram.identifier() + ".svg)";
+                var line = "[*" + diagram.title() + "*](" + Paths.concatenate(project.properties().outputDiagramsLocation(), diagram.identifier()) + ".svg)";
                 (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
                 types.addAll(diagram.includedQualifiedTypes());
             }

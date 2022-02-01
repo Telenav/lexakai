@@ -18,11 +18,11 @@
 
 package com.telenav.lexakai.dependencies;
 
+import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.path.FileName;
 
 import java.util.HashMap;
@@ -30,10 +30,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
 /**
  * @author jonathanl (shibo)
  */
-public class MavenDependencyTreeBuilder extends BaseRepeater
+public class MavenDependencyTreeBuilder extends BaseComponent
 {
     private final Folder root;
 
@@ -44,8 +46,9 @@ public class MavenDependencyTreeBuilder extends BaseRepeater
 
     public Set<DependencyTree> trees()
     {
+        var mavenHome = ensureNotNull(OperatingSystem.get().property("M2_HOME"));
         var output = OperatingSystem.get()
-                .exec(root.asJavaFile(), "mvn", "-DoutputType=tgf", "dependency:tree")
+                .exec(root.asJavaFile(), mavenHome + "/bin/mvn", "-DoutputType=tgf", "dependency:tree")
                 .replaceAll("\\[INFO]", "");
 
         var matcher = Pattern.compile("--- maven-dependency-plugin.*?@ (?<projectArtifactId>.*?) ---" +

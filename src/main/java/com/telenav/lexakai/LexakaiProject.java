@@ -90,55 +90,55 @@ import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
  */
 public class LexakaiProject extends BaseComponent implements Comparable<LexakaiProject>
 {
-    /** Parser to use on project source files */
-    private final JavaParser parser;
-
-    /** Reference to the application that created this project model */
-    private final Lexakai lexakai;
-
-    /** The project version */
-    private Version version;
-
-    /** True to include equals, hashCode and toString */
-    private boolean includeObjectMethods;
-
-    /** THe set of type declarations in this project */
-    private final List<TypeDeclaration<?>> typeDeclarations = new ArrayList<>();
-
-    /** The UML diagrams in this project, deduced from @UmlClassDiagram annotations */
-    private final LinkedHashMap<String, LexakaiClassDiagram> diagrams = new LinkedHashMap<>();
+    /** True to add HTML anchors to indexes */
+    private boolean addHtmlAnchors;
 
     /** True to automatically guess method groups */
     private boolean automaticMethodGroups;
 
-    /** The regular expression pattern for extracting the names of javadoc sections */
-    private Pattern javadocSectionPattern;
-
-    /** True to include protected methods */
-    private boolean includeProtectedMethods;
-
-    /** True to add HTML anchors to indexes */
-    private boolean addHtmlAnchors;
-
     /** True to build a diagram of all public types in each package */
     private boolean buildPackageDiagrams;
-
-    /** Javadoc coverage for sub-projects or types in this project */
-    private ObjectList<JavadocCoverage> coverage;
 
     /** Any child projects of this project */
     private ObjectList<LexakaiProject> children;
 
-    /**
-     * Properties for this project from system properties, project.properties, lexakai.settings and lexakai.properties
-     */
-    private LexakaiProjectProperties properties;
+    /** Javadoc coverage for sub-projects or types in this project */
+    private ObjectList<JavadocCoverage> coverage;
+
+    /** The UML diagrams in this project, deduced from @UmlClassDiagram annotations */
+    private final LinkedHashMap<String, LexakaiClassDiagram> diagrams = new LinkedHashMap<>();
 
     /** Locations of project files */
     private final LexakaiProjectFiles files;
 
     /** Locations of project folders */
     private final LexakaiProjectFolders folders;
+
+    /** True to include equals, hashCode and toString */
+    private boolean includeObjectMethods;
+
+    /** True to include protected methods */
+    private boolean includeProtectedMethods;
+
+    /** The regular expression pattern for extracting the names of javadoc sections */
+    private Pattern javadocSectionPattern;
+
+    /** Reference to the application that created this project model */
+    private final Lexakai lexakai;
+
+    /** Parser to use on project source files */
+    private final JavaParser parser;
+
+    /**
+     * Properties for this project from system properties, project.properties, lexakai.settings and lexakai.properties
+     */
+    private LexakaiProjectProperties properties;
+
+    /** THe set of type declarations in this project */
+    private final List<TypeDeclaration<?>> typeDeclarations = new ArrayList<>();
+
+    /** The project version */
+    private Version version;
 
     protected LexakaiProject(Lexakai lexakai,
                              Version version,
@@ -381,7 +381,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
     public String link(Folder folder)
     {
-        return "[**" + name() + "**](" + folder + "/README.md)";
+        return "[**" + name() + "**](" + folder.file("README.md") + ")";
     }
 
     @NotNull
@@ -394,12 +394,13 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
     public String name()
     {
-        var relative = folders().projectRelativeToRoot().path();
+        var relative = folders().projectRelativeToRoot().withoutTrailingSlash().path();
         return (relative.isEmpty()
                 ? folders().project().name().name()
                 : relative.join("-"));
     }
 
+    @SuppressWarnings("ClassEscapesDefinedScope")
     public ObjectList<JavadocCoverage> nestedProjectJavadocCoverage()
     {
         if (coverage == null)

@@ -18,7 +18,7 @@
 
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <packaging>jar</packaging>
 

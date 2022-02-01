@@ -1,7 +1,6 @@
 package com.telenav.lexakai;
 
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.paths.StringPath;
 import com.telenav.kivakit.kernel.language.strings.Packages;
 import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -131,17 +130,17 @@ public class LexakaiProjectProperties extends PropertyMap
     /**
      * @return The location of the given type in this project's Javadoc in the output tree
      */
+    @SuppressWarnings("ClassEscapesDefinedScope")
     public String outputJavadocLocation(UmlType type)
     {
         var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
         // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
-        return StringPath.stringPath
-                        (
-                                outputJavadocLocation(),   // https://www.kivakit.org/javadoc/kivakit/kivakit.application
-                                qualifiedPath + ".html"    // com/kivakit/core/application/Application.html
-                        )
-                .toString();
+        return Paths.concatenate
+                (
+                        outputJavadocLocation(),        // https://www.kivakit.org/javadoc/kivakit/kivakit.application
+                        qualifiedPath + ".html"   // com/kivakit/core/application/Application.html
+                );
     }
 
     public String projectArtifactId()

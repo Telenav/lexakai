@@ -47,7 +47,7 @@ project_build() {
         build_number=$(property_value "$build_properties" build-number)
         build_date=$(property_value "$build_properties" build-date)
 
-        echo "build #$build_number on $build_date '$build_name'"
+        echo "build #$build_number on $build_date [$build_name]"
 
     fi
 }
@@ -300,7 +300,7 @@ system_variable() {
 
     variable=$1
     value=$2
-    temporary="$TMPDIR/export.txt"
+    temporary="${TMPDIR%/}/export.txt"
 
     echo "export $variable=\"$value\"" >"$temporary"
     source "$temporary"

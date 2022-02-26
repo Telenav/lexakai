@@ -64,10 +64,6 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 {
     public static class Referent
     {
-        final String cardinality;
-
-        final Type referent;
-
         public Referent(String cardinality, Type referent)
         {
             this.cardinality = cardinality;
@@ -83,13 +79,14 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
         {
             return referent;
         }
+
+        final String cardinality;
+
+        final Type referent;
     }
 
-    /** The name of this diagram from @{@link LexakaiClassDiagram} annotations */
-    private final String name;
-
-    /** The project that this diagram belongs to */
-    private final LexakaiProject project;
+    /** The set of abstract superclasses referenced by this diagram */
+    private final HashSet<String> abstractSuperClasses = new HashSet<>();
 
     /** The set of types to include in this diagram */
     private final Map<String, UmlType> includedQualifiedTypes = new HashMap<>();
@@ -97,8 +94,11 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /** Inheritance relations */
     private final Set<UmlInheritance> inheritances = new HashSet<>();
 
-    /** The set of abstract superclasses referenced by this diagram */
-    private final HashSet<String> abstractSuperClasses = new HashSet<>();
+    /** The name of this diagram from @{@link LexakaiClassDiagram} annotations */
+    private final String name;
+
+    /** The project that this diagram belongs to */
+    private final LexakaiProject project;
 
     /** The set super-interfaces referenced by this diagram */
     private final HashSet<Object> superInterfaces = new HashSet<>();

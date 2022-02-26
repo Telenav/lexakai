@@ -128,7 +128,7 @@ public class ReadMeUpdater extends BaseComponent
         properties.put("user-text-bottom", expand(properties, bottomBlock));
 
         // then write the interpolated template
-        var template = readMeTemplate().reader().string();
+        var template = readMeTemplate().reader().asString();
         var expanded = expand(properties, template);
 
         // to the readme file in the source tree and the readme file in the output tree.
@@ -326,7 +326,7 @@ public class ReadMeUpdater extends BaseComponent
         var blocks = new StringList();
         if (file.exists())
         {
-            var readme = file.reader().string();
+            var readme = file.reader().asString();
             var matcher = Pattern.compile("(?x) \\[//]: \\s+ \\# \\s+ \\(start-user-text\\) (.+?) \\[//]: \\s+ \\# \\s+ \\(end-user-text\\)", DOTALL).matcher(readme);
             while (matcher.find())
             {

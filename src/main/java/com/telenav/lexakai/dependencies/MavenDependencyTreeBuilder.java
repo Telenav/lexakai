@@ -60,7 +60,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
         root.nestedFiles(file -> FileName.parse(this, "pom.xml").fileMatcher().matches(file))
                 .forEach(file ->
                 {
-                    var pom = file.reader().string().replaceAll("(?s)<parent>.*</parent>", "");
+                    var pom = file.reader().asString().replaceAll("(?s)<parent>.*</parent>", "");
                     var artifactId = Strings.extract(pom, "(?s)<artifactId>(.*?)</artifactId>");
                     artifactIdToFolder.put(artifactId, file.parent());
                 });

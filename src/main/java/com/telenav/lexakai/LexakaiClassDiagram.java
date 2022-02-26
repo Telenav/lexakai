@@ -21,7 +21,7 @@ package com.telenav.lexakai;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.type.Type;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;

@@ -20,12 +20,12 @@ package com.telenav.lexakai.indexes;
 
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.strings.Paths;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.Wrap;
-import com.telenav.kivakit.kernel.language.time.LocalTime;
+import com.telenav.kivakit.core.language.collections.list.StringList;
+import com.telenav.kivakit.collections.map.string.VariableMap;
+import com.telenav.kivakit.core.language.strings.Paths;
+import com.telenav.kivakit.core.language.strings.Strings;
+import com.telenav.kivakit.core.language.strings.Wrap;
+import com.telenav.kivakit.language.time.LocalTime;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.resource.resources.string.StringResource;

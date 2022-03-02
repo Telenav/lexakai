@@ -22,13 +22,13 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.type.Type;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.language.strings.CaseFormat;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.Wrap;
-import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
-import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder.Indentation;
+import com.telenav.kivakit.core.string.IndentingStringBuilder;
+import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
+import com.telenav.kivakit.core.language.collections.list.StringList;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.language.strings.CaseFormat;
+import com.telenav.kivakit.core.language.strings.Strings;
+import com.telenav.kivakit.core.language.strings.Wrap;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.associations.UmlInheritance;
@@ -48,8 +48,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder.Style.TEXT;
+import static com.telenav.kivakit.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 import static com.telenav.lexakai.library.Names.Qualification.QUALIFIED;
 import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
@@ -64,6 +64,10 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 {
     public static class Referent
     {
+        final String cardinality;
+
+        final Type referent;
+
         public Referent(String cardinality, Type referent)
         {
             this.cardinality = cardinality;
@@ -79,10 +83,6 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
         {
             return referent;
         }
-
-        final String cardinality;
-
-        final Type referent;
     }
 
     /** The set of abstract superclasses referenced by this diagram */

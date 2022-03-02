@@ -19,7 +19,7 @@
 package com.telenav.lexakai.types;
 
 import com.github.javaparser.ast.body.TypeDeclaration;
-import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
+import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.lexakai.LexakaiClassDiagram;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.builders.MethodBuilder;

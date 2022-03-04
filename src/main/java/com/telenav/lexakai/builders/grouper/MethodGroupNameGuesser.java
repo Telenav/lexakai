@@ -18,10 +18,10 @@
 
 package com.telenav.lexakai.builders.grouper;
 
-import com.telenav.kivakit.collections.map.MultiMap;
-import com.telenav.kivakit.core.language.collections.list.StringList;
-import com.telenav.kivakit.core.language.strings.CaseFormat;
-import com.telenav.kivakit.core.language.strings.Strings;
+import com.telenav.kivakit.core.collections.map.MultiMap;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.string.CaseFormat;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.resource.Resource;

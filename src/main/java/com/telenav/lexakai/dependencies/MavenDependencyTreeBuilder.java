@@ -20,8 +20,8 @@ package com.telenav.lexakai.dependencies;
 
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.language.primitive.Ints;
-import com.telenav.kivakit.core.language.strings.Strings;
+import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.language.vm.OperatingSystem;
 import com.telenav.kivakit.resource.path.FileName;
 
@@ -30,7 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * @author jonathanl (shibo)

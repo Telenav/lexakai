@@ -3,13 +3,13 @@ package com.telenav.lexakai.javadoc;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
-import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.core.language.collections.list.StringList;
-import com.telenav.kivakit.collections.map.string.VariableMap;
-import com.telenav.kivakit.core.language.strings.Align;
-import com.telenav.kivakit.core.language.strings.Strip;
-import com.telenav.kivakit.language.level.Percent;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.string.Align;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -181,11 +181,6 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
         return list;
     }
 
-    private Lexakai lexakai()
-    {
-        return Lexakai.get();
-    }
-
     @Override
     public String toString()
     {
@@ -211,6 +206,11 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
     {
         var optionalAnnotation = node.getAnnotationByClass(LexakaiJavadoc.class);
         return optionalAnnotation.filter(expr -> Annotations.booleanValue(expr, "complete", false)).isPresent();
+    }
+
+    private Lexakai lexakai()
+    {
+        return Lexakai.get();
     }
 
     private String meterMarkdown()

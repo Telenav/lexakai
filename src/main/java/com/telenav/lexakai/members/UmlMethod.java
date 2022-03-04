@@ -20,8 +20,8 @@ package com.telenav.lexakai.members;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.telenav.kivakit.core.language.collections.list.StringList;
-import com.telenav.kivakit.core.language.strings.Strings;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.library.Methods;
 import com.telenav.lexakai.library.Names;
 import org.jetbrains.annotations.NotNull;

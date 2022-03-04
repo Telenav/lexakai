@@ -22,10 +22,12 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.core.language.collections.list.ObjectList;
-import com.telenav.kivakit.language.primitive.Ints;
-import com.telenav.kivakit.language.level.Percent;
-import com.telenav.kivakit.language.version.Version;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.language.primitive.Ints;
+
+import com.telenav.kivakit.core.value.level.Percent;
+
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;

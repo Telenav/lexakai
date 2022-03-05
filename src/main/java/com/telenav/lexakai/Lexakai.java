@@ -24,22 +24,21 @@ import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 import com.telenav.kivakit.application.Application;
-import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.vm.Processes;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.os.Processes;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.value.count.MutableCount;
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
-import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.ResourceProject;
 import com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
@@ -49,7 +48,6 @@ import com.telenav.lexakai.javadoc.JavadocCoverage;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -78,6 +76,7 @@ import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.Re
  * @author jonathanl (shibo)
  * @see <a href="https://telenav.github.io/lexakai/">Lexakai documentation</a>
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Lexakai extends Application
 {
     public static Lexakai get()
@@ -250,11 +249,6 @@ public class Lexakai extends Application
                     .defaultValue(false)
                     .build();
 
-    protected Lexakai()
-    {
-        super(ResourceProject.get());
-    }
-
     @Override
     public String description()
     {
@@ -398,6 +392,7 @@ public class Lexakai extends Application
         list.add("Diagrams: $", totalDiagrams.get());
         list.add("Types: $", types.size());
         list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
+        assert rootProject != null;
         list.add("Javadoc Coverage:\n\n$", rootProject.nestedProjectJavadocCoverage()
                 .uniqued()
                 .sorted()
@@ -407,7 +402,7 @@ public class Lexakai extends Application
 
         announce(list.titledBox("Summary"));
 
-        // If the user wants SVG output and we have some .puml diagrams,
+        // If the user wants SVG output, and we have some .puml diagrams,
         if (get(CREATE_SVG_FILES) && !outputFiles.isEmpty())
         {
             // then build those files.
@@ -484,7 +479,7 @@ public class Lexakai extends Application
         var builder = IndentingStringBuilder.defaultTextIndenter();
         uml = (builder.lines().isZero() ? "" : builder + "\n\n") + uml;
 
-        // and if the user wants output to the console,
+        // and if the user wants console output,
         if (get(PRINT_DIAGRAMS_TO_CONSOLE))
         {
             // show the diagram on the console.
@@ -587,7 +582,6 @@ public class Lexakai extends Application
                 .map(Folder::absolute)
                 .filter(folder -> !folder.path().join().contains("target"))
                 .filter(folder -> !folder.path().join().contains("src/main/resources"))
-                .filter(Objects::nonNull)
                 .forEach(consumer);
     }
 }

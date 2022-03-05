@@ -18,10 +18,10 @@
 
 package com.telenav.lexakai.dependencies;
 
+import com.telenav.kivakit.core.collections.Collections;
+import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.core.string.IndentingStringBuilder;
-import com.telenav.kivakit.core.language.collections.Collections;
 import com.telenav.lexakai.BaseLexakaiDiagram;
 
 /**
@@ -47,6 +47,7 @@ public class DependencyDiagram extends BaseLexakaiDiagram
         var relativeFolder = tree.projectFolder().relativeTo(root);
         var outputFolder = outputRoot.folder(relativeFolder);
 
+        @SuppressWarnings("SpellCheckingInspection")
         var file = outputFolder
                 .folder("documentation/diagrams")
                 .file("dependencies.puml");

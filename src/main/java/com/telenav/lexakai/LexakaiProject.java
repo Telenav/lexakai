@@ -21,14 +21,12 @@ package com.telenav.lexakai;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.component.BaseComponent;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.primitive.Ints;
-
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
-
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.resources.packaged.Package;
@@ -90,6 +88,7 @@ import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class LexakaiProject extends BaseComponent implements Comparable<LexakaiProject>
 {
     /** True to add HTML anchors to indexes */
@@ -104,7 +103,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /** Any child projects of this project */
     private ObjectList<LexakaiProject> children;
 
-    /** Javadoc coverage for sub-projects or types in this project */
+    /** Collection of Javadoc coverage for subprojects or types in this project */
     private ObjectList<JavadocCoverage> coverage;
 
     /** The UML diagrams in this project, deduced from @UmlClassDiagram annotations */
@@ -132,7 +131,8 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     private final JavaParser parser;
 
     /**
-     * Properties for this project from system properties, project.properties, lexakai.settings and lexakai.properties
+     * Properties for this project from system properties, project.properties, 'lexakai.settings' and
+     * lexakai.properties
      */
     private LexakaiProjectProperties properties;
 
@@ -166,7 +166,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             {
                 lexakai.exit("Root project.properties file does not contain a project-version key: $", propertiesFile);
             }
-            this.version = Version.parse(this, rootVersion);
+            this.version = Version.parseVersion(this, rootVersion);
             if (this.version == null)
             {
                 lexakai.exit("Project project.properties declares invalid project-version: $", rootVersion);
@@ -391,7 +391,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     {
         var images = properties().imagesLocation();
         var png = "meter-" + Ints.quantized(percent.asInt(), 10) + "-96";
-        return Message.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
+        return Strings.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
     }
 
     public String name()

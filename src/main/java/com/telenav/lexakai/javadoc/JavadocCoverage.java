@@ -5,8 +5,8 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.string.Align;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.Folder;
@@ -64,11 +64,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
             var typeWarning = false;
             if (javadoc.isPresent())
             {
-                if (isJavadocComplete(type))
-                {
-                    isCovered = true;
-                }
-                else
+                if (!isJavadocComplete(type))
                 {
                     if (type.isEnumDeclaration())
                     {
@@ -143,7 +139,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
 
     public String coverage()
     {
-        return Message.format("$ ($ types, $ methods)", projectCoverage(), typeCoverage(), methodCoverage());
+        return Strings.format("$ ($ types, $ methods)", projectCoverage(), typeCoverage(), methodCoverage());
     }
 
     public String details()
@@ -256,7 +252,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
     private String summaryCoverage()
     {
         compute();
-        return Message.format("$: $", Align.right(project.name(), 32, ' '), coverage());
+        return Strings.format("$: $", Align.right(project.name(), 32, ' '), coverage());
     }
 
     private Percent typeCoverage()

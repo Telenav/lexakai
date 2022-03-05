@@ -19,10 +19,10 @@
 package com.telenav.lexakai.dependencies;
 
 import com.telenav.kivakit.component.BaseComponent;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.language.vm.OperatingSystem;
+import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.path.FileName;
 
 import java.util.HashMap;
@@ -35,7 +35,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 /**
  * @author jonathanl (shibo)
  */
-public class MavenDependencyTreeBuilder extends BaseComponent
+@SuppressWarnings("SpellCheckingInspection") public class MavenDependencyTreeBuilder extends BaseComponent
 {
     private final Folder root;
 
@@ -80,7 +80,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
             var dependencyMatcher = dependencyPattern.matcher(dependencies);
             while (dependencyMatcher.find())
             {
-                var identifier = Ints.parse(this, dependencyMatcher.group(1));
+                var identifier = Ints.parseInt(this, dependencyMatcher.group(1));
                 var groupId = dependencyMatcher.group(2);
                 var artifactId = dependencyMatcher.group(3);
                 var version = dependencyMatcher.group(4);
@@ -92,8 +92,8 @@ public class MavenDependencyTreeBuilder extends BaseComponent
             var referenceMatcher = referencePattern.matcher(references);
             while (referenceMatcher.find())
             {
-                var fromIdentifier = Ints.parse(this, referenceMatcher.group(1));
-                var toIdentifier = Ints.parse(this, referenceMatcher.group(2));
+                var fromIdentifier = Ints.parseInt(this, referenceMatcher.group(1));
+                var toIdentifier = Ints.parseInt(this, referenceMatcher.group(2));
                 var from = tree.artifact(fromIdentifier);
                 var to = tree.artifact(toIdentifier);
                 if (from != null && to != null)

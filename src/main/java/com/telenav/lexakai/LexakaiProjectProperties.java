@@ -5,7 +5,7 @@ import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.string.Packages;
 import com.telenav.kivakit.core.string.Paths;
-import com.telenav.kivakit.resource.resources.properties.PropertyMap;
+import com.telenav.kivakit.resource.PropertyMap;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 

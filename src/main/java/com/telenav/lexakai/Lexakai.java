@@ -39,8 +39,8 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher;
-import com.telenav.kivakit.resource.resources.packaged.PackageResource;
+import com.telenav.kivakit.resource.JarLauncher;
+import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
@@ -62,8 +62,8 @@ import static com.telenav.kivakit.filesystem.Folder.folderArgumentParser;
 import static com.telenav.kivakit.filesystem.Folder.folderSwitchParser;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
 import static com.telenav.kivakit.resource.CopyMode.UPDATE;
-import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.ProcessType.CHILD;
-import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.RedirectTo.CONSOLE;
+import static com.telenav.kivakit.resource.JarLauncher.ProcessType.CHILD;
+import static com.telenav.kivakit.resource.JarLauncher.RedirectTo.CONSOLE;
 
 /**
  * The <a href="https://telenav.github.io/lexakai/">Lexakai</a> application.

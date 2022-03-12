@@ -252,7 +252,7 @@ public class Lexakai extends Application
     @Override
     public String description()
     {
-        var variables = KivaKit.get().properties().add("lexakai-version", version().toString());
+        var variables = kivakit().properties().add("lexakai-version", version().toString());
         var template = PackageResource.packageResource(this, getClass(), "Help.txt").reader().asString();
         return variables.expand(template);
     }

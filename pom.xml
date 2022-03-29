@@ -13,7 +13,8 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>superpom</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
+        <relativePath>superpom</relativePath>
     </parent>
 
     <groupId>com.telenav.lexakai</groupId>

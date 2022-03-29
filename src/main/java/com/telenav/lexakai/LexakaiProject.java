@@ -27,9 +27,9 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.PropertyMap;
-import com.telenav.kivakit.resource.Package;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.packages.Package;
+import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.library.Diagrams;
@@ -48,6 +48,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
+import static com.telenav.kivakit.resource.Extension.*;
 
 /**
  * Represents a project for which Lexakai is producing diagrams.
@@ -154,12 +155,12 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
         if (version == null)
         {
-            var propertiesFile = root.file("project.properties");
+            var propertiesFile = listenTo(root.file("project.properties"));
             if (!propertiesFile.exists())
             {
                 lexakai.exit("Project.properties file does not exist: $", propertiesFile);
             }
-            var properties = PropertyMap.load(this, propertiesFile);
+            var properties = PropertyMap.load(propertiesFile);
             var rootVersion = properties.get("project-version");
             if (rootVersion == null)
             {
@@ -333,7 +334,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
             return false;
         }
 
-        var resourcePackage = Package.packageFrom(this, Lexakai.class, "resources");
+        var resourcePackage = Package.parsePackage(this, Lexakai.class, "resources");
 
         // If the project has source code,
         if (hasSourceCode())
@@ -482,7 +483,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         if (typeDeclarations.isEmpty())
         {
             // go through each Java file under the root's source folder,
-            folders().sourceCode().nestedFiles(Extension.JAVA.fileMatcher()).forEach(file ->
+            folders().sourceCode().nestedFiles(JAVA.fileMatcher()).forEach(file ->
             {
                 // except for this weird file :),
                 if (!file.fileName().name().equals("module-info.java"))

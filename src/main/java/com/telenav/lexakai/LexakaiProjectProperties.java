@@ -1,11 +1,9 @@
 package com.telenav.lexakai;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.string.Packages;
 import com.telenav.kivakit.core.string.Paths;
-import com.telenav.kivakit.resource.PropertyMap;
+import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
@@ -15,10 +13,9 @@ import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARA
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public class LexakaiProjectProperties extends PropertyMap
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     public static LexakaiProjectProperties load(LexakaiProject project)
     {
         var properties = new LexakaiProjectProperties(project);
@@ -33,7 +30,7 @@ public class LexakaiProjectProperties extends PropertyMap
         {
             project.lexakai().exit("Project.properties not found: $", projectProperties);
         }
-        properties.addAll(PropertyMap.load(LOGGER, projectProperties).expandedWith(properties));
+        properties.addAll(PropertyMap.load(projectProperties).expandedWith(properties));
         var artifactId = properties.get("project-artifact-id");
         if (artifactId.contains("superpom"))
         {
@@ -46,7 +43,7 @@ public class LexakaiProjectProperties extends PropertyMap
         properties.require("project-artifact-id");
 
         // lexakai.settings,
-        properties.addAll(PropertyMap.load(LOGGER, project.files().lexakaiSettings()).expandedWith(properties));
+        properties.addAll(PropertyMap.load(project.files().lexakaiSettings()).expandedWith(properties));
         properties.require("lexakai-documentation-location");
         properties.require("lexakai-javadoc-location");
         properties.require("lexakai-images-location");
@@ -57,7 +54,7 @@ public class LexakaiProjectProperties extends PropertyMap
         {
             project.lexakai().exit("Lexakai properties not found: $", lexakaiProperties);
         }
-        properties.addAll(PropertyMap.load(LOGGER, lexakaiProperties).expandedWith(properties));
+        properties.addAll(PropertyMap.load(lexakaiProperties).expandedWith(properties));
         properties.putIfAbsent("project-icon", "gears-32");
         properties.require("project-title");
         properties.require("project-description");

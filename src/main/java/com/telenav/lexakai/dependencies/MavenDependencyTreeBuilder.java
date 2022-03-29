@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.path.FileName;
+import com.telenav.kivakit.resource.FileName;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,11 +31,13 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.resource.FileName.parseFileName;
 
 /**
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection") public class MavenDependencyTreeBuilder extends BaseComponent
+@SuppressWarnings("SpellCheckingInspection")
+public class MavenDependencyTreeBuilder extends BaseComponent
 {
     private final Folder root;
 
@@ -57,7 +59,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
                 Pattern.DOTALL).matcher(output);
 
         var artifactIdToFolder = new HashMap<String, Folder>();
-        root.nestedFiles(file -> FileName.parse(this, "pom.xml").fileMatcher().matches(file))
+        root.nestedFiles(file -> parseFileName(this, "pom.xml").fileMatcher().matches(file))
                 .forEach(file ->
                 {
                     var pom = file.reader().asString().replaceAll("(?s)<parent>.*</parent>", "");

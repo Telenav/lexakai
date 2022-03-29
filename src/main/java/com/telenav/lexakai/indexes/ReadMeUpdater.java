@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.string.Wrap;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.PackageResource;
+import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;

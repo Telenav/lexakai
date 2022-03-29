@@ -25,10 +25,10 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Wrap;
+import com.telenav.kivakit.resource.packages.PackagePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.associations.UmlInheritance;
@@ -60,6 +60,7 @@ import static com.telenav.lexakai.library.Names.TypeParameters.WITH_TYPE_PARAMET
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "ClassEscapesDefinedScope", "unused" })
 public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 {
     public static class Referent
@@ -188,6 +189,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     /**
      * Includes the given type in this diagram
      */
+    @SuppressWarnings("ClassEscapesDefinedScope")
     public void include(UmlType type)
     {
         includedQualifiedTypes.put(type.name(QUALIFIED, WITHOUT_TYPE_PARAMETERS), type);

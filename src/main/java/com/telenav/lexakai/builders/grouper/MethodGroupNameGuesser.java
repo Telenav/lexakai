@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.PackageResource;
+import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
 import com.telenav.lexakai.library.Names;
@@ -40,11 +40,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SameParameterValue")
 public class MethodGroupNameGuesser
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -213,7 +215,7 @@ public class MethodGroupNameGuesser
         }
         else
         {
-            load(PackageResource.packageResource(LOGGER, Lexakai.class, "lexakai/lexakai.groups"));
+            load(packageResource(LOGGER, Lexakai.class, "lexakai/lexakai.groups"));
         }
     }
 }

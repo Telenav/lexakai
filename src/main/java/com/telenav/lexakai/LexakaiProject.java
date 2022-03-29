@@ -88,7 +88,6 @@ import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 public class LexakaiProject extends BaseComponent implements Comparable<LexakaiProject>
 {
     /** True to add HTML anchors to indexes */

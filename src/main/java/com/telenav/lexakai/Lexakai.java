@@ -276,7 +276,7 @@ public class Lexakai extends Application
     protected void onRun()
     {
         // Show our command line parameters,
-        announce(commandLineDescription("Lexakai"));
+        announce(startupInformation("Lexakai"));
 
         // get the root folders to locate projects from,
         var roots = commandLine().arguments(ROOT_FOLDER);

@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
 import com.telenav.lexakai.library.Names;

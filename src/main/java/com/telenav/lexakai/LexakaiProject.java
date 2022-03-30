@@ -27,7 +27,6 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
@@ -476,7 +475,6 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /**
      * Parse the class, interface and enum declarations under this project's source folder
      */
-    @SuppressWarnings("unchecked")
     private List<TypeDeclaration<?>> parseTypeDeclarations()
     {
         // If we have not yet parsed the source code,

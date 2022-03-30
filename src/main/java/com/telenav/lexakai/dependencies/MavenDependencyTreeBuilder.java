@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.FileName;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,7 +35,6 @@ import static com.telenav.kivakit.resource.FileName.parseFileName;
 /**
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 public class MavenDependencyTreeBuilder extends BaseComponent
 {
     private final Folder root;

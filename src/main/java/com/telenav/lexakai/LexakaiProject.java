@@ -27,8 +27,8 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.properties.PropertyMap;
+import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.library.Diagrams;
@@ -47,7 +47,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
-import static com.telenav.kivakit.resource.Extension.*;
+import static com.telenav.kivakit.resource.Extension.JAVA;
 
 /**
  * Represents a project for which Lexakai is producing diagrams.
@@ -500,6 +500,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
                                             .stream()
                                             .filter(type ->
                                             {
+                                                @SuppressWarnings("unchecked")
                                                 var qualifiedName = (Optional<String>) type.getFullyQualifiedName();
                                                 return qualifiedName.filter(name -> !name.contains("lexakai.diagrams")).isPresent();
                                             })

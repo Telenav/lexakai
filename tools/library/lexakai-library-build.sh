@@ -91,11 +91,13 @@ build() {
     "all")
         JAVADOC=true
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded clean-all tests shade tools ${@:3})
         ;;
 
     "compile")
         BUILD_ARGUMENTS="clean compile"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded no-tests shade no-javadoc quiet ${@:3})
         ;;
 
@@ -103,6 +105,7 @@ build() {
         JAVADOC=true
         export NO_PROMPT=true
         BUILD_ARGUMENTS="clean deploy"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded clean-all tests attach-jars sign-artifacts ${@:3})
         ;;
 
@@ -110,33 +113,39 @@ build() {
         JAVADOC=true
         export NO_PROMPT=true
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded clean-all tests attach-jars sign-artifacts ${@:3})
         ;;
 
     "javadoc")
         JAVADOC="true"
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
         ;;
 
     "setup")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade tools ${@:3})
         ;;
 
     "test")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(single-threaded tests no-javadoc ${@:3})
         ;;
 
     "tools")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade tools no-javadoc ${@:3})
         ;;
 
     *)
         BUILD_TYPE="default"
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade no-javadoc ${@:2})
         ;;
 
@@ -145,6 +154,7 @@ build() {
     BUILD_MODIFIERS_STRING=""
     DELIMITER=""
 
+    # shellcheck disable=SC2068
     for MODIFIER in ${BUILD_MODIFIERS[@]}; do
 
         BUILD_MODIFIERS_STRING="$BUILD_MODIFIERS_STRING$DELIMITER$MODIFIER"
@@ -174,7 +184,7 @@ build() {
             ;;
 
         "javadoc")
-            if [ ! -z "$JAVADOC" ]; then
+            if [ -n "$JAVADOC" ]; then
                 BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
             fi
             ;;
@@ -246,14 +256,18 @@ build() {
 
     FILTER_OUT="grep -y -v --line-buffered"
 
+    BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/src/main/java/build.properties"
+
     if [ -f "$KIVAKIT_HOME/build.properties" ]; then
 
-        KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
-        KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
+        KIVAKIT_BUILD_NAME=$(cat "$BUILD_PROPERTIES" | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
+        KIVAKIT_BUILD_DATE=$(cat "$BUILD_PROPERTIES" | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
     fi
 
-    if [ ! -z "$KIVAKIT_BUILD_NAME" ]; then
+    if [ -n "$KIVAKIT_BUILD_NAME" ]; then
         KIVAKIT_BUILD_NAME=" ($KIVAKIT_BUILD_DATE $KIVAKIT_BUILD_NAME)"
     fi
 
@@ -272,6 +286,7 @@ build() {
 
             $PRE_BUILD_SCRIPT
 
+            # shellcheck disable=SC2164
             cd "$BUILD_FOLDER"
 
             # shellcheck disable=SC2086
@@ -290,10 +305,12 @@ build() {
 
         fi
 
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
-        if [ ! -z "$KIVAKIT_BUILD_NAME" ]; then
+        if [ -n "$KIVAKIT_BUILD_NAME" ]; then
 
             KIVAKIT_BUILD_NAME=" ($KIVAKIT_BUILD_DATE $KIVAKIT_BUILD_NAME)"
 

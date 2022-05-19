@@ -70,7 +70,7 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
             return -2;
         }
 
-        return Ints.inRange(name.compareTo(that.name), -1, 1);
+        return Ints.inRangeInclusive(name.compareTo(that.name), -1, 1);
     }
 
     public Count count()

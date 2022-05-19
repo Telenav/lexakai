@@ -206,7 +206,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         {
             total += at.projectCoverage().value();
         }
-        return Percent.of(total / coverage.size());
+        return Percent.percent(total / coverage.size());
     }
 
     public LexakaiProject buildPackageDiagrams(boolean packageDiagrams)

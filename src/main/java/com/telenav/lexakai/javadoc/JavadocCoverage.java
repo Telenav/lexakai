@@ -192,8 +192,8 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
     {
         if (typeCoverage == null)
         {
-            typeCoverage = totalTypes == 0 ? Percent._0 : Percent.of(100.0 * totalCoveredTypes / totalTypes);
-            methodCoverage = totalMethods == 0 ? Percent._100 : Percent.of(100.0 * totalCoveredMethods / totalMethods);
+            typeCoverage = totalTypes == 0 ? Percent._0 : Percent.percent(100.0 * totalCoveredTypes / totalTypes);
+            methodCoverage = totalMethods == 0 ? Percent._100 : Percent.percent(100.0 * totalCoveredMethods / totalMethods);
             projectCoverage = typeCoverage.plus(methodCoverage).dividedBy(2.0);
         }
     }

@@ -175,7 +175,7 @@ public class Lexakai extends Application
     public SwitchParser<Folder> OUTPUT_FOLDER =
             folderSwitchParser(this, "output-folder", "Root folder of output")
                     .optional()
-                    .defaultValue(Folder.parse(this, "./documentation/lexakai/output"))
+                    .defaultValue(Folder.parseFolder(this, "./documentation/lexakai/output"))
                     .build();
 
     public SwitchParser<Boolean> OVERWRITE_RESOURCES =

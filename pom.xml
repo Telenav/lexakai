@@ -7,10 +7,10 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -->
-
-<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-         xmlns = "http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+     xmlns="http://maven.apache.org/POM/4.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,23 +18,16 @@
         <groupId>com.telenav</groupId>
         <artifactId>telenav-superpom</artifactId>
         <version>1.5.1-SNAPSHOT</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai</artifactId>
     <version>1.0.5</version>
 
-    <description>Lexakai annotations are used by Lexakai to generate UML diagrams.</description>
-
-    <!-- Project -->
-
-    <url>https://www.lexakai.org</url>
-    <inceptionYear>2021</inceptionYear>
-
-    <organization>
-        <name>Telenav</name>
-        <url>https://www.telenav.com</url>
-    </organization>
+    <description>
+        Lexakai annotations are used by Lexakai to generate UML diagrams.
+    </description>
 
     <!-- Licensing -->
 
@@ -45,60 +38,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <!-- Contributors -->
-
-    <developers>
-        <developer>
-            <id>jonathanl</id>
-            <name>Jonathan Locke (Luo Shibo)</name>
-            <email>jonathanl@telenav.com</email>
-
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>lead</role>
-                <role>administrator</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>haifeng</id>
-            <name>Haifeng Zhu</name>
-            <email>hfzhu@telenav.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>developer</role>
-                <role>administrator</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>timboudreau</id>
-            <name>Tim Boudreau</name>
-            <email>tim@timboudreau.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>developer</role>
-                <role>administrator</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <!-- Source Code -->
-
-    <scm>
-        <connection>scm:git:https://Telenav/lexakai.git</connection>
-        <developerConnection>scm:git:https://Telenav/lexakai.git</developerConnection>
-        <url>https://Telenav/lexakai.git</url>
-    </scm>
-
-    <!-- Issue Tracking -->
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/Telenav/lexakai/issues</url>
-    </issueManagement>
 
     <!-- Dependencies -->
 
@@ -144,6 +83,7 @@
             <!-- Shading -->
 
             <plugin>
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>${maven-shade-plugin.version}</version>
@@ -153,13 +93,15 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+
                         <configuration>
+
                             <finalName>lexakai-${project.version}</finalName>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
                                 <transformer
-                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.telenav.lexakai.Lexakai</mainClass>
                                 </transformer>
                             </transformers>
@@ -176,10 +118,90 @@
                                     <include>*:*</include>
                                 </includes>
                             </artifactSet>
+
                         </configuration>
+
                     </execution>
                 </executions>
+
             </plugin>
+
         </plugins>
+
     </build>
+
+    <!-- Source Code -->
+
+    <scm>
+        <connection>scm:git:https://Telenav/lexakai.git</connection>
+        <developerConnection>scm:git:https://Telenav/lexakai.git</developerConnection>
+        <url>https://Telenav/lexakai.git</url>
+    </scm>
+
+    <!-- Project -->
+
+    <url>https://www.lexakai.org</url>
+
+    <!-- Issue Tracking -->
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Telenav/lexakai/issues</url>
+    </issueManagement>
+
+    <inceptionYear>2021</inceptionYear>
+
+    <organization>
+        <name>Telenav</name>
+        <url>https://www.telenav.com</url>
+    </organization>
+
+    <!-- Contributors -->
+
+    <developers>
+
+        <developer>
+
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+
+        </developer>
+
+        <developer>
+
+            <id>haifeng</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+
+        </developer>
+
+        <developer>
+
+            <id>timboudreau</id>
+            <name>Tim Boudreau</name>
+            <email>tim@timboudreau.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+
+        </developer>
+
+    </developers>
+
 </project>

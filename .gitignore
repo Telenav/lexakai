@@ -18,3 +18,5 @@
 **/Err.log
 **/Err.log.*
 dependency-reduced-pom.xml
+*.orig
+

@@ -15,20 +15,18 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>com.telenav</groupId>
-        <artifactId>telenav-superpom</artifactId>
-        <version>1.5.1-SNAPSHOT</version>
+        <groupId>com.telenav.lexakai</groupId>
+        <artifactId>lexakai-superpom</artifactId>
+        <version>1.0.5</version>
         <relativePath/>
     </parent>
-    
-    <groupId>com.telenav.lexakai</groupId>
+
     <artifactId>lexakai</artifactId>
-    <version>1.0.5</version>
-    
+
     <description>
         Lexakai annotations are used by Lexakai to generate UML diagrams.
     </description>
-    
+
     <!-- Licensing -->
     
     <licenses>

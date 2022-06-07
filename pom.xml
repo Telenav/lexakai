@@ -17,7 +17,7 @@
     <parent>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai-superpom</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.7</version>
         <relativePath/>
     </parent>
 
@@ -40,7 +40,37 @@
     <!-- Dependencies -->
     
     <dependencies>
-        
+
+        <!-- Cactus Build -->
+
+        <dependency>
+            <groupId>com.telenav.cactus</groupId>
+            <artifactId>cactus-build-maven-model</artifactId>
+            <version>1.4.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-component-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.sisu</groupId>
+                    <artifactId>org.eclipse.sisu.inject</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-utils</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.inject</groupId>
+                    <artifactId>guice</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-classworlds</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- KivaKit -->
         
         <dependency>
@@ -72,7 +102,7 @@
             <artifactId>javaparser-symbol-solver-core</artifactId>
             <version>3.19.0</version>
         </dependency>
-        
+
     </dependencies>
     
     <build>

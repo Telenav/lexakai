@@ -256,7 +256,7 @@ build() {
 
     FILTER_OUT="grep -y -v --line-buffered"
 
-    BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/src/main/java/build.properties"
+    BUILD_PROPERTIES="$KIVAKIT_HOME/kivakit-core/target/classes/build.properties"
 
     if [ -f "$KIVAKIT_HOME/build.properties" ]; then
 

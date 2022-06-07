@@ -9,10 +9,9 @@
 #
 lexakai-documentation-location = https://www.lexakai.org/${project-version}/lexakai
 lexakai-javadoc-location       = https://www.lexakai.org/${project-version}/javadoc
-lexakai-images-location        = https://www.lexakai.org/images
+lexakai-images-location        = https://telenav.github.io/telenav-assets
 
 #
 # Default project settings
 #
 project-footer                 = <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>
-

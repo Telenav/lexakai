@@ -190,11 +190,6 @@ public class Lexakai extends Application
                     .defaultValue(false)
                     .build();
 
-    public SwitchParser<Version> PROJECT_VERSION =
-            versionSwitchParser(this, "project-version", "Version of project used when generating markdown")
-                    .optional()
-                    .build();
-
     public ArgumentParser<Folder> ROOT_FOLDER =
             folderArgumentParser(this, "Root folder to start at when locating projects")
                     .oneOrMore()
@@ -308,7 +303,6 @@ public class Lexakai extends Application
                 OUTPUT_FOLDER,
                 OVERWRITE_RESOURCES,
                 PRINT_DIAGRAMS_TO_CONSOLE,
-                PROJECT_VERSION,
                 SAVE_DIAGRAMS,
                 SHOW_DIAGRAMS,
                 SHOW_DIAGRAM_WARNINGS,
@@ -545,7 +539,7 @@ public class Lexakai extends Application
     private LexakaiProject project(Folder root,
                                    Folder projectFolder)
     {
-        var project = new LexakaiProject(this, get(PROJECT_VERSION), root, projectFolder, outputRoot(root), parser);
+        var project = new LexakaiProject(this, root, projectFolder, outputRoot(root), parser);
         if (project.initialize())
         {
             return listenTo(project)

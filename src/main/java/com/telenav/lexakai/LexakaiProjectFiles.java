@@ -5,6 +5,7 @@ import com.telenav.kivakit.filesystem.File;
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "SpellCheckingInspection", "unused" })
 public class LexakaiProjectFiles
 {
     private final LexakaiProject project;
@@ -34,7 +35,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The lexakai.properties file for this project in the output tree
+     * @return The lexakai.properties file for the given project in the output tree
      */
     public File lexakaiProperties(String artifactId)
     {

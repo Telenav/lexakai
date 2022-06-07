@@ -46,7 +46,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
 
     public Set<DependencyTree> trees()
     {
-        var mavenHome = ensureNotNull(OperatingSystem.get().property("M2_HOME"));
+        var mavenHome = ensureNotNull(OperatingSystem.get().property("M2_HOME"), "Must set M2_HOME to point to maven installation");
         var output = OperatingSystem.get()
                 .exec(root.asJavaFile(), mavenHome + "/bin/mvn", "-DoutputType=tgf", "dependency:tree")
                 .replaceAll("\\[INFO]", "");

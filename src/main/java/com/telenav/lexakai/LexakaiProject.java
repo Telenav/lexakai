@@ -20,6 +20,8 @@ package com.telenav.lexakai;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import com.telenav.cactus.maven.model.MavenCoordinates;
+import com.telenav.cactus.maven.model.PomFile;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.primitive.Ints;
@@ -27,7 +29,6 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
@@ -46,6 +47,7 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.JAVA;
 
@@ -54,8 +56,8 @@ import static com.telenav.kivakit.resource.Extension.JAVA;
  *
  * <p><b>Java Parsing</b></p>
  * <p>
- * The project has types that are discovered using the JavaParser API. Those types are available through {@link
- * #typeDeclarations(Consumer)}.
+ * The project has types that are discovered using the JavaParser API. Those types are available through
+ * {@link #typeDeclarations(Consumer)}.
  * </p>
  *
  * <p><b>Settings</b></p>
@@ -138,42 +140,21 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
     /** THe set of type declarations in this project */
     private final List<TypeDeclaration<?>> typeDeclarations = new ArrayList<>();
 
-    /** The project version */
-    private Version version;
+    private final MavenCoordinates mavenCoordinates;
 
     protected LexakaiProject(Lexakai lexakai,
-                             Version version,
                              Folder root,
                              Folder project,
                              Folder outputRoot,
                              JavaParser parser)
     {
         this.lexakai = lexakai;
-        this.version = version;
         this.parser = parser;
-
-        if (version == null)
-        {
-            var propertiesFile = listenTo(root.file("project.properties"));
-            if (!propertiesFile.exists())
-            {
-                lexakai.exit("Project.properties file does not exist: $", propertiesFile);
-            }
-            var properties = PropertyMap.load(propertiesFile);
-            var rootVersion = properties.get("project-version");
-            if (rootVersion == null)
-            {
-                lexakai.exit("Root project.properties file does not contain a project-version key: $", propertiesFile);
-            }
-            this.version = Version.parseVersion(this, rootVersion);
-            if (this.version == null)
-            {
-                lexakai.exit("Project project.properties declares invalid project-version: $", rootVersion);
-            }
-        }
-
         folders = new LexakaiProjectFolders(this, root, project, outputRoot);
         files = new LexakaiProjectFiles(this);
+
+        var pom = project.file("pom.xml");
+        mavenCoordinates = tryCatchThrow(() -> new PomFile(pom.asJavaPath()).coordinates(), "Unable to load POM file: $", pom);
     }
 
     public LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
@@ -385,6 +366,11 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         return "[**" + name() + "**](" + folder.file("README.md") + ")";
     }
 
+    public MavenCoordinates mavenCoordinates()
+    {
+        return mavenCoordinates;
+    }
+
     @NotNull
     public String meterMarkdownForPercent(Percent percent)
     {
@@ -464,7 +450,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
     public Version version()
     {
-        return version;
+        return parseVersion(this, mavenCoordinates.version);
     }
 
     private boolean isProject(Folder folder)

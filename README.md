@@ -1,7 +1,7 @@
 [//]: # (start-user-text)
 
 <a href="https://www.lexakai.org">
-<img src="https://www.lexakai.org/images/web-32.png" srcset="https://www.lexakai.org/images/web-32-2x.png 2x"/>
+<img src="https://www.lexakai.org/images/logos/web-32.png" srcset="https://www.lexakai.org/images/logos/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openlexakai">
@@ -77,19 +77,19 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-32-2x.png 2x"/>
 
-| Resource     |     Description                   |
-|--------------|-----------------------------------|
-| Project Name | Lexakai |
-| Summary | Lexakai creates markdown and UML from Java source code |
-| Javadoc Coverage |  <!-- <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/><!-- end --> |
-| Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| Email | [kivakit@telenav.com](mailto:jonathanl@telenav.com) |
-| Chat | [Zulip](https://lexakai.zulip.com) |
-| Twitter | [@OpenLexakai](https://twitter.com/openlexakai) |
-| Issues | [GitHub Issues](https://github.com/Telenav/lexakai/issues) |
-| Code | [GitHub](https://github.com/Telenav/lexakai) |
-| Checkout | `git clone https://github.com/Telenav/lexakai.git` |
+| Resource     | Description                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Project Name | Lexakai                                                                                                                                                                                                                                                                                                                                                                           |
+| Summary | Lexakai creates markdown and UML from Java source code                                                                                                                                                                                                                                                                                                                            |
+| Javadoc Coverage | <!-- <img src="https://telenav.github.io/telenav-assets/images/meter/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/><!-- end -->       |
+| Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                           |
+| Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                           |
+| Email | [kivakit@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                                                               |
+| Chat | [Zulip](https://lexakai.zulip.com)                                                                                                                                                                                                                                                                                                                                                |
+| Twitter | [@OpenLexakai](https://twitter.com/openlexakai)                                                                                                                                                                                                                                                                                                                                   |
+| Issues | [GitHub Issues](https://github.com/Telenav/lexakai/issues)                                                                                                                                                                                                                                                                                                                        |
+| Code | [GitHub](https://github.com/Telenav/lexakai)                                                                                                                                                                                                                                                                                                                                      |
+| Checkout | `git clone https://github.com/Telenav/lexakai.git`                                                                                                                                                                                                                                                                                                                                |
 
 <p>
 <br/>
@@ -255,7 +255,7 @@ This global settings file contains the following properties:
 
     lexakai-documentation-location = https://www.lexakai.org/lexakai
     lexakai-javadoc-location       = https://www.lexakai.org/javadoc
-    lexakai-images-location        = https://www.lexakai.org/images
+    lexakai-images-location        = https://telenav.github.io/images
 
     project-footer                 = <sub>Copyright &#169; 2011-2021, Me</sub>
 
@@ -341,7 +341,7 @@ None
 
 Javadoc coverage for this project is 48.3%.  
   
-&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/meter-50-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meter/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-50-96-2x.png 2x"/>
 
 
 The following significant classes are undocumented:  

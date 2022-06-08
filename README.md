@@ -18,11 +18,11 @@
 
 [//]: # (end-user-text)
 
-# lexakai 1.0.7 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/icons/lexakai-64-2x.png 2x"/>
+# lexakai 1.0.7 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/icons//lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
@@ -45,9 +45,9 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/dependencies.svg)
 
@@ -59,7 +59,7 @@ A tool for generating UML diagrams and markdown documentation indexes.
         <version>1.0.7</version>
     </dependency>
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -73,15 +73,15 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 Lexakai creates documentation indexes and UML diagrams from the source code of each maven or gradle project discovered recursively from the root folder(s) given as argument(s).
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconswater-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconswater-32-2x.png 2x"/>
+### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-32-2x.png 2x"/>
 
 | Resource     |     Description                   |
 |--------------|-----------------------------------|
 | Project Name | Lexakai |
 | Summary | Lexakai creates markdown and UML from Java source code |
-| Javadoc Coverage |  <!-- <img src="https://telenav.github.io/telenav-assets/images/iconsmeter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/iconsmeter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/iconsmeter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/iconsmeter-50-96-2x.png 2x"/><!-- end --> |
+| Javadoc Coverage |  <!-- <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/><!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [kivakit@telenav.com](mailto:jonathanl@telenav.com) |
@@ -95,20 +95,20 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 <br/>
 </p>
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Setup <a name = "setup"></a> &nbsp; <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+### Setup <a name = "setup"></a> &nbsp; <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 1. Install [GraphViz](https://plantuml.com/graphviz-dot) for generating SVG files
 
 2. Download Lexakai
 
-   [**Lexakai 1.0.0**](https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/1.0.0/lexakai-1.0.0.jar) &nbsp; ![](https://telenav.github.io/telenav-assets/images/iconsdown-arrow-32.png)
+   [**Lexakai 1.0.0**](https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/1.0.0/lexakai-1.0.0.jar) &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/down-arrow-32.png)
 
 
 3. Run Lexakai with *java -jar*
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Examples <a name = "example"></a>
 
@@ -117,15 +117,15 @@ Examples of Lexakai documentation:
 - [KivaKit](https://github.com/Telenav/kivakit)
 - [Lexakai](https://github.com/Telenav/lexakai)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/iconsbox-32.png)
+### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-32.png)
 
 Lexakai automatically creates basic package diagrams for all public types without further configuration.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; ![](https://telenav.github.io/telenav-assets/images/iconsdiagram-40.png)
+### Custom UML Diagrams <a name = "custom-uml-diagrams"></a>&nbsp; &nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/diagram-40.png)
 
 To create a set of one or more custom diagrams for a project, annotations can be used from this project:
 
@@ -151,9 +151,9 @@ will be included in the diagram *diagram-map-server* (the lowercase, hyphenated 
 The preferred location for diagram marker interfaces is in the sub-package *project.lexakai*, and they should be prefixed with *
 Diagram* to make their use clear.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Grouping Methods in Class Diagrams <a name = "grouping-methods-in-class-diagrams"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/iconsset-32.png)
+### Grouping Methods in Class Diagrams <a name = "grouping-methods-in-class-diagrams"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/set-32.png)
 
 Groups of methods can be specified using the *@UmlMethodGroup* annotation. Method groups will be given labeled separators in class diagrams, making the list of methods easier to understand.
 
@@ -164,37 +164,37 @@ For example:
 could be used to label all the settings-related methods in a type. Multiple *@UmlMethodGroup*
 annotations can be added to specify that a method should be shown in more than one group.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](https://telenav.github.io/telenav-assets/images/iconsgears-32.png)
+### Automatic Method Groups <a name = "automatic-method-groups"></a>&nbsp;![](https://telenav.github.io/telenav-assets/images/icons/gears-32.png)
 
 The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method-groups* is set to *true*
 (which is the default). In this case, the best guess will be made based on method name and parameter patterns as to which group a method most likely belongs. When the guess is inaccurate, or no guess is made, an *@UmlMethodGroup* annotation can be applied to correct the result. The set of patterns that are used to determine automatic groups is in a file called *lexakai.groups* in the Lexakai settings folder. This file can be customized for a particular project. An explicit annotation can be used to override any automatic group assignment(s) for a method.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/iconsright-arrow-32.png)
+### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/right-arrow-32.png)
 
 Patterns in the names of types, fields and methods are used to try to deduce UML associations. The annotation *@UmlRelation* can be used to override this guess with an explicit relation if the association was not be deduced, or it was deduced incorrectly.
 
 If the annotation *@UmlRelation(label = \"*label*\")* is applied to a method or field, a relation arrow will be drawn from the enclosing type to the type of the member. Similar annotations are available for field aggregation (*@UmlAggregation*) and composition (*
 @UmlComposition*). If the *@UmlRelation* tag is applied to a type, it can specify a relation with a particular referent and cardinality. An explicit relation of this type can be made specific to a particular diagram with the *diagram* parameter. Multiple *@UmlRelation* tags can be applied to a type.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://telenav.github.io/telenav-assets/images/iconsno-32.png)
+### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://telenav.github.io/telenav-assets/images/icons/no-32.png)
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Non-Public Apis <a name = "non-public-apis"></a>
 
 *@UmlNotPublicApi* marks a type or member as private even if it is not actually private.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/iconsannotation-32.png)
+### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/annotation-32.png)
 
 #### Diagrams
 
@@ -215,9 +215,9 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 - *@UmlAggregation* - adds a UML aggregation association from the enclosing type to the annotated field type
 - *@UmlComposition* - adds a UML composition association from the enclosing type to the annotated field type
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Settings <a name = "settings"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/iconstools-32.png)
+### Settings <a name = "settings"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/tools-32.png)
 
 Each root project that Lexakai processes must have a *documentation/lexakai* folder. This folder must contain all the settings that Lexakai uses to create documentation. When Lexakai is run for the first time, this folder will be created and populated with default settings files. Settings for individual projects can then be added to the *projects* subfolder, so the final tree looks like this:
 
@@ -288,9 +288,9 @@ The *project-title*, *project-description* and *project-icon* values will be use
 
 refers to the diagram title specified by the key *diagram-my-utilities* in the *.properties* file for the project.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/iconspencil-32.png)
+### Readme Generation and Updating <a name = "readme-generation-and-updating"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/pencil-32.png)
 
 If the *-update-readme* switch is set to *true* (it is *false* by default to ensure it doesn't overwrite an existing file), then a *README.md* file will be generated or updated each time the UML diagrams are generated. This markdown file will use *project-title* as its title and insert the description *project-description* from the *[project].properties*
 file as the project description.
@@ -306,7 +306,7 @@ which is the style used in KivaKit, but any regular expression pattern can be su
 
 Any text between the markdown comments *start-user-text* and *end-user-text* will be preserved, allowing additional documentation to be maintained.
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Custom README Templates <a name = "custom-readme-templates"></a>
 
@@ -314,15 +314,15 @@ The first run of Lexakai on a project will create two default templates in the *
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsdiagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/iconsdiagram-40-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
 None
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbox-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbox-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
 
 [*com.telenav.lexakai*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/com.telenav.lexakai.svg)  
 [*com.telenav.lexakai.associations*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/com.telenav.lexakai.associations.svg)  
@@ -335,9 +335,9 @@ None
 [*com.telenav.lexakai.members*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/com.telenav.lexakai.members.svg)  
 [*com.telenav.lexakai.types*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/com.telenav.lexakai.types.svg)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-128-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/iconsbooks-32.png" srcset="https://telenav.github.io/telenav-assets/images/iconsbooks-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 Javadoc coverage for this project is 48.3%.  
   
@@ -408,7 +408,7 @@ The following significant classes are undocumented:
 
 [//]: # (end-user-text)
 
-<img src="https://telenav.github.io/telenav-assets/images/iconshorizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/png/separators/horizontal-line-512-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>

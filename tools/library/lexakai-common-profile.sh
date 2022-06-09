@@ -1,6 +1,6 @@
 #―――― Lexakai ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 
-system_variable LEXAKAI_WORKSPACE "$KIVAKIT_WORKSPACE"
+system_variable LEXAKAI_WORKSPACE "$TELENAV_WORKSPACE"
 
 system_variable LEXAKAI_HOME "$LEXAKAI_WORKSPACE/lexakai"
 system_variable LEXAKAI_ANNOTATIONS_HOME "$LEXAKAI_WORKSPACE/lexakai-annotations"

@@ -283,7 +283,7 @@ source_project_profile() {
 
     project_name=$1
 
-    common_profile="$KIVAKIT_WORKSPACE/${project_name}/tools/library/${project_name}-common-profile.sh"
+    common_profile="$TELENAV_WORKSPACE/${project_name}/tools/library/${project_name}-common-profile.sh"
     project_profile="$HOME/.${project_name}-profile"
 
     if test -e "$common_profile"; then

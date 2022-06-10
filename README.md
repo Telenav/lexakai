@@ -97,7 +97,7 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Setup <a name = "setup"></a> &nbsp; <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
+### Setup <a name = "setup"></a> &nbsp; <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
 1. Install [GraphViz](https://plantuml.com/graphviz-dot) for generating SVG files
 
@@ -119,7 +119,7 @@ Examples of Lexakai documentation:
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-32.png)
+### Creating Basic UML Package Diagrams <a name = "creating-basic-uml-package-diagrams"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/box-24.png)
 
 Lexakai automatically creates basic package diagrams for all public types without further configuration.
 
@@ -322,7 +322,7 @@ None
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
 [*com.telenav.lexakai*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/com.telenav.lexakai.svg)  
 [*com.telenav.lexakai.associations*](https://www.lexakai.org/1.0.7/lexakai/lexakai/documentation/diagrams/com.telenav.lexakai.associations.svg)  

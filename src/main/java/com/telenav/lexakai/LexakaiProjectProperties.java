@@ -4,12 +4,10 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.string.Packages;
 import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.properties.PropertyMap;
-import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**

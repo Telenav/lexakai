@@ -16,7 +16,7 @@
     
     <parent>
         <groupId>com.telenav.lexakai</groupId>
-        <artifactId>lexakai-superpom</artifactId>
+        <artifactId>telenav-superpom-lexakai</artifactId>
         <version>1.0.7</version>
         <relativePath/>
     </parent>

@@ -27,6 +27,12 @@
         Lexakai annotations are used by Lexakai to generate UML diagrams.
     </description>
 
+    <!-- Versions -->
+
+    <properties>
+        <java.parser.version>3.24.2</java.parser.version>
+    </properties>
+
     <!-- Licensing -->
     
     <licenses>
@@ -95,12 +101,12 @@
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-core</artifactId>
-            <version>3.19.0</version>
+            <version>${java.parser.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-symbol-solver-core</artifactId>
-            <version>3.19.0</version>
+            <version>${java.parser.version}</version>
         </dependency>
 
     </dependencies>

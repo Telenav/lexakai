@@ -1,24 +1,24 @@
 [//]: # (start-user-text)
 
 <a href="https://www.lexakai.org">
-<img src="https://www.lexakai.org/images/logos/web-32.png" srcset="https://www.lexakai.org/images/logos/web-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/logos/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openlexakai">
-<img src="https://www.lexakai.org/images/twitter-32.png" srcset="https://www.lexakai.org/images/twitter-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/twitter-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/twitter/twitter-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://lexakai.zulipchat.com">
-<img src="https://www.lexakai.org/images/zulip-32.png" srcset="https://www.lexakai.org/images/zulip-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/zulip-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/zulip/zulip-32-2x.png 2x"/>
 </a>
 
 <p></p>
 
-<img src="https://www.lexakai.org/images/lexakai-background-1024.png" srcset="https://www.lexakai.org/images/lexakai-background-1024-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/backgrounds/lexakai-background-1024.png" srcset="https://telenav.github.io/telenav-assets/images/backgrounds/lexakai-background-1024-2x.png 2x"/>
 
 [//]: # (end-user-text)
 
-# lexakai 1.0.7 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons//lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/icons//lexakai-64-2x.png 2x"/>
+# lexakai 1.0.7 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 
@@ -75,21 +75,21 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-32-2x.png 2x"/>
+### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-24-2x.png 2x"/>
 
-| Resource     | Description                                                                                                                                                                                                                                                                                                                                                                       |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Project Name | Lexakai                                                                                                                                                                                                                                                                                                                                                                           |
-| Summary | Lexakai creates markdown and UML from Java source code                                                                                                                                                                                                                                                                                                                            |
-| Javadoc Coverage | <!-- <img src="https://telenav.github.io/telenav-assets/images/meter/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/icons/meter-50-96-2x.png 2x"/><!-- end -->       |
-| Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                           |
-| Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                           |
-| Email | [kivakit@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                                                               |
-| Chat | [Zulip](https://lexakai.zulip.com)                                                                                                                                                                                                                                                                                                                                                |
-| Twitter | [@OpenLexakai](https://twitter.com/openlexakai)                                                                                                                                                                                                                                                                                                                                   |
-| Issues | [GitHub Issues](https://github.com/Telenav/lexakai/issues)                                                                                                                                                                                                                                                                                                                        |
-| Code | [GitHub](https://github.com/Telenav/lexakai)                                                                                                                                                                                                                                                                                                                                      |
-| Checkout | `git clone https://github.com/Telenav/lexakai.git`                                                                                                                                                                                                                                                                                                                                |
+| Resource         | Description                                                                                                                                                                                                                                                                                                                                                          |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Project Name     | Lexakai                                                                                                                                                                                                                                                                                                                                                              |
+| Summary          | Lexakai creates markdown and UML from Java source code                                                                                                                                                                                                                                                                                                               |
+| Javadoc Coverage | <!-- <img src="https://telenav.github.io/telenav-assets/images/meter/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meter/meter-50-96-2x.png 2x"/><!-- end --> |
+| Lead             | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                              |
+| Administrator    | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                              |
+| Email            | [kivakit@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                                                  |
+| Chat             | [Zulip](https://lexakai.zulip.com)                                                                                                                                                                                                                                                                                                                                   |
+| Twitter          | [@OpenLexakai](https://twitter.com/openlexakai)                                                                                                                                                                                                                                                                                                                      |
+| Issues           | [GitHub Issues](https://github.com/Telenav/lexakai/issues)                                                                                                                                                                                                                                                                                                           |
+| Code             | [GitHub](https://github.com/Telenav/lexakai)                                                                                                                                                                                                                                                                                                                         |
+| Checkout         | `git clone https://github.com/Telenav/lexakai.git`                                                                                                                                                                                                                                                                                                                   |
 
 <p>
 <br/>
@@ -173,7 +173,7 @@ The *@UmlMethodGroup* annotation can be avoided if the switch *-automatic-method
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/right-arrow-32.png)
+### UML Associations <a name = "uml-associations"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/right-arrow-24.png)
 
 Patterns in the names of types, fields and methods are used to try to deduce UML associations. The annotation *@UmlRelation* can be used to override this guess with an explicit relation if the association was not be deduced, or it was deduced incorrectly.
 
@@ -182,7 +182,7 @@ If the annotation *@UmlRelation(label = \"*label*\")* is applied to a method or 
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://telenav.github.io/telenav-assets/images/icons/no-32.png)
+### Excluding Types And Members <a name = "excluding-types-and-members"></a>&nbsp;![](https://telenav.github.io/telenav-assets/images/icons/no-24.png)
 
 Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMember*.
 
@@ -194,7 +194,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/annotation-32.png)
+### Annotation Summary <a name = "annotation-summary"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/annotation-24.png)
 
 #### Diagrams
 
@@ -217,7 +217,7 @@ Methods and fields can be excluded entirely by labeling them with *@UmlExcludeMe
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
-### Settings <a name = "settings"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/tools-32.png)
+### Settings <a name = "settings"></a>&nbsp; ![](https://telenav.github.io/telenav-assets/images/icons/tools-24.png)
 
 Each root project that Lexakai processes must have a *documentation/lexakai* folder. This folder must contain all the settings that Lexakai uses to create documentation. When Lexakai is run for the first time, this folder will be created and populated with default settings files. Settings for individual projects can then be added to the *projects* subfolder, so the final tree looks like this:
 

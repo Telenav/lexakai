@@ -22,6 +22,7 @@
     </parent>
 
     <artifactId>lexakai</artifactId>
+    <version>1.0.7</version>
 
     <description>
         Lexakai annotations are used by Lexakai to generate UML diagrams.

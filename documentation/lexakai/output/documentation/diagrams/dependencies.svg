@@ -12,7 +12,7 @@ entity failureaccess--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.333
 entity guava--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="72.9167" x="523.4375" y="268.2861"/><polygon fill="#1B1B1A" points="578.6458,273.4945,578.6458,288.0778,591.1458,288.0778,591.1458,279.7445,584.8958,273.4945,578.6458,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="584.8958" x2="584.8958" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="591.1458" x2="584.8958" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="35.4167" x="536.9792" y="297.0378">guava</text><!--MD5=[086f0ccc94ed1f1bfce6ac364e04f94a]
 entity listenablefuture--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="130.2083" x="494.7917" y="375.5778"/><polygon fill="#1B1B1A" points="607.2917,380.7861,607.2917,395.3695,619.7917,395.3695,619.7917,387.0361,613.5417,380.7861,607.2917,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="613.5417" x2="613.5417" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="619.7917" x2="613.5417" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="92.7083" x="508.3333" y="404.3294">listenablefuture</text><!--MD5=[3c0779b92e6741c2af7e57f5860bf180]
 entity j2objc_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="151.0417" x="661.4583" y="375.5778"/><polygon fill="#1B1B1A" points="794.7917,380.7861,794.7917,395.3695,807.2917,395.3695,807.2917,387.0361,801.0417,380.7861,794.7917,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="801.0417" x2="801.0417" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="807.2917" x2="801.0417" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="113.5417" x="675" y="404.3294">j2objc_annotations</text><!--MD5=[4aa4ddcf3dc6d6219283db0a9fd05165]
-entity cactus_build_metadata--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="175" x="2305.7292" y="268.2861"/><polygon fill="#1B1B1A" points="2463.0208,273.4945,2463.0208,288.0778,2475.5208,288.0778,2475.5208,279.7445,2469.2708,273.4945,2463.0208,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2469.2708" x2="2469.2708" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2475.5208" x2="2469.2708" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="137.5" x="2319.2708" y="297.0378">cactus_build_metadata</text><!--MD5=[45672d575b1ce7dfe271c63a1d4308c0]
+entity cactus_metadata--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="175" x="2305.7292" y="268.2861"/><polygon fill="#1B1B1A" points="2463.0208,273.4945,2463.0208,288.0778,2475.5208,288.0778,2475.5208,279.7445,2469.2708,273.4945,2463.0208,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2469.2708" x2="2469.2708" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2475.5208" x2="2469.2708" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="137.5" x="2319.2708" y="297.0378">cactus_metadata</text><!--MD5=[45672d575b1ce7dfe271c63a1d4308c0]
 entity kivakit_application--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="147.9167" x="1192.1875" y="160.9945"/><polygon fill="#1B1B1A" points="1322.3958,166.2028,1322.3958,180.7861,1334.8958,180.7861,1334.8958,172.4528,1328.6458,166.2028,1322.3958,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1328.6458" x2="1328.6458" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1334.8958" x2="1328.6458" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="110.4167" x="1205.7292" y="189.7461">kivakit_application</text><!--MD5=[4facc4376e4b6bfc182ce14f42a813f9]
 entity kivakit_collections--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="143.75" x="1488.0208" y="160.9945"/><polygon fill="#1B1B1A" points="1614.0625,166.2028,1614.0625,180.7861,1626.5625,180.7861,1626.5625,172.4528,1620.3125,166.2028,1614.0625,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1620.3125" x2="1620.3125" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1626.5625" x2="1620.3125" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="106.25" x="1501.5625" y="189.7461">kivakit_collections</text><!--MD5=[b7af8d5b7902cf06664f76dfe0f9e426]
 entity kivakit_commandline--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="162.5" x="986.9792" y="268.2861"/><polygon fill="#1B1B1A" points="1131.7708,273.4945,1131.7708,288.0778,1144.2708,288.0778,1144.2708,279.7445,1138.0208,273.4945,1131.7708,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1138.0208" x2="1138.0208" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1144.2708" x2="1138.0208" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="125" x="1000.5208" y="297.0378">kivakit_commandline</text><!--MD5=[c68e98f234d4ac85d03ca04aa775ddf3]
@@ -80,7 +80,7 @@ link lexakai to kivakit_collections--><path d="M1559.8958,98.9424 C1559.8958,115
 link lexakai to kivakit_network_http--><path d="M1600.1667,92.6611 C1645.5521,110.1611 1719.8333,138.7965 1772.2292,158.9945 " fill="none" id="lexakai-to-kivakit_network_http" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1777.2292,160.9215,1769.9793,153.6627,1772.3691,159.0489,1766.983,161.4388,1777.2292,160.9215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8b2c2dba143daba5a7cc20b84829a0ea]
 link lexakai to kivakit_resource--><path d="M1600.2188,85.0465 C1690.2813,102.7132 1908.8958,145.5882 2023.5,168.057 " fill="none" id="lexakai-to-kivakit_resource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2028.875,169.1195,2020.4727,163.2328,2023.7633,168.121,2018.8751,171.4115,2028.875,169.1195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c4721fba06555ce229e5edad851f52c1]
 link lexakai to lexakai_annotations--><path d="M1600.2813,82.5257 C1699.3646,95.734 1962.3958,130.9111 2181.7708,160.9945 C2204.4167,164.0986 2228.9479,167.5049 2251.5938,170.6611 " fill="none" id="lexakai-to-lexakai_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2257.0104,171.4215,2248.3101,165.985,2251.8532,170.6933,2247.1449,174.2364,2257.0104,171.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[09747e497ce27cb7c06bc502bdce2334]
-link lexakai_annotations to cactus_build_metadata--><path d="M2346.9792,206.234 C2356.1979,222.8486 2368.9167,245.7861 2378.6875,263.4111 " fill="none" id="lexakai_annotations-to-cactus_build_metadata" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2381.3542,268.234,2380.4436,258.0153,2378.8248,263.6811,2373.1589,262.0623,2381.3542,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
+link lexakai_annotations to cactus_metadata--><path d="M2346.9792,206.234 C2356.1979,222.8486 2368.9167,245.7861 2378.6875,263.4111 " fill="none" id="lexakai_annotations-to-cactus_metadata" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2381.3542,268.234,2380.4436,258.0153,2378.8248,263.6811,2373.1589,262.0623,2381.3542,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
 link reflectasm to asm--><path d="M1375.5208,528.109 C1375.5208,544.5778 1375.5208,567.2757 1375.5208,584.8278 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1375.5208,590.109,1379.6875,580.734,1375.5208,584.9007,1371.3542,580.734,1375.5208,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d1a0f8d38515e131a2c274e76c170434]
 @startuml
 
@@ -101,7 +101,7 @@ link reflectasm to asm--><path d="M1375.5208,528.109 C1375.5208,544.5778 1375.52
     artifact guava
     artifact listenablefuture
     artifact j2objc_annotations
-    artifact cactus_build_metadata
+    artifact cactus_metadata
     artifact kivakit_application
     artifact kivakit_collections
     artifact kivakit_commandline
@@ -169,7 +169,7 @@ link reflectasm to asm--><path d="M1375.5208,528.109 C1375.5208,544.5778 1375.52
     lexakai - -> kivakit_network_http
     lexakai - -> kivakit_resource
     lexakai - -> lexakai_annotations
-    lexakai_annotations - -> cactus_build_metadata
+    lexakai_annotations - -> cactus_metadata
     reflectasm - -> asm
     
 @enduml
@@ -538,7 +538,7 @@ skinparam stack {
     artifact guava
     artifact listenablefuture
     artifact j2objc_annotations
-    artifact cactus_build_metadata
+    artifact cactus_metadata
     artifact kivakit_application
     artifact kivakit_collections
     artifact kivakit_commandline
@@ -606,7 +606,7 @@ skinparam stack {
     lexakai - -> kivakit_network_http
     lexakai - -> kivakit_resource
     lexakai - -> lexakai_annotations
-    lexakai_annotations - -> cactus_build_metadata
+    lexakai_annotations - -> cactus_metadata
     reflectasm - -> asm
     
 @enduml

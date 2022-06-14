@@ -47,7 +47,7 @@
     
     <dependencies>
 
-        <!-- Cactus Build -->
+        <!-- Cactus -->
 
         <dependency>
             <groupId>com.telenav.cactus</groupId>

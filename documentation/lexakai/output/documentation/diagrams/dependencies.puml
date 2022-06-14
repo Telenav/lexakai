@@ -17,7 +17,7 @@
     artifact guava
     artifact listenablefuture
     artifact j2objc_annotations
-    artifact cactus_build_metadata
+    artifact cactus_metadata
     artifact kivakit_application
     artifact kivakit_collections
     artifact kivakit_commandline
@@ -85,7 +85,7 @@
     lexakai --> kivakit_network_http
     lexakai --> kivakit_resource
     lexakai --> lexakai_annotations
-    lexakai_annotations --> cactus_build_metadata
+    lexakai_annotations --> cactus_metadata
     reflectasm --> asm
     
 @enduml

@@ -19,4 +19,4 @@
 **/Err.log.*
 dependency-reduced-pom.xml
 *.orig
-
+${env.LEXAKAI_ASSETS_HOME}/

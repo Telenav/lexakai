@@ -21,7 +21,7 @@ package com.telenav.lexakai;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.cactus.maven.model.MavenCoordinates;
-import com.telenav.cactus.maven.model.PomFile;
+import com.telenav.cactus.maven.model.Pom;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.primitive.Ints;
@@ -154,7 +154,8 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         files = new LexakaiProjectFiles(this);
 
         var pom = project.file("pom.xml");
-        mavenCoordinates = tryCatchThrow(() -> new PomFile(pom.asJavaPath()).coordinates(), "Unable to load POM file: $", pom);
+        mavenCoordinates = tryCatchThrow(() -> Pom.from(
+                pom.asJavaPath()).get().coords, "Unable to load POM file: $", pom);
     }
 
     public LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)

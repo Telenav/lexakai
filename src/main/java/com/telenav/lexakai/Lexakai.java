@@ -29,11 +29,11 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.os.Processes;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.value.count.MutableCount;
-import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
@@ -55,7 +55,6 @@ import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.enumSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.integerSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.stringSwitchParser;
-import static com.telenav.kivakit.commandline.SwitchParsers.versionSwitchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.filesystem.Folder.folderArgumentParser;
 import static com.telenav.kivakit.filesystem.Folder.folderSwitchParser;
@@ -78,6 +77,16 @@ import static com.telenav.kivakit.resource.CopyMode.UPDATE;
 @SuppressWarnings("SpellCheckingInspection")
 public class Lexakai extends Application
 {
+    @SuppressWarnings("unused")
+    public static String embeddedMain(String[] arguments)
+    {
+        var lexakai = new Lexakai();
+        var messages = new MessageList();
+        messages.listenTo(lexakai);
+        lexakai.run(arguments);
+        return messages.failed() ? messages.join("\n") : null;
+    }
+
     public static Lexakai get()
     {
         return (Lexakai) Application.get();

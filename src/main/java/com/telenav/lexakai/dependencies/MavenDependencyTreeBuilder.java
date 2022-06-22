@@ -76,7 +76,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
 
             var tree = new DependencyTree(projectArtifactId, projectFolder);
 
-            var dependencyPattern = Pattern.compile("(\\d+) (.*?):(.*?):jar:(.*?)(:.*)?");
+            var dependencyPattern = Pattern.compile("^(\\d+) (.*?):(.*?):jar:(.*?)(:.*$)?");
             var dependencyMatcher = dependencyPattern.matcher(dependencies);
             while (dependencyMatcher.find())
             {
@@ -88,7 +88,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
                 tree.add(artifact);
             }
 
-            var referencePattern = Pattern.compile("(\\d+) (\\d+) (.*?)");
+            var referencePattern = Pattern.compile("^(\\d+) (\\d+) (.*?)$");
             var referenceMatcher = referencePattern.matcher(references);
             while (referenceMatcher.find())
             {

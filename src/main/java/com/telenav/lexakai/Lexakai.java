@@ -291,7 +291,10 @@ public class Lexakai extends Application
         var roots = commandLine().arguments(ROOT_FOLDER);
 
         // add any project exclusions
-        Collections.addAll(exclusions, get(EXCLUDE_PROJECTS).split(","));
+        if (has(EXCLUDE_PROJECTS))
+        {
+            Collections.addAll(exclusions, get(EXCLUDE_PROJECTS).split(","));
+        }
 
         // create a new Java parser for the root folders,
         parser = newParser(roots);

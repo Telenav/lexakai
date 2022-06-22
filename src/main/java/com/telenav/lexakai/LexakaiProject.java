@@ -451,7 +451,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
     public Version version()
     {
-        return parseVersion(this, mavenCoordinates.version);
+        return parseVersion(this, mavenCoordinates.rawVersion().text());
     }
 
     private boolean isProject(Folder folder)

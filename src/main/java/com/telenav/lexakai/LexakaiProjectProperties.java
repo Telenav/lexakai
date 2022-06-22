@@ -26,11 +26,11 @@ public class LexakaiProjectProperties extends PropertyMap
 
         // add maven coordinates,
         var coordinates = project.mavenCoordinates();
-        properties.put("project-name", coordinates.artifactId);
-        properties.put("project-group-id", coordinates.groupId);
-        properties.put("project-artifact-id", coordinates.artifactId);
-        properties.put("project-version", coordinates.version);
-        properties.add("project-module-name", coordinates.artifactId.replaceAll("-", "."));
+        properties.put("project-name", coordinates.artifactId().text());
+        properties.put("project-group-id", coordinates.groupId().text());
+        properties.put("project-artifact-id", coordinates.artifactId().text());
+        properties.put("project-version", coordinates.rawVersion().text());
+        properties.add("project-module-name", coordinates.artifactId().text().replaceAll("-", "."));
 
         var artifactId = properties.get("project-artifact-id");
         if (!artifactId.contains("superpom"))

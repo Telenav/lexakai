@@ -34,6 +34,7 @@ import com.telenav.kivakit.core.os.Processes;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.value.count.MutableCount;
+import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
@@ -80,11 +81,20 @@ public class Lexakai extends Application
     @SuppressWarnings("unused")
     public static String embeddedMain(String[] arguments)
     {
-        var lexakai = new Lexakai();
-        var messages = new MessageList();
-        messages.listenTo(lexakai);
-        lexakai.run(arguments);
-        return messages.failed() ? messages.join("\n") : null;
+        try
+        {
+            var lexakai = new Lexakai();
+            var messages = new MessageList();
+            messages.listenTo(lexakai);
+            lexakai.run(arguments);
+            return messages.failed()
+                   ? messages.join("\n")
+                   : null;
+        }
+        finally
+        {
+            ShutdownHook.shutdown();
+        }
     }
 
     public static Lexakai get()

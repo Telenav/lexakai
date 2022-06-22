@@ -44,6 +44,7 @@ import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
 import com.telenav.lexakai.javadoc.JavadocCoverage;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -74,7 +75,7 @@ import static com.telenav.kivakit.resource.CopyMode.UPDATE;
  * @author jonathanl (shibo)
  * @see <a href="https://telenav.github.io/lexakai/">Lexakai documentation</a>
  */
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({ "SpellCheckingInspection", "BooleanMethodIsAlwaysInverted" })
 public class Lexakai extends Application
 {
     @SuppressWarnings("unused")
@@ -131,6 +132,11 @@ public class Lexakai extends Application
             booleanSwitchParser(this, "create-svg-files", "Build .svg files from PlantUML output")
                     .optional()
                     .defaultValue(true)
+                    .build();
+
+    public SwitchParser<String> EXCLUDE_PROJECTS =
+            stringSwitchParser(this, "exclude-projects", "A comma-separated list of maven coordinates in the form projectId:groupId")
+                    .optional()
                     .build();
 
     public SwitchParser<Boolean> INCLUDE_OBJECT_METHODS =
@@ -252,6 +258,8 @@ public class Lexakai extends Application
                     .defaultValue(false)
                     .build();
 
+    private final StringList exclusions = new StringList();
+
     @Override
     public String description()
     {
@@ -282,6 +290,9 @@ public class Lexakai extends Application
         // get the root folders to locate projects from,
         var roots = commandLine().arguments(ROOT_FOLDER);
 
+        // add any project exclusions
+        Collections.addAll(exclusions, get(EXCLUDE_PROJECTS).split(","));
+
         // create a new Java parser for the root folders,
         parser = newParser(roots);
 
@@ -301,6 +312,7 @@ public class Lexakai extends Application
                 AUTOMATIC_METHOD_GROUPS,
                 CREATE_PACKAGE_DIAGRAMS,
                 CREATE_SVG_FILES,
+                EXCLUDE_PROJECTS,
                 INCLUDE_OBJECT_METHODS,
                 INCLUDE_PROTECTED_METHODS,
                 JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH,
@@ -347,7 +359,7 @@ public class Lexakai extends Application
         projectFolders(absoluteRoot, at ->
         {
             var project = project(absoluteRoot, at);
-            if (project != null)
+            if (project != null && !isExcluded(project))
             {
                 folderToProject.put(at, project);
             }
@@ -358,7 +370,7 @@ public class Lexakai extends Application
         {
             // build UML diagrams.
             var project = project(at);
-            if (project != null)
+            if (project != null && !isExcluded(project))
             {
                 outputFiles.addAll(outputUmlDiagrams(project));
             }
@@ -430,6 +442,12 @@ public class Lexakai extends Application
         System.out.println();
     }
 
+    private boolean isExcluded(LexakaiProject project)
+    {
+        var coordinates = project.mavenCoordinates();
+        return exclusions.contains(coordinates.groupId + ":" + coordinates.artifactId);
+    }
+
     /**
      * @return A parser that can resolve symbols from all projects under all specified roots
      */
@@ -438,11 +456,15 @@ public class Lexakai extends Application
         // Create type solver for all source folders under all roots
         var solver = new CombinedTypeSolver();
         roots.forEach(root ->
-                projectFolders(root, projectFolder ->
+                projectFolders(root, at ->
                 {
-                    if (projectFolder.folder("src/main/java").exists())
+                    var project = project(root, at);
+                    if (project != null && !isExcluded(project))
                     {
-                        solver.add(new JavaParserTypeSolver(projectFolder.folder("src/main/java").absolute().asJavaFile()));
+                        if (at.folder("src/main/java").exists())
+                        {
+                            solver.add(new JavaParserTypeSolver(at.folder("src/main/java").absolute().asJavaFile()));
+                        }
                     }
                 }));
 

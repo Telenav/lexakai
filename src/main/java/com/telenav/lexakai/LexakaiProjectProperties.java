@@ -29,7 +29,7 @@ public class LexakaiProjectProperties extends PropertyMap
         properties.put("project-name", coordinates.artifactId().text());
         properties.put("project-group-id", coordinates.groupId().text());
         properties.put("project-artifact-id", coordinates.artifactId().text());
-        properties.put("project-version", coordinates.rawVersion().text());
+        properties.put("project-version", coordinates.version().text());
         properties.add("project-module-name", coordinates.artifactId().text().replaceAll("-", "."));
 
         var artifactId = properties.get("project-artifact-id");

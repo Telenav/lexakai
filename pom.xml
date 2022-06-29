@@ -33,7 +33,7 @@
     <properties>
         <java.parser.version>3.24.2</java.parser.version>
         <kivakit.version>1.6.0</kivakit.version>
-        <cactus.version>1.4.13</cactus.version>
+        <cactus.version>1.4.16</cactus.version>
     </properties>
 
     <!-- Licensing -->
@@ -141,7 +141,7 @@
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
-                                <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.telenav.lexakai.Lexakai</mainClass>
                                 </transformer>
                             </transformers>

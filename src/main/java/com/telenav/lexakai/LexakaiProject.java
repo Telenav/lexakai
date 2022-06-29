@@ -155,7 +155,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
 
         var pom = project.file("pom.xml");
         mavenCoordinates = tryCatchThrow(() -> Pom.from(
-                pom.asJavaPath()).get().coords, "Unable to load POM file: $", pom);
+                pom.asJavaPath()).get().coordinates(), "Unable to load POM file: $", pom);
     }
 
     public LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)

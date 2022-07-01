@@ -13,10 +13,10 @@ if [ -z "$LEXAKAI_HOME" ]; then
     exit 1
 fi
 
-cd $LEXAKAI_WORKSPACE
+cd "$LEXAKAI_WORKSPACE" || exit
 git clone https://github.com/Telenav/lexakai-assets.git
-git config pull.ff only
+git config pull.ff false
 
-cd $LEXAKAI_HOME
+cd "$LEXAKAI_HOME" || exit
 git checkout develop
 lexakai-build.sh all clean

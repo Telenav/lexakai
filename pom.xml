@@ -85,22 +85,18 @@
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-application</artifactId>
-            <version>${kivakit.version}</version>
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-resource</artifactId>
-            <version>${kivakit.version}</version>
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-network-http</artifactId>
-            <version>${kivakit.version}</version>
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-collections</artifactId>
-            <version>${kivakit.version}</version>
         </dependency>
 
         <!-- JavaParser -->
@@ -136,7 +132,7 @@
                         </goals>
                         
                         <configuration>
-                            
+                            <skip>${maven.shade.skip}</skip>
                             <finalName>lexakai-${project.version}</finalName>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
@@ -165,7 +161,7 @@
                 </executions>
                 
             </plugin>
-            
+
         </plugins>
         
     </build>

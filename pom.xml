@@ -17,7 +17,7 @@
     <parent>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>telenav-superpom-lexakai</artifactId>
-        <version>2.0.1</version>
+        <version>2.0.2</version>
         <relativePath/>
     </parent>
 
@@ -33,7 +33,7 @@
     <properties>
         <java.parser.version>3.24.2</java.parser.version>
         <kivakit.version>1.6.0</kivakit.version>
-        <cactus.version>1.4.21</cactus.version>
+        <cactus.version>1.4.22</cactus.version>
     </properties>
 
     <!-- Licensing -->

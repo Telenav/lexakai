@@ -44,6 +44,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
         this.root = root;
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     public Set<DependencyTree> trees()
     {
         var mavenHome = ensureNotNull(OperatingSystem.get().property("M2_HOME"), "Must set M2_HOME to point to maven installation");
@@ -57,7 +58,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
                 Pattern.DOTALL).matcher(output);
 
         var artifactIdToFolder = new HashMap<String, Folder>();
-        root.nestedFiles(file -> parseFileName(this, "pom.xml").fileMatcher().matches(file))
+        root.nestedFiles(file -> file.fileName().equals(parseFileName(this, "pom.xml")))
                 .forEach(file ->
                 {
                     var pom = file.reader().asString().replaceAll("(?s)<parent>.*</parent>", "");

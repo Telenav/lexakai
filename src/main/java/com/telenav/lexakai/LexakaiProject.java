@@ -468,7 +468,7 @@ public class LexakaiProject extends BaseComponent implements Comparable<LexakaiP
         if (typeDeclarations.isEmpty())
         {
             // go through each Java file under the root's source folder,
-            folders().sourceCode().nestedFiles(JAVA.fileMatcher()).forEach(file ->
+            folders().sourceCode().nestedFiles(JAVA.matcher()).forEach(file ->
             {
                 // except for this weird file :),
                 if (!file.fileName().name().equals("module-info.java"))

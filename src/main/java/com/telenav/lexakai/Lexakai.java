@@ -29,7 +29,6 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.os.Processes;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
@@ -81,11 +80,8 @@ public class Lexakai extends Application
     @SuppressWarnings("unused")
     public static String embeddedMain(String[] arguments)
     {
-        var lexakai = new Lexakai();
-        var messages = new MessageList();
-        messages.listenTo(lexakai);
-        lexakai.run(arguments);
-        return messages.failed() ? messages.join("\n") : null;
+        var result = new Lexakai().run(arguments);
+        return result.failed() ? result.messages().join("\n") : null;
     }
 
     public static Lexakai get()

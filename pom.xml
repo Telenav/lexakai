@@ -33,7 +33,7 @@
     <properties>
         <java.parser.version>3.24.2</java.parser.version>
         <kivakit.version>1.6.0</kivakit.version>
-        <cactus.version>1.5.4</cactus.version>
+        <cactus.version>1.5.5</cactus.version>
     </properties>
 
     <!-- Licensing -->
@@ -136,6 +136,10 @@
                             <finalName>lexakai-${project.version}</finalName>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>app</shadedClassifierName>
+
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.telenav.lexakai.Lexakai</mainClass>

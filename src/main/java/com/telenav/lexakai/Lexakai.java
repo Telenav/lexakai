@@ -422,9 +422,11 @@ public class Lexakai extends Application
 
     private void buildSvgFiles(ObjectList<File> outputFiles)
     {
+        // largely I/O bound, so use a larger multiple
+        var threads = Integer.toString(Runtime.getRuntime().availableProcessors() * 3);
         var arguments = new StringList();
         arguments.add("-nbthread");
-        arguments.add("12");
+        arguments.add(threads);
         arguments.add("-progress");
         arguments.add("-tsvg");
         arguments.addAll(outputFiles.asStringList());

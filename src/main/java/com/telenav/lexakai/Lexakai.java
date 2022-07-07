@@ -425,6 +425,7 @@ public class Lexakai extends Application
         // largely I/O bound, so use a larger multiple
         var threads = Integer.toString(Runtime.getRuntime().availableProcessors() * 3);
         var arguments = new StringList();
+        arguments.add("-Xmx4G");
         arguments.add("-nbthread");
         arguments.add(threads);
         arguments.add("-progress");

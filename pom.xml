@@ -17,12 +17,12 @@
     <parent>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>telenav-superpom-lexakai</artifactId>
-        <version>2.0.3</version>
+        <version>2.0.4</version>
         <relativePath/>
     </parent>
 
     <artifactId>lexakai</artifactId>
-    <version>1.0.9</version>
+    <version>1.0.10-SNAPSHOT</version>
 
     <description>
         Lexakai annotations are used by Lexakai to generate UML diagrams.
@@ -32,7 +32,7 @@
 
     <properties>
         <java.parser.version>3.24.2</java.parser.version>
-        <kivakit.version>1.6.1</kivakit.version>
+        <kivakit.version>1.6.2-SNAPSHOT</kivakit.version>
         <cactus.version>1.5.12</cactus.version>
     </properties>
 

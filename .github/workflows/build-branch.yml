@@ -81,7 +81,7 @@ jobs:
           maven-version: 3.8.5
 
       - name: Clone Telenav-Build
-        run: git clone https://github.com/Telenav/telenav-build.git
+        run: git clone https://github.com/Telenav/telenav-build.git -b develop
 
       - name: Init Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git submodule init
@@ -104,7 +104,7 @@ jobs:
       # If we use MAVEN_OPTS, we wind up in a shell-quoting war between yaml
       # and bash that ends in NoClassDefFoundError:-XX:+UseG1GC - so instead,
       # we write .mvn/jvm.config instead, and make sure that it won't get
-      # picked up as a local change by the branch switch mojo by ignoring it
+      # picked up as a local change by the branch switch mojo by ignoring it.
       - name: Set Up Maven JVM Config Dir
         run: mkdir -p $GITHUB_WORKSPACE/telenav-build/.mvn
 
@@ -134,7 +134,14 @@ jobs:
       - name: Update Submodules
         run: cd $GITHUB_WORKSPACE/telenav-build && git submodule update
 
-      # This will fail over to the develop branch
+      # We need findable superpoms to be able to run the plugin to check out the
+      # target branch at all, so build them once even though we will probably
+      # clobber them with a different version momentarily
+      - name: Build Local Superpoms
+        run: cd $GITHUB_WORKSPACE/telenav-build/telenav-superpom && mvn install
+
+      # This will fail over to the develop branch if the target branch does not
+      # exist.
       - name: Checkout Branch
         run: cd $GITHUB_WORKSPACE/telenav-build && mvn -Dcactus.permit-local-changes=true -Dcactus.base-branch=develop -Dcactus.fetch-first=false -Dcactus.scope=all-project-families -Dcactus.create-branches=true -Dcactus.target-branch=$GITHUB_REF_NAME -Dcactus.permit-local-changes=false -Dcactus.update-root=false -Dpush=false com.telenav.cactus:cactus-maven-plugin:$CACTUS_VERSION:checkout
 
@@ -149,7 +156,7 @@ jobs:
 
       # Now build the real thing
       - name: Build Target Commit
-        run: cd $GITHUB_WORKSPACE/telenav-build && mvn install
+        run: cd $GITHUB_WORKSPACE/telenav-build && mvn -X install
 
       # And *always* delete the local repo
       - name: Clean Up Local Maven Repo

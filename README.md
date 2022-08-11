@@ -1,7 +1,7 @@
 [//]: # (start-user-text)
 
 <a href="https://www.lexakai.org">
-<img src="https://telenav.github.io/telenav-assets/images/logos/web/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openlexakai">

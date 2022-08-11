@@ -32,7 +32,7 @@ the marker interface name). A type can be used in more than one diagram, by spec
     @UmlClassDiagram(diagram = DiagramMapServer.class)
     @UmlClassDiagram(diagram = DiagramServers.class)
 
-[wrap]The preferred location for diagram marker interfaces is in the sub-package project.lexakai.diagrams
+[wrap]The preferred location for diagram marker interfaces is in the sub-package `[project-package].internal.lexakai`
 and they should be prefixed with Diagram to make their use clear.[end]
 
 GROUPING METHODS
@@ -138,4 +138,3 @@ CUSTOM README TEMPLATES
 one for projects with source code and one for parent projects (projects with sub-projects). These
 template files can be modified to produce custom output. To revert to the default templates, simply
 remove them and run Lexakai again.[end]
-

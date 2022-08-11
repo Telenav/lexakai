@@ -45,6 +45,16 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
+### Build Status <a name = "quick-start"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
+
+| Repository and Branch     | Build Status                                                                                             |
+|---------------------------|----------------------------------------------------------------------------------------------------------|
+| `lexakai develop`         | <img src="https://github.com/Telenav/lexakai/actions/workflows/build-develop.yml/badge.svg"/>            |
+| `lexakai release/current` | <img src="https://github.com/Telenav/lexakai/actions/workflows/build-release.yml/badge.svg"/>            |
+
+<br/>
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>

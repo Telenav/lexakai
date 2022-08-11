@@ -7,7 +7,6 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.lexakai.Lexakai;
@@ -19,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public class JavadocCoverage implements Comparable<JavadocCoverage>
 {
     private final LexakaiProject project;
@@ -59,7 +59,7 @@ public class JavadocCoverage implements Comparable<JavadocCoverage>
             var javadoc = type.getJavadoc();
             var isSignificant = type.toString().length() > lexakai().get(lexakai().JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH);
             var significance = isSignificant ? "+" : "";
-            var typeName = Strip.packagePrefix(fullName.get());
+            var typeName = fullName.get();
             var isCovered = true;
             var typeWarning = false;
             if (javadoc.isPresent())

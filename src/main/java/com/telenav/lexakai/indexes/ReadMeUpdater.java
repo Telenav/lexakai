@@ -227,14 +227,21 @@ public class ReadMeUpdater extends BaseComponent
      */
     private String expand(VariableMap<String> variables, String text)
     {
-        // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
-        var transformed = text.replaceAll("<!-- \\$\\{(.*?)} -->.*?<!-- end -->", "<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
+        var pattern = Pattern.compile("<!-- \\$\\{(.*?)} -->.*?<!-- end -->");
+        var matcher = pattern.matcher(text);
+        if (matcher.matches())
+        {
+            // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
+            var transformed = matcher.reset().replaceAll("<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
 
-        // expand the transformed string, producing "<<<x>>> <expanded> <<<end>>>"
-        var expanded = variables.expand(transformed, "");
+            // expand the transformed string, producing "<<<x>>> <expanded> <<<end>>>"
+            var expanded = variables.expand(transformed, "");
 
-        // and finally turn the expanded string into "<!-- ${x} --> <expanded> <!-- end -->"
-        return expanded.replaceAll("<<<(.*?)>>>", "\\$\\{$1}");
+            // and finally turn the expanded string into "<!-- ${x} --> <expanded> <!-- end -->"
+            return expanded.replaceAll("<<<(.*?)>>>", "\\$\\{$1}");
+        }
+
+        return text;
     }
 
     /**

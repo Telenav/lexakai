@@ -218,30 +218,16 @@ public class ReadMeUpdater extends BaseComponent
         }
     }
 
-    /**
-     * Expands the given text with the variable map, but retains ${x} markers in comments.
-     *
-     * @param variables The variables to substitute
-     * @param text The text to expand
-     * @return The expanded text
-     */
     private String expand(VariableMap<String> variables, String text)
     {
-        var pattern = Pattern.compile("<!-- \\$\\{(.*?)} -->.*?<!-- end -->");
-        var matcher = pattern.matcher(text);
-        if (matcher.matches())
-        {
-            // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
-            var transformed = matcher.reset().replaceAll("<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
+        // Replace "<!-- ${x} --> .* <!-- end -->" with "<!-- <<<x>>> --> ${x} <!-- end -->"
+        var transformed = text.replaceAll("<!-- \\$\\{(.*?)} -->.*?<!-- end -->", "<!-- <<<$1>>> --> \\$\\{$1} <!-- end -->");
 
-            // expand the transformed string, producing "<<<x>>> <expanded> <<<end>>>"
-            var expanded = variables.expand(transformed, "");
+        // expand the transformed string, producing "<!-- <<<x>>> --> [value] <!-- end -->"
+        var expanded = variables.expand(transformed);
 
-            // and finally turn the expanded string into "<!-- ${x} --> <expanded> <!-- end -->"
-            return expanded.replaceAll("<<<(.*?)>>>", "\\$\\{$1}");
-        }
-
-        return text;
+        // and finally turn the expanded string into "<!-- ${x} --> [value] <!-- end -->"
+        return expanded.replaceAll("<<<(.*?)>>>", "\\$\\{$1}");
     }
 
     /**

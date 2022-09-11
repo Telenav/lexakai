@@ -19,4 +19,4 @@ git config pull.ff false
 
 cd "$LEXAKAI_HOME" || exit
 git checkout develop
-lexakai-build.sh all clean
+lexakai-build all clean

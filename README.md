@@ -1,15 +1,15 @@
 [//]: # (start-user-text)
 
 <a href="https://www.lexakai.org">
-<img src="https://telenav.github.io/telenav-assets/images/logos/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/icons/web-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openlexakai">
-<img src="https://telenav.github.io/telenav-assets/images/twitter-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/twitter/twitter-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/logos/twitter/twitter-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/twitter/twitter-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://lexakai.zulipchat.com">
-<img src="https://telenav.github.io/telenav-assets/images/zulip-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/zulip/zulip-32-2x.png 2x"/>
+<img src="https://telenav.github.io/telenav-assets/images/logos/zulip/zulip-32.png" srcset="https://telenav.github.io/telenav-assets/images/logos/zulip/zulip-32-2x.png 2x"/>
 </a>
 
 <p></p>
@@ -45,6 +45,15 @@ A tool for generating UML diagrams and markdown documentation indexes.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
+<img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
+
+### Build Status <a name = "quick-start"></a>&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-32-2x.png 2x"/>
+
+| Repository                                                                  | Develop                                                                                                  | Release                                                                                                  |
+|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [lexakai](https://github.com/Telenav/lexakai/actions)                       | <img src="https://github.com/Telenav/lexakai/actions/workflows/build-develop.yml/badge.svg"/>            | <img src="https://github.com/Telenav/lexakai/actions/workflows/build-release.yml/badge.svg"/>            |
+
+<br/>
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
@@ -77,19 +86,19 @@ Lexakai creates documentation indexes and UML diagrams from the source code of e
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/water-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/water-24-2x.png 2x"/>
 
-| Resource         | Description                                                                                                                                                                                                                                                                                                                                                          |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Project Name     | Lexakai                                                                                                                                                                                                                                                                                                                                                              |
-| Summary          | Lexakai creates markdown and UML from Java source code                                                                                                                                                                                                                                                                                                               |
+| Resource         | Description                                                                                                                                                                                                                                                                                                                                                             |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Project Name     | Lexakai                                                                                                                                                                                                                                                                                                                                                                 |
+| Summary          | Lexakai creates markdown and UML from Java source code                                                                                                                                                                                                                                                                                                                  |
 | Javadoc Coverage | <!-- <img src="https://telenav.github.io/telenav-assets/images/meters/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/> --> <img src="https://telenav.github.io/telenav-assets/images/icons/meter-50-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-50-96-2x.png 2x"/><!-- end --> |
-| Lead             | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                              |
-| Administrator    | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                              |
-| Email            | [kivakit@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                                                  |
-| Chat             | [Zulip](https://lexakai.zulip.com)                                                                                                                                                                                                                                                                                                                                   |
-| Twitter          | [@OpenLexakai](https://twitter.com/openlexakai)                                                                                                                                                                                                                                                                                                                      |
-| Issues           | [GitHub Issues](https://github.com/Telenav/lexakai/issues)                                                                                                                                                                                                                                                                                                           |
-| Code             | [GitHub](https://github.com/Telenav/lexakai)                                                                                                                                                                                                                                                                                                                         |
-| Checkout         | `git clone https://github.com/Telenav/lexakai.git`                                                                                                                                                                                                                                                                                                                   |
+| Lead             | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                 |
+| Administrator    | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                 |
+| Email            | [kivakit@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                                                                                                                                                                                                                     |
+| Chat             | [Zulip](https://lexakai.zulip.com)                                                                                                                                                                                                                                                                                                                                      |
+| Twitter          | [@OpenLexakai](https://twitter.com/openlexakai)                                                                                                                                                                                                                                                                                                                         |
+| Issues           | [GitHub Issues](https://github.com/Telenav/lexakai/issues)                                                                                                                                                                                                                                                                                                              |
+| Code             | [GitHub](https://github.com/Telenav/lexakai)                                                                                                                                                                                                                                                                                                                            |
+| Checkout         | `git clone https://github.com/Telenav/lexakai.git`                                                                                                                                                                                                                                                                                                                      |
 
 <p>
 <br/>
@@ -234,14 +243,14 @@ Each root project that Lexakai processes must have a *documentation/lexakai* fol
 
 where these files are described as follows:
 
-| Settings File     |     Description                                          |
-|-------------------|----------------------------------------------------------|
-| *lexakai.settings*  | Global settings for all projects under the root folder   |
-| *lexakai.theme*     | PlantUML theme file copied to each diagram output folder |
-| *lexakai.groups*    | Patterns used to automatically group methods             |
-| *lexakai-source-readme-template.md*  | *README.md* template for projects that have source code |
-| *lexakai-project-readme-template.md* | *README.md* template for projects that have child projects |
-| *projects/[project].properties* | Markdown and UML settings for each project in the source tree |
+| Settings File                        | Description                                                   |
+|--------------------------------------|---------------------------------------------------------------|
+| *lexakai.settings*                   | Global settings for all projects under the root folder        |
+| *lexakai.theme*                      | PlantUML theme file copied to each diagram output folder      |
+| *lexakai.groups*                     | Patterns used to automatically group methods                  |
+| *lexakai-source-readme-template.md*  | *README.md* template for projects that have source code       |
+| *lexakai-project-readme-template.md* | *README.md* template for projects that have child projects    |
+| *projects/[project].properties*      | Markdown and UML settings for each project in the source tree |
 
 The *.theme*, *.groups* and *README.md* template files can be customized. To perform a 'factory-reset' on these resources, run Lexakai with *-overwrite-resources=true* or simply remove the files and Lexakai will re-create them. The [project] value in the table above should be the hyphenated artifact id for the project, as defined in pom.xml, such as *kivakit-core-kernel*.
 

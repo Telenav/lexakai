@@ -25,6 +25,7 @@ import com.telenav.cactus.maven.model.Pom;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
@@ -90,7 +91,10 @@ import static com.telenav.kivakit.resource.Extension.JAVA;
  *
  * @author jonathanl (shibo)
  */
-public class LexakaiProject extends BaseComponent implements Comparable<LexakaiProject>
+@SuppressWarnings("SpellCheckingInspection")
+public class LexakaiProject extends BaseComponent implements
+        Comparable<LexakaiProject>,
+        TryTrait
 {
     /** True to add HTML anchors to indexes */
     private boolean addHtmlAnchors;

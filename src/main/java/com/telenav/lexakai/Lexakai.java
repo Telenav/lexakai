@@ -30,6 +30,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.os.Processes;
+import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.value.count.MutableCount;
@@ -76,6 +77,7 @@ import static com.telenav.kivakit.resource.CopyMode.UPDATE;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "BooleanMethodIsAlwaysInverted" })
 public class Lexakai extends Application
+    implements ProjectTrait
 {
     @SuppressWarnings("unused")
     public static String embeddedMain(String[] arguments)

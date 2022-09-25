@@ -61,12 +61,12 @@ public class DependencyDiagram extends BaseLexakaiDiagram
     @Override
     protected void onUml(IndentingStringBuilder builder)
     {
-        for (var artifact : Collections.sorted(tree.artifacts()))
+        for (var artifact : Collections.sortedCollection(tree.artifacts()))
         {
             builder.appendLine("artifact " + artifact.artifactId());
         }
 
-        for (var dependency : Collections.sorted(tree.dependencies()))
+        for (var dependency : Collections.sortedCollection(tree.dependencies()))
         {
             builder.appendLine(dependency.uml());
         }

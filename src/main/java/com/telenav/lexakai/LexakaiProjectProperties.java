@@ -96,7 +96,7 @@ public class LexakaiProjectProperties extends PropertyMap
 
     public String imagesLocation()
     {
-        return asPath("lexakai-images-location");
+        return asPathString("lexakai-images-location");
     }
 
     public String outputDiagramsLocation()
@@ -111,7 +111,7 @@ public class LexakaiProjectProperties extends PropertyMap
 
     public String outputDocumentationLocation()
     {
-        return asPath("lexakai-documentation-location");
+        return asPathString("lexakai-documentation-location");
     }
 
     /**
@@ -119,7 +119,7 @@ public class LexakaiProjectProperties extends PropertyMap
      */
     public String outputJavadocLocation()
     {
-        var location = asPath("lexakai-javadoc-location") + "/" + project.rootProjectName();
+        var location = asPathString("lexakai-javadoc-location") + "/" + project.rootProjectName();
         var moduleName = projectModuleName();
         if (moduleName != null && !moduleName.equalsIgnoreCase("none"))
         {

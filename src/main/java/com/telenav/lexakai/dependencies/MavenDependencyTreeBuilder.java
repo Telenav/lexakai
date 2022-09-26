@@ -49,7 +49,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
     {
         var mavenHome = ensureNotNull(OperatingSystem.get().property("M2_HOME"), "Must set M2_HOME to point to maven installation");
         var output = OperatingSystem.get()
-                .exec(root.asJavaFile(), mavenHome + "/bin/mvn", "-DoutputType=tgf", "dependency:tree")
+                .execute(this, root.asJavaFile(), mavenHome + "/bin/mvn", "-DoutputType=tgf", "dependency:tree")
                 .replaceAll("\\[INFO]", "");
 
         var matcher = Pattern.compile("--- maven-dependency-plugin.*?@ (?<projectArtifactId>.*?) ---" +

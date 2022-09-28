@@ -104,7 +104,7 @@ public class LexakaiProjectProperties extends PropertyMap
         var output = outputDocumentationLocation();
         if (output != null)
         {
-            return Paths.concatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
+            return Paths.pathConcatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
         }
         return null;
     }
@@ -134,10 +134,10 @@ public class LexakaiProjectProperties extends PropertyMap
     @SuppressWarnings("ClassEscapesDefinedScope")
     public String outputJavadocLocation(UmlType type)
     {
-        var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
+        var qualifiedPath = Packages.packageToPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
         // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
-        return Paths.concatenate
+        return Paths.pathConcatenate
                 (
                         outputJavadocLocation(),        // https://www.kivakit.org/javadoc/kivakit/kivakit.application
                         qualifiedPath + ".html"   // com/kivakit/core/application/Application.html

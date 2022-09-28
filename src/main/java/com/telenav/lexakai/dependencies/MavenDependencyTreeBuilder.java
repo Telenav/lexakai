@@ -62,7 +62,7 @@ public class MavenDependencyTreeBuilder extends BaseComponent
                 .forEach(file ->
                 {
                     var pom = file.reader().asString().replaceAll("(?s)<parent>.*</parent>", "");
-                    var artifactId = Strings.extract(pom, "(?s)<artifactId>(.*?)</artifactId>");
+                    var artifactId = Strings.extractFirstGroup(pom, "(?s)<artifactId>(.*?)</artifactId>");
                     artifactIdToFolder.put(artifactId, file.parent());
                 });
 

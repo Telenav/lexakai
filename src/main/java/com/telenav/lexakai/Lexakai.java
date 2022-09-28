@@ -442,7 +442,7 @@ public class Lexakai extends Application
                 .redirectTo(CONSOLE)
                 .run();
 
-        Processes.waitFor(process);
+        Processes.waitForTermination(process);
         System.out.println();
     }
 

@@ -47,8 +47,8 @@ public class MavenDependencyTreeBuilder extends BaseComponent
     @SuppressWarnings("SpellCheckingInspection")
     public Set<DependencyTree> trees()
     {
-        var mavenHome = ensureNotNull(OperatingSystem.get().property("M2_HOME"), "Must set M2_HOME to point to maven installation");
-        var output = OperatingSystem.get()
+        var mavenHome = ensureNotNull(OperatingSystem.operatingSystem().property("M2_HOME"), "Must set M2_HOME to point to maven installation");
+        var output = OperatingSystem.operatingSystem()
                 .execute(this, root.asJavaFile(), mavenHome + "/bin/mvn", "-DoutputType=tgf", "dependency:tree")
                 .replaceAll("\\[INFO]", "");
 

@@ -18,7 +18,7 @@
 
 package com.telenav.lexakai.builders.grouper;
 
-import com.telenav.kivakit.collections.map.MultiMap;
+import com.telenav.kivakit.core.collections.map.MultiMap;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;

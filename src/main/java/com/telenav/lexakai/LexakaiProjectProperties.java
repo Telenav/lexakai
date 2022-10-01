@@ -42,7 +42,7 @@ public class LexakaiProjectProperties extends PropertyMap
             properties.require("project-artifact-id");
 
             // add lexakai.settings,
-            properties.addAll(PropertyMap.load(project, project.files().lexakaiSettings()).expandedWith(properties));
+            properties.addAll(PropertyMap.loadPropertyMap(project, project.files().lexakaiSettings()).expandedWith(properties));
             properties.require("lexakai-documentation-location");
             properties.require("lexakai-javadoc-location");
             properties.require("lexakai-images-location");
@@ -53,7 +53,7 @@ public class LexakaiProjectProperties extends PropertyMap
             {
                 project.lexakai().exit("Lexakai properties not found: $", lexakaiProperties);
             }
-            properties.addAll(PropertyMap.load(project, lexakaiProperties).expandedWith(properties));
+            properties.addAll(PropertyMap.loadPropertyMap(project, lexakaiProperties).expandedWith(properties));
             properties.putIfAbsent("project-icon", "gears-32");
 
             // check that we have a project title, description and icon,

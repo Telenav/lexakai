@@ -170,7 +170,7 @@ public class MethodGroupNameGuesser
         String macroName = null;
         var groups = new MultiMap<String, String>();
         var macros = new HashMap<String, String>();
-        for (var line : resource.reader().lines())
+        for (var line : resource.reader().readLines())
         {
             if (Strings.isEmpty(line.trim()) || line.startsWith("//"))
             {

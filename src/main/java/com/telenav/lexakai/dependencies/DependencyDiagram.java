@@ -54,7 +54,7 @@ public class DependencyDiagram extends BaseLexakaiDiagram
                 .file("dependencies.puml");
 
         file.parent().mkdirs();
-        file.writer().save(uml(tree.title()));
+        file.writer().saveText(uml(tree.title()));
 
         return file;
     }

@@ -442,7 +442,7 @@ public class Lexakai extends Application
                 .redirectTo(CONSOLE)
                 .run();
 
-        Processes.waitFor(process);
+        Processes.waitForTermination(process);
         System.out.println();
     }
 
@@ -502,7 +502,7 @@ public class Lexakai extends Application
         }
         var uml = diagram.uml(title);
         var builder = IndentingStringBuilder.defaultTextIndenter();
-        uml = (builder.lines().isZero() ? "" : builder + "\n\n") + uml;
+        uml = (builder.lineCount().isZero() ? "" : builder + "\n\n") + uml;
 
         // and if the user wants console output,
         if (get(PRINT_DIAGRAMS_TO_CONSOLE))

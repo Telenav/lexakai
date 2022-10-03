@@ -42,7 +42,7 @@ public class LexakaiProjectProperties extends PropertyMap
             properties.require("project-artifact-id");
 
             // add lexakai.settings,
-            properties.addAll(PropertyMap.load(project, project.files().lexakaiSettings()).expandedWith(properties));
+            properties.addAll(PropertyMap.loadPropertyMap(project, project.files().lexakaiSettings()).expandedWith(properties));
             properties.require("lexakai-documentation-location");
             properties.require("lexakai-javadoc-location");
             properties.require("lexakai-images-location");
@@ -53,7 +53,7 @@ public class LexakaiProjectProperties extends PropertyMap
             {
                 project.lexakai().exit("Lexakai properties not found: $", lexakaiProperties);
             }
-            properties.addAll(PropertyMap.load(project, lexakaiProperties).expandedWith(properties));
+            properties.addAll(PropertyMap.loadPropertyMap(project, lexakaiProperties).expandedWith(properties));
             properties.putIfAbsent("project-icon", "gears-32");
 
             // check that we have a project title, description and icon,
@@ -104,7 +104,7 @@ public class LexakaiProjectProperties extends PropertyMap
         var output = outputDocumentationLocation();
         if (output != null)
         {
-            return Paths.concatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
+            return Paths.pathConcatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
         }
         return null;
     }
@@ -134,10 +134,10 @@ public class LexakaiProjectProperties extends PropertyMap
     @SuppressWarnings("ClassEscapesDefinedScope")
     public String outputJavadocLocation(UmlType type)
     {
-        var qualifiedPath = Packages.toPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
+        var qualifiedPath = Packages.packageToPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
         // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
-        return Paths.concatenate
+        return Paths.pathConcatenate
                 (
                         outputJavadocLocation(),        // https://www.kivakit.org/javadoc/kivakit/kivakit.application
                         qualifiedPath + ".html"   // com/kivakit/core/application/Application.html

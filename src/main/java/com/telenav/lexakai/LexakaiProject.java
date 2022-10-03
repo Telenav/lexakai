@@ -190,7 +190,7 @@ public class LexakaiProject extends BaseComponent implements
         var coverage = nestedProjectJavadocCoverage().uniqued();
         for (var at : coverage)
         {
-            total += at.projectCoverage().value();
+            total += at.projectCoverage().percent();
         }
         return Percent.percent(total / coverage.size());
     }

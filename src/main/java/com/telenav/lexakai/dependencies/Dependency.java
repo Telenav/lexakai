@@ -18,7 +18,7 @@
 
 package com.telenav.lexakai.dependencies;
 
-import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.string.Strings;
 import org.jetbrains.annotations.NotNull;

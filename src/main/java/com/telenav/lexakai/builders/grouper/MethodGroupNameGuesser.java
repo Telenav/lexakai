@@ -18,7 +18,7 @@
 
 package com.telenav.lexakai.builders.grouper;
 
-import com.telenav.kivakit.collections.map.MultiMap;
+import com.telenav.kivakit.core.collections.map.MultiMap;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
@@ -170,7 +170,7 @@ public class MethodGroupNameGuesser
         String macroName = null;
         var groups = new MultiMap<String, String>();
         var macros = new HashMap<String, String>();
-        for (var line : resource.reader().lines())
+        for (var line : resource.reader().readLines())
         {
             if (Strings.isEmpty(line.trim()) || line.startsWith("//"))
             {

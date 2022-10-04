@@ -327,7 +327,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
                 }
             }
         });
-        var indenter = new IndentingStringBuilder(TEXT, Indentation.of(8));
+        var indenter = new IndentingStringBuilder(TEXT, Indentation.indentation(8));
         indenter.indent();
         indenter.appendLines(Wrap.wrap(added.join(", "), 80));
     }

@@ -18,11 +18,12 @@
 
 package com.telenav.lexakai.dependencies;
 
-import com.telenav.kivakit.core.collections.Collections;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.lexakai.BaseLexakaiDiagram;
+
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 
 /**
  * @author jonathanl (shibo)
@@ -53,7 +54,7 @@ public class DependencyDiagram extends BaseLexakaiDiagram
                 .file("dependencies.puml");
 
         file.parent().mkdirs();
-        file.writer().save(uml(tree.title()));
+        file.writer().saveText(uml(tree.title()));
 
         return file;
     }
@@ -61,12 +62,12 @@ public class DependencyDiagram extends BaseLexakaiDiagram
     @Override
     protected void onUml(IndentingStringBuilder builder)
     {
-        for (var artifact : Collections.sorted(tree.artifacts()))
+        for (var artifact : objectList(tree.artifacts()).sorted())
         {
             builder.appendLine("artifact " + artifact.artifactId());
         }
 
-        for (var dependency : Collections.sorted(tree.dependencies()))
+        for (var dependency : objectList(tree.dependencies()).sorted())
         {
             builder.appendLine(dependency.uml());
         }

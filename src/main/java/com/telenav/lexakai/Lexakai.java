@@ -30,6 +30,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.os.Processes;
+import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.value.count.MutableCount;
@@ -76,6 +77,7 @@ import static com.telenav.kivakit.resource.CopyMode.UPDATE;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "BooleanMethodIsAlwaysInverted" })
 public class Lexakai extends Application
+    implements ProjectTrait
 {
     @SuppressWarnings("unused")
     public static String embeddedMain(String[] arguments)
@@ -440,7 +442,7 @@ public class Lexakai extends Application
                 .redirectTo(CONSOLE)
                 .run();
 
-        Processes.waitFor(process);
+        Processes.waitForTermination(process);
         System.out.println();
     }
 
@@ -500,7 +502,7 @@ public class Lexakai extends Application
         }
         var uml = diagram.uml(title);
         var builder = IndentingStringBuilder.defaultTextIndenter();
-        uml = (builder.lines().isZero() ? "" : builder + "\n\n") + uml;
+        uml = (builder.lineCount().isZero() ? "" : builder + "\n\n") + uml;
 
         // and if the user wants console output,
         if (get(PRINT_DIAGRAMS_TO_CONSOLE))

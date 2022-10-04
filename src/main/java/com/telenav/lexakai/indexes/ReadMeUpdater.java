@@ -183,7 +183,7 @@ public class ReadMeUpdater extends BaseComponent
         {
             if (!Strings.isEmpty(diagram.title()))
             {
-                var line = "[*" + diagram.title() + "*](" + Paths.concatenate(project.properties().outputDiagramsLocation(), diagram.identifier()) + ".svg)";
+                var line = "[*" + diagram.title() + "*](" + Paths.pathConcatenate(project.properties().outputDiagramsLocation(), diagram.identifier()) + ".svg)";
                 (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
                 types.addAll(diagram.includedQualifiedTypes());
             }

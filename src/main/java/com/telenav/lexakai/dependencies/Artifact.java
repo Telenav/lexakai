@@ -77,7 +77,7 @@ public class Artifact implements Comparable<Artifact>
     @Override
     public int hashCode()
     {
-        return Hash.many(identifier);
+        return Hash.hashMany(identifier);
     }
 
     public int identifier()

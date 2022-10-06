@@ -54,11 +54,12 @@ import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.enumSwitchParser;
-import static com.telenav.kivakit.commandline.SwitchParsers.integerSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.stringSwitchParser;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.filesystem.Folder.folderArgumentParser;
 import static com.telenav.kivakit.filesystem.Folder.folderSwitchParser;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.RedirectTo.CONSOLE;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
@@ -77,7 +78,7 @@ import static com.telenav.kivakit.resource.CopyMode.UPDATE;
  */
 @SuppressWarnings({ "SpellCheckingInspection", "BooleanMethodIsAlwaysInverted" })
 public class Lexakai extends Application
-    implements ProjectTrait
+        implements ProjectTrait
 {
     @SuppressWarnings("unused")
     public static String embeddedMain(String[] arguments)
@@ -149,46 +150,16 @@ public class Lexakai extends Application
                     .defaultValue(true)
                     .build();
 
-    public SwitchParser<Integer> JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH =
-            integerSwitchParser(this, "javadoc-method-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a method")
-                    .optional()
-                    .defaultValue(64)
-                    .build();
-
-    public SwitchParser<Integer> JAVADOC_MINIMUM_METHOD_LINES =
-            integerSwitchParser(this, "javadoc-minimum-method-lines", "The minimum number of lines for a method to require a Javadoc comment")
-                    .optional()
-                    .defaultValue(4)
-                    .build();
-
     public SwitchParser<String> JAVADOC_SECTION_PATTERN =
             stringSwitchParser(this, "javadoc-section-pattern", "regular expression for extracting javadoc section titles")
                     .optional()
                     .defaultValue("<p><b>(.*)</b></p>")
                     .build();
 
-    public SwitchParser<Integer> JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH =
-            integerSwitchParser(this, "javadoc-significant-class-minimum-length", "The minimum length of class that is considered 'significant'")
-                    .optional()
-                    .defaultValue(2048)
-                    .build();
-
-    public SwitchParser<Integer> JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH =
-            integerSwitchParser(this, "javadoc-type-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of a type")
-                    .optional()
-                    .defaultValue(128)
-                    .build();
-
-    public SwitchParser<Integer> JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH =
-            integerSwitchParser(this, "javadoc-enum-comment-minimum-length", "The minimum comment length for adequate Javadoc coverage of an enum")
-                    .optional()
-                    .defaultValue(64)
-                    .build();
-
     public SwitchParser<Folder> OUTPUT_FOLDER =
             folderSwitchParser(this, "output-folder", "Root folder of output")
                     .optional()
-                    .defaultValue(Folder.parseFolder(this, "./documentation/lexakai/output"))
+                    .defaultValue(ensureNotNull(parseFolder(this, "./documentation/lexakai/output")))
                     .build();
 
     public SwitchParser<Boolean> OVERWRITE_RESOURCES =
@@ -236,12 +207,6 @@ public class Lexakai extends Application
             booleanSwitchParser(this, "show-javadoc-coverage-warnings", "Show Javadoc coverage warnings to help correct issues")
                     .optional()
                     .defaultValue(true)
-                    .build();
-
-    public SwitchParser<Boolean> SHOW_JAVADOC_UNCOVERED_TYPES =
-            booleanSwitchParser(this, "show-javadoc-uncovered types", "Show list of uncovered types in the summary")
-                    .optional()
-                    .defaultValue(false)
                     .build();
 
     public SwitchParser<Traversal> TRAVERSAL =
@@ -316,12 +281,7 @@ public class Lexakai extends Application
                 EXCLUDE_PROJECTS,
                 INCLUDE_OBJECT_METHODS,
                 INCLUDE_PROTECTED_METHODS,
-                JAVADOC_ENUM_COMMENT_MINIMUM_LENGTH,
-                JAVADOC_METHOD_COMMENT_MINIMUM_LENGTH,
-                JAVADOC_MINIMUM_METHOD_LINES,
                 JAVADOC_SECTION_PATTERN,
-                JAVADOC_SIGNIFICANT_CLASS_MINIMUM_LENGTH,
-                JAVADOC_TYPE_COMMENT_MINIMUM_LENGTH,
                 OUTPUT_FOLDER,
                 OVERWRITE_RESOURCES,
                 PRINT_DIAGRAMS_TO_CONSOLE,
@@ -330,7 +290,6 @@ public class Lexakai extends Application
                 SHOW_DIAGRAM_WARNINGS,
                 SHOW_JAVADOC_COVERAGE,
                 SHOW_JAVADOC_COVERAGE_WARNINGS,
-                SHOW_JAVADOC_UNCOVERED_TYPES,
                 TRAVERSAL,
                 UPDATE_README);
     }

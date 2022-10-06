@@ -30,6 +30,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.os.OperatingSystem.operatingSystem;
 import static com.telenav.kivakit.resource.FileName.parseFileName;
 
 /**
@@ -47,8 +48,8 @@ public class MavenDependencyTreeBuilder extends BaseComponent
     @SuppressWarnings("SpellCheckingInspection")
     public Set<DependencyTree> trees()
     {
-        var mavenHome = ensureNotNull(OperatingSystem.operatingSystem().systemPropertyOrEnvironmentVariable("M2_HOME"), "Must set M2_HOME to point to maven installation");
-        var output = OperatingSystem.operatingSystem()
+        var mavenHome = ensureNotNull(operatingSystem().systemPropertyOrEnvironmentVariable("M2_HOME"), "Must set M2_HOME to point to maven installation");
+        var output = operatingSystem()
                 .execute(this, root.asJavaFile(), mavenHome + "/bin/mvn", "-DoutputType=tgf", "dependency:tree")
                 .replaceAll("\\[INFO]", "");
 

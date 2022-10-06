@@ -48,6 +48,7 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.JAVA;
@@ -91,7 +92,6 @@ import static com.telenav.kivakit.resource.Extension.JAVA;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 public class LexakaiProject extends BaseComponent implements
         Comparable<LexakaiProject>,
         TryTrait
@@ -190,7 +190,7 @@ public class LexakaiProject extends BaseComponent implements
         var coverage = nestedProjectJavadocCoverage().uniqued();
         for (var at : coverage)
         {
-            total += at.projectCoverage().percent();
+            total += at.typeCoverage().percent();
         }
         return Percent.percent(total / coverage.size());
     }
@@ -210,7 +210,7 @@ public class LexakaiProject extends BaseComponent implements
     {
         if (children == null)
         {
-            children = ObjectList.objectList(folders().project().absolute()
+            children = objectList(folders().project().absolute()
                             .folders()
                             .stream()
                             .filter(this::isProject)
@@ -399,7 +399,7 @@ public class LexakaiProject extends BaseComponent implements
         {
             if (hasSourceCode())
             {
-                coverage = ObjectList.objectList(projectJavadocCoverage());
+                coverage = objectList(projectJavadocCoverage());
             }
             else
             {

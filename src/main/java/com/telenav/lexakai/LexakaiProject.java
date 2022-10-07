@@ -32,9 +32,9 @@ import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.lexakai.indexes.ReadMeUpdater;
-import com.telenav.lexakai.javadoc.JavadocCoverage;
 import com.telenav.lexakai.library.Diagrams;
 import com.telenav.lexakai.library.Names;
+import com.telenav.lexakai.quality.CodeQualityAnalysis;
 import com.telenav.lexakai.types.UmlType;
 import org.jetbrains.annotations.NotNull;
 
@@ -86,7 +86,7 @@ import static com.telenav.kivakit.resource.Extension.JAVA;
  *
  * <ul>
  *     <li>{@link #diagrams(Consumer)} - Produces UML diagram(s) for the project</li>
- *     <li>{@link #nestedProjectJavadocCoverage()} - Determines Javadoc coverage for types in the project</li>
+ *     <li>{@link #nestedProjectQuality()} - Determines Javadoc coverage for types in the project</li>
  *     <li>{@link #updateReadMe()} - Updates the indexing in README.md for the project</li>
  * </ul>
  *
@@ -109,7 +109,7 @@ public class LexakaiProject extends BaseComponent implements
     private ObjectList<LexakaiProject> children;
 
     /** Collection of Javadoc coverage for subprojects or types in this project */
-    private ObjectList<JavadocCoverage> coverage;
+    private ObjectList<CodeQualityAnalysis> quality;
 
     /** The UML diagrams in this project, deduced from @UmlClassDiagram annotations */
     private final LinkedHashMap<String, LexakaiClassDiagram> diagrams = new LinkedHashMap<>();
@@ -184,13 +184,13 @@ public class LexakaiProject extends BaseComponent implements
         return this;
     }
 
-    public Percent averageProjectJavadocCoverage()
+    public Percent averageProjectQuality()
     {
         double total = 0;
-        var coverage = nestedProjectJavadocCoverage().uniqued();
+        var coverage = nestedProjectQuality().uniqued();
         for (var at : coverage)
         {
-            total += at.typeCoverage().percent();
+            total += at.qualityEstimate().percent();
         }
         return Percent.percent(total / coverage.size());
     }
@@ -211,12 +211,12 @@ public class LexakaiProject extends BaseComponent implements
         if (children == null)
         {
             children = objectList(folders().project().absolute()
-                            .folders()
-                            .stream()
-                            .filter(this::isProject)
-                            .map(lexakai::project)
-                            .filter(Objects::nonNull)
-                            .collect(Collectors.toSet()))
+                    .folders()
+                    .stream()
+                    .filter(this::isProject)
+                    .map(lexakai::project)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet()))
                     .sorted();
         }
         return children;
@@ -393,24 +393,24 @@ public class LexakaiProject extends BaseComponent implements
     }
 
     @SuppressWarnings("ClassEscapesDefinedScope")
-    public ObjectList<JavadocCoverage> nestedProjectJavadocCoverage()
+    public ObjectList<CodeQualityAnalysis> nestedProjectQuality()
     {
-        if (coverage == null)
+        if (quality == null)
         {
             if (hasSourceCode())
             {
-                coverage = objectList(projectJavadocCoverage());
+                quality = objectList(projectQuality());
             }
             else
             {
-                coverage = new ObjectList<>();
+                quality = new ObjectList<>();
                 for (var child : childProjects())
                 {
-                    coverage.addAll(child.nestedProjectJavadocCoverage());
+                    quality.addAll(child.nestedProjectQuality());
                 }
             }
         }
-        return coverage;
+        return quality;
     }
 
     public LexakaiProjectProperties properties()
@@ -514,9 +514,9 @@ public class LexakaiProject extends BaseComponent implements
         return typeDeclarations;
     }
 
-    private JavadocCoverage projectJavadocCoverage()
+    private CodeQualityAnalysis projectQuality()
     {
-        var coverage = new JavadocCoverage(this);
+        var coverage = new CodeQualityAnalysis(this);
         typeDeclarations(coverage::add);
         return coverage;
     }

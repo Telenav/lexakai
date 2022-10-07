@@ -42,7 +42,7 @@ import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
-import com.telenav.lexakai.javadoc.JavadocCoverage;
+import com.telenav.lexakai.quality.CodeQualityAnalysis;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -197,14 +197,14 @@ public class Lexakai extends Application
                     .defaultValue(true)
                     .build();
 
-    public SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE =
-            booleanSwitchParser(this, "show-javadoc-coverage", "Show Javadoc coverage for each project as they are processed")
+    public SwitchParser<Boolean> SHOW_CODE_QUALITY =
+            booleanSwitchParser(this, "show-code-quality", "Show code quality for each project as it is processed")
                     .optional()
                     .defaultValue(true)
                     .build();
 
-    public SwitchParser<Boolean> SHOW_JAVADOC_COVERAGE_WARNINGS =
-            booleanSwitchParser(this, "show-javadoc-coverage-warnings", "Show Javadoc coverage warnings to help correct issues")
+    public SwitchParser<Boolean> SHOW_CODE_QUALITY_WARNINGS =
+            booleanSwitchParser(this, "show-code-quality-warnings", "Show code quality warnings to help correct issues")
                     .optional()
                     .defaultValue(true)
                     .build();
@@ -288,8 +288,8 @@ public class Lexakai extends Application
                 SAVE_DIAGRAMS,
                 SHOW_DIAGRAMS,
                 SHOW_DIAGRAM_WARNINGS,
-                SHOW_JAVADOC_COVERAGE,
-                SHOW_JAVADOC_COVERAGE_WARNINGS,
+                SHOW_CODE_QUALITY,
+                SHOW_CODE_QUALITY_WARNINGS,
                 TRAVERSAL,
                 UPDATE_README);
     }
@@ -338,16 +338,16 @@ public class Lexakai extends Application
 
         // Show detailed Javadoc coverage
         var rootProject = project(absoluteRoot);
-        if (rootProject != null && get(SHOW_JAVADOC_COVERAGE))
+        if (rootProject != null && get(SHOW_CODE_QUALITY))
         {
             announce("");
-            announce(AsciiArt.line("Javadoc Coverage"));
+            announce(AsciiArt.line("Code Quality"));
             announce("");
-            for (var coverage : rootProject.nestedProjectJavadocCoverage())
+            for (var coverage : rootProject.nestedProjectQuality())
             {
                 announce("Project $", coverage.project().name());
-                announce("    $", coverage.coverage());
-                if (get(SHOW_JAVADOC_COVERAGE_WARNINGS))
+                announce("    $", coverage.totalTypes());
+                if (get(SHOW_CODE_QUALITY_WARNINGS))
                 {
                     var warnings = coverage.warnings();
                     if (warnings.isNonEmpty())
@@ -364,10 +364,10 @@ public class Lexakai extends Application
         list.add("Types: $", types.size());
         list.add("Types per Diagram: ${double}", (double) types.size() / totalDiagrams.get());
         assert rootProject != null;
-        list.add("Javadoc Coverage:\n\n$", rootProject.nestedProjectJavadocCoverage()
+        list.add("Code Quality:\n\n$", rootProject.nestedProjectQuality()
                 .uniqued()
                 .sorted()
-                .mapped(JavadocCoverage::details)
+                .mapped(CodeQualityAnalysis::details)
                 .asStringList()
                 .join("\n"));
 

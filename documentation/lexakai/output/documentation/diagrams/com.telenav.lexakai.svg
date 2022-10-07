@@ -115,7 +115,7 @@ link LexakaiProjectFiles to LexakaiClassDiagram.Referent--><!--MD5=[43d8b029f1ec
         +boolean addHtmlAnchors()
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
         +ObjectList<LexakaiProject> childProjects()
-        +ObjectList<JavadocCoverage> nestedProjectJavadocCoverage()
+        +ObjectList<CodeQualityAnalysis> nestedProjectJavadocCoverage()
         - -(filesystem)- -
         +LexakaiProjectFiles files()
         +LexakaiProjectFolders folders()
@@ -638,7 +638,7 @@ skinparam stack {
         +boolean addHtmlAnchors()
         +LexakaiProject addHtmlAnchors(boolean addHtmlAnchors)
         +ObjectList<LexakaiProject> childProjects()
-        +ObjectList<JavadocCoverage> nestedProjectJavadocCoverage()
+        +ObjectList<CodeQualityAnalysis> nestedProjectJavadocCoverage()
         - -(filesystem)- -
         +LexakaiProjectFiles files()
         +LexakaiProjectFolders folders()

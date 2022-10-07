@@ -104,8 +104,8 @@ public class ReadMeUpdater extends BaseComponent
 
         // create a variable map for the readme template,
         var properties = project.properties();
-        properties.put("project-javadoc-average-coverage", project.averageProjectJavadocCoverage().toString());
-        properties.put("project-javadoc-average-coverage-meter", project.meterMarkdownForPercent(project.averageProjectJavadocCoverage()));
+        properties.put("project-average-quality", project.averageProjectQuality().toString());
+        properties.put("project-average-quality-meter", project.meterMarkdownForPercent(project.averageProjectQuality()));
         properties.put("project-index", index.join("  \n") + (index.isEmpty() ? "" : "  "));
         properties.put("date", LocalTime.now().asDateString());
         properties.put("time", LocalTime.now().asTimeString());
@@ -143,14 +143,14 @@ public class ReadMeUpdater extends BaseComponent
      */
     private void addParentProjectVariables(VariableMap<String> variables)
     {
-        variables.put("project-javadoc-coverage", project
-                .nestedProjectJavadocCoverage()
+        variables.put("child-project-quality", project
+                .nestedProjectQuality()
                 .join("  \n", coverage ->
                 {
                     var child = coverage.project().folders().project();
                     var projectFolder = project.folders().project();
                     var folder = child.relativeTo(projectFolder);
-                    return coverage.projectCoverageMeter(folder);
+                    return coverage.projectQualityMeter(folder);
                 }));
 
         var childProjectMarkdown = new StringList();
@@ -200,7 +200,7 @@ public class ReadMeUpdater extends BaseComponent
         variables.put("package-diagram-index", packageDiagramIndex.join("  \n"));
 
         // add Javadoc coverage information,
-        project.nestedProjectJavadocCoverage().first().addToVariableMap(variables);
+        project.nestedProjectQuality().first().addToVariableMap(variables);
 
         // and javadoc sections,
         var sections = new StringList();

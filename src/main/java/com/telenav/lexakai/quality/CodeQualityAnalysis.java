@@ -45,7 +45,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
             boolean warning = false;
 
-            if (quality.codeType.isPublic())
+            if (quality.audience.isPublic())
             {
                 if (quality.documentation.isComplete())
                 {

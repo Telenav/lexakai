@@ -41,7 +41,7 @@ import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARA
 public class Names
 {
     /**
-     * @return The name of the given type with or without qualification or type parameters
+     * Returns the name of the given type with or without qualification or type parameters
      */
     public static String name(Type type,
                               Qualification qualification,
@@ -71,7 +71,7 @@ public class Names
     }
 
     /**
-     * @return The name of the given type declaration with or without qualification or type parameters
+     * Returns the name of the given type declaration with or without qualification or type parameters
      */
     public static String name(TypeDeclaration<?> type,
                               Qualification qualification,
@@ -87,7 +87,7 @@ public class Names
     }
 
     /**
-     * @return The name of the given class expression with or without qualification or type parameters
+     * Returns the name of the given class expression with or without qualification or type parameters
      */
     public static String name(ClassExpr expression,
                               Qualification qualification,
@@ -123,7 +123,7 @@ public class Names
     }
 
     /**
-     * @return Any type parameters of the given type as a string
+     * Returns any type parameters of the given type as a string
      */
     public static String typeParameters(TypeDeclaration<?> declaration)
     {
@@ -140,7 +140,7 @@ public class Names
     }
 
     /**
-     * @return The given qualified class name without the package qualifier
+     * Returns the given qualified class name without the package qualifier
      */
     public static String withoutQualification(String qualifiedClassName)
     {
@@ -153,7 +153,7 @@ public class Names
     }
 
     /**
-     * @return The given type name without type parameters
+     * Returns the given type name without type parameters
      */
     public static String withoutTypeParameters(String typeName)
     {

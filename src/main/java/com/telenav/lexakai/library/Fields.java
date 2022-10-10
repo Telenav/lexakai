@@ -33,7 +33,7 @@ import com.telenav.lexakai.associations.UmlAssociation;
 public class Fields
 {
     /**
-     * @return The association type for the given field
+     * Returns the association type for the given field
      */
     public static UmlAssociation.AssociationType associationType(FieldDeclaration field)
     {
@@ -53,7 +53,7 @@ public class Fields
     }
 
     /**
-     * @return True if the field is excluded from all diagrams
+     * Returns true if the field is excluded from all diagrams
      */
     public static boolean isExcluded(FieldDeclaration field)
     {

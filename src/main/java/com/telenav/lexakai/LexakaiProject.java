@@ -288,7 +288,7 @@ public class LexakaiProject extends BaseComponent implements
     }
 
     /**
-     * @return True if equals, hashCode and toString should be included
+     * Returns true if equals, hashCode and toString should be included
      */
     public boolean includeObjectMethods()
     {

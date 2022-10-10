@@ -215,7 +215,7 @@ public class AssociationBuilder
     }
 
     /**
-     * @return Creates a {@link UmlAssociation} of the given type pointing to the given referent with the given label to
+     * Returns creates a {@link UmlAssociation} of the given type pointing to the given referent with the given label to
      * this type's diagram.
      */
     private UmlAssociation createAssociation(UmlAssociation.AssociationType associationType,

@@ -26,20 +26,20 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_STABLE;
+import static com.telenav.kivakit.annotations.code.quality.Stability.STABLE;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
 import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_NOT_NEEDED;
 
 /**
  * @author jonathanl (shibo)
  */
-@CodeQuality(stability = STABILITY_STABLE,
+@CodeQuality(stability = STABLE,
              testing = TESTING_NOT_NEEDED,
              documentation = DOCUMENTATION_COMPLETE)
 public interface Diagrams
 {
     /**
-     * @return The @UmlClassDiagram annotation with the given lowercase hyphenated diagram name
+     * Returns the @UmlClassDiagram annotation with the given lowercase hyphenated diagram name
      */
     public static AnnotationExpr diagramAnnotation(TypeDeclaration<?> type, String diagramName)
     {
@@ -58,7 +58,7 @@ public interface Diagrams
     }
 
     /**
-     * @return The set of diagrams that the given type belongs to
+     * Returns the set of diagrams that the given type belongs to
      */
     public static Set<String> diagrams(TypeDeclaration<?> type, boolean includePackageDiagram)
     {

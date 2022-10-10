@@ -34,7 +34,7 @@ import java.util.List;
 public class Associations
 {
     /**
-     * @return A guess as to the cardinality of the given type based on the type's name
+     * Returns a guess as to the cardinality of the given type based on the type's name
      */
     public static String cardinalityGuess(Type type)
     {
@@ -60,7 +60,7 @@ public class Associations
     }
 
     /**
-     * @return The set of UML associations defined by the given type with @UmlRelation annotations
+     * Returns the set of UML associations defined by the given type with @UmlRelation annotations
      */
     public static List<UmlAssociation> explicitRelations(TypeDeclaration<?> type, String diagramName)
     {
@@ -91,7 +91,7 @@ public class Associations
     }
 
     /**
-     * @return The UML relation association for the given annotation from the given type in the given diagram (only).
+     * Returns the UML relation association for the given annotation from the given type in the given diagram (only).
      */
     private static UmlAssociation relation(String diagramName,
                                            TypeDeclaration<?> type,

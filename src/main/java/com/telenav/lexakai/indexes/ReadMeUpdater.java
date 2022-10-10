@@ -259,7 +259,7 @@ public class ReadMeUpdater extends BaseComponent
     }
 
     /**
-     * @return The Javadoc sections matching the given pattern for the given type
+     * Returns the Javadoc sections matching the given pattern for the given type
      */
     private StringList javadocSections(UmlType type, Pattern javadocSectionPattern)
     {
@@ -301,7 +301,7 @@ public class ReadMeUpdater extends BaseComponent
     }
 
     /**
-     * @return The readme template for a project with source code
+     * Returns the readme template for a project with source code
      */
     private File readMeTemplate()
     {
@@ -312,7 +312,7 @@ public class ReadMeUpdater extends BaseComponent
     }
 
     /**
-     * @return All user text blocks in the given file
+     * Returns all user text blocks in the given file
      */
     private StringList userTextBlocks(File file)
     {

@@ -48,7 +48,7 @@ import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARA
 public class Annotations
 {
     /**
-     * @return A set of all the annotations of the given type
+     * Returns a set of all the annotations of the given type
      */
     public static Set<AnnotationExpr> annotations(NodeWithAnnotations<?> type,
                                                   Class<? extends Annotation> annotationType)
@@ -65,7 +65,7 @@ public class Annotations
     }
 
     /**
-     * @return The boolean value for the given annotation member
+     * Returns the boolean value for the given annotation member
      */
     public static boolean booleanValue(AnnotationExpr annotation, String member, boolean defaultValue)
     {
@@ -88,7 +88,7 @@ public class Annotations
     }
 
     /**
-     * @return The set of class names for the given annotation member
+     * Returns the set of class names for the given annotation member
      */
     public static Set<String> classNames(AnnotationExpr annotation, String member)
     {
@@ -112,7 +112,7 @@ public class Annotations
     }
 
     /**
-     * @return The set of class names for the given annotation
+     * Returns the set of class names for the given annotation
      */
     public static Set<String> classNames(AnnotationExpr annotation)
     {
@@ -147,7 +147,7 @@ public class Annotations
     }
 
     /**
-     * @return The expression for the designated annotation member
+     * Returns the expression for the designated annotation member
      */
     public static Expression expression(AnnotationExpr annotation, String member)
     {
@@ -199,7 +199,7 @@ public class Annotations
     }
 
     /**
-     * @return The string value of the given annotation member
+     * Returns the string value of the given annotation member
      */
     public static String stringValue(AnnotationExpr annotation, String member)
     {
@@ -221,7 +221,7 @@ public class Annotations
     }
 
     /**
-     * @return The single string value for the given annotation expression
+     * Returns the single string value for the given annotation expression
      */
     public static String stringValue(AnnotationExpr annotation)
     {
@@ -235,7 +235,7 @@ public class Annotations
     }
 
     /**
-     * @return The set of string values for the given annotation expression
+     * Returns the set of string values for the given annotation expression
      */
     @NotNull
     public static Set<String> stringValues(AnnotationExpr annotation, String member)
@@ -259,7 +259,7 @@ public class Annotations
     }
 
     /**
-     * @return The value of the given member of the given normal annotation
+     * Returns the value of the given member of the given normal annotation
      */
     public static Expression value(AnnotationExpr annotation, String memberName)
     {

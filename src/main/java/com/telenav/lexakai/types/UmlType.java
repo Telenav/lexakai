@@ -132,7 +132,7 @@ public class UmlType
     }
 
     /**
-     * @return The UML for this type
+     * Returns the UML for this type
      */
     public String uml()
     {

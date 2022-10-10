@@ -36,7 +36,7 @@ import java.util.Set;
 public class Methods
 {
     /**
-     * @return The association type, if any, for the given method
+     * Returns the association type, if any, for the given method
      */
     public static UmlAssociation.AssociationType associationType(MethodDeclaration method)
     {
@@ -48,7 +48,7 @@ public class Methods
     }
 
     /**
-     * @return The set of method groups that the given method belongs to
+     * Returns the set of method groups that the given method belongs to
      */
     public static Set<String> explicitGroups(MethodDeclaration method)
     {
@@ -61,7 +61,7 @@ public class Methods
     }
 
     /**
-     * @return True if the given constructor is excluded from all diagrams
+     * Returns true if the given constructor is excluded from all diagrams
      */
     public static boolean isExcluded(ConstructorDeclaration constructor)
     {
@@ -69,7 +69,7 @@ public class Methods
     }
 
     /**
-     * @return True if the given method is excluded from all diagrams
+     * Returns true if the given method is excluded from all diagrams
      */
     public static boolean isExcluded(MethodDeclaration method)
     {

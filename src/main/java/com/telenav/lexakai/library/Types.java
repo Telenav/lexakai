@@ -53,7 +53,7 @@ public class Types
     );
 
     /**
-     * @return True if the given type has generic type parameters
+     * Returns true if the given type has generic type parameters
      */
     public static boolean hasTypeParameters(Type type)
     {
@@ -66,7 +66,7 @@ public class Types
     }
 
     /**
-     * @return True if the given supertype is excluded by a @UmlExcludeSuperTypes annotation
+     * Returns true if the given supertype is excluded by a @UmlExcludeSuperTypes annotation
      */
     public static boolean isExcludedSuperType(TypeDeclaration<?> type,
                                               LexakaiClassDiagram diagram,
@@ -99,7 +99,7 @@ public class Types
     }
 
     /**
-     * @return True if the given type is an interface
+     * Returns true if the given type is an interface
      */
     public static boolean isInterface(TypeDeclaration<?> type)
     {
@@ -107,7 +107,7 @@ public class Types
     }
 
     /**
-     * @return True if the given type has a @UmlNotPublicApi annotation
+     * Returns true if the given type has a @UmlNotPublicApi annotation
      */
     public static boolean isNotPublicApi(TypeDeclaration<?> type)
     {
@@ -115,7 +115,7 @@ public class Types
     }
 
     /**
-     * @return True if the given type is a reference to an object, but not an array.
+     * Returns true if the given type is a reference to an object, but not an array.
      */
     public static boolean isObject(Type type)
     {
@@ -123,7 +123,7 @@ public class Types
     }
 
     /**
-     * @return True if the given type is a valid reference type. Unknown types, wildcards, primitive types and the
+     * Returns true if the given type is a valid reference type. Unknown types, wildcards, primitive types and the
      * built-in list of excluded types are not considered valid references.
      */
     public static boolean isReference(Type type)
@@ -137,7 +137,7 @@ public class Types
     }
 
     /**
-     * @return The type of the declaration: interface, abstract class, class, enum or annotation.
+     * Returns the type of the declaration: interface, abstract class, class, enum or annotation.
      */
     public static String type(TypeDeclaration<?> type)
     {
@@ -173,7 +173,7 @@ public class Types
     }
 
     /**
-     * @return The leading modifiers to a type name, for example, "-abstract class"
+     * Returns the leading modifiers to a type name, for example, "-abstract class"
      */
     public static String typeDeclarationModifiers(TypeDeclaration<?> type)
     {
@@ -182,7 +182,7 @@ public class Types
     }
 
     /**
-     * @return Returns the parameters to the given type. The element type of an array is considered a type argument.
+     * Returns returns the parameters to the given type. The element type of an array is considered a type argument.
      */
     public static List<Type> typeParameters(Type type)
     {

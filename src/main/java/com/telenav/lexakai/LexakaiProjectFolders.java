@@ -30,7 +30,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The folder where diagrams are output
+     * Returns the folder where diagrams are output
      */
     public Folder diagramOutput()
     {
@@ -38,7 +38,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The folder where documentation is stored
+     * Returns the folder where documentation is stored
      */
     public Folder documentationOutput()
     {
@@ -46,7 +46,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The folder for lexakai output
+     * Returns the folder for lexakai output
      */
     public Folder lexakaiOutput()
     {
@@ -54,7 +54,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The output folder for this project
+     * Returns the output folder for this project
      */
     public Folder output()
     {
@@ -62,7 +62,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The root output folder
+     * Returns the root output folder
      */
     public Folder outputRoot()
     {
@@ -70,7 +70,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return This project's folder in the source tree
+     * Returns this project's folder in the source tree
      */
     public Folder project()
     {
@@ -78,7 +78,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return This folder in the source tree for this project, relative to the root folder
+     * Returns this folder in the source tree for this project, relative to the root folder
      */
     public Folder projectRelativeToRoot()
     {
@@ -86,7 +86,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The root folder that Lexakai is processing
+     * Returns the root folder that Lexakai is processing
      */
     public Folder root()
     {
@@ -94,7 +94,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The folder where lexakai configuration is stored in the source tree
+     * Returns the folder where lexakai configuration is stored in the source tree
      */
     public Folder settings()
     {
@@ -102,7 +102,7 @@ public class LexakaiProjectFolders
     }
 
     /**
-     * @return The source folder for this project, if the {@link LexakaiProject#hasSourceCode()} method returns true
+     * Returns the source folder for this project, if the {@link LexakaiProject#hasSourceCode()} method returns true
      */
     public Folder sourceCode()
     {

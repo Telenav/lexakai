@@ -16,7 +16,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The lexakai.groups file for automatic method grouping
+     * Returns the lexakai.groups file for automatic method grouping
      */
     public File lexakaiGroups()
     {
@@ -26,7 +26,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The lexakai.properties file for this project in the output tree
+     * Returns the lexakai.properties file for this project in the output tree
      */
     public File lexakaiProperties()
     {
@@ -35,7 +35,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The lexakai.properties file for the given project in the output tree
+     * Returns the lexakai.properties file for the given project in the output tree
      */
     public File lexakaiProperties(String artifactId)
     {
@@ -46,7 +46,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The lexakai.settings file in the output tree
+     * Returns the lexakai.settings file in the output tree
      */
     public File lexakaiSettings()
     {
@@ -56,7 +56,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The lexakai.theme file for diagrams
+     * Returns the lexakai.theme file for diagrams
      */
     public File lexakaiTheme()
     {
@@ -66,7 +66,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The project.properties file for this project, from the source tree
+     * Returns the project.properties file for this project, from the source tree
      */
     public File projectProperties()
     {
@@ -76,7 +76,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The readme markdown template for this project
+     * Returns the readme markdown template for this project
      */
     public File readMeTemplate()
     {
@@ -88,7 +88,7 @@ public class LexakaiProjectFiles
     }
 
     /**
-     * @return The readme file in the source code to update
+     * Returns the readme file in the source code to update
      */
     public File readme()
     {

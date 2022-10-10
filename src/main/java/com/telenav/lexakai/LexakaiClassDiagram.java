@@ -116,7 +116,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return The set of abstract superclasses not in this project, based on naming conventions.
+     * Returns the set of abstract superclasses not in this project, based on naming conventions.
      */
     public HashSet<String> abstractSuperClasses()
     {
@@ -164,7 +164,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return True if this diagram already has the given inheritance relation
+     * Returns true if this diagram already has the given inheritance relation
      */
     public boolean has(UmlInheritance inheritance)
     {
@@ -196,7 +196,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return True if the given type includes members in this diagram
+     * Returns true if the given type includes members in this diagram
      */
     public boolean includeMembers(TypeDeclaration<?> type)
     {
@@ -265,7 +265,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return True if this diagram included the given type name
+     * Returns true if this diagram included the given type name
      */
     public boolean includesQualifiedTypeName(String typeName)
     {
@@ -273,7 +273,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return True if this diagram has no types in it
+     * Returns true if this diagram has no types in it
      */
     public boolean isEmpty()
     {
@@ -333,7 +333,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return The project that this diagram belongs to
+     * Returns the project that this diagram belongs to
      */
     public LexakaiProject project()
     {
@@ -341,7 +341,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return The full names of all types in this diagram
+     * Returns the full names of all types in this diagram
      */
     public Set<String> qualifiedTypeNames()
     {
@@ -349,7 +349,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return The type of the referent if it is included in the diagram or if it is not, the first type argument that
+     * Returns the type of the referent if it is included in the diagram or if it is not, the first type argument that
      * is included in the diagram.
      */
     public Referent referent(Type referent)
@@ -396,7 +396,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
     }
 
     /**
-     * @return The set of super-interfaces used that are not in this project
+     * Returns the set of super-interfaces used that are not in this project
      */
     public HashSet<Object> superInterfaces()
     {

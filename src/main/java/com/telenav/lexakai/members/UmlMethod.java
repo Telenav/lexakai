@@ -76,7 +76,7 @@ public class UmlMethod implements Comparable<UmlMethod>
     }
 
     /**
-     * @return The set of groups that this method belongs to
+     * Returns the set of groups that this method belongs to
      */
     public Set<String> explicitGroupNames()
     {
@@ -90,7 +90,7 @@ public class UmlMethod implements Comparable<UmlMethod>
     }
 
     /**
-     * @return True if this method is excluded from all diagrams
+     * Returns true if this method is excluded from all diagrams
      */
     public boolean isExcluded()
     {
@@ -128,7 +128,7 @@ public class UmlMethod implements Comparable<UmlMethod>
     }
 
     /**
-     * @return The return type of this method
+     * Returns the return type of this method
      */
     public String returnType()
     {

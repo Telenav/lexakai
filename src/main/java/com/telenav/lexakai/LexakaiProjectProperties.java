@@ -115,7 +115,7 @@ public class LexakaiProjectProperties extends PropertyMap
     }
 
     /**
-     * @return The location of this project's Javadoc in the output tree
+     * Returns the location of this project's Javadoc in the output tree
      */
     public String outputJavadocLocation()
     {
@@ -129,7 +129,7 @@ public class LexakaiProjectProperties extends PropertyMap
     }
 
     /**
-     * @return The location of the given type in this project's Javadoc in the output tree
+     * Returns the location of the given type in this project's Javadoc in the output tree
      */
     @SuppressWarnings("ClassEscapesDefinedScope")
     public String outputJavadocLocation(UmlType type)

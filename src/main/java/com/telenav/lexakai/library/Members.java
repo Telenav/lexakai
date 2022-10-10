@@ -31,7 +31,7 @@ import java.lang.annotation.Annotation;
 public class Members
 {
     /**
-     * @return The association string for the given method and member
+     * Returns the association string for the given method and member
      */
     public static String associationString(NodeWithAnnotations<?> member,
                                            Class<? extends Annotation> annotation,
@@ -42,7 +42,7 @@ public class Members
     }
 
     /**
-     * @return Any relation value for the given key on the given member
+     * Returns any relation value for the given key on the given member
      */
     public static String associationString(NodeWithAnnotations<?> member, String key)
     {

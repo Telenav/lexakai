@@ -412,7 +412,7 @@ public class Lexakai extends Application
     }
 
     /**
-     * @return A parser that can resolve symbols from all projects under all specified roots
+     * Returns a parser that can resolve symbols from all projects under all specified roots
      */
     private JavaParser newParser(List<Folder> roots)
     {

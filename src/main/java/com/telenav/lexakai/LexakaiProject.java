@@ -380,7 +380,7 @@ public class LexakaiProject extends BaseComponent implements
     public String meterMarkdownForPercent(Percent percent)
     {
         var images = properties().imagesLocation();
-        var png = "meters/meter-" + Ints.quantized(percent.asInt(), 10) + "-96";
+        var png = "meters/meter-" + Ints.intQuantized(percent.asInt(), 10) + "-96";
         return Strings.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
     }
 

@@ -89,7 +89,7 @@ public class Lexakai extends Application
 
     public static Lexakai get()
     {
-        return (Lexakai) Application.get();
+        return (Lexakai) Application.application();
     }
 
     public static void main(String[] arguments)
@@ -467,7 +467,7 @@ public class Lexakai extends Application
         if (get(PRINT_DIAGRAMS_TO_CONSOLE))
         {
             // show the diagram on the console.
-            System.out.println(AsciiArt.box(diagram.name()));
+            System.out.println(AsciiArt.textBox(diagram.name()));
             System.out.println(uml);
         }
 

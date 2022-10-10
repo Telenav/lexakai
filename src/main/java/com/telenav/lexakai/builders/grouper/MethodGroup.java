@@ -91,7 +91,7 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
 
     public UmlMethod first()
     {
-        return Sets.first(methods);
+        return Sets.pickOne(methods);
     }
 
     @Override

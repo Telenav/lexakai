@@ -115,7 +115,7 @@ public class Associations
             if (label != null && referent != null)
             {
                 // then return the relation.
-                return UmlAssociation.of(type, UmlAssociation.AssociationType.RELATION, referent, refereeCardinality, referentCardinality, label);
+                return UmlAssociation.umlAssociation(type, UmlAssociation.AssociationType.RELATION, referent, refereeCardinality, referentCardinality, label);
             }
         }
         return null;

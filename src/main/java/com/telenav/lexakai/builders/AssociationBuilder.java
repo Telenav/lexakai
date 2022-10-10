@@ -243,7 +243,7 @@ public class AssociationBuilder
             }
 
             // and return the association.
-            return UmlAssociation.of(type, associationType, explicitReferentType, refereeCardinality, referentCardinality, label);
+            return UmlAssociation.umlAssociation(type, associationType, explicitReferentType, refereeCardinality, referentCardinality, label);
         }
 
         // Resolve the referent cardinality and type,
@@ -261,7 +261,7 @@ public class AssociationBuilder
             }
 
             // and return the association.
-            return UmlAssociation.of(type, associationType, referent.referent(), refereeCardinality, referentCardinality, label);
+            return UmlAssociation.umlAssociation(type, associationType, referent.referent(), refereeCardinality, referentCardinality, label);
         }
         return null;
     }

@@ -50,12 +50,12 @@ public class UmlAssociation implements Comparable<UmlAssociation>
      * @param label The arrow label, or null if there is none
      * @return The {@link UmlAssociation} to include in a {@link LexakaiClassDiagram}
      */
-    public static UmlAssociation of(TypeDeclaration<?> referrer,
-                                    AssociationType type,
-                                    Type referent,
-                                    String from,
-                                    String to,
-                                    String label)
+    public static UmlAssociation umlAssociation(TypeDeclaration<?> referrer,
+                                                AssociationType type,
+                                                Type referent,
+                                                String from,
+                                                String to,
+                                                String label)
     {
         if (Types.isObject(referent))
         {
@@ -64,12 +64,12 @@ public class UmlAssociation implements Comparable<UmlAssociation>
         return null;
     }
 
-    public static UmlAssociation of(TypeDeclaration<?> referrer,
-                                    AssociationType type,
-                                    String referent,
-                                    String from,
-                                    String to,
-                                    String label)
+    public static UmlAssociation umlAssociation(TypeDeclaration<?> referrer,
+                                                AssociationType type,
+                                                String referent,
+                                                String from,
+                                                String to,
+                                                String label)
     {
         return new UmlAssociation(referrer, type, referent, from, to, label);
     }

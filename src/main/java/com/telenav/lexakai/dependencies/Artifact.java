@@ -19,7 +19,7 @@
 package com.telenav.lexakai.dependencies;
 
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -27,16 +27,16 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Artifact implements Comparable<Artifact>
 {
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final int identifier;
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final String groupId;
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final String artifactId;
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final String version;
 
     public Artifact(int identifier, String groupId, String artifactId, String version)

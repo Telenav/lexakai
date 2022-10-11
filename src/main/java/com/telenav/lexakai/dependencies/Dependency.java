@@ -19,7 +19,7 @@
 package com.telenav.lexakai.dependencies;
 
 import com.telenav.kivakit.core.string.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
 import com.telenav.kivakit.core.string.Strings;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,10 +30,10 @@ import java.util.Objects;
  */
 public class Dependency implements Comparable<Dependency>
 {
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final Artifact from;
 
-    @KivaKitIncludeProperty
+    @IncludeProperty
     private final Artifact to;
 
     public Dependency(Artifact from, Artifact to)

@@ -7,7 +7,7 @@ import com.telenav.kivakit.annotations.code.quality.Audience;
 import com.telenav.kivakit.annotations.code.quality.Documentation;
 import com.telenav.kivakit.annotations.code.quality.Testing;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.string.KivaKitFormat;
+import com.telenav.kivakit.core.string.FormatProperty;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.library.Annotations;
@@ -82,19 +82,19 @@ public class CodeQualityOfType
         return quality;
     }
 
-    @KivaKitFormat
+    @FormatProperty
     String typeName;
 
-    @KivaKitFormat
+    @FormatProperty
     Documentation documentation;
 
-    @KivaKitFormat
+    @FormatProperty
     Stability stability;
 
-    @KivaKitFormat
+    @FormatProperty
     Testing testing;
 
-    @KivaKitFormat
+    @FormatProperty
     Audience audience;
 
     public String problems()

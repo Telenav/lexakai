@@ -48,7 +48,7 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.core.collections.list.ObjectList.objectList;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.JAVA;
@@ -210,7 +210,7 @@ public class LexakaiProject extends BaseComponent implements
     {
         if (children == null)
         {
-            children = objectList(folders().project().absolute()
+            children = ObjectList.list(folders().project().absolute()
                     .folders()
                     .stream()
                     .filter(this::isProject)
@@ -399,7 +399,7 @@ public class LexakaiProject extends BaseComponent implements
         {
             if (hasSourceCode())
             {
-                quality = objectList(projectQuality());
+                quality = list(projectQuality());
             }
             else
             {

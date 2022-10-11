@@ -273,7 +273,7 @@ public class Lexakai extends Application
     @Override
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return ObjectSet.objectSet(
+        return ObjectSet.set(
                 ADD_HTML_ANCHORS,
                 AUTOMATIC_METHOD_GROUPS,
                 CREATE_PACKAGE_DIAGRAMS,

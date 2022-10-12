@@ -172,7 +172,7 @@ public class MethodGroupNameGuesser
         var macros = new HashMap<String, String>();
         for (var line : resource.reader().readLines())
         {
-            if (Strings.isNullOrEmpty(line.trim()) || line.startsWith("//"))
+            if (Strings.isNullOrBlank(line.trim()) || line.startsWith("//"))
             {
                 continue;
             }

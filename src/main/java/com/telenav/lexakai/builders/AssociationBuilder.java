@@ -226,13 +226,13 @@ public class AssociationBuilder
                                              String label)
     {
         // Assume 1 for any missing referee cardinality,
-        refereeCardinality = Strings.isNullOrEmpty(refereeCardinality) ? "1" : refereeCardinality;
+        refereeCardinality = Strings.isNullOrBlank(refereeCardinality) ? "1" : refereeCardinality;
 
         // and if an explicit referent type was provided by the annotation,
         if (explicitReferentType != null)
         {
             // assume 1 for any missing referent cardinality,
-            referentCardinality = Strings.isNullOrEmpty(referentCardinality) ? "1" : referentCardinality;
+            referentCardinality = Strings.isNullOrBlank(referentCardinality) ? "1" : referentCardinality;
 
             // eliminate any 1:1 cardinalities,
             if ("1".equals(refereeCardinality) && "1".equals(referentCardinality))
@@ -251,7 +251,7 @@ public class AssociationBuilder
         if (referent != null)
         {
             // and if there is no explicit cardinality, use the deduced cardinality,
-            referentCardinality = Strings.isNullOrEmpty(referentCardinality) ? referent.cardinality() : referentCardinality;
+            referentCardinality = Strings.isNullOrBlank(referentCardinality) ? referent.cardinality() : referentCardinality;
 
             // eliminate any 1:1 cardinalities,
             if ("1".equals(refereeCardinality) && "1".equals(referentCardinality))

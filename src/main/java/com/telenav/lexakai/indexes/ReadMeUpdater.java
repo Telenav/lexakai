@@ -181,7 +181,7 @@ public class ReadMeUpdater extends BaseComponent
         var packageDiagramIndex = new StringList();
         project.diagrams(diagram ->
         {
-            if (!Strings.isNullOrEmpty(diagram.title()))
+            if (!Strings.isNullOrBlank(diagram.title()))
             {
                 var line = "[*" + diagram.title() + "*](" + Paths.pathConcatenate(project.properties().outputDiagramsLocation(), diagram.identifier()) + ".svg)";
                 (diagram.isPackageDiagram() ? packageDiagramIndex : classDiagramIndex).add(line);
@@ -245,7 +245,7 @@ public class ReadMeUpdater extends BaseComponent
                 var heading = matcher.group(1).trim();
                 var anchor = heading.toLowerCase().replaceAll(" ", "-");
                 index.add("[**" + heading + "**](#" + anchor + ")");
-                if (Strings.isNullOrEmpty(matcher.group(2)))
+                if (Strings.isNullOrBlank(matcher.group(2)))
                 {
                     var htmlAnchor = addHtmlAnchors ? " <a name = \"" + anchor + "\"></a>" : "";
                     matcher.appendReplacement(anchored, "### " + heading + htmlAnchor);

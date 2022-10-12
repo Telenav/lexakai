@@ -109,7 +109,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 
     public LexakaiClassDiagram(LexakaiProject project, String name)
     {
-        ensure(!Strings.isNullOrEmpty(name));
+        ensure(!Strings.isNullOrBlank(name));
 
         this.project = project;
         this.name = name;

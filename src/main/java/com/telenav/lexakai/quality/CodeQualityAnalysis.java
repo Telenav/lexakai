@@ -166,7 +166,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
     private String projectTypes()
     {
-        return Formatter.format("$: $", Align.alignRight(project.name(), 32, ' '), totalTypes());
+        return Formatter.format("$: $", Align.rightAlign(project.name(), 32, ' '), totalTypes());
     }
 
     private String qualityMeterMarkdown()

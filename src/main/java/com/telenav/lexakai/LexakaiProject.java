@@ -26,7 +26,7 @@ import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.trait.TryTrait;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
@@ -210,7 +210,7 @@ public class LexakaiProject extends BaseComponent implements
     {
         if (children == null)
         {
-            children = ObjectList.list(folders().project().absolute()
+            children = list(folders().project().absolute()
                     .folders()
                     .stream()
                     .filter(this::isProject)
@@ -381,7 +381,7 @@ public class LexakaiProject extends BaseComponent implements
     {
         var images = properties().imagesLocation();
         var png = "meters/meter-" + Ints.intQuantized(percent.asInt(), 10) + "-96";
-        return Strings.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
+        return Formatter.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
     }
 
     public String name()
@@ -475,7 +475,7 @@ public class LexakaiProject extends BaseComponent implements
             folders().sourceCode().nestedFiles(JAVA.matcher()).forEach(file ->
             {
                 // except for this weird file :),
-                if (!file.fileName().name().equals("module-info.java"))
+                if (!"module-info.java".equals(file.fileName().name()))
                 {
                     try
                     {

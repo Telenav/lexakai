@@ -41,7 +41,7 @@ public interface Diagrams
     /**
      * Returns the @UmlClassDiagram annotation with the given lowercase hyphenated diagram name
      */
-    public static AnnotationExpr diagramAnnotation(TypeDeclaration<?> type, String diagramName)
+    static AnnotationExpr diagramAnnotation(TypeDeclaration<?> type, String diagramName)
     {
         for (var annotation : Annotations.annotations(type, UmlClassDiagram.class))
         {
@@ -60,7 +60,7 @@ public interface Diagrams
     /**
      * Returns the set of diagrams that the given type belongs to
      */
-    public static Set<String> diagrams(TypeDeclaration<?> type, boolean includePackageDiagram)
+    static Set<String> diagrams(TypeDeclaration<?> type, boolean includePackageDiagram)
     {
         var diagrams = new HashSet<String>();
         for (var annotation : Annotations.annotations(type, UmlClassDiagram.class))

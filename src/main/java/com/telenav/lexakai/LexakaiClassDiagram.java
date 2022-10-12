@@ -109,7 +109,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
 
     public LexakaiClassDiagram(LexakaiProject project, String name)
     {
-        ensure(!Strings.isEmpty(name));
+        ensure(!Strings.isNullOrEmpty(name));
 
         this.project = project;
         this.name = name;
@@ -232,7 +232,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             if (!project().includeObjectMethods())
             {
                 var methodName = method.getName().asString();
-                if (methodName.equals("hashCode") || methodName.equals("equals") || methodName.equals("toString"))
+                if ("hashCode".equals(methodName) || "equals".equals(methodName) || "toString".equals(methodName))
                 {
                     include = false;
                 }
@@ -382,7 +382,7 @@ public class LexakaiClassDiagram extends BaseLexakaiDiagram implements Named
             var typeParameters = Types.typeParameters(referent);
 
             // and if the cardinality is * and there are type parameters,
-            if (cardinality.equals("*") && !typeParameters.isEmpty())
+            if ("*".equals(cardinality) && !typeParameters.isEmpty())
             {
                 // then refer to the first type parameters,
                 return new Referent(cardinality, typeParameters.get(0));

@@ -55,6 +55,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.enumSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.stringSwitchParser;
+import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.filesystem.Folders.folderArgumentParser;
@@ -242,9 +243,9 @@ public class Lexakai extends Application
     }
 
     @Override
-    protected List<ArgumentParser<?>> argumentParsers()
+    protected ObjectList<ArgumentParser<?>> argumentParsers()
     {
-        return List.of(ROOT_FOLDER);
+        return list(ROOT_FOLDER);
     }
 
     @Override

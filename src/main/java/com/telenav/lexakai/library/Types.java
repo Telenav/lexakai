@@ -177,8 +177,8 @@ public class Types
      */
     public static String typeDeclarationModifiers(TypeDeclaration<?> type)
     {
-        String modifiers = Types.type(type);
-        return (Types.isNotPublicApi(type) ? "-" : "") + modifiers;
+        String modifiers = type(type);
+        return (isNotPublicApi(type) ? "-" : "") + modifiers;
     }
 
     /**

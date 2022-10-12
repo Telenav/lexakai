@@ -4,7 +4,7 @@ import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.string.Align;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.lexakai.LexakaiProject;
@@ -136,7 +136,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
     public String totalTypes()
     {
-        return Strings.format("$ types", totalTypes);
+        return Formatter.format("$ types", totalTypes);
     }
 
     public StringList warnings()
@@ -166,7 +166,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
     private String projectTypes()
     {
-        return Strings.format("$: $", Align.right(project.name(), 32, ' '), totalTypes());
+        return Formatter.format("$: $", Align.alignRight(project.name(), 32, ' '), totalTypes());
     }
 
     private String qualityMeterMarkdown()

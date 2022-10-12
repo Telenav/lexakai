@@ -57,15 +57,15 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
     @Override
     public int compareTo(@NotNull MethodGroup that)
     {
-        if (name.equals("static"))
+        if ("static".equals(name))
         {
             return -4;
         }
-        if (name.equals("constructors"))
+        if ("constructors".equals(name))
         {
             return -3;
         }
-        if (name.equals("none"))
+        if ("none".equals(name))
         {
             return -2;
         }
@@ -143,7 +143,7 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
     public String uml()
     {
         var builder = new StringList();
-        if (name.equals("none"))
+        if ("none".equals(name))
         {
             builder.append("--");
         }

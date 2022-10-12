@@ -18,9 +18,9 @@
 
 package com.telenav.lexakai.dependencies;
 
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.IncludeProperty;
-import com.telenav.kivakit.core.string.Strings;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -76,6 +76,6 @@ public class Dependency implements Comparable<Dependency>
 
     public String uml()
     {
-        return Strings.format("$ --> $", from.artifactId(), to.artifactId());
+        return Formatter.format("$ --> $", from.artifactId(), to.artifactId());
     }
 }

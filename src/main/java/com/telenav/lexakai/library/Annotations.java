@@ -82,7 +82,7 @@ public class Annotations
         var expression = expression(annotation, member);
         if (expression != null && expression.isClassExpr())
         {
-            return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS);
         }
         return null;
     }
@@ -99,13 +99,13 @@ public class Annotations
             var classes = new HashSet<String>();
             for (var value : array.getValues())
             {
-                classes.add(Names.name(value.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS));
+                classes.add(Names.name(value.asClassExpr(), Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
             }
             return classes;
         }
         if (expression instanceof SingleMemberAnnotationExpr)
         {
-            var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS);
             return qualifiedName == null ? Set.of() : Set.of(qualifiedName);
         }
         return Set.of();
@@ -128,7 +128,7 @@ public class Annotations
             var classes = new HashSet<String>();
             for (var value : array.getValues())
             {
-                var name = Names.name(value.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+                var name = Names.name(value.asClassExpr(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
                 if (name != null)
                 {
                     classes.add(name);
@@ -139,7 +139,7 @@ public class Annotations
 
         if (expression instanceof ClassExpr)
         {
-            var qualifiedName = Names.name(expression.asClassExpr(), Names.Qualification.UNQUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            var qualifiedName = Names.name(expression.asClassExpr(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
             return qualifiedName == null ? Set.of() : Set.of(qualifiedName);
         }
 
@@ -178,9 +178,9 @@ public class Annotations
     public static boolean shouldExcludeType(TypeDeclaration<?> type)
     {
         var marker = false;
-        for (var annotation : Annotations.annotations(type, UmlExcludeType.class))
+        for (var annotation : annotations(type, UmlExcludeType.class))
         {
-            var expression = Annotations.value(annotation, "value");
+            var expression = value(annotation, "value");
             if (expression != null)
             {
                 var thatTypeName = Names.name(expression.asClassExpr(), UNQUALIFIED, WITHOUT_TYPE_PARAMETERS);
@@ -215,7 +215,7 @@ public class Annotations
         }
         if (expression instanceof ClassExpr)
         {
-            return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, Names.TypeParameters.WITHOUT_TYPE_PARAMETERS);
+            return Names.name(expression.asClassExpr(), Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS);
         }
         return null;
     }

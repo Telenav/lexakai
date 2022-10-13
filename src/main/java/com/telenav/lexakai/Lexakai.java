@@ -368,7 +368,7 @@ public class Lexakai extends Application
         list.add("Code Quality:\n\n$", rootProject.nestedProjectQuality()
                 .uniqued()
                 .sorted()
-                .mapped(CodeQualityAnalysis::details)
+                .map(CodeQualityAnalysis::details)
                 .asStringList()
                 .join("\n"));
 

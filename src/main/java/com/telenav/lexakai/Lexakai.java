@@ -157,11 +157,23 @@ public class Lexakai extends Application
                     .defaultValue("<p><b>(.*)</b></p>")
                     .build();
 
-    public SwitchParser<Folder> OUTPUT_FOLDER =
+    public SwitchParser<Folder> OUTPUT_FOLDER;// =
+//            folderSwitchParser(this, "output-folder", "Root folder of output")
+//                    .optional()
+//                    .defaultValue(ensureNotNull(parseFolder(this, "./documentation/lexakai/output")))
+//                    .build();
+            {
+    try {
+    OUTPUT_FOLDER =
             folderSwitchParser(this, "output-folder", "Root folder of output")
                     .optional()
                     .defaultValue(ensureNotNull(parseFolder(this, "./documentation/lexakai/output")))
                     .build();
+    } catch (Throwable thrown) {
+        System.out.println("UH OH.");
+        thrown.printStackTrace(System.err);
+    }       
+            }
 
     public SwitchParser<Boolean> OVERWRITE_RESOURCES =
             booleanSwitchParser(this, "overwrite-resources", "True to update all resources except settings")
@@ -368,7 +380,7 @@ public class Lexakai extends Application
         list.add("Code Quality:\n\n$", rootProject.nestedProjectQuality()
                 .uniqued()
                 .sorted()
-                .mapped(CodeQualityAnalysis::details)
+                .map(CodeQualityAnalysis::details)
                 .asStringList()
                 .join("\n"));
 

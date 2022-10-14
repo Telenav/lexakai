@@ -11,18 +11,18 @@
         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
         xmlns = "http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>telenav-superpom-lexakai</artifactId>
-        <version>2.0.11</version>
+        <version>2.0.12</version>
         <relativePath/>
     </parent>
 
     <artifactId>lexakai</artifactId>
-    <version>1.0.13-SNAPSHOT</version>
+    <version>1.0.13</version>
 
     <description>
         Lexakai annotations are used by Lexakai to generate UML diagrams.
@@ -32,8 +32,8 @@
 
     <properties>
         <java.parser.version>3.24.2</java.parser.version>
-        <kivakit.version>1.7.1-SNAPSHOT</kivakit.version>
-        <cactus.version>1.5.32</cactus.version>
+        <kivakit.version>1.8.1-SNAPSHOT</kivakit.version>
+        <cactus.version>1.5.34</cactus.version>
     </properties>
 
     <!-- Licensing -->
@@ -113,14 +113,14 @@
         </dependency>
 
     </dependencies>
-    
+
     <build>
         <plugins>
-            
+
             <!-- Shading -->
 
             <plugin>
-                
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>${maven-shade-plugin.version}</version>
@@ -130,7 +130,7 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        
+
                         <configuration>
                             <skip>${maven.shade.skip}</skip>
                             <finalName>lexakai-${project.version}</finalName>
@@ -158,16 +158,16 @@
                                     <include>*:*</include>
                                 </includes>
                             </artifactSet>
-                            
+
                         </configuration>
-                        
+
                     </execution>
                 </executions>
-                
+
             </plugin>
 
         </plugins>
-        
+
     </build>
 
     <!-- Source Code -->
@@ -188,9 +188,9 @@
         <system>GitHub</system>
         <url>https://github.com/Telenav/lexakai/issues</url>
     </issueManagement>
-    
+
     <inceptionYear>2021</inceptionYear>
-    
+
     <organization>
         <name>Telenav</name>
         <url>https://www.telenav.com</url>
@@ -199,9 +199,9 @@
     <!-- Contributors -->
 
     <developers>
-        
+
         <developer>
-            
+
             <id>jonathanl</id>
             <name>Jonathan Locke (Luo Shibo)</name>
             <email>jonathanl@telenav.com</email>
@@ -211,11 +211,11 @@
                 <role>lead</role>
                 <role>administrator</role>
             </roles>
-            
+
         </developer>
-        
+
         <developer>
-            
+
             <id>haifeng</id>
             <name>Haifeng Zhu</name>
             <email>hfzhu@telenav.com</email>
@@ -225,11 +225,11 @@
                 <role>developer</role>
                 <role>administrator</role>
             </roles>
-            
+
         </developer>
-        
+
         <developer>
-            
+
             <id>timboudreau</id>
             <name>Tim Boudreau</name>
             <email>tim@timboudreau.com</email>
@@ -239,9 +239,9 @@
                 <role>developer</role>
                 <role>administrator</role>
             </roles>
-            
+
         </developer>
-        
+
     </developers>
-    
+
 </project>

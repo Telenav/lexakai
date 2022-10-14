@@ -33,7 +33,7 @@
     <properties>
         <java.parser.version>3.24.2</java.parser.version>
         <kivakit.version>1.8.0</kivakit.version>
-        <cactus.version>1.5.33</cactus.version>
+        <cactus.version>1.5.35</cactus.version>
         <enforcer.skip>true</enforcer.skip>
     </properties>
 

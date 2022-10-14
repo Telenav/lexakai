@@ -22,7 +22,7 @@
     </parent>
 
     <artifactId>lexakai-standalone</artifactId>
-    <version>1.0.13</version>
+    <version>1.0.13-SNAPSHOT</version>
 
     <description>
         Lexakai annotations are used by Lexakai to generate UML diagrams.
@@ -46,11 +46,6 @@
             <groupId>com.telenav.lexakai</groupId>
             <artifactId>lexakai</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-resource</artifactId>
         </dependency>
 
     </dependencies>
@@ -79,7 +74,7 @@
                     <replacePom>true</replacePom>
                     <zerodates>true</zerodates>
                     <extensionProperties>
-                        <moduleName>com.telenav.lexakai.standalone</moduleName>
+                        <moduleName>lexakai.standalone</moduleName>
                         <openModule>false</openModule>
                         <checkServiceConstructors>false</checkServiceConstructors>
                         <unrequire>

@@ -381,7 +381,7 @@ public class LexakaiProject extends BaseComponent implements
     {
         var images = properties().imagesLocation();
         var png = "meters/meter-" + Ints.intQuantized(percent.asInt(), 10) + "-96";
-        return Formatter.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>\n", images, png, images, png);
+        return Formatter.format("<img src=\"$/$.png\" srcset=\"$/$-2x.png 2x\"/>", images, png, images, png);
     }
 
     public String name()

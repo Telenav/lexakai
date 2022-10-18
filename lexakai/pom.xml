@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
+<project
+        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xmlns = "http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.telenav.lexakai</groupId>
+        <artifactId>telenav-superpom-lexakai</artifactId>
+        <version>2.0.12</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>lexakai</artifactId>
+    <version>1.0.14-SNAPSHOT</version>
+
+    <description>
+        Lexakai annotations are used by Lexakai to generate UML diagrams.
+    </description>
+
+    <!-- Versions -->
+
+    <properties>
+        <java.parser.version>3.24.2</java.parser.version>
+        <kivakit.version>1.8.0</kivakit.version>
+        <cactus.version>1.5.34</cactus.version>
+        <enforcer.skip>true</enforcer.skip>
+    </properties>
+
+    <!-- Licensing -->
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Dependencies -->
+
+    <dependencies>
+
+        <!-- Cactus -->
+
+        <dependency>
+            <groupId>com.telenav.cactus</groupId>
+            <artifactId>cactus-maven-model</artifactId>
+            <version>${cactus.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-component-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.sisu</groupId>
+                    <artifactId>org.eclipse.sisu.inject</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-utils</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.inject</groupId>
+                    <artifactId>guice</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-classworlds</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- KivaKit -->
+
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-application</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-resource</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-network-http</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-collections</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+
+        <!-- DELETE ME - BACKING OUT DEPENDENCY ON 1.8.1-SNAPSHOT FOR RELEASE -->
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-network-http</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-network-core</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-component</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-commandline</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-collections</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-commandline</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        
+
+        <!-- JavaParser -->
+
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>${java.parser.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-symbol-solver-core</artifactId>
+            <version>${java.parser.version}</version>
+        </dependency>
+
+    </dependencies>
+    
+    <!-- Source Code -->
+
+    <scm>
+        <connection>scm:git:https://Telenav/lexakai.git</connection>
+        <developerConnection>scm:git:https://Telenav/lexakai.git</developerConnection>
+        <url>https://Telenav/lexakai.git</url>
+    </scm>
+
+    <!-- Project -->
+
+    <url>https://www.lexakai.org</url>
+
+    <!-- Issue Tracking -->
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Telenav/lexakai/issues</url>
+    </issueManagement>
+    
+    <inceptionYear>2021</inceptionYear>
+    
+    <organization>
+        <name>Telenav</name>
+        <url>https://www.telenav.com</url>
+    </organization>
+
+    <!-- Contributors -->
+
+    <developers>
+        
+        <developer>
+            
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+            
+        </developer>
+        
+        <developer>
+            
+            <id>haifeng</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+            
+        </developer>
+        
+        <developer>
+            
+            <id>timboudreau</id>
+            <name>Tim Boudreau</name>
+            <email>tim@timboudreau.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+            
+        </developer>
+        
+    </developers>
+    
+</project>

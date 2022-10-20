@@ -14,19 +14,19 @@
 
     <parent>
         <groupId>com.telenav</groupId>
-        <artifactId>telenav-superpom-project-family</artifactId>
-        <version>2.0.3</version>
-        <relativePath/>
+        <artifactId>telenav-superpom-project</artifactId>
+        <version>2.0.5</version>
+        <relativePath>../telenav-superpom-project/pom.xml</relativePath>
     </parent>
 
     <groupId>com.telenav.lexakai</groupId>
-    <artifactId>lexakai-aggregator</artifactId>
-    <version>1.0.14-SNAPSHOT</version>
+    <artifactId>telenav-superpom-lexakai</artifactId>
+    <version>2.0.14</version>
 
     <packaging>pom</packaging>
-    
+    <name>telenav-superpom-lexakai</name>
     <description>
-        Aggregator pom for lexakai and lexakai-standalone.
+        Superpom for Lexakai
     </description>
     
     <!-- Modules -->
@@ -37,7 +37,95 @@
         <module>lexakai-standalone</module>
         
     </modules>
-    
+
+    <properties>
+
+        <cactus.version>1.5.35</cactus.version>
+        <lexakai.annotations.version>1.0.9</lexakai.annotations.version>
+        <!-- KivaKit Version -->
+        <telenav.superpom.kivakit.version>2.2.2</telenav.superpom.kivakit.version>
+        <java.parser.version>3.24.4</java.parser.version>
+
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.telenav.cactus</groupId>
+                    <artifactId>cactus-maven-plugin</artifactId>
+                    <version>${cactus.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mastfrog</groupId>
+                    <artifactId>maven-merge-configuration</artifactId>
+                    <version>2.8.7</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mastfrog</groupId>
+                            <artifactId>jarmerge-moduleinfo-synthesizer</artifactId>
+                            <version>1.0.2</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- KivaKit -->
+
+            <dependency>
+                <!-- Maven will replace this with the dependencyManagement section from there -->
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>telenav-superpom-kivakit</artifactId>
+                <version>${telenav.superpom.kivakit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-core</artifactId>
+                <version>${java.parser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-symbol-solver-core</artifactId>
+                <version>${java.parser.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.telenav.cactus</groupId>
+                        <artifactId>cactus-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>lexakai</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>lexakai</goal>
+                                </goals>
+                                <configuration>
+                                    <verbose>true</verbose>
+                                    <overwrite-resources>true</overwrite-resources>
+                                    <update-readme>true</update-readme>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <!-- Source Code -->
     
     <scm>

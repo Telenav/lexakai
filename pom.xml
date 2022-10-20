@@ -43,7 +43,7 @@
         <cactus.version>1.5.35</cactus.version>
         <lexakai.annotations.version>1.0.9</lexakai.annotations.version>
         <!-- KivaKit Version -->
-        <telenav.superpom.kivakit.version>2.2.1</telenav.superpom.kivakit.version>
+        <telenav.superpom.kivakit.version>2.2.2</telenav.superpom.kivakit.version>
         <java.parser.version>3.24.4</java.parser.version>
 
     </properties>

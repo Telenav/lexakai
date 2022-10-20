@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- //
- // © 2011-2022 Telenav, Inc.
- // Licensed under Apache License, Version 2.0
- //
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- -->
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// © 2011-2022 Telenav, Inc.
+// Licensed under Apache License, Version 2.0
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
 <project
-        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-        xmlns = "http://maven.apache.org/POM/4.0.0"
-        xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+    xmlns = "http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>telenav-superpom-lexakai</artifactId>
-        <version>2.0.12</version>
-        <relativePath/>
+        <version>2.0.13</version>
     </parent>
 
     <artifactId>lexakai</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.15-SNAPSHOT</version>
 
     <description>
         Lexakai annotations are used by Lexakai to generate UML diagrams.
@@ -31,10 +30,8 @@
     <!-- Versions -->
 
     <properties>
-        <java.parser.version>3.24.2</java.parser.version>
-        <kivakit.version>1.8.0</kivakit.version>
+        <java.parser.version>3.24.4</java.parser.version>
         <cactus.version>1.5.34</cactus.version>
-        <enforcer.skip>true</enforcer.skip>
     </properties>
 
     <!-- Licensing -->
@@ -81,110 +78,6 @@
             </exclusions>
         </dependency>
 
-        <!-- KivaKit -->
-
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-application</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-resource</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-network-http</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-collections</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-
-        <!-- DELETE ME - BACKING OUT DEPENDENCY ON 1.8.1-SNAPSHOT FOR RELEASE -->
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-network-http</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-core</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-interfaces</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-conversion</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-annotations</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-serialization-gson</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-serialization-properties</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-mixins</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-settings</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-validation</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        
-        
-        
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-network-core</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-component</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-commandline</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-collections</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-commandline</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        
-
         <!-- JavaParser -->
 
         <dependency>
@@ -197,9 +90,12 @@
             <artifactId>javaparser-symbol-solver-core</artifactId>
             <version>${java.parser.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-application</artifactId>
+        </dependency>
     </dependencies>
-    
+
     <!-- Source Code -->
 
     <scm>
@@ -218,9 +114,9 @@
         <system>GitHub</system>
         <url>https://github.com/Telenav/lexakai/issues</url>
     </issueManagement>
-    
+
     <inceptionYear>2021</inceptionYear>
-    
+
     <organization>
         <name>Telenav</name>
         <url>https://www.telenav.com</url>
@@ -229,9 +125,9 @@
     <!-- Contributors -->
 
     <developers>
-        
+
         <developer>
-            
+
             <id>jonathanl</id>
             <name>Jonathan Locke (Luo Shibo)</name>
             <email>jonathanl@telenav.com</email>
@@ -241,11 +137,11 @@
                 <role>lead</role>
                 <role>administrator</role>
             </roles>
-            
+
         </developer>
-        
+
         <developer>
-            
+
             <id>haifeng</id>
             <name>Haifeng Zhu</name>
             <email>hfzhu@telenav.com</email>
@@ -255,11 +151,11 @@
                 <role>developer</role>
                 <role>administrator</role>
             </roles>
-            
+
         </developer>
-        
+
         <developer>
-            
+
             <id>timboudreau</id>
             <name>Tim Boudreau</name>
             <email>tim@timboudreau.com</email>
@@ -269,9 +165,9 @@
                 <role>developer</role>
                 <role>administrator</role>
             </roles>
-            
+
         </developer>
-        
+
     </developers>
-    
+
 </project>

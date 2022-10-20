@@ -14,19 +14,19 @@
 
     <parent>
         <groupId>com.telenav</groupId>
-        <artifactId>telenav-superpom-project-family</artifactId>
-        <version>2.0.3</version>
-        <relativePath/>
+        <artifactId>telenav-superpom-project</artifactId>
+        <version>2.0.4</version>
+        <relativePath>../telenav-superpom-project/pom.xml</relativePath>
     </parent>
 
     <groupId>com.telenav.lexakai</groupId>
-    <artifactId>lexakai-aggregator</artifactId>
-    <version>1.0.14</version>
+    <artifactId>telenav-superpom-lexakai</artifactId>
+    <version>2.0.13</version>
 
     <packaging>pom</packaging>
-    
+    <name>telenav-superpom-lexakai</name>
     <description>
-        Aggregator pom for lexakai and lexakai-standalone.
+        Superpom for Lexakai
     </description>
     
     <!-- Modules -->
@@ -37,7 +37,61 @@
         <module>lexakai-standalone</module>
         
     </modules>
-    
+
+    <properties>
+
+        <cactus.version>1.5.34</cactus.version>
+        <lexakai.version>1.0.13</lexakai.version>
+        <lexakai.annotations.version>1.0.9</lexakai.annotations.version>
+        <!-- KivaKit Version -->
+        <telenav.superpom.kivakit.version>2.2.1</telenav.superpom.kivakit.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- KivaKit -->
+
+            <dependency>
+                <!-- Maven will replace this with the dependencyManagement section from there -->
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>telenav-superpom-kivakit</artifactId>
+                <version>${telenav.superpom.kivakit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.telenav.cactus</groupId>
+                        <artifactId>cactus-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>lexakai</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>lexakai</goal>
+                                </goals>
+                                <configuration>
+                                    <verbose>true</verbose>
+                                    <overwrite-resources>true</overwrite-resources>
+                                    <update-readme>true</update-readme>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <!-- Source Code -->
     
     <scm>

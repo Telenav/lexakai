@@ -41,12 +41,36 @@
     <properties>
 
         <cactus.version>1.5.34</cactus.version>
-        <lexakai.version>1.0.13</lexakai.version>
         <lexakai.annotations.version>1.0.9</lexakai.annotations.version>
         <!-- KivaKit Version -->
         <telenav.superpom.kivakit.version>2.2.1</telenav.superpom.kivakit.version>
+        <java.parser.version>3.24.4</java.parser.version>
 
     </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.telenav.cactus</groupId>
+                    <artifactId>cactus-maven-plugin</artifactId>
+                    <version>${cactus.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mastfrog</groupId>
+                    <artifactId>maven-merge-configuration</artifactId>
+                    <version>2.8.7</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mastfrog</groupId>
+                            <artifactId>jarmerge-moduleinfo-synthesizer</artifactId>
+                            <version>1.0.2</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <dependencyManagement>
         <dependencies>
@@ -59,6 +83,16 @@
                 <version>${telenav.superpom.kivakit.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-core</artifactId>
+                <version>${java.parser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-symbol-solver-core</artifactId>
+                <version>${java.parser.version}</version>
             </dependency>
 
         </dependencies>

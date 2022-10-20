@@ -27,23 +27,6 @@
         Lexakai annotations are used by Lexakai to generate UML diagrams.
     </description>
 
-    <!-- Versions -->
-
-    <properties>
-        <java.parser.version>3.24.4</java.parser.version>
-        <cactus.version>1.5.34</cactus.version>
-    </properties>
-
-    <!-- Licensing -->
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
     <!-- Dependencies -->
 
     <dependencies>
@@ -83,18 +66,26 @@
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-core</artifactId>
-            <version>${java.parser.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-symbol-solver-core</artifactId>
-            <version>${java.parser.version}</version>
         </dependency>
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-application</artifactId>
         </dependency>
     </dependencies>
+
+    <!-- Licensing -->
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <!-- Source Code -->
 

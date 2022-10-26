@@ -5,48 +5,68 @@
 <!-- Licensed under Apache License, Version 2.0 -->
 <!--  -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<project
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.telenav</groupId>
-        <artifactId>telenav-superpom-project</artifactId>
-        <version>2.0.5</version>
-        <relativePath>../telenav-superpom-project/pom.xml</relativePath>
+        <artifactId>telenav-root-superpom</artifactId>
+        <version>1.0.3</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.telenav.lexakai</groupId>
-    <artifactId>telenav-superpom-lexakai</artifactId>
-    <version>2.0.14</version>
+    <artifactId>lexakai-parent</artifactId>
+    <version>1.0.15</version>
 
     <packaging>pom</packaging>
-    <name>telenav-superpom-lexakai</name>
-    <description>
-        Superpom for Lexakai
-    </description>
-    
-    <!-- Modules -->
-    
-    <modules>
 
+    <name>Lexakai Parent</name>
+    <description>Superpom for Lexakai</description>
+
+    <modules>
+        <module>bill-of-materials</module>
         <module>lexakai</module>
         <module>lexakai-standalone</module>
-        
     </modules>
 
     <properties>
-
-        <cactus.version>1.5.35</cactus.version>
-        <lexakai.annotations.version>1.0.9</lexakai.annotations.version>
-        <!-- KivaKit Version -->
-        <telenav.superpom.kivakit.version>2.2.2</telenav.superpom.kivakit.version>
-        <java.parser.version>3.24.4</java.parser.version>
-
+        <cactus.version>1.5.36</cactus.version>
+        <javaparser.version>3.24.4</javaparser.version>
+        <kivakit.version>1.8.2</kivakit.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Pull in libraries defined in Cactus -->
+            <dependency>
+                <groupId>com.telenav.cactus</groupId>
+                <artifactId>cactus</artifactId>
+                <version>${cactus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Dependencies on modules defined in this aggregator project, Lexakai -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>lexakai-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Javaparser -->
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-symbol-solver-core</artifactId>
+                <version>${javaparser.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>
@@ -59,7 +79,7 @@
                 <plugin>
                     <groupId>com.mastfrog</groupId>
                     <artifactId>maven-merge-configuration</artifactId>
-                    <version>2.8.7</version>
+                    <version>2.9.0</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.mastfrog</groupId>
@@ -72,77 +92,25 @@
         </pluginManagement>
     </build>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- KivaKit -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-            <dependency>
-                <!-- Maven will replace this with the dependencyManagement section from there -->
-                <groupId>com.telenav.kivakit</groupId>
-                <artifactId>telenav-superpom-kivakit</artifactId>
-                <version>${telenav.superpom.kivakit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.javaparser</groupId>
-                <artifactId>javaparser-core</artifactId>
-                <version>${java.parser.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.javaparser</groupId>
-                <artifactId>javaparser-symbol-solver-core</artifactId>
-                <version>${java.parser.version}</version>
-            </dependency>
 
-        </dependencies>
-    </dependencyManagement>
+    <url>https://lexakai.org</url>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.telenav.cactus</groupId>
-                        <artifactId>cactus-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>lexakai</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>lexakai</goal>
-                                </goals>
-                                <configuration>
-                                    <verbose>true</verbose>
-                                    <overwrite-resources>true</overwrite-resources>
-                                    <update-readme>true</update-readme>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <!-- Source Code -->
-    
     <scm>
-        <connection>scm:git:https://Telenav/lexakai.git</connection>
-        <developerConnection>scm:git:https://Telenav/lexakai.git</developerConnection>
-        <url>https://Telenav/lexakai.git</url>
+        <connection>scm:git:https://github.com/Telenav/lexakai.git</connection>
+        <developerConnection>scm:git:https://github.com/Telenav/lexakai.git</developerConnection>
+        <url>https://github.com/Telenav/lexakai</url>
     </scm>
-    
-    <!-- Project -->
-    
-    <url>https://www.lexakai.org</url>
-    
-    <!-- Issue Tracking -->
-    
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/Telenav/lexakai/issues</url>
     </issueManagement>
-
 </project>

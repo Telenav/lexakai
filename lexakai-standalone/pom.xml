@@ -43,7 +43,6 @@
         <dependency>
             <groupId>com.telenav.lexakai</groupId>
             <artifactId>lexakai</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
     </dependencies>

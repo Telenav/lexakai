@@ -33,7 +33,7 @@
     </modules>
 
     <properties>
-        <cactus.version>1.5.37</cactus.version>
+        <cactus.version>1.5.36</cactus.version>
         <javaparser.version>3.24.4</javaparser.version>
         <kivakit.version>1.8.2</kivakit.version>
     </properties>

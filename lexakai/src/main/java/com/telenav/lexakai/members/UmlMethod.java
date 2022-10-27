@@ -67,9 +67,8 @@ public class UmlMethod implements Comparable<UmlMethod>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof UmlMethod)
+        if (object instanceof UmlMethod that)
         {
-            UmlMethod that = (UmlMethod) object;
             return uml().equals(that.uml());
         }
         return false;

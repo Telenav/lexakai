@@ -144,9 +144,8 @@ public class UmlAssociation implements Comparable<UmlAssociation>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof UmlAssociation)
+        if (object instanceof UmlAssociation that)
         {
-            UmlAssociation that = (UmlAssociation) object;
             return referrer.equals(that.referrer) && referent.equals(that.referent) && label.equals(that.label);
         }
         return false;

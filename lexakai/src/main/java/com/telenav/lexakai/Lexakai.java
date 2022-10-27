@@ -52,6 +52,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
+import static com.github.javaparser.ParserConfiguration.LanguageLevel.JAVA_17;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.enumSwitchParser;
 import static com.telenav.kivakit.commandline.SwitchParsers.stringSwitchParser;
@@ -157,23 +158,11 @@ public class Lexakai extends Application
                     .defaultValue("<p><b>(.*)</b></p>")
                     .build();
 
-    public SwitchParser<Folder> OUTPUT_FOLDER;// =
-//            folderSwitchParser(this, "output-folder", "Root folder of output")
-//                    .optional()
-//                    .defaultValue(ensureNotNull(parseFolder(this, "./documentation/lexakai/output")))
-//                    .build();
-            {
-    try {
-    OUTPUT_FOLDER =
+    public SwitchParser<Folder> OUTPUT_FOLDER =
             folderSwitchParser(this, "output-folder", "Root folder of output")
                     .optional()
                     .defaultValue(ensureNotNull(parseFolder(this, "./documentation/lexakai/output")))
                     .build();
-    } catch (Throwable thrown) {
-        System.out.println("UH OH.");
-        thrown.printStackTrace(System.err);
-    }       
-            }
 
     public SwitchParser<Boolean> OVERWRITE_RESOURCES =
             booleanSwitchParser(this, "overwrite-resources", "True to update all resources except settings")
@@ -446,6 +435,7 @@ public class Lexakai extends Application
 
         // and return a configured parser.
         var configuration = new ParserConfiguration();
+        configuration.setLanguageLevel(JAVA_17);
         configuration.setSymbolResolver(new JavaSymbolSolver(solver));
         return new JavaParser(configuration);
     }

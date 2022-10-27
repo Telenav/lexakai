@@ -1,13 +1,13 @@
 package com.telenav.lexakai;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.string.Packages;
-import com.telenav.kivakit.core.string.Paths;
 import com.telenav.kivakit.properties.PropertyMap;
-import com.telenav.lexakai.library.Names;
 import com.telenav.lexakai.types.UmlType;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.string.Packages.packageToPath;
+import static com.telenav.kivakit.core.string.Paths.pathConcatenate;
+import static com.telenav.lexakai.library.Names.Qualification.QUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
 /**
@@ -104,7 +104,7 @@ public class LexakaiProjectProperties extends PropertyMap
         var output = outputDocumentationLocation();
         if (output != null)
         {
-            return Paths.pathConcatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
+            return pathConcatenate(output, project.rootProjectName(), project.folders().projectRelativeToRoot().toString(), "documentation/diagrams");
         }
         return null;
     }
@@ -134,10 +134,10 @@ public class LexakaiProjectProperties extends PropertyMap
     @SuppressWarnings("ClassEscapesDefinedScope")
     public String outputJavadocLocation(UmlType type)
     {
-        var qualifiedPath = Packages.packageToPath(type.name(Names.Qualification.QUALIFIED, WITHOUT_TYPE_PARAMETERS));
+        var qualifiedPath = packageToPath(type.name(QUALIFIED, WITHOUT_TYPE_PARAMETERS));
 
         // https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/core/application/Application.html
-        return Paths.pathConcatenate
+        return pathConcatenate
                 (
                         outputJavadocLocation(),        // https://www.kivakit.org/javadoc/kivakit/kivakit.application
                         qualifiedPath + ".html"   // com/kivakit/core/application/Application.html

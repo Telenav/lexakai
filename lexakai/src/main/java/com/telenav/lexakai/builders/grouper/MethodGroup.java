@@ -81,9 +81,8 @@ public class MethodGroup implements Comparable<MethodGroup>, Iterable<UmlMethod>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof MethodGroup)
+        if (object instanceof MethodGroup that)
         {
-            MethodGroup that = (MethodGroup) object;
             return name.equals(that.name);
         }
         return false;

@@ -61,9 +61,8 @@ public class Artifact implements Comparable<Artifact>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Artifact)
+        if (object instanceof Artifact that)
         {
-            Artifact that = (Artifact) object;
             return identifier == that.identifier;
         }
         return false;

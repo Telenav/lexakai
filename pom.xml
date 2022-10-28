@@ -35,8 +35,9 @@
     <properties>
         <cactus.previous.version>1.5.37</cactus.previous.version>
         <javaparser.version>3.24.4</javaparser.version>
-        <kivakit.version>1.8.2</kivakit.version>
+        <kivakit.previous.version>1.8.1</kivakit.previous.version>
         <mastfrog.version>2.9.0</mastfrog.version>
+        <jarmerge-moduleinfo-synthesizer.version>1.0.2</jarmerge-moduleinfo-synthesizer.version>
     </properties>
 
     <dependencyManagement>
@@ -85,7 +86,7 @@
                         <dependency>
                             <groupId>com.mastfrog</groupId>
                             <artifactId>jarmerge-moduleinfo-synthesizer</artifactId>
-                            <version>1.0.2</version>
+                            <version>${jarmerge-moduleinfo-synthesizer.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -114,4 +115,53 @@
         <system>GitHub</system>
         <url>https://github.com/Telenav/lexakai/issues</url>
     </issueManagement>
+
+    <!-- Contributors -->
+
+    <developers>
+
+        <developer>
+
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+
+        </developer>
+
+        <developer>
+
+            <id>haifeng</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+
+        </developer>
+
+        <developer>
+
+            <id>timboudreau</id>
+            <name>Tim Boudreau</name>
+            <email>tim@timboudreau.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+
+        </developer>
+
+    </developers>
+
 </project>

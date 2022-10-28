@@ -33,7 +33,7 @@
     </modules>
 
     <properties>
-        <cactus.version>1.5.38</cactus.version>
+        <cactus.previous.version>1.5.37</cactus.previous.version>
         <javaparser.version>3.24.4</javaparser.version>
         <kivakit.version>1.8.2</kivakit.version>
         <mastfrog.version>2.9.0</mastfrog.version>
@@ -46,7 +46,7 @@
             <dependency>
                 <groupId>com.telenav.cactus</groupId>
                 <artifactId>cactus</artifactId>
-                <version>${cactus.version}</version>
+                <version>${cactus.previous.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -75,7 +75,7 @@
                 <plugin>
                     <groupId>com.telenav.cactus</groupId>
                     <artifactId>cactus-maven-plugin</artifactId>
-                    <version>${cactus.version}</version>
+                    <version>${cactus.previous.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.mastfrog</groupId>

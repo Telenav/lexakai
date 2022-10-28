@@ -35,7 +35,6 @@
         <dependency>
             <groupId>com.telenav.cactus</groupId>
             <artifactId>cactus-maven-model</artifactId>
-            <version>${cactus.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.codehaus.plexus</groupId>

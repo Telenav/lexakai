@@ -35,7 +35,6 @@
         <dependency>
             <groupId>com.telenav.cactus</groupId>
             <artifactId>cactus-maven-model</artifactId>
-            <version>${cactus.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.codehaus.plexus</groupId>
@@ -69,92 +68,8 @@
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-application</artifactId>
-            <version>${kivakit.version}</version>
+            <version>${kivakit.previous.version}</version>
         </dependency>
     </dependencies>
-
-    <!-- Licensing -->
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <!-- Source Code -->
-
-    <scm>
-        <connection>scm:git:https://Telenav/lexakai.git</connection>
-        <developerConnection>scm:git:https://Telenav/lexakai.git</developerConnection>
-        <url>https://Telenav/lexakai.git</url>
-    </scm>
-
-    <!-- Project -->
-
-    <url>https://www.lexakai.org</url>
-
-    <!-- Issue Tracking -->
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/Telenav/lexakai/issues</url>
-    </issueManagement>
-
-    <inceptionYear>2021</inceptionYear>
-
-    <organization>
-        <name>Telenav</name>
-        <url>https://www.telenav.com</url>
-    </organization>
-
-    <!-- Contributors -->
-
-    <developers>
-
-        <developer>
-
-            <id>jonathanl</id>
-            <name>Jonathan Locke (Luo Shibo)</name>
-            <email>jonathanl@telenav.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>lead</role>
-                <role>administrator</role>
-            </roles>
-
-        </developer>
-
-        <developer>
-
-            <id>haifeng</id>
-            <name>Haifeng Zhu</name>
-            <email>hfzhu@telenav.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>developer</role>
-                <role>administrator</role>
-            </roles>
-
-        </developer>
-
-        <developer>
-
-            <id>timboudreau</id>
-            <name>Tim Boudreau</name>
-            <email>tim@timboudreau.com</email>
-            <organization>Telenav</organization>
-            <organizationUrl>https://www.telenav.com/</organizationUrl>
-            <roles>
-                <role>developer</role>
-                <role>administrator</role>
-            </roles>
-
-        </developer>
-
-    </developers>
 
 </project>

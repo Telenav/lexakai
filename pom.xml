@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav</groupId>
         <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
         <relativePath/>
     </parent>
 
@@ -73,11 +73,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>com.telenav.cactus</groupId>
-                    <artifactId>cactus-maven-plugin</artifactId>
-                    <version>${cactus.previous.version}</version>
-                </plugin>
                 <plugin>
                     <groupId>com.mastfrog</groupId>
                     <artifactId>maven-merge-configuration</artifactId>

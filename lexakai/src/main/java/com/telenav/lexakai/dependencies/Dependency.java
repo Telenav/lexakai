@@ -54,9 +54,8 @@ public class Dependency implements Comparable<Dependency>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Dependency)
+        if (object instanceof Dependency that)
         {
-            Dependency that = (Dependency) object;
             return from.equals(that.from) && to.equals(that.to);
         }
         return false;

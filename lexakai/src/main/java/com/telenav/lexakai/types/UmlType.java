@@ -80,9 +80,8 @@ public class UmlType
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof UmlType)
+        if (object instanceof UmlType that)
         {
-            UmlType that = (UmlType) object;
             return name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS).equals(that.name(UNQUALIFIED, WITHOUT_TYPE_PARAMETERS));
         }
         return false;

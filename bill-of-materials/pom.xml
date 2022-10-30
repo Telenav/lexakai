@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav</groupId>
         <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.7</version>
         <relativePath/>
     </parent>
 
@@ -24,7 +24,7 @@
     <packaging>pom</packaging>
 
     <name>Lexakai BOM</name>
-    <description>Bill Of Meterials for Lexakai.
+    <description>Bill Of Materials for Lexakai.
         Import this pom as a pom-type, import scope dependency in your dependencyManagement
         section to depend on a consistent set of versions of lexakai.</description>
 

@@ -57,9 +57,8 @@ public class UmlInheritance implements Comparable<UmlInheritance>
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof UmlInheritance)
+        if (object instanceof UmlInheritance that)
         {
-            UmlInheritance that = (UmlInheritance) object;
             return supertype.equals(that.supertype) && subtype.equals(that.subtype);
         }
         return false;

@@ -19,7 +19,7 @@
 
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai-parent</artifactId>
-    <version>1.0.16</version>
+    <version>1.0.17</version>
 
     <packaging>pom</packaging>
 

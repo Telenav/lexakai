@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav</groupId>
         <artifactId>telenav-root-superpom</artifactId>
-        <version>1.0.7</version>
+        <version>1.0.8</version>
         <relativePath/>
     </parent>
 
@@ -33,7 +33,7 @@
     </modules>
 
     <properties>
-        <cactus.previous.version>1.5.41</cactus.previous.version>
+        <cactus.previous.version>1.5.42</cactus.previous.version>
         <javaparser.version>3.24.4</javaparser.version>
         <kivakit.previous.version>1.8.1</kivakit.previous.version>
         <mastfrog.version>2.9.0</mastfrog.version>

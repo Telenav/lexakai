@@ -23,7 +23,6 @@
 
     <packaging>pom</packaging>
 
-    <name>Lexakai Parent</name>
     <description>Superpom for Lexakai</description>
 
     <modules>

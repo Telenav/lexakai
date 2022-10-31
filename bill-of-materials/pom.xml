@@ -23,7 +23,6 @@
 
     <packaging>pom</packaging>
 
-    <name>Lexakai BOM</name>
     <description>Bill Of Materials for Lexakai.
         Import this pom as a pom-type, import scope dependency in your dependencyManagement
         section to depend on a consistent set of versions of lexakai.</description>

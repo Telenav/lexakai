@@ -15,7 +15,7 @@ fi
 
 cd "$LEXAKAI_WORKSPACE" || exit
 git clone https://github.com/Telenav/lexakai-assets.git
-git config pull.ff false
+git config pull.ff true
 
 cd "$LEXAKAI_HOME" || exit
 git checkout develop

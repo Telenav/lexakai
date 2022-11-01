@@ -66,6 +66,7 @@ import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.RedirectTo.CONSOLE;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
 import static com.telenav.kivakit.resource.CopyMode.UPDATE;
+import static java.util.Collections.addAll;
 
 /**
  * The <a href="https://telenav.github.io/lexakai/">Lexakai</a> application.
@@ -258,7 +259,7 @@ public class Lexakai extends Application
         // add any project exclusions
         if (has(EXCLUDE_PROJECTS))
         {
-            Collections.addAll(exclusions, get(EXCLUDE_PROJECTS).split(","));
+            addAll(exclusions, get(EXCLUDE_PROJECTS).split(","));
         }
 
         // create a new Java parser for the root folders,

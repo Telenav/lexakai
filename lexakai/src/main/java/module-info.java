@@ -1,7 +1,6 @@
 open module lexakai
 {
     // Cactus
-    requires cactus.metadata;
     requires cactus.maven.model;
 
     // KivaKit

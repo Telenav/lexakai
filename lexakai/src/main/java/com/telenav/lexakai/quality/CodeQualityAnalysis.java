@@ -3,14 +3,15 @@ package com.telenav.lexakai.quality;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.string.Align;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.lexakai.LexakaiProject;
 import org.jetbrains.annotations.NotNull;
 
+import static com.telenav.kivakit.core.string.Align.rightAlign;
+import static com.telenav.kivakit.core.string.Formatter.format;
 import static com.telenav.kivakit.core.string.Split.split;
+import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
  * @author jonathanl (shibo)
@@ -136,7 +137,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
     public String totalTypes()
     {
-        return Formatter.format("$ types", totalTypes);
+        return format("$ types", totalTypes);
     }
 
     public StringList warnings()
@@ -151,22 +152,22 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
     private Percent percentJavadocCovered()
     {
-        return totalTypes == 0 ? Percent._0 : Percent.percent(100.0 * javadocCoveredTypes / totalTypes);
+        return totalTypes == 0 ? Percent._0 : percent(100.0 * javadocCoveredTypes / totalTypes);
     }
 
     private Percent percentStableTypes()
     {
-        return totalTypes == 0 ? Percent._0 : Percent.percent(100.0 * stableTypes / totalTypes);
+        return totalTypes == 0 ? Percent._0 : percent(100.0 * stableTypes / totalTypes);
     }
 
     private Percent percentTestedTypes()
     {
-        return totalTypes == 0 ? Percent._0 : Percent.percent(100.0 * testedTypes / totalTypes);
+        return totalTypes == 0 ? Percent._0 : percent(100.0 * testedTypes / totalTypes);
     }
 
     private String projectTypes()
     {
-        return Formatter.format("$: $", Align.rightAlign(project.name(), 32, ' '), totalTypes());
+        return format("$: $", rightAlign(project.name(), 32, ' '), totalTypes());
     }
 
     private String qualityMeterMarkdown()

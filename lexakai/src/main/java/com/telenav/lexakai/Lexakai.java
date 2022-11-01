@@ -44,7 +44,6 @@ import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
 import com.telenav.lexakai.quality.CodeQualityAnalysis;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,9 +58,9 @@ import static com.telenav.kivakit.commandline.SwitchParsers.stringSwitchParser;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.filesystem.Folders.folderArgumentParser;
 import static com.telenav.kivakit.filesystem.Folders.folderSwitchParser;
-import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.RedirectTo.CONSOLE;
 import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
@@ -355,7 +354,7 @@ public class Lexakai extends Application
                     var warnings = coverage.warnings();
                     if (warnings.isNonEmpty())
                     {
-                        announce(warnings.indented(6).join("\n"));
+                        announce(warnings.indented(6).toString());
                     }
                 }
             }

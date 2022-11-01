@@ -39,6 +39,14 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <!-- Avoid detecting the original lexakai module -->
+                <configuration>
+                    <additionalOptions>--limit-modules lexakai.standalone</additionalOptions>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>com.mastfrog</groupId>

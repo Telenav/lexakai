@@ -57,6 +57,7 @@
                         <unrequire>
                             org.jetbrains.annotations,
                             cactus.maven.xml,
+                            cactus.metadata,
                             com.github.javaparser.symbolsolver.core,
                             com.github.javaparser.core,
                             com.mastfrog.preconditions,

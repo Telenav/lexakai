@@ -15,7 +15,7 @@
 // limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-package com.telenav.lexakai.standalone;
+package com.telenav.xlexakai.standalone;
 
 /**
  * This class exists only to allow the javadoc build to succeed.

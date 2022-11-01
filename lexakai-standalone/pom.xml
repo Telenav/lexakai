@@ -45,6 +45,7 @@
                 <!-- Avoid detecting the original lexakai module -->
                 <configuration>
                     <additionalOptions>--limit-modules lexakai.standalone</additionalOptions>
+                    <excludePackageNames>com.telenav.lexakai.*</excludePackageNames>
                 </configuration>
             </plugin>
 

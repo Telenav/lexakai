@@ -58,6 +58,7 @@ import static com.telenav.kivakit.commandline.SwitchParsers.stringSwitchParser;
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.string.AsciiArt.line;
 import static com.telenav.kivakit.filesystem.Folder.parseFolder;
 import static com.telenav.kivakit.filesystem.Folders.folderArgumentParser;
 import static com.telenav.kivakit.filesystem.Folders.folderSwitchParser;
@@ -343,7 +344,7 @@ public class Lexakai extends Application
         if (rootProject != null && get(SHOW_CODE_QUALITY))
         {
             announce("");
-            announce(AsciiArt.line("Code Quality"));
+            announce(line("Code Quality"));
             announce("");
             for (var coverage : rootProject.nestedProjectQuality())
             {

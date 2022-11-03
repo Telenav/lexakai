@@ -34,7 +34,7 @@
     <properties>
         <cactus.previous.version>1.5.47</cactus.previous.version>
         <javaparser.version>3.24.4</javaparser.version>
-        <kivakit.previous.version>1.8.2</kivakit.previous.version>
+        <kivakit.previous.version>1.8.3</kivakit.previous.version>
         <mastfrog.version>2.9.1</mastfrog.version>
         <jarmerge-moduleinfo-synthesizer.version>1.0.2</jarmerge-moduleinfo-synthesizer.version>
     </properties>

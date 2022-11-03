@@ -1,18 +1,18 @@
 [//]: # (start-user-text)
 
-${user-text-top}
+
 
 [//]: # (end-user-text)
 
-# ${project-title} &nbsp;&nbsp; <img src="${project-images-location}/${project-icon}.png" srcset="${project-images-location}/${project-icon}-2x.png 2x"/>
+# lexakai-standalone 1.0.18 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64-2x.png 2x"/>
 
-${project-description}
+Standalone JAR version of lexakai with dependencies bundled
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
-${project-index}
+
 
 [**Dependencies**](#dependencies) | [**Code Quality**](#code-quality) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams)
 
@@ -20,21 +20,21 @@ ${project-index}
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](${project-diagrams-location}/dependencies.svg)
+[*Dependency Diagram*](https://www.lexakai.org/1.0.18/lexakai/lexakai/lexakai-standalone/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
-        <groupId>${project-group-id}</groupId>
-        <artifactId>${project-artifact-id}</artifactId>
-        <version>${project-version}</version>
+        <groupId>com.telenav.lexakai</groupId>
+        <artifactId>lexakai-standalone</artifactId>
+        <version>1.0.18</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
-${user-text-middle}
+
 
 [//]: # (end-user-text)
 
@@ -42,39 +42,41 @@ ${user-text-middle}
 
 ### Code Quality <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/ruler-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/ruler-32-2x.png 2x"/>
 
-Code quality for this project is ${project-quality}
+Code quality for this project is 0.0%.  
+  
+&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>
 
 | Measurement   | Value                    |
 |---------------|--------------------------|
-| Stability     | ${project-stability}     |
-| Testing       | ${project-testing}       |
-| Documentation | ${project-documentation} |
+| Stability     | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>     |
+| Testing       | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/>       |
+| Documentation | 0.0%&nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/meters/meter-0-96.png" srcset="https://telenav.github.io/telenav-assets/images/meters/meter-0-96-2x.png 2x"/> |
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/diagram-40.png" srcset="https://telenav.github.io/telenav-assets/images/icons/diagram-40-2x.png 2x"/>
 
-${class-diagram-index}
+None
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-${package-diagram-index}
+[*com.telenav.xlexakai.standalone*](https://www.lexakai.org/1.0.18/lexakai/lexakai/lexakai-standalone/documentation/diagrams/com.telenav.xlexakai.standalone.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-${javadoc-index}
+| [*Placeholder*](https://www.lexakai.org/1.0.18/javadoc/lexakai/lexakai.standalone/com/telenav/xlexakai/standalone/Placeholder.html) |  |  
 
 [//]: # (start-user-text)
 
-${user-text-bottom}
+
 
 [//]: # (end-user-text)
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-512-2x.png 2x"/>
 
-${project-footer}  
+<sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>

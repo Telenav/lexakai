@@ -39,7 +39,10 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
     public void add(TypeDeclaration<?> type)
     {
         var fullName = type.getFullyQualifiedName();
-        if (fullName.isPresent() && (type.isPublic() || type.isProtected()) && !fullName.get().endsWith("Test"))
+        if (fullName.isPresent()
+                && (type.isPublic() || type.isProtected())
+                && !fullName.get().contains("internal")
+                && !fullName.get().endsWith("Test"))
         {
             var typeName = fullName.get();
             var quality = CodeQualityOfType.quality(typeName, type);

@@ -537,7 +537,7 @@ public class Lexakai extends Application
     private LexakaiProject project(Folder root,
                                    Folder projectFolder)
     {
-        var project = new LexakaiProject(this, root, projectFolder, outputRoot(root), parser);
+        var project = listenTo(new LexakaiProject(this, root, projectFolder, outputRoot(root), parser));
         if (project.initialize())
         {
             return listenTo(project)

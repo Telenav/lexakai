@@ -7,6 +7,7 @@ import com.telenav.lexakai.types.UmlType;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.string.Packages.packageToPath;
 import static com.telenav.kivakit.core.string.Paths.pathConcatenate;
+import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
 import static com.telenav.lexakai.library.Names.Qualification.QUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
@@ -42,7 +43,7 @@ public class LexakaiProjectProperties extends PropertyMap
             properties.require("project-artifact-id");
 
             // add lexakai.settings,
-            properties.addAll(PropertyMap.loadPropertyMap(project, project.files().lexakaiSettings()).expandedWith(properties));
+            properties.addAll(loadPropertyMap(project, project.listenTo(project.files().lexakaiSettings())).expandedWith(properties));
             properties.require("lexakai-documentation-location");
             properties.require("lexakai-javadoc-location");
             properties.require("lexakai-images-location");
@@ -53,7 +54,7 @@ public class LexakaiProjectProperties extends PropertyMap
             {
                 project.lexakai().exit("Lexakai properties not found: $", lexakaiProperties);
             }
-            properties.addAll(PropertyMap.loadPropertyMap(project, lexakaiProperties).expandedWith(properties));
+            properties.addAll(loadPropertyMap(project, lexakaiProperties).expandedWith(properties));
             properties.putIfAbsent("project-icon", "gears-32");
 
             // check that we have a project title, description and icon,

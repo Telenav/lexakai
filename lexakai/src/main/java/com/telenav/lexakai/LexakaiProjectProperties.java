@@ -7,7 +7,6 @@ import com.telenav.lexakai.types.UmlType;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.string.Packages.packageToPath;
 import static com.telenav.kivakit.core.string.Paths.pathConcatenate;
-import static com.telenav.kivakit.properties.PropertyMap.loadPropertyMap;
 import static com.telenav.lexakai.library.Names.Qualification.QUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 
@@ -124,7 +123,7 @@ public class LexakaiProjectProperties extends PropertyMap
         var moduleName = projectModuleName();
         if (moduleName != null && !"none".equalsIgnoreCase(moduleName))
         {
-            location += "/" + moduleName;
+            location += "/" + moduleName.replaceAll("\\.", "-");
         }
         return location;
     }

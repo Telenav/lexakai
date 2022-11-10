@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.telenav.kivakit.core.string.Align.rightAlign;
 import static com.telenav.kivakit.core.string.Formatter.format;
+import static com.telenav.kivakit.core.string.Plural.pluralizeEnglish;
 import static com.telenav.kivakit.core.string.Split.split;
 import static com.telenav.kivakit.core.value.level.Percent.percent;
 
@@ -81,7 +82,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
             if (warning)
             {
-                warnings.add("Code quality of $: $", split(typeName, "\\.").last(), quality.problems());
+                warnings.add("$: $", split(typeName, "\\.").last(), quality.problems());
             }
 
             totalTypes++;
@@ -140,7 +141,7 @@ public class CodeQualityAnalysis implements Comparable<CodeQualityAnalysis>
 
     public String totalTypes()
     {
-        return format("$ types", totalTypes);
+        return format("$ $", totalTypes, pluralizeEnglish(totalTypes, "type"));
     }
 
     public StringList warnings()

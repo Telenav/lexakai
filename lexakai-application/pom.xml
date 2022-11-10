@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--                                                                                                                 -->
+<!--  © 2011-2022 Telenav, Inc.                                                                                      -->
+<!--  Licensed under Apache License, Version 2.0                                                                     -->
+<!--                                                                                                                 -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<project
+        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xmlns = "http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.telenav.lexakai</groupId>
+        <artifactId>lexakai-parent</artifactId>
+        <version>1.0.20</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <name>lexakai-application</name>
+    <artifactId>lexakai-application</artifactId>
+
+    <!-- Dependencies -->
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.telenav.lexakai</groupId>
+            <artifactId>lexakai-library</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Merge application into a single JAR file -->
+
+            <plugin>
+                <groupId>com.mastfrog</groupId>
+                <artifactId>maven-merge-configuration</artifactId>
+                <version>${mastfrog.version}</version>
+                <configuration>
+                    <normalizeMetaInfPropertiesFiles>true</normalizeMetaInfPropertiesFiles>
+                    <mainClass>com.telenav.lexakai.Lexakai</mainClass>
+                    <skipLicenseFiles>true</skipLicenseFiles>
+                    <skipMavenMetadata>true</skipMavenMetadata>
+                    <replacePom>true</replacePom>
+                    <zerodates>true</zerodates>
+                    <extensionProperties>
+                        <moduleName>lexakai.application</moduleName>
+                        <openModule>false</openModule>
+                        <checkServiceConstructors>false</checkServiceConstructors>
+                        <unrequire>
+                            org.jetbrains.annotations,
+                            cactus.maven.xml,
+                            cactus.metadata,
+                            com.github.javaparser.symbolsolver.core,
+                            com.github.javaparser.core,
+                            com.mastfrog.preconditions,
+                            com.google.gson,
+                            com.mastfrog.function
+                        </unrequire>
+                    </extensionProperties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>merge-configuration</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# lexakai 1.0.20 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64-2x.png 2x"/>
+# lexakai 1.0.21 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64-2x.png 2x"/>
 
 A tool for generating UML diagrams and markdown documentation indexes.
 

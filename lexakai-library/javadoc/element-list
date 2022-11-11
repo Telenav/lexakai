@@ -1,0 +1,11 @@
+module:lexakai.library
+com.telenav.lexakai
+com.telenav.lexakai.associations
+com.telenav.lexakai.builders
+com.telenav.lexakai.builders.grouper
+com.telenav.lexakai.dependencies
+com.telenav.lexakai.indexes
+com.telenav.lexakai.library
+com.telenav.lexakai.members
+com.telenav.lexakai.quality
+com.telenav.lexakai.types

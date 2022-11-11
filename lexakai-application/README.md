@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# lexakai-application 1.0.20 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64-2x.png 2x"/>
+# lexakai-application 1.0.21 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64.png" srcset="https://telenav.github.io/telenav-assets/images/logos/lexakai/lexakai-64-2x.png 2x"/>
 
 Application version of Lexakai packaged in an executable JAR.
 
@@ -20,14 +20,14 @@ Application version of Lexakai packaged in an executable JAR.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.lexakai.org/1.0.20/lexakai/lexakai/lexakai-application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.lexakai.org/1.0.21/lexakai/lexakai/lexakai-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.lexakai</groupId>
         <artifactId>lexakai-application</artifactId>
-        <version>1.0.20</version>
+        <version>1.0.21</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -62,13 +62,13 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.lexakai.application*](https://www.lexakai.org/1.0.20/lexakai/lexakai/lexakai-application/documentation/diagrams/com.telenav.lexakai.application.svg)
+[*com.telenav.lexakai.application*](https://www.lexakai.org/1.0.21/lexakai/lexakai/lexakai-application/documentation/diagrams/com.telenav.lexakai.application.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Unused*](https://www.lexakai.org/1.0.20/javadoc/lexakai/lexakai-application/com/telenav/lexakai/application/Unused.html) |  |  
+| [*Unused*](https://www.lexakai.org/1.0.21/javadoc/lexakai/lexakai-application/com/telenav/lexakai/application/Unused.html) |  |  
 
 [//]: # (start-user-text)
 

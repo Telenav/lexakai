@@ -55,44 +55,101 @@
 
     <properties>
 
+        <!-- Project -->
+
+        <repository.group.name>lexakai</repository.group.name>
+        <repository.name>lexakai</repository.name>
+
         <!-- Tools -->
 
         <java.version>17</java.version>
         <maven.version>3.8.5</maven.version>
+        <cactus.version>1.5.49</cactus.version>
         <lexakai.version>1.0.20</lexakai.version>
         <module.info.synthesizer.version>1.0.2</module.info.synthesizer.version>
+
+        <!-- Telenav -->
+
+        <kivakit.version>1.8.4</kivakit.version>
 
         <!-- Plugins -->
 
         <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
         <maven.enforcer.plugin.version>3.1.0</maven.enforcer.plugin.version>
+        <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
         <maven.shade.plugin.version>3.3.0</maven.shade.plugin.version>
         <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
-        <maven.cactus.plugin.version>1.5.49</maven.cactus.plugin.version>
-        <maven.cactus.metadata.plugin.version>1.0.2</maven.cactus.metadata.plugin.version>
+        <maven.moditect.plugin.version>1.0.0.RC1</maven.moditect.plugin.version>
+        <maven.plugin.plugin.version>3.7.0</maven.plugin.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
         <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+        <maven.nexus.staging.plugin.version>1.6.13</maven.nexus.staging.plugin.version>
+        <maven.deploy.plugin.version>3.0.0</maven.deploy.plugin.version>
+        <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+        <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
+        <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
+        <maven.os.plugin.version>1.6.1</maven.os.plugin.version>
+        <maven.protobuf.plugin.version>0.6.1</maven.protobuf.plugin.version>
 
         <!-- Documentation -->
 
-        <javadoc.source.version>17</javadoc.source.version>
         <!--suppress UnresolvedMavenProperty -->
-        <assets.documentation.folder>${TELENAV_WORKSPACE}/lexakai-assets/docs/${project.version}</assets.documentation.folder>
-        <lexakai.documentation.folder>${assets.documentation.folder}/lexakai</lexakai.documentation.folder>
-        <javadoc.documentation.folder>${assets.documentation.folder}/javadoc</javadoc.documentation.folder>
+        <documentation.assets.folder>${env.TELENAV_WORKSPACE}/${repository.group.name}-assets/docs/${project.version}</documentation.assets.folder>
+        <documentation.lexakai.folder>${documentation.assets.folder}/lexakai</documentation.lexakai.folder>
+        <documentation.javadoc.folder>${documentation.assets.folder}/javadoc/${repository.name}</documentation.javadoc.folder>
+        <documentation.javadoc.source.version>17</documentation.javadoc.source.version>
+        <documentation.lexakai.downloads.folder>${env.HOME}/.lexakai/downloads</documentation.lexakai.downloads.folder>
 
         <!-- Publishing -->
 
-        <maven.nexus.staging.plugin.version>1.6.13</maven.nexus.staging.plugin.version>
-        <maven.deploy.plugin.version>3.0.0</maven.deploy.plugin.version>
+        <publishing.nexus.deploy.skip>false</publishing.nexus.deploy.skip>
+        <publishing.nexus.release>true</publishing.nexus.release>
 
-        <!-- Dependencies -->
+        <!-- Annotations -->
 
-        <cactus.version>1.5.49</cactus.version>
-        <kivakit.version>1.8.4</kivakit.version>
-        <javaparser.version>3.24.7</javaparser.version>
-        <mastfrog.version>2.9.1</mastfrog.version>
+        <annotations.lexakai.annotations.version>1.0.9</annotations.lexakai.annotations.version>
+        <annotations.jetbrains.annotations.version>23.0.0</annotations.jetbrains.annotations.version>
+
+        <!-- Serialization -->
+
+        <serialization.kryo.version>5.3.0</serialization.kryo.version>
+        <serialization.kryo.serializers.version>0.45</serialization.kryo.serializers.version>
+        <serialization.gson.version>2.10</serialization.gson.version>
+        <serialization.protobuf.version>3.21.9</serialization.protobuf.version>
+        <serialization.jackson.version>2.14.0</serialization.jackson.version>
+        <serialization.snake.yaml.version>1.33</serialization.snake.yaml.version>
+
+        <!-- Cloud -->
+
+        <cloud.aws.s3.version>2.17.31</cloud.aws.s3.version>
+        <cloud.aws.lambda.version>1.2.1</cloud.aws.lambda.version>
+        <cloud.zookeeper.version>1.5.8</cloud.zookeeper.version>
+
+        <!-- Networking -->
+
+        <networking.httpclient.version>4.5.13</networking.httpclient.version>
+
+        <!-- Web -->
+
+        <web.netty.version>4.1.84.Final</web.netty.version>
+
+        <!-- Utilities -->
+
+        <utilities.guava.version>31.1-jre</utilities.guava.version>
+        <utilities.classgraph.version>4.8.149</utilities.classgraph.version>
+        <utilities.log4j.version>2.19.0</utilities.log4j.version>
+        <utilities.cactus.metadata.version>1.0.2</utilities.cactus.metadata.version>
+        <utilities.mastfrog.version>2.9.1</utilities.mastfrog.version>
+
+        <!-- Testing -->
+
+        <testing.junit.version>4.13.2</testing.junit.version>
+        <testing.junit5.version>5.9.1</testing.junit5.version>
+        <testing.junit.platform.version>1.9.1</testing.junit.platform.version>
+        <testing.surefire.excluded/>
+        <testing.surefire.quick>false</testing.surefire.quick>
 
     </properties>
 
@@ -101,7 +158,6 @@
     <developers>
 
         <developer>
-
             <id>jonathanl</id>
             <name>Jonathan Locke (Luo Shibo)</name>
             <email>jonathanl@telenav.com</email>
@@ -111,11 +167,9 @@
                 <role>lead</role>
                 <role>administrator</role>
             </roles>
-
         </developer>
 
         <developer>
-
             <id>timboudreau</id>
             <name>Tim Boudreau</name>
             <email>tim@timboudreau.com</email>
@@ -125,7 +179,6 @@
                 <role>developer</role>
                 <role>administrator</role>
             </roles>
-
         </developer>
 
     </developers>
@@ -141,13 +194,28 @@
 
     </distributionManagement>
 
+    <!-- Repositories -->
+
+    <repositories>
+
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+
+    </repositories>
+
     <!-- Source Code -->
 
     <scm>
 
-        <connection>scm:git:https://github.com/Telenav/lexakai.git</connection>
-        <developerConnection>scm:git:https://github.com/Telenav/lexakai.git</developerConnection>
-        <url>https://github.com/Telenav/lexakai.git</url>
+        <connection>scm:git:https://github.com/Telenav/${repository.name}.git</connection>
+        <developerConnection>scm:git:https://github.com/Telenav/${repository.name}.git</developerConnection>
+        <url>https://github.com/Telenav/${repository.name}.git</url>
 
     </scm>
 
@@ -156,27 +224,9 @@
     <issueManagement>
 
         <system>GitHub</system>
-        <url>https://github.com/Telenav/lexakai/issues</url>
+        <url>https://github.com/Telenav/${repository.group.name}/issues</url>
 
     </issueManagement>
-
-    <dependencyManagement>
-
-        <dependencies>
-
-            <!-- Pull in all Cactus libraries -->
-
-            <dependency>
-                <groupId>com.telenav.cactus</groupId>
-                <artifactId>cactus</artifactId>
-                <version>${cactus.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-        </dependencies>
-
-    </dependencyManagement>
 
     <build>
 
@@ -184,21 +234,23 @@
 
         <resources>
             <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
+                <directory>${project.basedir}/src/main/java</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
         </resources>
+
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+
+        <!-- Plugins -->
 
         <plugins>
 
@@ -251,13 +303,13 @@
             <plugin>
                 <groupId>com.telenav.cactus.metadata</groupId>
                 <artifactId>cactus-metadata-maven-plugin</artifactId>
-                <version>${maven.cactus.metadata.plugin.version}</version>
+                <version>${utilities.cactus.metadata.version}</version>
                 <executions>
                     <execution>
                         <id>project-metadata</id>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <verb>Updating Metadata</verb>
+                            <verb>Updating project and build metadata</verb>
                         </configuration>
                         <goals>
                             <goal>project-information</goal>
@@ -270,6 +322,8 @@
         </plugins>
 
     </build>
+
+    <!-- Build Profiles -->
 
     <profiles>
 
@@ -306,7 +360,7 @@
                         <configuration>
                             <show>protected</show>
                             <quiet>true</quiet>
-                            <source>${javadoc.source.version}</source>
+                            <source>${documentation.javadoc.source.version}</source>
                             <encoding>utf-8</encoding>
                             <sourcepath>src/main/java</sourcepath>
                             <failOnError>true</failOnError>
@@ -314,8 +368,7 @@
                             <doclint>none</doclint>
                             <nohelp>true</nohelp>
                             <additionalOptions>-notimestamp</additionalOptions>
-                            <reportOutputDirectory>target</reportOutputDirectory>
-                            <destDir>javadoc</destDir>
+                            <destDir>target/javadoc</destDir>
                             <sourceFileIncludes>
                                 <sourceFileInclude>**/*.java</sourceFileInclude>
                             </sourceFileIncludes>
@@ -357,7 +410,7 @@
                                 </goals>
                                 <configuration>
                                     <encoding>UTF-8</encoding>
-                                    <outputDirectory>${javadoc.documentation.folder}</outputDirectory>
+                                    <outputDirectory>${documentation.javadoc.folder}</outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>target/javadoc</directory>
@@ -368,21 +421,49 @@
                         </executions>
                     </plugin>
 
+                    <!-- Documentation - Lexakai -->
+
                     <plugin>
-                        <groupId>com.telenav.cactus</groupId>
-                        <artifactId>cactus-maven-plugin</artifactId>
-                        <version>${maven.cactus.plugin.version}</version>
+                        <groupId>com.googlecode.maven-download-plugin</groupId>
+                        <artifactId>download-maven-plugin</artifactId>
+                        <version>1.6.8</version>
                         <executions>
                             <execution>
-                                <id>build-lexakai-documentation</id>
+                                <id>install-jbpm</id>
                                 <phase>prepare-package</phase>
                                 <goals>
-                                    <goal>lexakai</goal>
+                                    <goal>wget</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <url>https://repo.maven.apache.org/maven2/com/telenav/lexakai/lexakai-application/${lexakai.version}/lexakai-application-${lexakai.version}.jar</url>
+                            <outputDirectory>${lexakai.downloads.folder}</outputDirectory>
+                            <overwrite>true</overwrite>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>run-lexakai</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <lexakaiVersion>${lexakai.version}</lexakaiVersion>
-                                    <updateReadme>true</updateReadme>
-                                    <outputFolder>${lexakai.documentation.folder}</outputFolder>
+                                    <executable>java</executable>
+                                    <workingDirectory>${documentation.lexakai.downloads.folder}</workingDirectory>
+                                    <arguments>
+                                        <argument>-jar</argument>
+                                        <argument>${documentation.lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
+                                        <argument>-update-readme=true</argument>
+                                        <argument>-output-folder=${documentation.lexakai.folder}</argument>
+                                        <argument>.</argument>
+                                    </arguments>
                                 </configuration>
                             </execution>
                         </executions>
@@ -422,8 +503,8 @@
                             <serverId>ossrh</serverId>
                             <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                             <skipLocalStaging>true</skipLocalStaging>
-                            <skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                            <skipNexusStagingDeployMojo>${publishing.nexus.deploy.skip}</skipNexusStagingDeployMojo>
+                            <autoReleaseAfterClose>${publishing.nexus.release}</autoReleaseAfterClose>
                             <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
                         </configuration>
                         <executions>

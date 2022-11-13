@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#
+#  © 2011-2021 Telenav, Inc.
+#  Licensed under Apache License, Version 2.0
+#
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+source telenav-library-functions
+
+lexakai_published_version="1.0.20"
+lexakai_local_build_version="1.0.21"
+
+lexakai_downloads="$HOME/.lexakai/downloads"
+
+lexakai_jar="${lexakai_downloads}/lexakai-application.jar"
+
+lexakai_maven_central_url="https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai-application/${lexakai_published_version}/lexakai-application-${lexakai_published_version}.jar"
+lexakai_local_build_jar="$HOME/.m2/repository/com/telenav/lexakai/lexakai-application/${lexakai_local_build_version}/lexakai-application-${lexakai_local_build_version}.jar"
+
+if [ ! -e "$lexakai_jar" ]; then
+
+    if [ -e "$lexakai_local_build_jar" ]; then
+
+        cp "$lexakai_local_build_jar" "$lexakai_jar"
+
+    fi
+
+    mkdir -p "${lexakai_downloads}"
+
+    if [ ! -e "$lexakai_jar" ]; then
+
+        echo "$lexakai_jar doesn't exist"
+
+        wget $lexakai_maven_central_url --output-document="$lexakai_jar"
+
+    fi
+
+fi
+
+# -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
+
+# shellcheck disable=SC2068
+java -DKIVAKIT_DEBUG="!Debug" -jar "$lexakai_jar" $@

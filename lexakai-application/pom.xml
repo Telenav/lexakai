@@ -46,7 +46,7 @@
             <plugin>
                 <groupId>com.mastfrog</groupId>
                 <artifactId>maven-merge-configuration</artifactId>
-                <version>${mastfrog.version}</version>
+                <version>${utilities.mastfrog.version}</version>
                 <configuration>
                     <normalizeMetaInfPropertiesFiles>true</normalizeMetaInfPropertiesFiles>
                     <mainClass>com.telenav.lexakai.Lexakai</mainClass>

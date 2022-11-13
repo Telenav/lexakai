@@ -26,6 +26,13 @@
     <name>lexakai-library</name>
     <artifactId>lexakai-library</artifactId>
 
+    <properties>
+
+        <utilities.parsing.javaparser.version>3.24.7</utilities.parsing.javaparser.version>
+
+    </properties>
+
+
     <!-- Dependencies -->
 
     <dependencies>
@@ -43,7 +50,7 @@
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-symbol-solver-core</artifactId>
-            <version>${javaparser.version}</version>
+            <version>${utilities.parsing.javaparser.version}</version>
         </dependency>
 
         <!-- Cactus -->
@@ -51,6 +58,7 @@
         <dependency>
             <groupId>com.telenav.cactus</groupId>
             <artifactId>cactus-maven-model</artifactId>
+            <version>${cactus.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.codehaus.plexus</groupId>

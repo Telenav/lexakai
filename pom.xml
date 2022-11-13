@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--                                                                                                                 -->
-<!--  © 2011-2022 Telenav, Inc.                                                                                      -->
-<!--  Licensed under Apache License, Version 2.0                                                                     -->
-<!--                                                                                                                 -->
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //
+ // © 2011-2022 Telenav, Inc.
+ // Licensed under Apache License, Version 2.0
+ //
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ -->
 
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>lexakai-parent</name>
     <groupId>com.telenav.lexakai</groupId>
     <artifactId>lexakai-parent</artifactId>
     <version>1.0.21</version>
@@ -21,6 +22,7 @@
 
     <!-- Project -->
 
+    <name>lexakai-parent</name>
     <description>Lexakai generates UML and markdown documentation for Java projects.</description>
     <url>https://www.lexakai.org</url>
     <inceptionYear>2011</inceptionYear>
@@ -58,8 +60,9 @@
         <java.version>17</java.version>
         <maven.version>3.8.5</maven.version>
         <lexakai.version>1.0.20</lexakai.version>
+        <module.info.synthesizer.version>1.0.2</module.info.synthesizer.version>
 
-        <!-- Compiling and packaging -->
+        <!-- Plugins -->
 
         <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
         <maven.enforcer.plugin.version>3.1.0</maven.enforcer.plugin.version>
@@ -68,15 +71,12 @@
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
         <maven.cactus.plugin.version>1.5.49</maven.cactus.plugin.version>
         <maven.cactus.metadata.plugin.version>1.0.2</maven.cactus.metadata.plugin.version>
-        <module.info.synthesizer.version>1.0.2</module.info.synthesizer.version>
-
-        <!-- Signing -->
-
+        <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
 
         <!-- Documentation -->
 
-        <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
+        <javadoc.source.version>17</javadoc.source.version>
         <!--suppress UnresolvedMavenProperty -->
         <assets.documentation.folder>${TELENAV_WORKSPACE}/lexakai-assets/docs/${project.version}</assets.documentation.folder>
         <lexakai.documentation.folder>${assets.documentation.folder}/lexakai</lexakai.documentation.folder>
@@ -305,7 +305,8 @@
                         <version>${maven.javadoc.plugin.version}</version>
                         <configuration>
                             <show>protected</show>
-                            <source>17</source>
+                            <quiet>true</quiet>
+                            <source>${javadoc.source.version}</source>
                             <encoding>utf-8</encoding>
                             <sourcepath>src/main/java</sourcepath>
                             <failOnError>true</failOnError>
@@ -318,7 +319,6 @@
                             <sourceFileIncludes>
                                 <sourceFileInclude>**/*.java</sourceFileInclude>
                             </sourceFileIncludes>
-                            <footer>© 2011-2022 Telenav, Inc. Licensed under Apache License, Version 2.0</footer>
                         </configuration>
                         <executions>
                             <execution>
@@ -356,6 +356,7 @@
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
+                                    <encoding>UTF-8</encoding>
                                     <outputDirectory>${javadoc.documentation.folder}</outputDirectory>
                                     <resources>
                                         <resource>

@@ -89,7 +89,7 @@
 
         <!-- Dependencies -->
 
-        <cactus.version>1.5.48</cactus.version>
+        <cactus.version>1.5.49</cactus.version>
         <kivakit.version>1.8.4</kivakit.version>
         <javaparser.version>3.24.7</javaparser.version>
         <mastfrog.version>2.9.1</mastfrog.version>

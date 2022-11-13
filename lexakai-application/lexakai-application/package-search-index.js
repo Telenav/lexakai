@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"lexakai.application","l":"com.telenav.lexakai.application"}];updateSearchResults();

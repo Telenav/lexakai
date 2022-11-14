@@ -70,7 +70,7 @@
 
         <!-- Telenav -->
 
-        <kivakit.version>1.8.4</kivakit.version>
+        <kivakit.version>1.8.5</kivakit.version>
 
         <!-- Plugins -->
 
@@ -462,7 +462,8 @@
                                         <argument>${documentation.lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
                                         <argument>-update-readme=true</argument>
                                         <argument>-output-folder=${documentation.lexakai.folder}</argument>
-                                        <argument>.</argument>
+                                        <!--suppress UnresolvedMavenProperty -->
+                                        <argument>${env.TELENAV_WORKSPACE}/${repository.name}/</argument>
                                     </arguments>
                                 </configuration>
                             </execution>

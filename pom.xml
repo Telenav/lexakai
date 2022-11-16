@@ -70,7 +70,7 @@
 
         <!-- Telenav -->
 
-        <kivakit.version>1.8.4</kivakit.version>
+        <kivakit.version>1.8.5</kivakit.version>
 
         <!-- Plugins -->
 
@@ -92,6 +92,7 @@
         <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
         <maven.os.plugin.version>1.6.1</maven.os.plugin.version>
         <maven.protobuf.plugin.version>0.6.1</maven.protobuf.plugin.version>
+        <maven.cactus.plugin.version>1.5.49</maven.cactus.plugin.version>
 
         <!-- Documentation -->
 
@@ -104,8 +105,8 @@
 
         <!-- Publishing -->
 
-        <publishing.nexus.deploy.skip>false</publishing.nexus.deploy.skip>
-        <publishing.nexus.release>true</publishing.nexus.release>
+        <nexus.deploy.skip>false</nexus.deploy.skip>
+        <nexus.release>true</nexus.release>
 
         <!-- Annotations -->
 
@@ -319,7 +320,87 @@
                 </executions>
             </plugin>
 
+            <!-- Create Javadoc site -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <configuration>
+                    <show>protected</show>
+                    <quiet>true</quiet>
+                    <source>${documentation.javadoc.source.version}</source>
+                    <encoding>utf-8</encoding>
+                    <sourcepath>src/main/java</sourcepath>
+                    <failOnError>true</failOnError>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                    <doclint>none</doclint>
+                    <nohelp>true</nohelp>
+                    <additionalOptions>-notimestamp</additionalOptions>
+                    <!--suppress CheckTagEmptyBody -->
+                    <destDir></destDir>
+                    <sourceFileIncludes>
+                        <sourceFileInclude>**/*.java</sourceFileInclude>
+                    </sourceFileIncludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${documentation.javadoc.folder}</outputDirectory>
+                            <reportOutputDirectory>${documentation.javadoc.folder}</reportOutputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>attach-javadoc-jar</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>${maven.plugin.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.plugin.version}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <unit.test>true</unit.test>
+                        </systemPropertyVariables>
+                        <argLine>-Xmx2g</argLine>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
 
     </build>
 
@@ -351,72 +432,37 @@
                         </executions>
                     </plugin>
 
-                    <!-- Documentation -->
+                    <!-- Documentation - CodeFlowers, Replace Versions -->
 
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven.javadoc.plugin.version}</version>
+                        <groupId>com.telenav.cactus</groupId>
+                        <artifactId>cactus-maven-plugin</artifactId>
+                        <version>${maven.cactus.plugin.version}</version>
                         <configuration>
-                            <show>protected</show>
-                            <quiet>true</quiet>
-                            <source>${documentation.javadoc.source.version}</source>
-                            <encoding>utf-8</encoding>
-                            <sourcepath>src/main/java</sourcepath>
-                            <failOnError>true</failOnError>
-                            <detectJavaApiLink>false</detectJavaApiLink>
-                            <doclint>none</doclint>
-                            <nohelp>true</nohelp>
-                            <additionalOptions>-notimestamp</additionalOptions>
-                            <destDir>target/javadoc</destDir>
-                            <sourceFileIncludes>
-                                <sourceFileInclude>**/*.java</sourceFileInclude>
-                            </sourceFileIncludes>
+                            <scope>family</scope>
+                            <verbose>true</verbose>
+                            <includeRoot>true</includeRoot>
+                            <tolerateVersionInconsistenciesIn>lexakai</tolerateVersionInconsistenciesIn>
                         </configuration>
                         <executions>
+                            <!--
                             <execution>
-                                <id>generate-javadoc</id>
-                                <phase>prepare-package</phase>
+                                <id>replace-versions</id>
                                 <goals>
-                                    <goal>javadoc-no-fork</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>generate-aggregate-javadoc</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>aggregate-no-fork</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>attach-javadoc-jar</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>${maven.resources.plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>copy-javadoc</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
+                                    <goal>replace</goal>
                                 </goals>
                                 <configuration>
-                                    <encoding>UTF-8</encoding>
-                                    <outputDirectory>${documentation.javadoc.folder}</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <directory>target/javadoc</directory>
-                                        </resource>
-                                    </resources>
+                                    <newVersion>${project.version}</newVersion>
+                                    <newBranchName>${project.version}</newBranchName>
                                 </configuration>
+                            </execution>
+                            -->
+                            <execution>
+                                <id>generate-codeflowers</id>
+                                <goals>
+                                    <goal>codeflowers</goal>
+                                </goals>
+                                <phase>install</phase>
                             </execution>
                         </executions>
                     </plugin>
@@ -427,6 +473,7 @@
                         <groupId>com.googlecode.maven-download-plugin</groupId>
                         <artifactId>download-maven-plugin</artifactId>
                         <version>1.6.8</version>
+                        <inherited>false</inherited>
                         <executions>
                             <execution>
                                 <id>install-jbpm</id>
@@ -447,6 +494,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
+                        <inherited>false</inherited>
                         <executions>
                             <execution>
                                 <id>run-lexakai</id>
@@ -462,7 +510,8 @@
                                         <argument>${documentation.lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
                                         <argument>-update-readme=true</argument>
                                         <argument>-output-folder=${documentation.lexakai.folder}</argument>
-                                        <argument>.</argument>
+                                        <!--suppress UnresolvedMavenProperty -->
+                                        <argument>${env.TELENAV_WORKSPACE}/${repository.name}/</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -503,8 +552,8 @@
                             <serverId>ossrh</serverId>
                             <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                             <skipLocalStaging>true</skipLocalStaging>
-                            <skipNexusStagingDeployMojo>${publishing.nexus.deploy.skip}</skipNexusStagingDeployMojo>
-                            <autoReleaseAfterClose>${publishing.nexus.release}</autoReleaseAfterClose>
+                            <skipNexusStagingDeployMojo>${nexus.deploy.skip}</skipNexusStagingDeployMojo>
+                            <autoReleaseAfterClose>${nexus.release}</autoReleaseAfterClose>
                             <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
                         </configuration>
                         <executions>

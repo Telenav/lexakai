@@ -70,7 +70,7 @@
 
         <!-- Telenav -->
 
-        <kivakit.version>1.8.5</kivakit.version>
+        <kivakit.version>1.8.7</kivakit.version>
 
         <!-- Plugins -->
 
@@ -341,7 +341,7 @@
                     <nohelp>true</nohelp>
                     <additionalOptions>-notimestamp</additionalOptions>
                     <!--suppress CheckTagEmptyBody -->
-                    <destDir></destDir>
+                    <destDir/>
                     <sourceFileIncludes>
                         <sourceFileInclude>**/*.java</sourceFileInclude>
                     </sourceFileIncludes>

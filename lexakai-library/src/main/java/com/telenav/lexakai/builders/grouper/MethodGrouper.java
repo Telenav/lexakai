@@ -18,6 +18,7 @@
 
 package com.telenav.lexakai.builders.grouper;
 
+import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.lexakai.members.UmlConstructor;
 import com.telenav.lexakai.members.UmlMethod;
 import com.telenav.lexakai.types.UmlType;
@@ -27,7 +28,7 @@ import java.util.List;
 /**
  * @author jonathanl (shibo)
  */
-public class MethodGrouper
+public class MethodGrouper extends BaseComponent
 {
     private final UmlType type;
 
@@ -37,7 +38,7 @@ public class MethodGrouper
     {
         this.type = type;
 
-        guesser = new MethodGroupNameGuesser(type.diagram().project());
+        guesser = listenTo(new MethodGroupNameGuesser(type.diagram().project()));
     }
 
     public MethodGroups groups()

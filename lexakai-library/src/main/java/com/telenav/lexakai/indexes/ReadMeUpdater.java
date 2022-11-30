@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.string.Wrap;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.packages.PackageResource;
+import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.lexakai.Lexakai;
 import com.telenav.lexakai.LexakaiProject;
@@ -75,13 +75,13 @@ import static java.util.regex.Pattern.MULTILINE;
  *
  * @author jonathanl (shibo)
  */
-public class ReadMeUpdater extends BaseComponent
+public class ReadMeUpdater extends BaseComponent implements PackageTrait
 {
-    private final Resource PARENT_README_TEMPLATE = PackageResource.packageResource(this, ReadMeUpdater.class, "lexakai-parent-readme-template.md");
+    private final Resource PARENT_README_TEMPLATE = packageResource("lexakai-parent-readme-template.md");
 
     private final Pattern SECTION_HEADING = Pattern.compile("^### ([ A-Za-z0-9_-]+)(\\s*<a name)?", MULTILINE);
 
-    private final Resource SOURCE_README_TEMPLATE = PackageResource.packageResource(this, ReadMeUpdater.class, "lexakai-source-readme-template.md");
+    private final Resource SOURCE_README_TEMPLATE = packageResource("lexakai-source-readme-template.md");
 
     private final LexakaiProject project;
 

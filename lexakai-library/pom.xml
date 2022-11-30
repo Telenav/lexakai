@@ -9,10 +9,9 @@
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  -->
 
-<project
-        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-        xmlns = "http://maven.apache.org/POM/4.0.0"
-        xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,10 +27,9 @@
 
     <properties>
 
-        <utilities.parsing.javaparser.version>3.24.7</utilities.parsing.javaparser.version>
+        <utilities.parsing.javaparser.version>3.24.8</utilities.parsing.javaparser.version>
 
     </properties>
-
 
     <!-- Dependencies -->
 

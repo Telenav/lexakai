@@ -39,7 +39,7 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
 import com.telenav.kivakit.launcher.JarLauncher;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.packages.PackageResource;
+import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
 import com.telenav.lexakai.quality.CodeQualityAnalysis;
@@ -81,8 +81,9 @@ import static java.util.Collections.addAll;
  * @see <a href="https://telenav.github.io/lexakai/">Lexakai documentation</a>
  */
 @SuppressWarnings({ "SpellCheckingInspection", "BooleanMethodIsAlwaysInverted" })
-public class Lexakai extends Application
-        implements ProjectTrait
+public class Lexakai extends Application implements
+        ProjectTrait,
+        PackageTrait
 {
     @SuppressWarnings("unused")
     public static String embeddedMain(String[] arguments)
@@ -231,7 +232,7 @@ public class Lexakai extends Application
     public String description()
     {
         var variables = kivakit().properties().add("lexakai-version", version().toString());
-        var template = PackageResource.packageResource(this, getClass(), "Help.txt").reader().asString();
+        var template = packageResource("Help.txt").reader().asString();
         return variables.expand(template);
     }
 
@@ -401,7 +402,7 @@ public class Lexakai extends Application
         var process = listenTo(new JarLauncher()
                 .processType(CHILD)
                 .arguments(arguments))
-                .addJarSource(PackageResource.packageResource(this, getClass(), "plantuml.jar"))
+                .addJarSource(packageResource("plantuml.jar"))
                 .redirectTo(CONSOLE)
                 .run();
 

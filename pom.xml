@@ -70,7 +70,7 @@
 
         <!-- Telenav -->
 
-        <kivakit.version>1.9.1</kivakit.version>
+        <kivakit.version>1.10.0</kivakit.version>
 
         <!-- Plugins -->
 
@@ -480,7 +480,7 @@
                         <inherited>false</inherited>
                         <executions>
                             <execution>
-                                <id>install-jbpm</id>
+                                <id>install-lexakai</id>
                                 <phase>prepare-package</phase>
                                 <goals>
                                     <goal>wget</goal>

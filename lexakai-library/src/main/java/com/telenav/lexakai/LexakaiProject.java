@@ -50,7 +50,7 @@ import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.core.collections.list.ObjectList.list;
 import static com.telenav.kivakit.core.version.Version.parseVersion;
-import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
+import static com.telenav.kivakit.resource.WriteMode.DO_NOT_OVERWRITE;
 import static com.telenav.kivakit.resource.Extension.JAVA;
 
 /**

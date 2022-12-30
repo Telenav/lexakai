@@ -38,7 +38,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.Folder.Traversal;
 import com.telenav.kivakit.launcher.JarLauncher;
-import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.WriteMode;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.lexakai.dependencies.DependencyDiagram;
 import com.telenav.lexakai.dependencies.MavenDependencyTreeBuilder;
@@ -65,8 +65,8 @@ import static com.telenav.kivakit.filesystem.Folders.folderArgumentParser;
 import static com.telenav.kivakit.filesystem.Folders.folderSwitchParser;
 import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.launcher.JarLauncher.RedirectTo.CONSOLE;
-import static com.telenav.kivakit.resource.CopyMode.DO_NOT_OVERWRITE;
-import static com.telenav.kivakit.resource.CopyMode.UPDATE;
+import static com.telenav.kivakit.resource.WriteMode.DO_NOT_OVERWRITE;
+import static com.telenav.kivakit.resource.WriteMode.UPDATE;
 import static java.util.Collections.addAll;
 
 /**
@@ -241,7 +241,7 @@ public class Lexakai extends Application implements
         return folderToProject.get(folder);
     }
 
-    public CopyMode resourceCopyMode()
+    public WriteMode resourceCopyMode()
     {
         return get(OVERWRITE_RESOURCES) ? UPDATE : DO_NOT_OVERWRITE;
     }

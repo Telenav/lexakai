@@ -38,7 +38,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.WriteMode.OVERWRITE;
 import static com.telenav.lexakai.library.Names.Qualification.UNQUALIFIED;
 import static com.telenav.lexakai.library.Names.TypeParameters.WITHOUT_TYPE_PARAMETERS;
 import static java.util.regex.Pattern.DOTALL;

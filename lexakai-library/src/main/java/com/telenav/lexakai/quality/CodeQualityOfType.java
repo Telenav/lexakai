@@ -1,7 +1,7 @@
 package com.telenav.lexakai.quality;
 
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
-import com.telenav.kivakit.annotations.code.quality.CodeQuality;
+import com.telenav.kivakit.annotations.code.quality.TypeQuality;
 import com.telenav.kivakit.annotations.code.quality.Stability;
 import com.telenav.kivakit.annotations.code.quality.Audience;
 import com.telenav.kivakit.annotations.code.quality.Documentation;
@@ -14,9 +14,10 @@ import com.telenav.lexakai.library.Annotations;
 
 import static com.telenav.kivakit.annotations.code.quality.Stability.STABILITY_UNDETERMINED;
 import static com.telenav.kivakit.annotations.code.quality.Audience.AUDIENCE_PUBLIC;
-import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_COMPLETE;
+import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTED;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_INSUFFICIENT;
 import static com.telenav.kivakit.annotations.code.quality.Documentation.DOCUMENTATION_UNDETERMINED;
+import static com.telenav.kivakit.annotations.code.quality.Testing.TESTING_UNDETERMINED;
 
 @SuppressWarnings("unused")
 public class CodeQualityOfType
@@ -35,9 +36,9 @@ public class CodeQualityOfType
         quality.documentation = DOCUMENTATION_UNDETERMINED;
         quality.audience = AUDIENCE_PUBLIC;
         quality.stability = STABILITY_UNDETERMINED;
-        quality.testing = Testing.TESTING_UNDETERMINED;
+        quality.testing = TESTING_UNDETERMINED;
 
-        var codeQualityAnnotation = node.getAnnotationByClass(CodeQuality.class);
+        var codeQualityAnnotation = node.getAnnotationByClass(TypeQuality.class);
         if (codeQualityAnnotation.isPresent())
         {
             var codeQuality = codeQualityAnnotation.get();
@@ -76,7 +77,7 @@ public class CodeQualityOfType
         {
             var lexakaiJavadoc = lexakaiJavadocAnnotation.get();
             var complete = Annotations.booleanValue(lexakaiJavadoc, "complete", false);
-            quality.documentation = complete ? DOCUMENTATION_COMPLETE : DOCUMENTATION_INSUFFICIENT;
+            quality.documentation = complete ? DOCUMENTED : DOCUMENTATION_INSUFFICIENT;
         }
 
         return quality;

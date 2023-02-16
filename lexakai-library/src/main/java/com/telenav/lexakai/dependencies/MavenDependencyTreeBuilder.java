@@ -20,7 +20,6 @@ package com.telenav.lexakai.dependencies;
 
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.filesystem.Folder;
 
